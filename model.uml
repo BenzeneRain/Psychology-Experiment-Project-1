@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_DEU4AQgAEeCydMSN6Ix2HQ" name="Model">
+  <packageImport xmi:id="_DEU4AggAEeCydMSN6Ix2HQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_T8SdMAgMEeCydMSN6Ix2HQ" name="Subject"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_jUpuUAgMEeCydMSN6Ix2HQ" name="ExperimentSubsystem">
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_d1ldkAgMEeCydMSN6Ix2HQ" name="DotheExperiments"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_hKXoEAgMEeCydMSN6Ix2HQ" name="DothePractice"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_G9kukAgNEeCydMSN6Ix2HQ" name="Configure"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_oHnuEAgMEeCydMSN6Ix2HQ" name="A_subject_do_the_experiments" memberEnd="_oHnuEQgMEeCydMSN6Ix2HQ _oHnuFAgMEeCydMSN6Ix2HQ">
+    <ownedEnd xmi:id="_oHnuEQgMEeCydMSN6Ix2HQ" name="subject" type="_T8SdMAgMEeCydMSN6Ix2HQ" association="_oHnuEAgMEeCydMSN6Ix2HQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oHnuEggMEeCydMSN6Ix2HQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oHnuEwgMEeCydMSN6Ix2HQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_oHnuFAgMEeCydMSN6Ix2HQ" name="dotheexperiments" type="_d1ldkAgMEeCydMSN6Ix2HQ" association="_oHnuEAgMEeCydMSN6Ix2HQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oHnuFQgMEeCydMSN6Ix2HQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oHnuFggMEeCydMSN6Ix2HQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_pVZv0AgMEeCydMSN6Ix2HQ" name="A_subject_do_the_practice" memberEnd="_pVZv0QgMEeCydMSN6Ix2HQ _pVZv1AgMEeCydMSN6Ix2HQ">
+    <ownedEnd xmi:id="_pVZv0QgMEeCydMSN6Ix2HQ" name="subject" type="_T8SdMAgMEeCydMSN6Ix2HQ" association="_pVZv0AgMEeCydMSN6Ix2HQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pVZv0ggMEeCydMSN6Ix2HQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pVZv0wgMEeCydMSN6Ix2HQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_pVZv1AgMEeCydMSN6Ix2HQ" name="dothepractice" type="_hKXoEAgMEeCydMSN6Ix2HQ" association="_pVZv0AgMEeCydMSN6Ix2HQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pVZv1QgMEeCydMSN6Ix2HQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pVZv1ggMEeCydMSN6Ix2HQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_Bz9wcAgNEeCydMSN6Ix2HQ" name="Researcher"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_I81QkAgNEeCydMSN6Ix2HQ" name="A_researcher_configure_the_experiment_subsystem" memberEnd="_I81QkQgNEeCydMSN6Ix2HQ _I81QlAgNEeCydMSN6Ix2HQ">
+    <ownedEnd xmi:id="_I81QkQgNEeCydMSN6Ix2HQ" name="researcher" type="_Bz9wcAgNEeCydMSN6Ix2HQ" association="_I81QkAgNEeCydMSN6Ix2HQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_I81QkggNEeCydMSN6Ix2HQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_I81QkwgNEeCydMSN6Ix2HQ" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_I81QlAgNEeCydMSN6Ix2HQ" name="configure" type="_G9kukAgNEeCydMSN6Ix2HQ" association="_I81QkAgNEeCydMSN6Ix2HQ">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_I81QlQgNEeCydMSN6Ix2HQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_I81QlggNEeCydMSN6Ix2HQ" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>
