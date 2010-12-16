@@ -5,8 +5,12 @@
   </packageImport>
   <packagedElement xmi:type="uml:Actor" xmi:id="_T8SdMAgMEeCydMSN6Ix2HQ" name="Subject"/>
   <packagedElement xmi:type="uml:Package" xmi:id="_jUpuUAgMEeCydMSN6Ix2HQ" name="ExperimentSubsystem">
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_d1ldkAgMEeCydMSN6Ix2HQ" name="DotheExperiments"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_hKXoEAgMEeCydMSN6Ix2HQ" name="DothePractice"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_d1ldkAgMEeCydMSN6Ix2HQ" name="DotheExperiments">
+      <include xmi:id="_7jupwQjCEeCj94dyMM2L0w" addition="_G9kukAgNEeCydMSN6Ix2HQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_hKXoEAgMEeCydMSN6Ix2HQ" name="DothePractice">
+      <include xmi:id="_-B-04AjCEeCj94dyMM2L0w" addition="_G9kukAgNEeCydMSN6Ix2HQ"/>
+    </packagedElement>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_G9kukAgNEeCydMSN6Ix2HQ" name="Configure"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_oHnuEAgMEeCydMSN6Ix2HQ" name="A_subject_do_the_experiments" memberEnd="_oHnuEQgMEeCydMSN6Ix2HQ _oHnuFAgMEeCydMSN6Ix2HQ">
