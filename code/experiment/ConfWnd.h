@@ -17,11 +17,26 @@ class ConfWnd
         INT_PTR displayConfWnd(HINSTANCE ghInstance);
         static INT_PTR CALLBACK confWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam);
 
+        static const int ruleKeywordsNo;
+        static const string ruleKeywords[];
+
+        string subjectID;
+        unsigned int maxSecNo;
+        unsigned int experiMode;
+        string outFilename;
+        unsigned int trialsInOneSec;
+        string displayMode;
+
     private:
         ConfWnd();
+        void updateTrialNo(HWND hDlg);
+        void updateOutputFilename(HWND hDlg);
+        int validateBlanks(HWND hDlg);
+        int validateFileExistance(HWND hDlg);
         
         static auto_ptr<ConfWnd> m_pInstance;
         string m_secNo;
+
 };
 
 
