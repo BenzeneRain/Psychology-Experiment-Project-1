@@ -22,10 +22,13 @@ class ConfWnd
 
         string subjectID;
         unsigned int maxSecNo;
-        unsigned int experiMode;
+        unsigned int experiMode; // 0 -- experiment mode; 1 -- practice mode;
         string outFilename;
         unsigned int trialsInOneSec;
-        string displayMode;
+        DWORD refreshRate;
+        DWORD srcHeight;
+        DWORD srcWidth;
+        DWORD bpp; // bits per pixel
 
     private:
         ConfWnd();
@@ -33,6 +36,7 @@ class ConfWnd
         void updateOutputFilename(HWND hDlg);
         int validateBlanks(HWND hDlg);
         int validateFileExistance(HWND hDlg);
+        void confirmConfiguration(HWND hDlg);
         
         static auto_ptr<ConfWnd> m_pInstance;
         string m_secNo;

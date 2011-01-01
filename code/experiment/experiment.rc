@@ -110,6 +110,7 @@ BEGIN
     EDITTEXT        IDC_EDIT5,89,150,300,12,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT6,89,172,300,12,ES_AUTOHSCROLL
     LTEXT           """/SID/"": Subject ID, ""/Date/"": Experiment Date, ""/Time/"": Experiment Time",IDC_STATIC,91,138,306,8
+    DEFPUSHBUTTON   "Exit",IDEXIT,301,205,50,14
 END
 
 

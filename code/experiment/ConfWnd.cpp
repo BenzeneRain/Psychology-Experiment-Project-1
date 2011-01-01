@@ -154,7 +154,7 @@ void ConfWnd::updateOutputFilename(HWND hDlg)
 
 int ConfWnd::validateBlanks(HWND hDlg)
 {
-    //TODO: validate Total number of trials > 0
+    // validate Total number of trials > 0
     unsigned int totalTrials;
     BOOL inExperimentMode = FALSE;
     UINT ret;
@@ -171,7 +171,7 @@ int ConfWnd::validateBlanks(HWND hDlg)
 
     totalTrials = GetDlgItemInt(hDlg, IDC_EDIT3, 0, FALSE);
 
-    //TODO: validate Output filename != "" (if in experiment mode)
+    // validate Output filename != "" (if in experiment mode)
 
     unsigned int uiOutputFilenameLen;
     HWND hOutputFilenameEditBox;
@@ -248,6 +248,74 @@ int ConfWnd::validateFileExistance(HWND hDlg)
     }
 }
 
+void ConfWnd::confirmConfiguration(HWND hDlg)
+{
+    ConfWnd *pConfWnd = ConfWnd::getInstance();
+
+    // Get the subject ID
+    unsigned int uiSubjectIDLen;
+    HWND hSubjectIDEditBox;
+
+    hSubjectIDEditBox = GetDlgItem(hDlg, IDC_EDIT4);
+    uiSubjectIDLen = SendMessage(hSubjectIDEditBox, EM_LINELENGTH, 0, 0);
+
+    char *lpstrSubjectID = new char [uiSubjectIDLen + 10];
+    GetDlgItemText(hDlg, IDC_EDIT4, lpstrSubjectID, uiSubjectIDLen + 1);
+    pConfWnd->subjectID = string(lpstrSubjectID);
+    delete lpstrSubjectID;
+
+    // store the max section number
+    pConfWnd->maxSecNo = GetDlgItemInt(hDlg, IDC_EDIT2, 0, FALSE);
+
+    // Store the number of trials in one section
+    pConfWnd->trialsInOneSec = GetDlgItemInt(hDlg, IDC_EDIT1, 0, FALSE);
+
+    // Store the display mode
+    HWND hCombo = GetDlgItem(hDlg, IDC_COMBO1);
+    int iMode = SendMessage(hCombo, CB_GETCURSEL, 0, 0);
+    iMode = SendMessage(hCombo, CB_GETITEMDATA, iMode, 0);
+
+    DEVMODE devMode;
+    EnumDisplaySettings(NULL, iMode, &devMode);
+    pConfWnd->srcHeight = devMode.dmPelsHeight;
+    pConfWnd->srcWidth = devMode.dmPelsWidth;
+    pConfWnd->refreshRate = devMode.dmDisplayFrequency;
+    pConfWnd->bpp = devMode.dmBitsPerPel;
+
+    // Store the experiment mode
+    UINT ret;
+
+    ret = IsDlgButtonChecked(hDlg, IDC_RADIO1);
+    if(ret == BST_CHECKED)
+    {
+        pConfWnd->experiMode = 0;
+    }
+    else
+    {
+        pConfWnd->experiMode = 1;
+    }
+
+    // If in experiment mode, store the output filename
+    if(pConfWnd->experiMode == 0)
+    {
+        // get output filename
+        unsigned int uiOutputFilenameLen;
+        HWND hOutputFilenameEditBox;
+
+        hOutputFilenameEditBox = GetDlgItem(hDlg, IDC_EDIT6);
+        uiOutputFilenameLen = SendMessage(hOutputFilenameEditBox, EM_LINELENGTH, 0, 0);
+
+        char *lpstrOutputFilename = new char[uiOutputFilenameLen + 10];
+        GetDlgItemText(hDlg, IDC_EDIT5, lpstrOutputFilename, uiOutputFilenameLen + 1);
+        
+        pConfWnd->outFilename = string(lpstrOutputFilename);
+
+        delete lpstrOutputFilename;
+    }
+
+    return;
+}
+
 INT_PTR ConfWnd::displayConfWnd(HINSTANCE ghInstance)
 {
     INT_PTR ret;
@@ -280,7 +348,7 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
                 // Set the default values to the experiment mode
                 CheckDlgButton(hDlg, IDC_RADIO1, BST_CHECKED);
 
-                // Enumerate display modes (Copied SphereWorld32.cpp)
+                // Enumerate display modes (Copied from SphereWorld32.cpp)
                 unsigned int iMode;
                 unsigned int nWidth;
                 unsigned int nHeight;
@@ -321,10 +389,12 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
             {
                 switch(LOWORD(wParam))
                 {
+                    // Press the Confirm button
                     case IDOK:
                         {
                             BOOL succeed = TRUE;
 
+                            // Validate the blanks
                             if(pConfWnd->validateBlanks(hDlg) != 0)
                             {
                                 MessageBox(NULL, "Some blanks are invalid, and please check.\n"
@@ -333,10 +403,12 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
                                 succeed = FALSE;
                             }
 
+                            // Validate if the output file is existed
                             if(pConfWnd->validateFileExistance(hDlg) != 0)
                             {
                                 int ret;
-                                ret = MessageBox(NULL, "The chosen output file is existed. Do you want to overwrite it or not?", NULL, MB_YESNO);
+                                ret = MessageBox(NULL, "The chosen output file is existed."
+                                    " Do you want to overwrite it or not?", NULL, MB_YESNO);
                                 if (ret == IDNO)
                                 {
                                     succeed = FALSE;
@@ -345,18 +417,22 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
                         
                             if(succeed)
                             {
-                                //TODO: store configurations in ConfWnd
+                                // store configurations in ConfWnd
+                                pConfWnd->confirmConfiguration(hDlg);
                                 EndDialog(hDlg, TRUE);
                             }
                             break;
                         }
-                    case IDC_COMBO1:
+                    // Press the exit button
+                    case IDEXIT:
                         {
-
+                            EndDialog(hDlg, FALSE);
                             break;
                         }
                     case IDC_EDIT2:
                         {
+                            // If the number of section changed, 
+                            // re-calculate the total number of the trials
                             if(HIWORD(wParam) == EN_CHANGE)
                             {
                                 pConfWnd->updateTrialNo(hDlg);
@@ -365,6 +441,8 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
                         }
                     case IDC_EDIT1:
                         {
+                            // If the number of trials in each section
+                            // changed, recalculate the total number of the trials
                             if(HIWORD(wParam) == EN_CHANGE)
                             {
                                 pConfWnd->updateTrialNo(hDlg);
@@ -373,6 +451,8 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
                         }
                     case IDC_EDIT4:
                         {
+                            // If the subject ID changed, update 
+                            // the output filename
                             if(HIWORD(wParam) == EN_CHANGE)
                             {
                                 pConfWnd->updateOutputFilename(hDlg);
@@ -381,6 +461,8 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
                         }
                     case IDC_EDIT5:
                         {
+                            // If the output filename generation rule changed,
+                            // update the output filename
                             if(HIWORD(wParam) == EN_CHANGE)
                             {
                                 pConfWnd->updateOutputFilename(hDlg);
@@ -389,6 +471,7 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
                         }
                     case IDC_RADIO1:
                         {
+                            // If select experiment mode, update the output filename and enable related blanks
                             if(HIWORD(wParam) == BN_CLICKED)
                             {
                                 HWND hSubjectIDEditBox, hOutputFilenameRuleEditBox, hOutputFilenameEditBox;
@@ -406,6 +489,7 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
                         }
                     case IDC_RADIO2:
                         {
+                            // If select practice mode, disable output filename related blanks
                             if(HIWORD(wParam) == BN_CLICKED)
                             {
                                 HWND hSubjectIDEditBox, hOutputFilenameRuleEditBox, hOutputFilenameEditBox;

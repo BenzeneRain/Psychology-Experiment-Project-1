@@ -4,14 +4,7 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-ALT	.\experiment.rc	/^    "?",            IDM_ABOUT,              ASCII,  ALT$/;"	v
-APSTUDIO_HIDDEN_SYMBOLS	.\experiment.rc	13;"	d	file:
-APSTUDIO_HIDDEN_SYMBOLS	.\experiment.rc	15;"	d	file:
-APSTUDIO_READONLY_SYMBOLS	.\experiment.rc	18;"	d	file:
-APSTUDIO_READONLY_SYMBOLS	.\experiment.rc	5;"	d	file:
-ASCII	.\experiment.rc	/^    "?",            IDM_ABOUT,              ASCII,  ALT$/;"	v
-ASCII	.\experiment.rc	/^    "\/",            IDM_ABOUT,              ASCII,  ALT$/;"	v
-BEGIN	.\experiment.rc	/^BEGIN$/;"	v
+A	.\Debug\experiment.exe	/^PËFÏˇˇÉƒâÖº˛ˇˇãçº˛ˇˇâMºãE‘É¿ãÙPãMºQhÓ/;"	v
 BOTTOMMARGIN	.\experiment.rc	/^        BOTTOMMARGIN, 219$/;"	v
 BOTTOMMARGIN	.\experiment.rc	/^        BOTTOMMARGIN, 55$/;"	v
 BS_AUTORADIOBUTTON	.\experiment.rc	/^    CONTROL         "Experiment",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,276,78,52,10$/;"	v
@@ -28,52 +21,89 @@ ConfWnd::ConfWnd	.\ConfWnd.cpp	/^ConfWnd::ConfWnd(void)$/;"	f	class:ConfWnd	sign
 ConfWnd::ConfWnd	.\ConfWnd.cpp~	/^ConfWnd::ConfWnd(void)$/;"	f	class:ConfWnd	signature:(void)
 ConfWnd::ConfWnd	.\ConfWnd.h	/^        ConfWnd();$/;"	p	class:ConfWnd	access:private	signature:()
 ConfWnd::ConfWnd	.\ConfWnd.h~	/^        ConfWnd();$/;"	p	class:ConfWnd	file:	access:private	signature:()
+ConfWnd::bpp	.\ConfWnd.h	/^        DWORD bpp; \/\/ bits per pixel$/;"	m	class:ConfWnd	access:public
+ConfWnd::bpp	.\ConfWnd.h~	/^        UINT bpp; \/\/ bits per pixel$/;"	m	class:ConfWnd	file:	access:public
 ConfWnd::confWndProc	.\ConfWnd.cpp	/^INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG lParam)$/;"	f	class:ConfWnd	signature:(HWND hDlg, UINT message, UINT wParam, LONG lParam)
 ConfWnd::confWndProc	.\ConfWnd.cpp~	/^INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG lParam)$/;"	f	class:ConfWnd	signature:(HWND hDlg, UINT message, UINT wParam, LONG lParam)
 ConfWnd::confWndProc	.\ConfWnd.h	/^        static INT_PTR CALLBACK confWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam);$/;"	p	class:ConfWnd	access:public	signature:(HWND hWnd, UINT message, UINT wParam, LONG lParam)
 ConfWnd::confWndProc	.\ConfWnd.h~	/^        static INT_PTR CALLBACK confWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam);$/;"	p	class:ConfWnd	file:	access:public	signature:(HWND hWnd, UINT message, UINT wParam, LONG lParam)
+ConfWnd::confirmConfiguration	.\ConfWnd.cpp	/^void ConfWnd::confirmConfiguration(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+ConfWnd::confirmConfiguration	.\ConfWnd.cpp~	/^void ConfWnd::confirmConfiguration(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+ConfWnd::confirmConfiguration	.\ConfWnd.h	/^        void confirmConfiguration(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
+ConfWnd::confirmConfiguration	.\ConfWnd.h~	/^        void confirmConfiguration(HWND hDlg);$/;"	p	class:ConfWnd	file:	access:private	signature:(HWND hDlg)
 ConfWnd::displayConfWnd	.\ConfWnd.cpp	/^INT_PTR ConfWnd::displayConfWnd(HINSTANCE ghInstance)$/;"	f	class:ConfWnd	signature:(HINSTANCE ghInstance)
 ConfWnd::displayConfWnd	.\ConfWnd.cpp~	/^INT_PTR ConfWnd::displayConfWnd(HINSTANCE ghInstance)$/;"	f	class:ConfWnd	signature:(HINSTANCE ghInstance)
 ConfWnd::displayConfWnd	.\ConfWnd.h	/^        INT_PTR displayConfWnd(HINSTANCE ghInstance);$/;"	p	class:ConfWnd	access:public	signature:(HINSTANCE ghInstance)
 ConfWnd::displayConfWnd	.\ConfWnd.h~	/^        INT_PTR displayConfWnd(HINSTANCE ghInstance);$/;"	p	class:ConfWnd	file:	access:public	signature:(HINSTANCE ghInstance)
+ConfWnd::experiMode	.\ConfWnd.h	/^        unsigned int experiMode;$/;"	m	class:ConfWnd	access:public
+ConfWnd::experiMode	.\ConfWnd.h~	/^        unsigned int experiMode;$/;"	m	class:ConfWnd	file:	access:public
 ConfWnd::getInstance	.\ConfWnd.cpp	/^ConfWnd* ConfWnd::getInstance()$/;"	f	class:ConfWnd	signature:()
 ConfWnd::getInstance	.\ConfWnd.cpp~	/^ConfWnd* ConfWnd::getInstance()$/;"	f	class:ConfWnd	signature:()
 ConfWnd::getInstance	.\ConfWnd.h	/^        static ConfWnd *getInstance();$/;"	p	class:ConfWnd	access:public	signature:()
 ConfWnd::getInstance	.\ConfWnd.h~	/^        static ConfWnd *getInstance();$/;"	p	class:ConfWnd	file:	access:public	signature:()
 ConfWnd::m_pInstance	.\ConfWnd.cpp	/^auto_ptr<ConfWnd> ConfWnd::m_pInstance;$/;"	m	class:ConfWnd	file:
+ConfWnd::m_pInstance	.\ConfWnd.cpp~	/^auto_ptr<ConfWnd> ConfWnd::m_pInstance;$/;"	m	class:ConfWnd	file:
 ConfWnd::m_pInstance	.\ConfWnd.h	/^        static auto_ptr<ConfWnd> m_pInstance;$/;"	m	class:ConfWnd	access:private
 ConfWnd::m_pInstance	.\ConfWnd.h~	/^        static auto_ptr<ConfWnd> m_pInstance;$/;"	m	class:ConfWnd	file:	access:private
 ConfWnd::m_secNo	.\ConfWnd.h	/^        string m_secNo;$/;"	m	class:ConfWnd	access:private
 ConfWnd::m_secNo	.\ConfWnd.h~	/^        string m_secNo;$/;"	m	class:ConfWnd	file:	access:private
+ConfWnd::maxSecNo	.\ConfWnd.h	/^        unsigned int maxSecNo;$/;"	m	class:ConfWnd	access:public
+ConfWnd::maxSecNo	.\ConfWnd.h~	/^        unsigned int maxSecNo;$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::outFilename	.\ConfWnd.h	/^        string outFilename;$/;"	m	class:ConfWnd	access:public
+ConfWnd::outFilename	.\ConfWnd.h~	/^        string outFilename;$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::refreshRate	.\ConfWnd.h	/^        DWORD refreshRate;$/;"	m	class:ConfWnd	access:public
+ConfWnd::refreshRate	.\ConfWnd.h~	/^        UINT refreshRate;$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::ruleKeywords	.\ConfWnd.cpp	/^const string ConfWnd::ruleKeywords[] = {"\/SID\/", "\/Date\/", "\/Time\/"};$/;"	m	class:ConfWnd	file:
+ConfWnd::ruleKeywords	.\ConfWnd.cpp~	/^const string ConfWnd::ruleKeywords[] = {"\/SID\/", "\/Date\/", "\/Time\/"};$/;"	m	class:ConfWnd	file:
+ConfWnd::ruleKeywords	.\ConfWnd.h	/^        static const string ruleKeywords[];$/;"	m	class:ConfWnd	access:public
+ConfWnd::ruleKeywords	.\ConfWnd.h~	/^        static const string ruleKeywords[];$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::ruleKeywordsNo	.\ConfWnd.cpp	/^const int ConfWnd::ruleKeywordsNo = 3;$/;"	m	class:ConfWnd	file:
+ConfWnd::ruleKeywordsNo	.\ConfWnd.cpp~	/^const int ConfWnd::ruleKeywordsNo = 3;$/;"	m	class:ConfWnd	file:
+ConfWnd::ruleKeywordsNo	.\ConfWnd.h	/^        static const int ruleKeywordsNo;$/;"	m	class:ConfWnd	access:public
+ConfWnd::ruleKeywordsNo	.\ConfWnd.h~	/^        static const int ruleKeywordsNo;$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::srcHeight	.\ConfWnd.h	/^        DWORD srcHeight;$/;"	m	class:ConfWnd	access:public
+ConfWnd::srcHeight	.\ConfWnd.h~	/^        UINT srcHeight;$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::srcWidth	.\ConfWnd.h	/^        DWORD srcWidth;$/;"	m	class:ConfWnd	access:public
+ConfWnd::srcWidth	.\ConfWnd.h~	/^        UINT srcWidth;$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::subjectID	.\ConfWnd.h	/^        string subjectID;$/;"	m	class:ConfWnd	access:public
+ConfWnd::subjectID	.\ConfWnd.h~	/^        string subjectID;$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::trialsInOneSec	.\ConfWnd.h	/^        unsigned int trialsInOneSec;$/;"	m	class:ConfWnd	access:public
+ConfWnd::trialsInOneSec	.\ConfWnd.h~	/^        unsigned int trialsInOneSec;$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::updateOutputFilename	.\ConfWnd.cpp	/^void ConfWnd::updateOutputFilename(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+ConfWnd::updateOutputFilename	.\ConfWnd.cpp~	/^void ConfWnd::updateOutputFilename(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+ConfWnd::updateOutputFilename	.\ConfWnd.h	/^        void updateOutputFilename(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
+ConfWnd::updateOutputFilename	.\ConfWnd.h~	/^        void updateOutputFilename(HWND hDlg);$/;"	p	class:ConfWnd	file:	access:private	signature:(HWND hDlg)
+ConfWnd::updateTrialNo	.\ConfWnd.cpp	/^void ConfWnd::updateTrialNo(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+ConfWnd::updateTrialNo	.\ConfWnd.cpp~	/^void ConfWnd::updateTrialNo(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+ConfWnd::updateTrialNo	.\ConfWnd.h	/^        void updateTrialNo(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
+ConfWnd::updateTrialNo	.\ConfWnd.h~	/^        void updateTrialNo(HWND hDlg);$/;"	p	class:ConfWnd	file:	access:private	signature:(HWND hDlg)
+ConfWnd::validateBlanks	.\ConfWnd.cpp	/^int ConfWnd::validateBlanks(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+ConfWnd::validateBlanks	.\ConfWnd.cpp~	/^int ConfWnd::validateBlanks(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+ConfWnd::validateBlanks	.\ConfWnd.h	/^        int validateBlanks(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
+ConfWnd::validateBlanks	.\ConfWnd.h~	/^        int validateBlanks(HWND hDlg);$/;"	p	class:ConfWnd	file:	access:private	signature:(HWND hDlg)
+ConfWnd::validateFileExistance	.\ConfWnd.cpp	/^int ConfWnd::validateFileExistance(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+ConfWnd::validateFileExistance	.\ConfWnd.cpp~	/^int ConfWnd::validateFileExistance(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+ConfWnd::validateFileExistance	.\ConfWnd.h	/^        int validateFileExistance(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
+ConfWnd::validateFileExistance	.\ConfWnd.h~	/^        int validateFileExistance(HWND hDlg);$/;"	p	class:ConfWnd	file:	access:private	signature:(HWND hDlg)
 ConfWnd::~ConfWnd	.\ConfWnd.cpp	/^ConfWnd::~ConfWnd(void)$/;"	f	class:ConfWnd	signature:(void)
 ConfWnd::~ConfWnd	.\ConfWnd.cpp~	/^ConfWnd::~ConfWnd(void)$/;"	f	class:ConfWnd	signature:(void)
 ConfWnd::~ConfWnd	.\ConfWnd.h	/^        ~ConfWnd();$/;"	p	class:ConfWnd	access:public	signature:()
 ConfWnd::~ConfWnd	.\ConfWnd.h~	/^        ~ConfWnd();$/;"	p	class:ConfWnd	file:	access:public	signature:()
-DEFPUSHBUTTON	.\experiment.rc	/^    DEFPUSHBUTTON   "Confirm",IDOK,360,204,50,14$/;"	v
-DEFPUSHBUTTON	.\experiment.rc	/^    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP$/;"	v
-DIALOGEX	.\experiment.rc	/^IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62$/;"	v
-DIALOGEX	.\experiment.rc	/^IDD_CONFWND DIALOGEX 0, 0, 418, 226$/;"	v
-FONT	.\experiment.rc	/^FONT 8, "MS Shell Dlg", 0, 0, 0x1$/;"	v
-FONT	.\experiment.rc	/^FONT 8, "MS Shell Dlg", 400, 0, 0x1$/;"	v
 File	.\experiment.sln	/^Microsoft Visual Studio Solution File, Format Version 10.00$/;"	v
-GROUPBOX	.\experiment.rc	/^    GROUPBOX        "Experiment",IDC_STATIC,216,60,192,36$/;"	v
-GROUPBOX	.\experiment.rc	/^    GROUPBOX        "Output",IDC_STATIC,6,102,402,90$/;"	v
-GROUPBOX	.\experiment.rc	/^    GROUPBOX        "Screen",IDC_STATIC,214,7,192,41$/;"	v
-GROUPBOX	.\experiment.rc	/^    GROUPBOX        "Trials and Sections",IDC_STATIC,6,7,199,89$/;"	v
-ICON	.\experiment.rc	/^    ICON            128,IDC_STATIC,14,14,21,20$/;"	v
-IDC_COMBO1	.\experiment.rc	/^    COMBOBOX        IDC_COMBO1,222,30,180,12,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP$/;"	v
+GROUPBOX	.\experiment.rc	/^    GROUPBOX        "Experiment",IDC_STATIC,213,57,192,39$/;"	v
+GROUPBOX	.\experiment.rc	/^    GROUPBOX        "Output",IDC_STATIC,7,102,402,90$/;"	v
+GROUPBOX	.\experiment.rc	/^    GROUPBOX        "Screen",IDC_STATIC,213,7,192,40$/;"	v
+I	.\Debug\experiment.ilk	/^IDC_STATIC,12,47,108,8$/;"	v
+IDC_COMBO1	.\experiment.rc	/^    COMBOBOX        IDC_COMBO1,221,30,174,66,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP$/;"	v
 IDC_COMBO1	.\resource.h	19;"	d
-IDC_EDIT1	.\experiment.rc	/^    EDITTEXT        IDC_EDIT1,126,44,68,14,ES_AUTOHSCROLL$/;"	v
 IDC_EDIT1	.\resource.h	16;"	d
-IDC_EDIT2	.\experiment.rc	/^    EDITTEXT        IDC_EDIT2,126,24,68,14,ES_AUTOHSCROLL$/;"	v
 IDC_EDIT2	.\resource.h	17;"	d
-IDC_EDIT3	.\experiment.rc	/^    EDITTEXT        IDC_EDIT3,126,66,68,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP$/;"	v
 IDC_EDIT3	.\resource.h	18;"	d
-IDC_EDIT4	.\experiment.rc	/^    EDITTEXT        IDC_EDIT4,96,114,96,12,ES_AUTOHSCROLL$/;"	v
+IDC_EDIT4	.\experiment.rc	/^    EDITTEXT        IDC_EDIT4,89,114,96,12,ES_AUTOHSCROLL$/;"	v
 IDC_EDIT4	.\resource.h	22;"	d
-IDC_EDIT5	.\experiment.rc	/^    EDITTEXT        IDC_EDIT5,96,150,300,12,ES_AUTOHSCROLL$/;"	v
+IDC_EDIT5	.\experiment.rc	/^    EDITTEXT        IDC_EDIT5,89,150,300,12,ES_AUTOHSCROLL$/;"	v
 IDC_EDIT5	.\resource.h	23;"	d
-IDC_EDIT6	.\experiment.rc	/^    EDITTEXT        IDC_EDIT6,96,172,300,12,ES_AUTOHSCROLL$/;"	v
+IDC_EDIT6	.\experiment.rc	/^    EDITTEXT        IDC_EDIT6,89,172,300,12,ES_AUTOHSCROLL$/;"	v
 IDC_EDIT6	.\resource.h	24;"	d
 IDC_EXPERIMENT	.\resource.h	13;"	d
 IDC_MYICON	.\resource.h	5;"	d
@@ -81,22 +111,16 @@ IDC_RADIO1	.\experiment.rc	/^    CONTROL         "Experiment",IDC_RADIO1,"Button
 IDC_RADIO1	.\resource.h	20;"	d
 IDC_RADIO2	.\experiment.rc	/^    CONTROL         "Practice",IDC_RADIO2,"Button",BS_AUTORADIOBUTTON,342,78,41,10$/;"	v
 IDC_RADIO2	.\resource.h	21;"	d
-IDC_STATIC	.\experiment.rc	/^    GROUPBOX        "Experiment",IDC_STATIC,216,60,192,36$/;"	v
-IDC_STATIC	.\experiment.rc	/^    GROUPBOX        "Output",IDC_STATIC,6,102,402,90$/;"	v
-IDC_STATIC	.\experiment.rc	/^    GROUPBOX        "Screen",IDC_STATIC,214,7,192,41$/;"	v
-IDC_STATIC	.\experiment.rc	/^    GROUPBOX        "Trials and Sections",IDC_STATIC,6,7,199,89$/;"	v
-IDC_STATIC	.\experiment.rc	/^    ICON            128,IDC_STATIC,14,14,21,20$/;"	v
-IDC_STATIC	.\experiment.rc	/^    LTEXT           """\/SID\/"": Subject ID, ""\/Date\/"": Experiment Date, ""\/Time\/"": Experiment Time",IDC_STATIC,96,138,306,8$/;"	v
-IDC_STATIC	.\experiment.rc	/^    LTEXT           "Copyright (C) 2010",IDC_STATIC,42,26,114,8$/;"	v
+IDC_STATIC	.\experiment.rc	/^    GROUPBOX        "Experiment",IDC_STATIC,213,57,192,39$/;"	v
+IDC_STATIC	.\experiment.rc	/^    GROUPBOX        "Output",IDC_STATIC,7,102,402,90$/;"	v
+IDC_STATIC	.\experiment.rc	/^    GROUPBOX        "Screen",IDC_STATIC,213,7,192,40$/;"	v
+IDC_STATIC	.\experiment.rc	/^    LTEXT           """\/SID\/"": Subject ID, ""\/Date\/"": Experiment Date, ""\/Time\/"": Experiment Time",IDC_STATIC,91,138,306,8$/;"	v
 IDC_STATIC	.\experiment.rc	/^    LTEXT           "Mode:",IDC_STATIC,228,78,18,8$/;"	v
-IDC_STATIC	.\experiment.rc	/^    LTEXT           "Number of Sections:",IDC_STATIC,50,27,70,8$/;"	v
-IDC_STATIC	.\experiment.rc	/^    LTEXT           "Number of Trials in One Section:",IDC_STATIC,12,47,108,8$/;"	v
 IDC_STATIC	.\experiment.rc	/^    LTEXT           "Output Filename Rule:",IDC_STATIC,14,138,72,8$/;"	v
 IDC_STATIC	.\experiment.rc	/^    LTEXT           "Output Filename:",IDC_STATIC,30,174,60,8$/;"	v
 IDC_STATIC	.\experiment.rc	/^    LTEXT           "Resolution and Refresh Rate",IDC_STATIC,222,18,96,8$/;"	v
 IDC_STATIC	.\experiment.rc	/^    LTEXT           "Subject ID:",IDC_STATIC,49,114,36,8$/;"	v
 IDC_STATIC	.\experiment.rc	/^    LTEXT           "Total Number of Trials:",IDC_STATIC,42,69,76,8$/;"	v
-IDC_STATIC	.\experiment.rc	/^    LTEXT           "experiment, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX$/;"	v
 IDC_STATIC	.\resource.h	25;"	d
 IDD_ABOUTBOX	.\experiment.rc	/^    IDD_ABOUTBOX, DIALOG$/;"	v
 IDD_ABOUTBOX	.\resource.h	8;"	d
@@ -105,39 +129,23 @@ IDD_CONFWND	.\resource.h	15;"	d
 IDD_EXPERIMENT_DIALOG	.\resource.h	6;"	d
 IDI_EXPERIMENT	.\resource.h	11;"	d
 IDI_SMALL	.\resource.h	12;"	d
-IDM_ABOUT	.\experiment.rc	/^    "?",            IDM_ABOUT,              ASCII,  ALT$/;"	v
-IDM_ABOUT	.\experiment.rc	/^    "\/",            IDM_ABOUT,              ASCII,  ALT$/;"	v
 IDM_ABOUT	.\resource.h	9;"	d
 IDM_EXIT	.\resource.h	10;"	d
-IDOK	.\experiment.rc	/^    DEFPUSHBUTTON   "Confirm",IDOK,360,204,50,14$/;"	v
-IDOK	.\experiment.rc	/^    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP$/;"	v
 IDR_MAINFRAME	.\resource.h	14;"	d
 IDS_APP_TITLE	.\resource.h	7;"	d
-L	.\Debug\experiment.exe	/^/;"	v
-LANG_ENGLISH	.\experiment.rc	/^LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US$/;"	v
 LEFTMARGIN	.\experiment.rc	/^        LEFTMARGIN, 7$/;"	v
-LTEXT	.\experiment.rc	/^    LTEXT           """\/SID\/"": Subject ID, ""\/Date\/"": Experiment Date, ""\/Time\/"": Experiment Time",IDC_STATIC,96,138,306,8$/;"	v
-LTEXT	.\experiment.rc	/^    LTEXT           "Copyright (C) 2010",IDC_STATIC,42,26,114,8$/;"	v
+LTEXT	.\experiment.rc	/^    LTEXT           """\/SID\/"": Subject ID, ""\/Date\/"": Experiment Date, ""\/Time\/"": Experiment Time",IDC_STATIC,91,138,306,8$/;"	v
 LTEXT	.\experiment.rc	/^    LTEXT           "Mode:",IDC_STATIC,228,78,18,8$/;"	v
-LTEXT	.\experiment.rc	/^    LTEXT           "Number of Sections:",IDC_STATIC,50,27,70,8$/;"	v
-LTEXT	.\experiment.rc	/^    LTEXT           "Number of Trials in One Section:",IDC_STATIC,12,47,108,8$/;"	v
 LTEXT	.\experiment.rc	/^    LTEXT           "Output Filename Rule:",IDC_STATIC,14,138,72,8$/;"	v
 LTEXT	.\experiment.rc	/^    LTEXT           "Output Filename:",IDC_STATIC,30,174,60,8$/;"	v
 LTEXT	.\experiment.rc	/^    LTEXT           "Resolution and Refresh Rate",IDC_STATIC,222,18,96,8$/;"	v
 LTEXT	.\experiment.rc	/^    LTEXT           "Subject ID:",IDC_STATIC,49,114,36,8$/;"	v
 LTEXT	.\experiment.rc	/^    LTEXT           "Total Number of Trials:",IDC_STATIC,42,69,76,8$/;"	v
-LTEXT	.\experiment.rc	/^    LTEXT           "experiment, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX$/;"	v
-MENUITEM	.\experiment.rc	/^        MENUITEM "&About ...",                  IDM_ABOUT$/;"	v
-MENUITEM	.\experiment.rc	/^        MENUITEM "E&xit",                       IDM_EXIT$/;"	v
 RIGHTMARGIN	.\experiment.rc	/^        RIGHTMARGIN, 163$/;"	v
-RIGHTMARGIN	.\experiment.rc	/^        RIGHTMARGIN, 411$/;"	v
-T	.\Debug\experiment.exe	/^/;"	v
+RIGHTMARGIN	.\experiment.rc	/^        RIGHTMARGIN, 412$/;"	v
 TOPMARGIN	.\experiment.rc	/^        TOPMARGIN, 7$/;"	v
 WIN32_LEAN_AND_MEAN	.\stdafx.h	10;"	d
 WINVER	.\targetver.h	11;"	d
-WinMain	.\experiment.cpp	/^int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,$/;"	f	signature:( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
-WinMain	.\experiment.cpp~	/^int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,$/;"	f	signature:( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
-X	.\Debug\experiment.exe	/^/;"	v
 _APS_NEXT_COMMAND_VALUE	.\resource.h	33;"	d
 _APS_NEXT_CONTROL_VALUE	.\resource.h	34;"	d
 _APS_NEXT_RESOURCE_VALUE	.\resource.h	32;"	d
@@ -148,30 +156,75 @@ _H_CONFWND_	.\ConfWnd.h~	2;"	d	file:
 _WIN32_IE	.\targetver.h	23;"	d
 _WIN32_WINDOWS	.\targetver.h	19;"	d
 _WIN32_WINNT	.\targetver.h	15;"	d
-a	.\Debug\experiment.exe	/^/;"	v
+bpp	.\ConfWnd.h	/^        DWORD bpp; \/\/ bits per pixel$/;"	m	class:ConfWnd	access:public
+bpp	.\ConfWnd.h~	/^        UINT bpp; \/\/ bits per pixel$/;"	m	class:ConfWnd	file:	access:public
 confWndProc	.\ConfWnd.cpp	/^INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG lParam)$/;"	f	class:ConfWnd	signature:(HWND hDlg, UINT message, UINT wParam, LONG lParam)
 confWndProc	.\ConfWnd.cpp~	/^INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG lParam)$/;"	f	class:ConfWnd	signature:(HWND hDlg, UINT message, UINT wParam, LONG lParam)
 confWndProc	.\ConfWnd.h	/^        static INT_PTR CALLBACK confWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam);$/;"	p	class:ConfWnd	access:public	signature:(HWND hWnd, UINT message, UINT wParam, LONG lParam)
 confWndProc	.\ConfWnd.h~	/^        static INT_PTR CALLBACK confWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam);$/;"	p	class:ConfWnd	file:	access:public	signature:(HWND hWnd, UINT message, UINT wParam, LONG lParam)
+confirmConfiguration	.\ConfWnd.cpp	/^void ConfWnd::confirmConfiguration(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+confirmConfiguration	.\ConfWnd.cpp~	/^void ConfWnd::confirmConfiguration(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+confirmConfiguration	.\ConfWnd.h	/^        void confirmConfiguration(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
+confirmConfiguration	.\ConfWnd.h~	/^        void confirmConfiguration(HWND hDlg);$/;"	p	class:ConfWnd	file:	access:private	signature:(HWND hDlg)
 displayConfWnd	.\ConfWnd.cpp	/^INT_PTR ConfWnd::displayConfWnd(HINSTANCE ghInstance)$/;"	f	class:ConfWnd	signature:(HINSTANCE ghInstance)
 displayConfWnd	.\ConfWnd.cpp~	/^INT_PTR ConfWnd::displayConfWnd(HINSTANCE ghInstance)$/;"	f	class:ConfWnd	signature:(HINSTANCE ghInstance)
 displayConfWnd	.\ConfWnd.h	/^        INT_PTR displayConfWnd(HINSTANCE ghInstance);$/;"	p	class:ConfWnd	access:public	signature:(HINSTANCE ghInstance)
 displayConfWnd	.\ConfWnd.h~	/^        INT_PTR displayConfWnd(HINSTANCE ghInstance);$/;"	p	class:ConfWnd	file:	access:public	signature:(HINSTANCE ghInstance)
 error	.\Debug\BuildLog.htm	/^/;"	p	file:	signature:(s)
+experiMode	.\ConfWnd.h	/^        unsigned int experiMode;$/;"	m	class:ConfWnd	access:public
+experiMode	.\ConfWnd.h~	/^        unsigned int experiMode;$/;"	m	class:ConfWnd	file:	access:public
 experiment	.\Debug\BuildLog.htm	/^/;"	v
 format	.\tags	/^!_TAG_FILE_FORMAT	2	\/extended format; --format=1 will not append ;" to lines\/$/;"	v
 getInstance	.\ConfWnd.cpp	/^ConfWnd* ConfWnd::getInstance()$/;"	f	class:ConfWnd	signature:()
 getInstance	.\ConfWnd.cpp~	/^ConfWnd* ConfWnd::getInstance()$/;"	f	class:ConfWnd	signature:()
 getInstance	.\ConfWnd.h	/^        static ConfWnd *getInstance();$/;"	p	class:ConfWnd	access:public	signature:()
 getInstance	.\ConfWnd.h~	/^        static ConfWnd *getInstance();$/;"	p	class:ConfWnd	file:	access:public	signature:()
-h	.\Debug\experiment.ilk	/^ê/;"	v
-ki	.\Debug\experiment.ilk	/^ê/;"	v
+invalid	.\.ConfWnd.cpp.swp	/^/;"	v
 m_pInstance	.\ConfWnd.cpp	/^auto_ptr<ConfWnd> ConfWnd::m_pInstance;$/;"	m	class:ConfWnd	file:
+m_pInstance	.\ConfWnd.cpp~	/^auto_ptr<ConfWnd> ConfWnd::m_pInstance;$/;"	m	class:ConfWnd	file:
 m_pInstance	.\ConfWnd.h	/^        static auto_ptr<ConfWnd> m_pInstance;$/;"	m	class:ConfWnd	access:private
 m_pInstance	.\ConfWnd.h~	/^        static auto_ptr<ConfWnd> m_pInstance;$/;"	m	class:ConfWnd	file:	access:private
 m_secNo	.\ConfWnd.h	/^        string m_secNo;$/;"	m	class:ConfWnd	access:private
 m_secNo	.\ConfWnd.h~	/^        string m_secNo;$/;"	m	class:ConfWnd	file:	access:private
+maxSecNo	.\ConfWnd.h	/^        unsigned int maxSecNo;$/;"	m	class:ConfWnd	access:public
+maxSecNo	.\ConfWnd.h~	/^        unsigned int maxSecNo;$/;"	m	class:ConfWnd	file:	access:public
 nbsp	.\Debug\BuildLog.htm	/^/;"	v
+outFilename	.\ConfWnd.h	/^        string outFilename;$/;"	m	class:ConfWnd	access:public
+outFilename	.\ConfWnd.h~	/^        string outFilename;$/;"	m	class:ConfWnd	file:	access:public
+refreshRate	.\ConfWnd.h	/^        DWORD refreshRate;$/;"	m	class:ConfWnd	access:public
+refreshRate	.\ConfWnd.h~	/^        UINT refreshRate;$/;"	m	class:ConfWnd	file:	access:public
+ruleKeywords	.\ConfWnd.cpp	/^const string ConfWnd::ruleKeywords[] = {"\/SID\/", "\/Date\/", "\/Time\/"};$/;"	m	class:ConfWnd	file:
+ruleKeywords	.\ConfWnd.cpp~	/^const string ConfWnd::ruleKeywords[] = {"\/SID\/", "\/Date\/", "\/Time\/"};$/;"	m	class:ConfWnd	file:
+ruleKeywords	.\ConfWnd.h	/^        static const string ruleKeywords[];$/;"	m	class:ConfWnd	access:public
+ruleKeywords	.\ConfWnd.h~	/^        static const string ruleKeywords[];$/;"	m	class:ConfWnd	file:	access:public
+ruleKeywordsNo	.\ConfWnd.cpp	/^const int ConfWnd::ruleKeywordsNo = 3;$/;"	m	class:ConfWnd	file:
+ruleKeywordsNo	.\ConfWnd.cpp~	/^const int ConfWnd::ruleKeywordsNo = 3;$/;"	m	class:ConfWnd	file:
+ruleKeywordsNo	.\ConfWnd.h	/^        static const int ruleKeywordsNo;$/;"	m	class:ConfWnd	access:public
+ruleKeywordsNo	.\ConfWnd.h~	/^        static const int ruleKeywordsNo;$/;"	m	class:ConfWnd	file:	access:public
+srcHeight	.\ConfWnd.h	/^        DWORD srcHeight;$/;"	m	class:ConfWnd	access:public
+srcHeight	.\ConfWnd.h~	/^        UINT srcHeight;$/;"	m	class:ConfWnd	file:	access:public
+srcWidth	.\ConfWnd.h	/^        DWORD srcWidth;$/;"	m	class:ConfWnd	access:public
+srcWidth	.\ConfWnd.h~	/^        UINT srcWidth;$/;"	m	class:ConfWnd	file:	access:public
+subjectID	.\ConfWnd.h	/^        string subjectID;$/;"	m	class:ConfWnd	access:public
+subjectID	.\ConfWnd.h~	/^        string subjectID;$/;"	m	class:ConfWnd	file:	access:public
+trialsInOneSec	.\ConfWnd.h	/^        unsigned int trialsInOneSec;$/;"	m	class:ConfWnd	access:public
+trialsInOneSec	.\ConfWnd.h~	/^        unsigned int trialsInOneSec;$/;"	m	class:ConfWnd	file:	access:public
+updateOutputFilename	.\ConfWnd.cpp	/^void ConfWnd::updateOutputFilename(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+updateOutputFilename	.\ConfWnd.cpp~	/^void ConfWnd::updateOutputFilename(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+updateOutputFilename	.\ConfWnd.h	/^        void updateOutputFilename(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
+updateOutputFilename	.\ConfWnd.h~	/^        void updateOutputFilename(HWND hDlg);$/;"	p	class:ConfWnd	file:	access:private	signature:(HWND hDlg)
+updateTrialNo	.\ConfWnd.cpp	/^void ConfWnd::updateTrialNo(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+updateTrialNo	.\ConfWnd.cpp~	/^void ConfWnd::updateTrialNo(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+updateTrialNo	.\ConfWnd.h	/^        void updateTrialNo(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
+updateTrialNo	.\ConfWnd.h~	/^        void updateTrialNo(HWND hDlg);$/;"	p	class:ConfWnd	file:	access:private	signature:(HWND hDlg)
+validateBlanks	.\ConfWnd.cpp	/^int ConfWnd::validateBlanks(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+validateBlanks	.\ConfWnd.cpp~	/^int ConfWnd::validateBlanks(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+validateBlanks	.\ConfWnd.h	/^        int validateBlanks(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
+validateBlanks	.\ConfWnd.h~	/^        int validateBlanks(HWND hDlg);$/;"	p	class:ConfWnd	file:	access:private	signature:(HWND hDlg)
+validateFileExistance	.\ConfWnd.cpp	/^int ConfWnd::validateFileExistance(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+validateFileExistance	.\ConfWnd.cpp~	/^int ConfWnd::validateFileExistance(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
+validateFileExistance	.\ConfWnd.h	/^        int validateFileExistance(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
+validateFileExistance	.\ConfWnd.h~	/^        int validateFileExistance(HWND hDlg);$/;"	p	class:ConfWnd	file:	access:private	signature:(HWND hDlg)
 ~ConfWnd	.\ConfWnd.cpp	/^ConfWnd::~ConfWnd(void)$/;"	f	class:ConfWnd	signature:(void)
 ~ConfWnd	.\ConfWnd.cpp~	/^ConfWnd::~ConfWnd(void)$/;"	f	class:ConfWnd	signature:(void)
 ~ConfWnd	.\ConfWnd.h	/^        ~ConfWnd();$/;"	p	class:ConfWnd	access:public	signature:()

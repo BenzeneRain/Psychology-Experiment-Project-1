@@ -197,8 +197,18 @@
 int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
         LPSTR lpCmdLine, int nShowCmd)
 {
+    BOOL ret;
+
+    // Open the Configuration Window for settings
     ConfWnd *pConfWnd = ConfWnd::getInstance();
-    pConfWnd->displayConfWnd(hInstance);
+    ret = pConfWnd->displayConfWnd(hInstance);
     
+    if(ret == FALSE)
+    {
+        return 0;
+    }
+
+    // TODO:
+
     return 0;
 }
