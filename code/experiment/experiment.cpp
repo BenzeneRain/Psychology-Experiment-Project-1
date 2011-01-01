@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "experiment.h"
 #include "ConfWnd.h"
+#include "Screen.h"
 
 //#define MAX_LOADSTRING 100
 //
@@ -197,18 +198,58 @@
 int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
         LPSTR lpCmdLine, int nShowCmd)
 {
+    Experiment experi(hInstance);
+
+    experi.startProgram();
+
+    return 0;
+}
+
+Experiment::Experiment(HINSTANCE hInstance)
+{
+    this->hInst = hInstance;
+};
+
+Experiment::~Experiment(void)
+{
+}
+
+BOOL Experiment::startProgram()
+{
     BOOL ret;
 
     // Open the Configuration Window for settings
     ConfWnd *pConfWnd = ConfWnd::getInstance();
-    ret = pConfWnd->displayConfWnd(hInstance);
+    ret = pConfWnd->displayConfWnd(this->hInst);
     
     if(ret == FALSE)
     {
-        return 0;
+        return FALSE; 
     }
 
-    // TODO:
+    this->initSystem();
+    
+    Screen screen;
+    screen.initGlut(this->srcHeight, this->srcWidth, this->refreshRate, this->bpp);
 
-    return 0;
+    // TODO:
+    
+    return TRUE;
+}
+
+BOOL Experiment::initSystem()
+{
+    ConfWnd *pConfWnd = ConfWnd::getInstance();
+
+    this->subjectID = pConfWnd->subjectID;
+    this->maxSecNo = pConfWnd->maxSecNo;
+    this->experiMode = pConfWnd->experiMode;
+    this->outFilename = pConfWnd->outFilename;
+    this->trialsInOneSec = pConfWnd->trialsInOneSec;
+    this->refreshRate = pConfWnd->refreshRate;
+    this->srcHeight = pConfWnd->srcHeight;
+    this->srcWidth = pConfWnd->srcWidth;
+    this->bpp = pConfWnd->bpp;
+
+    return TRUE;
 }

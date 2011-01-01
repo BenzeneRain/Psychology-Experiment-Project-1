@@ -16227,7 +16227,7 @@ experiment mode
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:ATTR name="#Operations" type="integer">8</XPD:ATTR>
+<XPD:ATTR name="#Operations" type="integer">7</XPD:ATTR>
 <XPD:OBJ name="Operations[0]" type="UMLOperation" guid="eiNUmgNLDUuylB68ZxJ8dwAA">
 <XPD:ATTR name="Name" type="string">initOutputFile</XPD:ATTR>
 <XPD:REF name="Owner">6tQJkPQUTUq1yrryIMQ/gAAA</XPD:REF>
@@ -16260,15 +16260,11 @@ experiment mode
 <XPD:ATTR name="#CallActions" type="integer">1</XPD:ATTR>
 <XPD:REF name="CallActions[0]">qbbKI1e1j0a4fBla4Xho1gAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[5]" type="UMLOperation" guid="YyJI8ZWuFUm20EMN2UXfJgAA">
-<XPD:ATTR name="Name" type="string">initGlut</XPD:ATTR>
-<XPD:REF name="Owner">6tQJkPQUTUq1yrryIMQ/gAAA</XPD:REF>
-</XPD:OBJ>
-<XPD:OBJ name="Operations[6]" type="UMLOperation" guid="DknPtZyhs0OUYAinN/jZ3AAA">
+<XPD:OBJ name="Operations[5]" type="UMLOperation" guid="DknPtZyhs0OUYAinN/jZ3AAA">
 <XPD:ATTR name="Name" type="string">startProgram</XPD:ATTR>
 <XPD:REF name="Owner">6tQJkPQUTUq1yrryIMQ/gAAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[7]" type="UMLOperation" guid="4vCJdNuGzES4NJOsKmD8uwAA">
+<XPD:OBJ name="Operations[6]" type="UMLOperation" guid="4vCJdNuGzES4NJOsKmD8uwAA">
 <XPD:ATTR name="Name" type="string">closeOutputFile</XPD:ATTR>
 <XPD:REF name="Owner">6tQJkPQUTUq1yrryIMQ/gAAA</XPD:REF>
 </XPD:OBJ>
