@@ -5,6 +5,9 @@
 #include "experiment.h"
 #include "ConfWnd.h"
 #include "Screen.h"
+#include "Trial.h"
+
+using namespace std;
 
 //#define MAX_LOADSTRING 100
 //
@@ -24,41 +27,41 @@
 //                     LPTSTR    lpCmdLine,
 //                     int       nCmdShow)
 //{
-	//UNREFERENCED_PARAMETER(hPrevInstance);
-	//UNREFERENCED_PARAMETER(lpCmdLine);
+//UNREFERENCED_PARAMETER(hPrevInstance);
+//UNREFERENCED_PARAMETER(lpCmdLine);
 
 
- //	// TODO: Place code here.
-	//MSG msg;
-	//HACCEL hAccelTable;
+//	// TODO: Place code here.
+//MSG msg;
+//HACCEL hAccelTable;
 
-	//// Initialize global strings
-	//LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-	//LoadString(hInstance, IDC_EXPERIMENT, szWindowClass, MAX_LOADSTRING);
-	//MyRegisterClass(hInstance);
+//// Initialize global strings
+//LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
+//LoadString(hInstance, IDC_EXPERIMENT, szWindowClass, MAX_LOADSTRING);
+//MyRegisterClass(hInstance);
 
-    //ConfWnd confWnd;
-    //confWnd.displayConfWnd(hInstance);
+//ConfWnd confWnd;
+//confWnd.displayConfWnd(hInstance);
 
-	//// Perform application initialization:
-	//if (!InitInstance (hInstance, nCmdShow))
-	//{
-	//	return FALSE;
-	//}
+//// Perform application initialization:
+//if (!InitInstance (hInstance, nCmdShow))
+//{
+//	return FALSE;
+//}
 
-	//hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_EXPERIMENT));
+//hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_EXPERIMENT));
 
-	//// Main message loop:
-	//while (GetMessage(&msg, NULL, 0, 0))
-	//{
-	//	if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-	//	{
-	//		TranslateMessage(&msg);
-	//		DispatchMessage(&msg);
-	//	}
-	//}
+//// Main message loop:
+//while (GetMessage(&msg, NULL, 0, 0))
+//{
+//	if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+//	{
+//		TranslateMessage(&msg);
+//		DispatchMessage(&msg);
+//	}
+//}
 
-	//return (int) msg.wParam;
+//return (int) msg.wParam;
 //}
 
 
@@ -195,12 +198,15 @@
 //	return (INT_PTR)FALSE;
 //}
 
+// This option is for debugging. Set it to 1 in order to enter debug mode
+int const Experiment::debug = 0;
+
 int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
         LPSTR lpCmdLine, int nShowCmd)
 {
-    Experiment experi(hInstance);
+    Experiment *pExperi = Experiment::getInstance(NULL);
 
-    experi.startProgram();
+    pExperi->startProgram();
 
     return 0;
 }
@@ -208,10 +214,12 @@ int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 Experiment::Experiment(HINSTANCE hInstance)
 {
     this->hInst = hInstance;
+    this->currSecNo = 0;
 };
 
 Experiment::~Experiment(void)
 {
+
 }
 
 BOOL Experiment::startProgram()
@@ -221,19 +229,70 @@ BOOL Experiment::startProgram()
     // Open the Configuration Window for settings
     ConfWnd *pConfWnd = ConfWnd::getInstance();
     ret = pConfWnd->displayConfWnd(this->hInst);
-    
+
     if(ret == FALSE)
     {
         return FALSE; 
     }
 
     this->initSystem();
-    
-    Screen screen;
-    screen.initGlut(this->srcHeight, this->srcWidth, this->refreshRate, this->bpp);
 
-    // TODO:
-    
+    auto_ptr<Screen> apScreen;
+    apScreen.reset(new Screen);
+
+    Screen * pScreen = apScreen.get();
+    this->screens.push_back(pScreen);
+
+    if(!Experiment::debug)
+    {
+        pScreen->initGlut(this->devMode,
+                GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH, string("Experiment"));
+    }
+    else
+    {
+        pScreen->initGlut(this->devMode,
+                GLUT_RGB | GLUT_SINGLE, string("Experiment"));
+    }
+    // Initialize the output file if in experiment mode
+    if(this->experiMode == 0)
+    {
+        ret = this->initOutputFile();
+        if(ret == FALSE)
+            return FALSE;
+    }
+
+    // TODO: main body
+
+    // TODO: dispose
+    if(this->experiMode == 0)
+    {
+        this->closeOutputFile();
+    }
+    return TRUE;
+}
+
+BOOL Experiment::initOutputFile()
+{
+    try
+    {
+        this->hFileOut.open(this->outFilename.c_str(), fstream::out);
+        return TRUE;
+    }
+    catch(fstream::failure err)
+    {
+        MessageBox(NULL, "Fail to open the output file. The program will exit silently.", "Error", 0);
+        return FALSE;
+    }
+}
+
+BOOL Experiment::closeOutputFile()
+{
+    if(this->hFileOut.is_open())
+    {
+        this->hFileOut.flush();
+        this->hFileOut.close();
+    }
+
     return TRUE;
 }
 
@@ -246,10 +305,39 @@ BOOL Experiment::initSystem()
     this->experiMode = pConfWnd->experiMode;
     this->outFilename = pConfWnd->outFilename;
     this->trialsInOneSec = pConfWnd->trialsInOneSec;
-    this->refreshRate = pConfWnd->refreshRate;
-    this->srcHeight = pConfWnd->srcHeight;
-    this->srcWidth = pConfWnd->srcWidth;
-    this->bpp = pConfWnd->bpp;
+    this->devMode = pConfWnd->devMode;
 
     return TRUE;
+}
+
+void Experiment::proceedExperiment()
+{
+    Experiment *pExperi = Experiment::getInstance(NULL);
+    if(pExperi->currSecNo < pExperi->maxSecNo)
+    {
+        Trial *pTrial = Trial::getInstance();
+
+        pTrial->startTrial();
+        //TODO:
+        //proceed trials
+    }
+    else
+    {
+        //TODO:
+        //show post-experiment scene
+        //
+
+    }
+}
+
+auto_ptr<Experiment> Experiment::m_pInstance;
+
+Experiment *Experiment::getInstance(HINSTANCE hInstance)
+{
+    if(m_pInstance.get() == 0)
+    {
+        m_pInstance.reset(new Experiment(hInstance));
+    }
+
+    return m_pInstance.get();
 }

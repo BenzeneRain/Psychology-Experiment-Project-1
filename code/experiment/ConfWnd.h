@@ -25,10 +25,7 @@ class ConfWnd
         unsigned int experiMode; // 0 -- experiment mode; 1 -- practice mode;
         string outFilename;
         unsigned int trialsInOneSec;
-        DWORD refreshRate;
-        DWORD srcHeight;
-        DWORD srcWidth;
-        DWORD bpp; // bits per pixel
+        DEVMODE devMode;
 
     private:
         ConfWnd();

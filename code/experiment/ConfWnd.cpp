@@ -56,7 +56,7 @@ void ConfWnd::updateOutputFilename(HWND hDlg)
     char *lpstrSubjectID = new char [uiSubjectIDLen + 10];
     GetDlgItemText(hDlg, IDC_EDIT4, lpstrSubjectID, uiSubjectIDLen + 1);
     string strSubjectID(lpstrSubjectID);
-    delete lpstrSubjectID;
+    delete [] lpstrSubjectID;
 
     // Get the output filename rule
     unsigned int uiRuleLen;
@@ -70,7 +70,7 @@ void ConfWnd::updateOutputFilename(HWND hDlg)
     GetDlgItemText(hDlg, IDC_EDIT5, lpstrRule, uiRuleLen + 1);
 
     string strRule(lpstrRule);
-    delete lpstrRule;
+    delete [] lpstrRule;
 
 
     // Generate output filename
@@ -231,11 +231,11 @@ int ConfWnd::validateFileExistance(HWND hDlg)
     uiOutputFilenameLen = SendMessage(hOutputFilenameEditBox, EM_LINELENGTH, 0, 0);
 
     char *lpstrOutputFilename = new char[uiOutputFilenameLen + 10];
-    GetDlgItemText(hDlg, IDC_EDIT5, lpstrOutputFilename, uiOutputFilenameLen + 1);
+    GetDlgItemText(hDlg, IDC_EDIT6, lpstrOutputFilename, uiOutputFilenameLen + 1);
 
     // try open the file
     ifstream fin(lpstrOutputFilename);
-    delete lpstrOutputFilename;
+    delete [] lpstrOutputFilename;
 
     if(fin.good())
     {
@@ -262,7 +262,7 @@ void ConfWnd::confirmConfiguration(HWND hDlg)
     char *lpstrSubjectID = new char [uiSubjectIDLen + 10];
     GetDlgItemText(hDlg, IDC_EDIT4, lpstrSubjectID, uiSubjectIDLen + 1);
     pConfWnd->subjectID = string(lpstrSubjectID);
-    delete lpstrSubjectID;
+    delete [] lpstrSubjectID;
 
     // store the max section number
     pConfWnd->maxSecNo = GetDlgItemInt(hDlg, IDC_EDIT2, 0, FALSE);
@@ -274,13 +274,7 @@ void ConfWnd::confirmConfiguration(HWND hDlg)
     HWND hCombo = GetDlgItem(hDlg, IDC_COMBO1);
     int iMode = SendMessage(hCombo, CB_GETCURSEL, 0, 0);
     iMode = SendMessage(hCombo, CB_GETITEMDATA, iMode, 0);
-
-    DEVMODE devMode;
-    EnumDisplaySettings(NULL, iMode, &devMode);
-    pConfWnd->srcHeight = devMode.dmPelsHeight;
-    pConfWnd->srcWidth = devMode.dmPelsWidth;
-    pConfWnd->refreshRate = devMode.dmDisplayFrequency;
-    pConfWnd->bpp = devMode.dmBitsPerPel;
+    EnumDisplaySettings(NULL, iMode, &pConfWnd->devMode);
 
     // Store the experiment mode
     UINT ret;
@@ -306,11 +300,11 @@ void ConfWnd::confirmConfiguration(HWND hDlg)
         uiOutputFilenameLen = SendMessage(hOutputFilenameEditBox, EM_LINELENGTH, 0, 0);
 
         char *lpstrOutputFilename = new char[uiOutputFilenameLen + 10];
-        GetDlgItemText(hDlg, IDC_EDIT5, lpstrOutputFilename, uiOutputFilenameLen + 1);
+        GetDlgItemText(hDlg, IDC_EDIT6, lpstrOutputFilename, uiOutputFilenameLen + 1);
         
         pConfWnd->outFilename = string(lpstrOutputFilename);
 
-        delete lpstrOutputFilename;
+        delete [] lpstrOutputFilename;
     }
 
     return;

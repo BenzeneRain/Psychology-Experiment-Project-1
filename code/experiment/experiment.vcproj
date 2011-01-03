@@ -179,6 +179,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PreTrialScene.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\PureWordScene.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Scene.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Screen.cpp"
 				>
 			</File>
@@ -202,6 +214,10 @@
 					/>
 				</FileConfiguration>
 			</File>
+			<File
+				RelativePath=".\Trial.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -217,7 +233,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PreTrialScene.h"
+				>
+			</File>
+			<File
+				RelativePath=".\PureWordScene.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Resource.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Scene.h"
 				>
 			</File>
 			<File
@@ -230,6 +258,10 @@
 			</File>
 			<File
 				RelativePath=".\targetver.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Trial.h"
 				>
 			</File>
 		</Filter>
