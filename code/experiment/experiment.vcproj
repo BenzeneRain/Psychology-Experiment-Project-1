@@ -175,7 +175,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\CylinderObject.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\experiment.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\MixedObjectViewScene.cpp"
 				>
 			</File>
 			<File
@@ -192,6 +200,10 @@
 			</File>
 			<File
 				RelativePath=".\Screen.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Separate2D3DViewScene.cpp"
 				>
 			</File>
 			<File
@@ -215,6 +227,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\TestObject.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Trial.cpp"
 				>
 			</File>
@@ -229,7 +245,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\CylinderObject.h"
+				>
+			</File>
+			<File
 				RelativePath=".\experiment.h"
+				>
+			</File>
+			<File
+				RelativePath=".\MixedObjectViewScene.h"
 				>
 			</File>
 			<File
@@ -253,11 +277,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Separate2D3DViewScene.h"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.h"
 				>
 			</File>
 			<File
 				RelativePath=".\targetver.h"
+				>
+			</File>
+			<File
+				RelativePath=".\TestObject.h"
 				>
 			</File>
 			<File

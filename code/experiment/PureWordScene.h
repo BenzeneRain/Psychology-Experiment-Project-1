@@ -12,4 +12,5 @@ class PureWordScene : public Scene
 
     protected:
         PureWordScene();
+        virtual string buildString(void) = 0; 
 };

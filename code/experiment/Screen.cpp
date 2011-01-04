@@ -17,6 +17,7 @@ Screen::~Screen(void)
 BOOL Screen::initGlut(DEVMODE devMode,
         UINT displayMode, string title)
 {
+    // Change the display settings to the selected resolution and refresh rate
     if(ChangeDisplaySettings(&devMode, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
     {
         MessageBox(NULL, "Cannot change to selected desktop resolution.", NULL, MB_OK | MB_ICONSTOP);
@@ -28,6 +29,7 @@ BOOL Screen::initGlut(DEVMODE devMode,
     glutInit(&__argc, __argv);
     this->displayMode = displayMode;
 
+    // Init the glut 
     glutInitDisplayMode(displayMode);
     glutInitWindowSize(devMode.dmPelsWidth, devMode.dmPelsHeight);
     glutCreateWindow(title.c_str());
@@ -36,23 +38,60 @@ BOOL Screen::initGlut(DEVMODE devMode,
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     if(!Experiment::debug)
     {
-        glutDisplayFunc(Experiment::proceedExperiment);
+        this->setDisplayFunc(Experiment::proceedExperiment);
     }
     else
     {
-        glutDisplayFunc(Screen::testRenderScene);
+        this->setDisplayFunc(Screen::testRenderScene);
     }
     glutMainLoop();
     return TRUE;
 }
 
+// Cancel all the keyboard and mouse events binding
 BOOL Screen::cancelKMBinds()
 {
     glutKeyboardFunc(NULL);
+    glutSpecialFunc(NULL);
+
     glutMouseFunc(NULL);
+    glutMotionFunc(NULL);
+    glutPassiveMotionFunc(NULL);
     return TRUE;
 }
 
+BOOL Screen::setKeyboardFunc(void (*func)(unsigned char key, int x, int y))
+{
+    glutKeyboardFunc(func);
+    return TRUE;
+}
+
+BOOL Screen::setKeyboardSpecialFunc(void (*func)(int key, int x, int y))
+{
+    glutSpecialFunc(func);
+    return TRUE;
+}
+
+BOOL Screen::setMouseFunc(void (*func)(int button, int state, int x, int y))
+{
+    glutMouseFunc(func);
+    return TRUE;
+}
+
+BOOL Screen::setMouseMotionFunc(void (*func)(int x, int y))
+{
+    glutMotionFunc(func);
+    return TRUE;
+}
+
+BOOL Screen::setMousePassiveMotionFunc(void (*func)(int x, int y))
+{
+    glutPassiveMotionFunc(func);
+    return TRUE;
+}
+
+
+// Call this to display the string
 BOOL Screen::displayString(string str, float x, float y)
 {
     glColor3f(1.0f, 1.0f, 1.0f);
@@ -60,12 +99,37 @@ BOOL Screen::displayString(string str, float x, float y)
 
     glutBitmapString(GLUT_BITMAP_9_BY_15, reinterpret_cast<const unsigned char *>(str.c_str()));
 
-    glutSwapBuffers();
-    glutPostRedisplay();
+    this->render();
 
     return TRUE;
 }
 
+void Screen::render()
+{
+    if(((this->displayMode) & GLUT_DOUBLE) != 0)
+    {
+        glutSwapBuffers();
+        glutPostRedisplay();
+    }
+    else
+    {
+        glFlush();
+    }
+}
+
+BOOL Screen::setDisplayFunc(void (*displayFunc)(void))
+{
+    glutDisplayFunc(displayFunc);
+    return TRUE;
+}
+
+BOOL Screen::setReshapeFunc(void (*func)(int w, int h))
+{
+    glutReshapeFunc(func);
+    return TRUE;
+}
+
+// Clear the screen
 BOOL Screen::clear()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

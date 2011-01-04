@@ -1,23 +1,17 @@
 #include "stdafx.h"
-#include "PreTrialScene.h"
-#include "Experiment.h"
+#include "Separate2D3DViewScene.h"
 #include "Trial.h"
+#include "Experiment.h"
 
-#include <vector>
-#include <algorithm>
-#include <sstream>
-
-using namespace std;
-
-PreTrialScene::PreTrialScene()
+Separate2D3DViewScene::Separate2D3DViewScene(void)
 {
 }
 
-PreTrialScene::~PreTrialScene(void)
+Separate2D3DViewScene::~Separate2D3DViewScene(void)
 {
 }
 
-BOOL PreTrialScene::startScene()
+BOOL Separate2D3DViewScene::startScene()
 {
     // Cancel all keyboards and mouses events bindings
     for(vector<Screen *>::iterator it = this->screens.begin();
@@ -25,6 +19,13 @@ BOOL PreTrialScene::startScene()
     {
         ((Screen *)*it)->cancelKMBinds();
     }   
+
+    // Get the random object
+    this->pObj = this->getRandObj(); 
+    if(Experiment::debug)
+    {
+        MessageBox(NULL, (this->pObj->getObjName()).c_str(), NULL, NULL);
+    }
 
     // Clear the screen
     for(vector<Screen *>::iterator it = this->screens.begin();
@@ -51,37 +52,12 @@ BOOL PreTrialScene::startScene()
     return TRUE;
 }
 
-string PreTrialScene::buildString()
+BOOL Separate2D3DViewScene::renderScene()
 {
-    string message("Press spacebar for the next trial");
-
-    Experiment *pExperi = Experiment::getInstance(NULL);
-
-    if(pExperi->isNewSection())
-    {
-        ostringstream ossMessage;
-
-        ossMessage << message << endl
-            << "Progress: Section " << pExperi->currSecNo + 1 << "/"
-            << pExperi->maxSecNo << endl;
-
-        message = ossMessage.str();
-    }
-
-    return message;
-}
-
-BOOL PreTrialScene::renderScene()
-{
-    string message; 
-
-    message = this->buildString();
-    this->screens[0]->displayString(message, 0.0, 0.0);
-	
     return TRUE;
 }
 
-BOOL PreTrialScene::reshape(int w, int h)
+BOOL Separate2D3DViewScene::reshape(int w, int h)
 {
 	glViewport(0, 0, w, h);
 	glMatrixMode(GL_PROJECTION);
@@ -93,7 +69,7 @@ BOOL PreTrialScene::reshape(int w, int h)
 }
 
 
-BOOL PreTrialScene::handleKeyboardEvent(unsigned char key, int x, int y)
+BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)
 {
     switch(key)
     {
@@ -109,22 +85,22 @@ BOOL PreTrialScene::handleKeyboardEvent(unsigned char key, int x, int y)
     return TRUE;
 }
 
-BOOL PreTrialScene::handleKeyboardSpecialEvent(int key, int x, int y)
+BOOL Separate2D3DViewScene::handleKeyboardSpecialEvent(int key, int x, int y)
 {
     return TRUE;
 }
 
-BOOL PreTrialScene::handleMouseEvent(int button, int state, int x, int y)
+BOOL Separate2D3DViewScene::handleMouseEvent(int button, int state, int x, int y)
 {
     return TRUE;
 }
 
-BOOL PreTrialScene::handleMouseMotionEvent(int x, int y)
+BOOL Separate2D3DViewScene::handleMouseMotionEvent(int x, int y)
 {
     return TRUE;
 }
 
-BOOL PreTrialScene::handleMousePassiveMotionEvent(int x, int y)
+BOOL Separate2D3DViewScene::handleMousePassiveMotionEvent(int x, int y)
 {
     return TRUE;
 }

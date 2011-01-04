@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "Screen.h"
+#include "TestObject.h"
 #include <string>
 #include <fstream>
 #include <memory>
@@ -18,6 +19,7 @@ class Experiment
 
         BOOL startProgram();
         BOOL writeOutputs(string strOutputs);
+        BOOL isNewSection(); 
         static void proceedExperiment();
 
         string subjectID;
@@ -29,6 +31,7 @@ class Experiment
         DEVMODE devMode; // display settings
 
         vector<Screen *> screens;
+        vector<TestObject *> stubObjects;
 
         //This option is for debugging
         static const int debug;

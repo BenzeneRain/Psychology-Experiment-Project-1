@@ -2,6 +2,7 @@
 #include "Trial.h"
 #include "Scene.h"
 #include "PreTrialScene.h"
+#include "Separate2D3DViewScene.h"
 
 Trial::Trial()
 {
@@ -15,14 +16,14 @@ Trial::~Trial(void)
 
 BOOL Trial::startTrial()
 {
-    this->proceedNextScene();
-    return TRUE;
+    return this->proceedNextScene();
 }
 
 BOOL Trial::proceedNextScene()
 {
     static auto_ptr<Scene> apScene;
     Scene *pScene;
+    BOOL ret;
 
     switch(this->currState)
     {
@@ -30,11 +31,13 @@ BOOL Trial::proceedNextScene()
             apScene.reset(new PreTrialScene());
             pScene = apScene.get();        
             this->currState = PRE_TRIAL_SCENE;
-            pScene->startScene();
+            ret = pScene->startScene();
             break;
         case PRE_TRIAL_SCENE:
+            apScene.reset(new Separate2D3DViewScene());
+            pScene = apScene.get();        
             this->currState = MAIN_SCENE;
-            // TODO: Conduct the trial
+            ret = pScene->startScene();
             break;
         case MAIN_SCENE:
             //TODO: Finish the trial

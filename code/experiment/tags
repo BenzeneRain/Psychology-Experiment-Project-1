@@ -4,7 +4,14 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-A	.\Debug\experiment.exe	/^PËFÏˇˇÉƒâÖº˛ˇˇãçº˛ˇˇâMºãE‘É¿ãÙPãMºQhÓ/;"	v
+ALT	.\experiment.rc	/^    "?",            IDM_ABOUT,              ASCII,  ALT$/;"	v
+APSTUDIO_HIDDEN_SYMBOLS	.\experiment.rc	13;"	d	file:
+APSTUDIO_HIDDEN_SYMBOLS	.\experiment.rc	15;"	d	file:
+APSTUDIO_READONLY_SYMBOLS	.\experiment.rc	18;"	d	file:
+APSTUDIO_READONLY_SYMBOLS	.\experiment.rc	5;"	d	file:
+ASCII	.\experiment.rc	/^    "?",            IDM_ABOUT,              ASCII,  ALT$/;"	v
+ASCII	.\experiment.rc	/^    "\/",            IDM_ABOUT,              ASCII,  ALT$/;"	v
+BEGIN	.\experiment.rc	/^BEGIN$/;"	v
 BOTTOMMARGIN	.\experiment.rc	/^        BOTTOMMARGIN, 219$/;"	v
 BOTTOMMARGIN	.\experiment.rc	/^        BOTTOMMARGIN, 55$/;"	v
 BS_AUTORADIOBUTTON	.\experiment.rc	/^    CONTROL         "Experiment",IDC_RADIO1,"Button",BS_AUTORADIOBUTTON,276,78,52,10$/;"	v
@@ -21,8 +28,7 @@ ConfWnd::ConfWnd	.\ConfWnd.cpp	/^ConfWnd::ConfWnd(void)$/;"	f	class:ConfWnd	sign
 ConfWnd::ConfWnd	.\ConfWnd.cpp~	/^ConfWnd::ConfWnd(void)$/;"	f	class:ConfWnd	signature:(void)
 ConfWnd::ConfWnd	.\ConfWnd.h	/^        ConfWnd();$/;"	p	class:ConfWnd	access:private	signature:()
 ConfWnd::ConfWnd	.\ConfWnd.h~	/^        ConfWnd();$/;"	p	class:ConfWnd	file:	access:private	signature:()
-ConfWnd::bpp	.\ConfWnd.h	/^        DWORD bpp; \/\/ bits per pixel$/;"	m	class:ConfWnd	access:public
-ConfWnd::bpp	.\ConfWnd.h~	/^        UINT bpp; \/\/ bits per pixel$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::bpp	.\ConfWnd.h~	/^        DWORD bpp; \/\/ bits per pixel$/;"	m	class:ConfWnd	file:	access:public
 ConfWnd::confWndProc	.\ConfWnd.cpp	/^INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG lParam)$/;"	f	class:ConfWnd	signature:(HWND hDlg, UINT message, UINT wParam, LONG lParam)
 ConfWnd::confWndProc	.\ConfWnd.cpp~	/^INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG lParam)$/;"	f	class:ConfWnd	signature:(HWND hDlg, UINT message, UINT wParam, LONG lParam)
 ConfWnd::confWndProc	.\ConfWnd.h	/^        static INT_PTR CALLBACK confWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam);$/;"	p	class:ConfWnd	access:public	signature:(HWND hWnd, UINT message, UINT wParam, LONG lParam)
@@ -31,12 +37,13 @@ ConfWnd::confirmConfiguration	.\ConfWnd.cpp	/^void ConfWnd::confirmConfiguration
 ConfWnd::confirmConfiguration	.\ConfWnd.cpp~	/^void ConfWnd::confirmConfiguration(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
 ConfWnd::confirmConfiguration	.\ConfWnd.h	/^        void confirmConfiguration(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
 ConfWnd::confirmConfiguration	.\ConfWnd.h~	/^        void confirmConfiguration(HWND hDlg);$/;"	p	class:ConfWnd	file:	access:private	signature:(HWND hDlg)
+ConfWnd::devMode	.\ConfWnd.h	/^        DEVMODE devMode;$/;"	m	class:ConfWnd	access:public
 ConfWnd::displayConfWnd	.\ConfWnd.cpp	/^INT_PTR ConfWnd::displayConfWnd(HINSTANCE ghInstance)$/;"	f	class:ConfWnd	signature:(HINSTANCE ghInstance)
 ConfWnd::displayConfWnd	.\ConfWnd.cpp~	/^INT_PTR ConfWnd::displayConfWnd(HINSTANCE ghInstance)$/;"	f	class:ConfWnd	signature:(HINSTANCE ghInstance)
 ConfWnd::displayConfWnd	.\ConfWnd.h	/^        INT_PTR displayConfWnd(HINSTANCE ghInstance);$/;"	p	class:ConfWnd	access:public	signature:(HINSTANCE ghInstance)
 ConfWnd::displayConfWnd	.\ConfWnd.h~	/^        INT_PTR displayConfWnd(HINSTANCE ghInstance);$/;"	p	class:ConfWnd	file:	access:public	signature:(HINSTANCE ghInstance)
-ConfWnd::experiMode	.\ConfWnd.h	/^        unsigned int experiMode;$/;"	m	class:ConfWnd	access:public
-ConfWnd::experiMode	.\ConfWnd.h~	/^        unsigned int experiMode;$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::experiMode	.\ConfWnd.h	/^        unsigned int experiMode; \/\/ 0 -- experiment mode; 1 -- practice mode;$/;"	m	class:ConfWnd	access:public
+ConfWnd::experiMode	.\ConfWnd.h~	/^        unsigned int experiMode; \/\/ 0 -- experiment mode; 1 -- practice mode;$/;"	m	class:ConfWnd	file:	access:public
 ConfWnd::getInstance	.\ConfWnd.cpp	/^ConfWnd* ConfWnd::getInstance()$/;"	f	class:ConfWnd	signature:()
 ConfWnd::getInstance	.\ConfWnd.cpp~	/^ConfWnd* ConfWnd::getInstance()$/;"	f	class:ConfWnd	signature:()
 ConfWnd::getInstance	.\ConfWnd.h	/^        static ConfWnd *getInstance();$/;"	p	class:ConfWnd	access:public	signature:()
@@ -51,8 +58,7 @@ ConfWnd::maxSecNo	.\ConfWnd.h	/^        unsigned int maxSecNo;$/;"	m	class:ConfW
 ConfWnd::maxSecNo	.\ConfWnd.h~	/^        unsigned int maxSecNo;$/;"	m	class:ConfWnd	file:	access:public
 ConfWnd::outFilename	.\ConfWnd.h	/^        string outFilename;$/;"	m	class:ConfWnd	access:public
 ConfWnd::outFilename	.\ConfWnd.h~	/^        string outFilename;$/;"	m	class:ConfWnd	file:	access:public
-ConfWnd::refreshRate	.\ConfWnd.h	/^        DWORD refreshRate;$/;"	m	class:ConfWnd	access:public
-ConfWnd::refreshRate	.\ConfWnd.h~	/^        UINT refreshRate;$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::refreshRate	.\ConfWnd.h~	/^        DWORD refreshRate;$/;"	m	class:ConfWnd	file:	access:public
 ConfWnd::ruleKeywords	.\ConfWnd.cpp	/^const string ConfWnd::ruleKeywords[] = {"\/SID\/", "\/Date\/", "\/Time\/"};$/;"	m	class:ConfWnd	file:
 ConfWnd::ruleKeywords	.\ConfWnd.cpp~	/^const string ConfWnd::ruleKeywords[] = {"\/SID\/", "\/Date\/", "\/Time\/"};$/;"	m	class:ConfWnd	file:
 ConfWnd::ruleKeywords	.\ConfWnd.h	/^        static const string ruleKeywords[];$/;"	m	class:ConfWnd	access:public
@@ -61,10 +67,8 @@ ConfWnd::ruleKeywordsNo	.\ConfWnd.cpp	/^const int ConfWnd::ruleKeywordsNo = 3;$/
 ConfWnd::ruleKeywordsNo	.\ConfWnd.cpp~	/^const int ConfWnd::ruleKeywordsNo = 3;$/;"	m	class:ConfWnd	file:
 ConfWnd::ruleKeywordsNo	.\ConfWnd.h	/^        static const int ruleKeywordsNo;$/;"	m	class:ConfWnd	access:public
 ConfWnd::ruleKeywordsNo	.\ConfWnd.h~	/^        static const int ruleKeywordsNo;$/;"	m	class:ConfWnd	file:	access:public
-ConfWnd::srcHeight	.\ConfWnd.h	/^        DWORD srcHeight;$/;"	m	class:ConfWnd	access:public
-ConfWnd::srcHeight	.\ConfWnd.h~	/^        UINT srcHeight;$/;"	m	class:ConfWnd	file:	access:public
-ConfWnd::srcWidth	.\ConfWnd.h	/^        DWORD srcWidth;$/;"	m	class:ConfWnd	access:public
-ConfWnd::srcWidth	.\ConfWnd.h~	/^        UINT srcWidth;$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::srcHeight	.\ConfWnd.h~	/^        DWORD srcHeight;$/;"	m	class:ConfWnd	file:	access:public
+ConfWnd::srcWidth	.\ConfWnd.h~	/^        DWORD srcWidth;$/;"	m	class:ConfWnd	file:	access:public
 ConfWnd::subjectID	.\ConfWnd.h	/^        string subjectID;$/;"	m	class:ConfWnd	access:public
 ConfWnd::subjectID	.\ConfWnd.h~	/^        string subjectID;$/;"	m	class:ConfWnd	file:	access:public
 ConfWnd::trialsInOneSec	.\ConfWnd.h	/^        unsigned int trialsInOneSec;$/;"	m	class:ConfWnd	access:public
@@ -89,15 +93,114 @@ ConfWnd::~ConfWnd	.\ConfWnd.cpp	/^ConfWnd::~ConfWnd(void)$/;"	f	class:ConfWnd	si
 ConfWnd::~ConfWnd	.\ConfWnd.cpp~	/^ConfWnd::~ConfWnd(void)$/;"	f	class:ConfWnd	signature:(void)
 ConfWnd::~ConfWnd	.\ConfWnd.h	/^        ~ConfWnd();$/;"	p	class:ConfWnd	access:public	signature:()
 ConfWnd::~ConfWnd	.\ConfWnd.h~	/^        ~ConfWnd();$/;"	p	class:ConfWnd	file:	access:public	signature:()
+CylinderObject	.\CylinderObject.cpp	/^CylinderObject::CylinderObject(void)$/;"	f	class:CylinderObject	signature:(void)
+CylinderObject	.\CylinderObject.cpp~	/^CylinderObject::CylinderObject(void)$/;"	f	class:CylinderObject	signature:(void)
+CylinderObject	.\CylinderObject.h	/^        CylinderObject(void);$/;"	p	class:CylinderObject	access:public	signature:(void)
+CylinderObject	.\CylinderObject.h	/^class CylinderObject :$/;"	c	inherits:TestObject
+CylinderObject	.\CylinderObject.h~	/^        CylinderObject(void);$/;"	p	class:CylinderObject	file:	access:public	signature:(void)
+CylinderObject	.\CylinderObject.h~	/^class CylinderObject :$/;"	c	file:	inherits:TestObject
+CylinderObject::CylinderObject	.\CylinderObject.cpp	/^CylinderObject::CylinderObject(void)$/;"	f	class:CylinderObject	signature:(void)
+CylinderObject::CylinderObject	.\CylinderObject.cpp~	/^CylinderObject::CylinderObject(void)$/;"	f	class:CylinderObject	signature:(void)
+CylinderObject::CylinderObject	.\CylinderObject.h	/^        CylinderObject(void);$/;"	p	class:CylinderObject	access:public	signature:(void)
+CylinderObject::CylinderObject	.\CylinderObject.h~	/^        CylinderObject(void);$/;"	p	class:CylinderObject	file:	access:public	signature:(void)
+CylinderObject::~CylinderObject	.\CylinderObject.cpp	/^CylinderObject::~CylinderObject(void)$/;"	f	class:CylinderObject	signature:(void)
+CylinderObject::~CylinderObject	.\CylinderObject.cpp~	/^CylinderObject::~CylinderObject(void)$/;"	f	class:CylinderObject	signature:(void)
+CylinderObject::~CylinderObject	.\CylinderObject.h	/^        virtual ~CylinderObject(void);$/;"	p	class:CylinderObject	access:public	signature:(void)
+CylinderObject::~CylinderObject	.\CylinderObject.h~	/^        virtual ~CylinderObject(void);$/;"	p	class:CylinderObject	file:	access:public	signature:(void)
+DEFPUSHBUTTON	.\experiment.rc	/^    DEFPUSHBUTTON   "Confirm",IDOK,362,205,50,14$/;"	v
+DEFPUSHBUTTON	.\experiment.rc	/^    DEFPUSHBUTTON   "Exit",IDEXIT,301,205,50,14$/;"	v
+DEFPUSHBUTTON	.\experiment.rc	/^    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP$/;"	v
+DIALOGEX	.\experiment.rc	/^IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62$/;"	v
+DIALOGEX	.\experiment.rc	/^IDD_CONFWND DIALOGEX 0, 0, 419, 226$/;"	v
+Experiment	.\experiment.cpp	/^Experiment::Experiment(HINSTANCE hInstance)$/;"	f	class:Experiment	signature:(HINSTANCE hInstance)
+Experiment	.\experiment.cpp~	/^Experiment::Experiment(HINSTANCE hInstance)$/;"	f	class:Experiment	signature:(HINSTANCE hInstance)
+Experiment	.\experiment.h	/^        Experiment(HINSTANCE hInstance);$/;"	p	class:Experiment	access:private	signature:(HINSTANCE hInstance)
+Experiment	.\experiment.h	/^class Experiment$/;"	c
+Experiment	.\experiment.h~	/^        Experiment(HINSTANCE hInstance);$/;"	p	class:Experiment	file:	access:private	signature:(HINSTANCE hInstance)
+Experiment	.\experiment.h~	/^class Experiment$/;"	c	file:
+Experiment::Experiment	.\experiment.cpp	/^Experiment::Experiment(HINSTANCE hInstance)$/;"	f	class:Experiment	signature:(HINSTANCE hInstance)
+Experiment::Experiment	.\experiment.cpp~	/^Experiment::Experiment(HINSTANCE hInstance)$/;"	f	class:Experiment	signature:(HINSTANCE hInstance)
+Experiment::Experiment	.\experiment.h	/^        Experiment(HINSTANCE hInstance);$/;"	p	class:Experiment	access:private	signature:(HINSTANCE hInstance)
+Experiment::Experiment	.\experiment.h~	/^        Experiment(HINSTANCE hInstance);$/;"	p	class:Experiment	file:	access:private	signature:(HINSTANCE hInstance)
+Experiment::closeOutputFile	.\experiment.cpp	/^BOOL Experiment::closeOutputFile()$/;"	f	class:Experiment	signature:()
+Experiment::closeOutputFile	.\experiment.cpp~	/^BOOL Experiment::closeOutputFile()$/;"	f	class:Experiment	signature:()
+Experiment::closeOutputFile	.\experiment.h	/^        BOOL closeOutputFile();$/;"	p	class:Experiment	access:private	signature:()
+Experiment::closeOutputFile	.\experiment.h~	/^        BOOL closeOutputFile();$/;"	p	class:Experiment	file:	access:private	signature:()
+Experiment::currSecNo	.\experiment.h	/^        unsigned int currSecNo;$/;"	m	class:Experiment	access:public
+Experiment::currSecNo	.\experiment.h~	/^        unsigned int currSecNo;$/;"	m	class:Experiment	file:	access:public
+Experiment::debug	.\experiment.cpp	/^int const Experiment::debug = 0;$/;"	m	class:Experiment	file:
+Experiment::debug	.\experiment.cpp~	/^int const Experiment::debug = 0;$/;"	m	class:Experiment	file:
+Experiment::debug	.\experiment.h	/^        static const int debug;$/;"	m	class:Experiment	access:public
+Experiment::debug	.\experiment.h~	/^        static const int debug;$/;"	m	class:Experiment	file:	access:public
+Experiment::devMode	.\experiment.h	/^        DEVMODE devMode; \/\/ display settings$/;"	m	class:Experiment	access:public
+Experiment::devMode	.\experiment.h~	/^        DEVMODE devMode; \/\/ display settings$/;"	m	class:Experiment	file:	access:public
+Experiment::experiMode	.\experiment.h	/^        unsigned int experiMode; \/\/ 0 -- experiment mode; 1 -- practice mode;$/;"	m	class:Experiment	access:public
+Experiment::experiMode	.\experiment.h~	/^        unsigned int experiMode; \/\/ 0 -- experiment mode; 1 -- practice mode;$/;"	m	class:Experiment	file:	access:public
+Experiment::getInstance	.\experiment.cpp	/^Experiment *Experiment::getInstance(HINSTANCE hInstance)$/;"	f	class:Experiment	signature:(HINSTANCE hInstance)
+Experiment::getInstance	.\experiment.cpp~	/^Experiment *Experiment::getInstance(HINSTANCE hInstance)$/;"	f	class:Experiment	signature:(HINSTANCE hInstance)
+Experiment::getInstance	.\experiment.h	/^        static Experiment *getInstance(HINSTANCE hInstance);$/;"	p	class:Experiment	access:public	signature:(HINSTANCE hInstance)
+Experiment::getInstance	.\experiment.h~	/^        static Experiment *getInstance(HINSTANCE hInstance);$/;"	p	class:Experiment	file:	access:public	signature:(HINSTANCE hInstance)
+Experiment::hFileOut	.\experiment.h	/^        fstream hFileOut;$/;"	m	class:Experiment	access:private
+Experiment::hFileOut	.\experiment.h~	/^        fstream hFileOut;$/;"	m	class:Experiment	file:	access:private
+Experiment::hInst	.\experiment.h	/^        HINSTANCE hInst;$/;"	m	class:Experiment	access:private
+Experiment::hInst	.\experiment.h~	/^        HINSTANCE hInst;$/;"	m	class:Experiment	file:	access:private
+Experiment::initOutputFile	.\experiment.cpp	/^BOOL Experiment::initOutputFile()$/;"	f	class:Experiment	signature:()
+Experiment::initOutputFile	.\experiment.cpp~	/^BOOL Experiment::initOutputFile()$/;"	f	class:Experiment	signature:()
+Experiment::initOutputFile	.\experiment.h	/^        BOOL initOutputFile();$/;"	p	class:Experiment	access:private	signature:()
+Experiment::initOutputFile	.\experiment.h~	/^        BOOL initOutputFile();$/;"	p	class:Experiment	file:	access:private	signature:()
+Experiment::initSystem	.\experiment.cpp	/^BOOL Experiment::initSystem()$/;"	f	class:Experiment	signature:()
+Experiment::initSystem	.\experiment.cpp~	/^BOOL Experiment::initSystem()$/;"	f	class:Experiment	signature:()
+Experiment::initSystem	.\experiment.h	/^        BOOL initSystem();$/;"	p	class:Experiment	access:private	signature:()
+Experiment::initSystem	.\experiment.h~	/^        BOOL initSystem();$/;"	p	class:Experiment	file:	access:private	signature:()
+Experiment::isNewSection	.\experiment.cpp	/^BOOL Experiment::isNewSection()$/;"	f	class:Experiment	signature:()
+Experiment::isNewSection	.\experiment.cpp~	/^BOOL Experiment::isNewSection()$/;"	f	class:Experiment	signature:()
+Experiment::isNewSection	.\experiment.h	/^        BOOL isNewSection(); $/;"	p	class:Experiment	access:public	signature:()
+Experiment::isNewSection	.\experiment.h~	/^        BOOL isNewSection(); $/;"	p	class:Experiment	file:	access:public	signature:()
+Experiment::m_pInstance	.\experiment.cpp	/^auto_ptr<Experiment> Experiment::m_pInstance;$/;"	m	class:Experiment	file:
+Experiment::m_pInstance	.\experiment.cpp~	/^auto_ptr<Experiment> Experiment::m_pInstance;$/;"	m	class:Experiment	file:
+Experiment::m_pInstance	.\experiment.h	/^        static auto_ptr<Experiment> m_pInstance;$/;"	m	class:Experiment	access:private
+Experiment::m_pInstance	.\experiment.h~	/^        static auto_ptr<Experiment> m_pInstance;$/;"	m	class:Experiment	file:	access:private
+Experiment::maxSecNo	.\experiment.h	/^        unsigned int maxSecNo;$/;"	m	class:Experiment	access:public
+Experiment::maxSecNo	.\experiment.h~	/^        unsigned int maxSecNo;$/;"	m	class:Experiment	file:	access:public
+Experiment::outFilename	.\experiment.h	/^        string outFilename;$/;"	m	class:Experiment	access:public
+Experiment::outFilename	.\experiment.h~	/^        string outFilename;$/;"	m	class:Experiment	file:	access:public
+Experiment::proceedExperiment	.\experiment.cpp	/^void Experiment::proceedExperiment()$/;"	f	class:Experiment	signature:()
+Experiment::proceedExperiment	.\experiment.cpp~	/^void Experiment::proceedExperiment()$/;"	f	class:Experiment	signature:()
+Experiment::proceedExperiment	.\experiment.h	/^        static void proceedExperiment();$/;"	p	class:Experiment	access:public	signature:()
+Experiment::proceedExperiment	.\experiment.h~	/^        static void proceedExperiment();$/;"	p	class:Experiment	file:	access:public	signature:()
+Experiment::screens	.\experiment.h	/^        vector<Screen *> screens;$/;"	m	class:Experiment	access:public
+Experiment::screens	.\experiment.h~	/^        vector<Screen *> screens;$/;"	m	class:Experiment	file:	access:public
+Experiment::startProgram	.\experiment.cpp	/^BOOL Experiment::startProgram()$/;"	f	class:Experiment	signature:()
+Experiment::startProgram	.\experiment.cpp~	/^BOOL Experiment::startProgram()$/;"	f	class:Experiment	signature:()
+Experiment::startProgram	.\experiment.h	/^        BOOL startProgram();$/;"	p	class:Experiment	access:public	signature:()
+Experiment::startProgram	.\experiment.h~	/^        BOOL startProgram();$/;"	p	class:Experiment	file:	access:public	signature:()
+Experiment::stubObjects	.\experiment.h	/^        vector<TestObject> stubObjects;$/;"	m	class:Experiment	access:public
+Experiment::subjectID	.\experiment.h	/^        string subjectID;$/;"	m	class:Experiment	access:public
+Experiment::subjectID	.\experiment.h~	/^        string subjectID;$/;"	m	class:Experiment	file:	access:public
+Experiment::trialsInOneSec	.\experiment.h	/^        unsigned int trialsInOneSec;$/;"	m	class:Experiment	access:public
+Experiment::trialsInOneSec	.\experiment.h~	/^        unsigned int trialsInOneSec;$/;"	m	class:Experiment	file:	access:public
+Experiment::writeOutputs	.\experiment.h	/^        BOOL writeOutputs(string strOutputs);$/;"	p	class:Experiment	access:public	signature:(string strOutputs)
+Experiment::writeOutputs	.\experiment.h~	/^        BOOL writeOutputs(string strOutputs);$/;"	p	class:Experiment	file:	access:public	signature:(string strOutputs)
+Experiment::~Experiment	.\experiment.cpp	/^Experiment::~Experiment(void)$/;"	f	class:Experiment	signature:(void)
+Experiment::~Experiment	.\experiment.cpp~	/^Experiment::~Experiment(void)$/;"	f	class:Experiment	signature:(void)
+Experiment::~Experiment	.\experiment.h	/^        ~Experiment();$/;"	p	class:Experiment	access:public	signature:()
+Experiment::~Experiment	.\experiment.h~	/^        ~Experiment();$/;"	p	class:Experiment	file:	access:public	signature:()
+FONT	.\experiment.rc	/^FONT 8, "MS Shell Dlg", 0, 0, 0x1$/;"	v
+FONT	.\experiment.rc	/^FONT 8, "MS Shell Dlg", 400, 0, 0x1$/;"	v
 File	.\experiment.sln	/^Microsoft Visual Studio Solution File, Format Version 10.00$/;"	v
 GROUPBOX	.\experiment.rc	/^    GROUPBOX        "Experiment",IDC_STATIC,213,57,192,39$/;"	v
 GROUPBOX	.\experiment.rc	/^    GROUPBOX        "Output",IDC_STATIC,7,102,402,90$/;"	v
 GROUPBOX	.\experiment.rc	/^    GROUPBOX        "Screen",IDC_STATIC,213,7,192,40$/;"	v
-I	.\Debug\experiment.ilk	/^IDC_STATIC,12,47,108,8$/;"	v
+GROUPBOX	.\experiment.rc	/^    GROUPBOX        "Trials and Sections",IDC_STATIC,6,7,199,89$/;"	v
+ICON	.\experiment.rc	/^    ICON            128,IDC_STATIC,14,14,21,20$/;"	v
+IDC_BUTTON1	.\resource.h	25;"	d
 IDC_COMBO1	.\experiment.rc	/^    COMBOBOX        IDC_COMBO1,221,30,174,66,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP$/;"	v
 IDC_COMBO1	.\resource.h	19;"	d
+IDC_EDIT1	.\experiment.rc	/^    EDITTEXT        IDC_EDIT1,126,44,68,14,ES_AUTOHSCROLL$/;"	v
 IDC_EDIT1	.\resource.h	16;"	d
+IDC_EDIT2	.\experiment.rc	/^    EDITTEXT        IDC_EDIT2,126,24,68,14,ES_AUTOHSCROLL$/;"	v
 IDC_EDIT2	.\resource.h	17;"	d
+IDC_EDIT3	.\experiment.rc	/^    EDITTEXT        IDC_EDIT3,126,66,68,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_TABSTOP$/;"	v
 IDC_EDIT3	.\resource.h	18;"	d
 IDC_EDIT4	.\experiment.rc	/^    EDITTEXT        IDC_EDIT4,89,114,96,12,ES_AUTOHSCROLL$/;"	v
 IDC_EDIT4	.\resource.h	22;"	d
@@ -114,50 +217,401 @@ IDC_RADIO2	.\resource.h	21;"	d
 IDC_STATIC	.\experiment.rc	/^    GROUPBOX        "Experiment",IDC_STATIC,213,57,192,39$/;"	v
 IDC_STATIC	.\experiment.rc	/^    GROUPBOX        "Output",IDC_STATIC,7,102,402,90$/;"	v
 IDC_STATIC	.\experiment.rc	/^    GROUPBOX        "Screen",IDC_STATIC,213,7,192,40$/;"	v
+IDC_STATIC	.\experiment.rc	/^    GROUPBOX        "Trials and Sections",IDC_STATIC,6,7,199,89$/;"	v
+IDC_STATIC	.\experiment.rc	/^    ICON            128,IDC_STATIC,14,14,21,20$/;"	v
 IDC_STATIC	.\experiment.rc	/^    LTEXT           """\/SID\/"": Subject ID, ""\/Date\/"": Experiment Date, ""\/Time\/"": Experiment Time",IDC_STATIC,91,138,306,8$/;"	v
+IDC_STATIC	.\experiment.rc	/^    LTEXT           "Copyright (C) 2010",IDC_STATIC,42,26,114,8$/;"	v
 IDC_STATIC	.\experiment.rc	/^    LTEXT           "Mode:",IDC_STATIC,228,78,18,8$/;"	v
+IDC_STATIC	.\experiment.rc	/^    LTEXT           "Number of Sections:",IDC_STATIC,50,27,70,8$/;"	v
+IDC_STATIC	.\experiment.rc	/^    LTEXT           "Number of Trials in One Section:",IDC_STATIC,12,47,108,8$/;"	v
 IDC_STATIC	.\experiment.rc	/^    LTEXT           "Output Filename Rule:",IDC_STATIC,14,138,72,8$/;"	v
 IDC_STATIC	.\experiment.rc	/^    LTEXT           "Output Filename:",IDC_STATIC,30,174,60,8$/;"	v
 IDC_STATIC	.\experiment.rc	/^    LTEXT           "Resolution and Refresh Rate",IDC_STATIC,222,18,96,8$/;"	v
 IDC_STATIC	.\experiment.rc	/^    LTEXT           "Subject ID:",IDC_STATIC,49,114,36,8$/;"	v
 IDC_STATIC	.\experiment.rc	/^    LTEXT           "Total Number of Trials:",IDC_STATIC,42,69,76,8$/;"	v
-IDC_STATIC	.\resource.h	25;"	d
+IDC_STATIC	.\experiment.rc	/^    LTEXT           "experiment, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX$/;"	v
+IDC_STATIC	.\resource.h	27;"	d
 IDD_ABOUTBOX	.\experiment.rc	/^    IDD_ABOUTBOX, DIALOG$/;"	v
 IDD_ABOUTBOX	.\resource.h	8;"	d
 IDD_CONFWND	.\experiment.rc	/^    IDD_CONFWND, DIALOG$/;"	v
 IDD_CONFWND	.\resource.h	15;"	d
 IDD_EXPERIMENT_DIALOG	.\resource.h	6;"	d
+IDEXIT	.\experiment.rc	/^    DEFPUSHBUTTON   "Exit",IDEXIT,301,205,50,14$/;"	v
+IDEXIT	.\resource.h	26;"	d
 IDI_EXPERIMENT	.\resource.h	11;"	d
 IDI_SMALL	.\resource.h	12;"	d
+IDLE	.\Trial.h	/^        enum state {IDLE, PRE_TRIAL_SCENE, MAIN_SCENE};$/;"	e	enum:Trial::state
+IDM_ABOUT	.\experiment.rc	/^    "?",            IDM_ABOUT,              ASCII,  ALT$/;"	v
+IDM_ABOUT	.\experiment.rc	/^    "\/",            IDM_ABOUT,              ASCII,  ALT$/;"	v
 IDM_ABOUT	.\resource.h	9;"	d
 IDM_EXIT	.\resource.h	10;"	d
+IDOK	.\experiment.rc	/^    DEFPUSHBUTTON   "Confirm",IDOK,362,205,50,14$/;"	v
+IDOK	.\experiment.rc	/^    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP$/;"	v
 IDR_MAINFRAME	.\resource.h	14;"	d
 IDS_APP_TITLE	.\resource.h	7;"	d
+LANG_ENGLISH	.\experiment.rc	/^LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US$/;"	v
 LEFTMARGIN	.\experiment.rc	/^        LEFTMARGIN, 7$/;"	v
 LTEXT	.\experiment.rc	/^    LTEXT           """\/SID\/"": Subject ID, ""\/Date\/"": Experiment Date, ""\/Time\/"": Experiment Time",IDC_STATIC,91,138,306,8$/;"	v
+LTEXT	.\experiment.rc	/^    LTEXT           "Copyright (C) 2010",IDC_STATIC,42,26,114,8$/;"	v
 LTEXT	.\experiment.rc	/^    LTEXT           "Mode:",IDC_STATIC,228,78,18,8$/;"	v
+LTEXT	.\experiment.rc	/^    LTEXT           "Number of Sections:",IDC_STATIC,50,27,70,8$/;"	v
+LTEXT	.\experiment.rc	/^    LTEXT           "Number of Trials in One Section:",IDC_STATIC,12,47,108,8$/;"	v
 LTEXT	.\experiment.rc	/^    LTEXT           "Output Filename Rule:",IDC_STATIC,14,138,72,8$/;"	v
 LTEXT	.\experiment.rc	/^    LTEXT           "Output Filename:",IDC_STATIC,30,174,60,8$/;"	v
 LTEXT	.\experiment.rc	/^    LTEXT           "Resolution and Refresh Rate",IDC_STATIC,222,18,96,8$/;"	v
 LTEXT	.\experiment.rc	/^    LTEXT           "Subject ID:",IDC_STATIC,49,114,36,8$/;"	v
 LTEXT	.\experiment.rc	/^    LTEXT           "Total Number of Trials:",IDC_STATIC,42,69,76,8$/;"	v
+LTEXT	.\experiment.rc	/^    LTEXT           "experiment, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX$/;"	v
+MAIN_SCENE	.\Trial.h	/^        enum state {IDLE, PRE_TRIAL_SCENE, MAIN_SCENE};$/;"	e	enum:Trial::state
+MENUITEM	.\experiment.rc	/^        MENUITEM "&About ...",                  IDM_ABOUT$/;"	v
+MENUITEM	.\experiment.rc	/^        MENUITEM "E&xit",                       IDM_EXIT$/;"	v
+MixedObjectViewScene	.\MixedObjectViewScene.cpp	/^MixedObjectViewScene::MixedObjectViewScene(void)$/;"	f	class:MixedObjectViewScene	signature:(void)
+MixedObjectViewScene	.\MixedObjectViewScene.cpp~	/^MixedObjectViewScene::MixedObjectViewScene(void)$/;"	f	class:MixedObjectViewScene	signature:(void)
+MixedObjectViewScene	.\MixedObjectViewScene.h	/^        MixedObjectViewScene(void);$/;"	p	class:MixedObjectViewScene	access:public	signature:(void)
+MixedObjectViewScene	.\MixedObjectViewScene.h	/^class MixedObjectViewScene :$/;"	c	inherits:Scene
+MixedObjectViewScene	.\MixedObjectViewScene.h~	/^        MixedObjectViewScene(void);$/;"	p	class:MixedObjectViewScene	file:	access:public	signature:(void)
+MixedObjectViewScene	.\MixedObjectViewScene.h~	/^class MixedObjectViewScene :$/;"	c	file:	inherits:Scene
+MixedObjectViewScene::MixedObjectViewScene	.\MixedObjectViewScene.cpp	/^MixedObjectViewScene::MixedObjectViewScene(void)$/;"	f	class:MixedObjectViewScene	signature:(void)
+MixedObjectViewScene::MixedObjectViewScene	.\MixedObjectViewScene.cpp~	/^MixedObjectViewScene::MixedObjectViewScene(void)$/;"	f	class:MixedObjectViewScene	signature:(void)
+MixedObjectViewScene::MixedObjectViewScene	.\MixedObjectViewScene.h	/^        MixedObjectViewScene(void);$/;"	p	class:MixedObjectViewScene	access:public	signature:(void)
+MixedObjectViewScene::MixedObjectViewScene	.\MixedObjectViewScene.h~	/^        MixedObjectViewScene(void);$/;"	p	class:MixedObjectViewScene	file:	access:public	signature:(void)
+MixedObjectViewScene::~MixedObjectViewScene	.\MixedObjectViewScene.cpp	/^MixedObjectViewScene::~MixedObjectViewScene(void)$/;"	f	class:MixedObjectViewScene	signature:(void)
+MixedObjectViewScene::~MixedObjectViewScene	.\MixedObjectViewScene.cpp~	/^MixedObjectViewScene::~MixedObjectViewScene(void)$/;"	f	class:MixedObjectViewScene	signature:(void)
+MixedObjectViewScene::~MixedObjectViewScene	.\MixedObjectViewScene.h	/^        virtual ~MixedObjectViewScene(void);$/;"	p	class:MixedObjectViewScene	access:public	signature:(void)
+MixedObjectViewScene::~MixedObjectViewScene	.\MixedObjectViewScene.h~	/^        virtual ~MixedObjectViewScene(void);$/;"	p	class:MixedObjectViewScene	file:	access:public	signature:(void)
+P	.\Debug\vc90.idb	/^/;"	c	file:
+PRE_TRIAL_SCENE	.\Trial.h	/^        enum state {IDLE, PRE_TRIAL_SCENE, MAIN_SCENE};$/;"	e	enum:Trial::state
+PreTrialScene	.\PreTrialScene.cpp	/^PreTrialScene::PreTrialScene()$/;"	f	class:PreTrialScene	signature:()
+PreTrialScene	.\PreTrialScene.cpp~	/^PreTrialScene::PreTrialScene()$/;"	f	class:PreTrialScene	signature:()
+PreTrialScene	.\PreTrialScene.h	/^        PreTrialScene();$/;"	p	class:PreTrialScene	access:public	signature:()
+PreTrialScene	.\PreTrialScene.h	/^class PreTrialScene :$/;"	c	inherits:PureWordScene
+PreTrialScene	.\PreTrialScene.h~	/^        PreTrialScene();$/;"	p	class:PreTrialScene	file:	access:public	signature:()
+PreTrialScene	.\PreTrialScene.h~	/^class PreTrialScene :$/;"	c	file:	inherits:PureWordScene
+PreTrialScene::PreTrialScene	.\PreTrialScene.cpp	/^PreTrialScene::PreTrialScene()$/;"	f	class:PreTrialScene	signature:()
+PreTrialScene::PreTrialScene	.\PreTrialScene.cpp~	/^PreTrialScene::PreTrialScene()$/;"	f	class:PreTrialScene	signature:()
+PreTrialScene::PreTrialScene	.\PreTrialScene.h	/^        PreTrialScene();$/;"	p	class:PreTrialScene	access:public	signature:()
+PreTrialScene::PreTrialScene	.\PreTrialScene.h~	/^        PreTrialScene();$/;"	p	class:PreTrialScene	file:	access:public	signature:()
+PreTrialScene::buildString	.\PreTrialScene.cpp	/^string PreTrialScene::buildString()$/;"	f	class:PreTrialScene	signature:()
+PreTrialScene::buildString	.\PreTrialScene.cpp~	/^string PreTrialScene::buildString()$/;"	f	class:PreTrialScene	signature:()
+PreTrialScene::buildString	.\PreTrialScene.h	/^        virtual string buildString();$/;"	p	class:PreTrialScene	access:private	signature:()
+PreTrialScene::buildString	.\PreTrialScene.h~	/^        virtual string buildString();$/;"	p	class:PreTrialScene	file:	access:private	signature:()
+PreTrialScene::handleKeyboardEvent	.\PreTrialScene.cpp	/^BOOL PreTrialScene::handleKeyboardEvent(unsigned char key, int x, int y)$/;"	f	class:PreTrialScene	signature:(unsigned char key, int x, int y)
+PreTrialScene::handleKeyboardEvent	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::handleKeyboardEvent(unsigned char key, int x, int y)$/;"	f	class:PreTrialScene	signature:(unsigned char key, int x, int y)
+PreTrialScene::handleKeyboardEvent	.\PreTrialScene.h	/^        virtual BOOL handleKeyboardEvent(unsigned char key, int x, int y);$/;"	p	class:PreTrialScene	access:private	signature:(unsigned char key, int x, int y)
+PreTrialScene::handleKeyboardSpecialEvent	.\PreTrialScene.cpp	/^BOOL PreTrialScene::handleKeyboardSpecialEvent(int key, int x, int y)$/;"	f	class:PreTrialScene	signature:(int key, int x, int y)
+PreTrialScene::handleKeyboardSpecialEvent	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::handleKeyboardSpecialEvent(int key, int x, int y)$/;"	f	class:PreTrialScene	signature:(int key, int x, int y)
+PreTrialScene::handleKeyboardSpecialEvent	.\PreTrialScene.h	/^        virtual BOOL handleKeyboardSpecialEvent(int key, int x, int y);$/;"	p	class:PreTrialScene	access:private	signature:(int key, int x, int y)
+PreTrialScene::handleMouseEvent	.\PreTrialScene.cpp	/^BOOL PreTrialScene::handleMouseEvent(int button, int state, int x, int y)$/;"	f	class:PreTrialScene	signature:(int button, int state, int x, int y)
+PreTrialScene::handleMouseEvent	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::handleMouseEvent(int button, int state, int x, int y)$/;"	f	class:PreTrialScene	signature:(int button, int state, int x, int y)
+PreTrialScene::handleMouseEvent	.\PreTrialScene.h	/^        virtual BOOL handleMouseEvent(int button, int state, int x, int y);$/;"	p	class:PreTrialScene	access:private	signature:(int button, int state, int x, int y)
+PreTrialScene::handleMouseMotionEvent	.\PreTrialScene.cpp	/^BOOL PreTrialScene::handleMouseMotionEvent(int x, int y)$/;"	f	class:PreTrialScene	signature:(int x, int y)
+PreTrialScene::handleMouseMotionEvent	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::handleMouseMotionEvent(int x, int y)$/;"	f	class:PreTrialScene	signature:(int x, int y)
+PreTrialScene::handleMouseMotionEvent	.\PreTrialScene.h	/^        virtual BOOL handleMouseMotionEvent(int x, int y);$/;"	p	class:PreTrialScene	access:private	signature:(int x, int y)
+PreTrialScene::handleMousePassiveMotionEvent	.\PreTrialScene.cpp	/^BOOL PreTrialScene::handleMousePassiveMotionEvent(int x, int y)$/;"	f	class:PreTrialScene	signature:(int x, int y)
+PreTrialScene::handleMousePassiveMotionEvent	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::handleMousePassiveMotionEvent(int x, int y)$/;"	f	class:PreTrialScene	signature:(int x, int y)
+PreTrialScene::handleMousePassiveMotionEvent	.\PreTrialScene.h	/^        virtual BOOL handleMousePassiveMotionEvent(int x, int y);$/;"	p	class:PreTrialScene	access:private	signature:(int x, int y)
+PreTrialScene::renderScene	.\PreTrialScene.cpp	/^BOOL PreTrialScene::renderScene()$/;"	f	class:PreTrialScene	signature:()
+PreTrialScene::renderScene	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::renderScene()$/;"	f	class:PreTrialScene	signature:()
+PreTrialScene::renderScene	.\PreTrialScene.h	/^        virtual BOOL renderScene(); $/;"	p	class:PreTrialScene	access:private	signature:()
+PreTrialScene::renderScene	.\PreTrialScene.h~	/^        virtual BOOL renderScene(); $/;"	p	class:PreTrialScene	file:	access:private	signature:()
+PreTrialScene::reshape	.\PreTrialScene.cpp	/^BOOL PreTrialScene::reshape(int w, int h)$/;"	f	class:PreTrialScene	signature:(int w, int h)
+PreTrialScene::reshape	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::reshape(int w, int h)$/;"	f	class:PreTrialScene	signature:(int w, int h)
+PreTrialScene::reshape	.\PreTrialScene.h	/^        virtual BOOL reshape(int w, int h);$/;"	p	class:PreTrialScene	access:private	signature:(int w, int h)
+PreTrialScene::reshape	.\PreTrialScene.h~	/^        virtual BOOL reshape(int w, int h);$/;"	p	class:PreTrialScene	file:	access:private	signature:(int w, int h)
+PreTrialScene::startScene	.\PreTrialScene.cpp	/^BOOL PreTrialScene::startScene()$/;"	f	class:PreTrialScene	signature:()
+PreTrialScene::startScene	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::startScene()$/;"	f	class:PreTrialScene	signature:()
+PreTrialScene::startScene	.\PreTrialScene.h	/^        virtual BOOL startScene();$/;"	p	class:PreTrialScene	access:public	signature:()
+PreTrialScene::startScene	.\PreTrialScene.h~	/^        virtual BOOL startScene();$/;"	p	class:PreTrialScene	file:	access:public	signature:()
+PreTrialScene::~PreTrialScene	.\PreTrialScene.cpp	/^PreTrialScene::~PreTrialScene(void)$/;"	f	class:PreTrialScene	signature:(void)
+PreTrialScene::~PreTrialScene	.\PreTrialScene.cpp~	/^PreTrialScene::~PreTrialScene(void)$/;"	f	class:PreTrialScene	signature:(void)
+PreTrialScene::~PreTrialScene	.\PreTrialScene.h	/^        virtual ~PreTrialScene(void);$/;"	p	class:PreTrialScene	access:public	signature:(void)
+PreTrialScene::~PreTrialScene	.\PreTrialScene.h~	/^        virtual ~PreTrialScene(void);$/;"	p	class:PreTrialScene	file:	access:public	signature:(void)
+PureWordScene	.\PureWordScene.cpp	/^PureWordScene::PureWordScene()$/;"	f	class:PureWordScene	signature:()
+PureWordScene	.\PureWordScene.cpp~	/^PureWordScene::PureWordScene(void)$/;"	f	class:PureWordScene	signature:(void)
+PureWordScene	.\PureWordScene.h	/^        PureWordScene();$/;"	p	class:PureWordScene	access:protected	signature:()
+PureWordScene	.\PureWordScene.h	/^class PureWordScene : public Scene$/;"	c	inherits:Scene
+PureWordScene	.\PureWordScene.h~	/^        PureWordScene();$/;"	p	class:PureWordScene	file:	access:protected	signature:()
+PureWordScene	.\PureWordScene.h~	/^class PureWordScene : public Scene$/;"	c	file:	inherits:Scene
+PureWordScene::PureWordScene	.\PureWordScene.cpp	/^PureWordScene::PureWordScene()$/;"	f	class:PureWordScene	signature:()
+PureWordScene::PureWordScene	.\PureWordScene.cpp~	/^PureWordScene::PureWordScene(void)$/;"	f	class:PureWordScene	signature:(void)
+PureWordScene::PureWordScene	.\PureWordScene.h	/^        PureWordScene();$/;"	p	class:PureWordScene	access:protected	signature:()
+PureWordScene::PureWordScene	.\PureWordScene.h~	/^        PureWordScene();$/;"	p	class:PureWordScene	file:	access:protected	signature:()
+PureWordScene::buildString	.\PureWordScene.h	/^        virtual string buildString(void) = 0; $/;"	p	class:PureWordScene	access:protected	signature:(void)
+PureWordScene::~PureWordScene	.\PureWordScene.cpp	/^PureWordScene::~PureWordScene(void)$/;"	f	class:PureWordScene	signature:(void)
+PureWordScene::~PureWordScene	.\PureWordScene.cpp~	/^PureWordScene::~PureWordScene(void)$/;"	f	class:PureWordScene	signature:(void)
+PureWordScene::~PureWordScene	.\PureWordScene.h	/^        virtual ~PureWordScene(void);$/;"	p	class:PureWordScene	access:public	signature:(void)
+PureWordScene::~PureWordScene	.\PureWordScene.h~	/^        virtual ~PureWordScene(void);$/;"	p	class:PureWordScene	file:	access:public	signature:(void)
 RIGHTMARGIN	.\experiment.rc	/^        RIGHTMARGIN, 163$/;"	v
 RIGHTMARGIN	.\experiment.rc	/^        RIGHTMARGIN, 412$/;"	v
+S	.\Debug\experiment.pdb	/^/;"	v
+Scene	.\Scene.cpp	/^Scene::Scene()$/;"	f	class:Scene	signature:()
+Scene	.\Scene.cpp~	/^Scene::Scene()$/;"	f	class:Scene	signature:()
+Scene	.\Scene.h	/^        Scene();$/;"	p	class:Scene	access:protected	signature:()
+Scene	.\Scene.h	/^class Scene$/;"	c
+Scene	.\Scene.h~	/^        Scene();$/;"	p	class:Scene	file:	access:protected	signature:()
+Scene	.\Scene.h~	/^class Scene$/;"	c	file:
+Scene::Scene	.\Scene.cpp	/^Scene::Scene()$/;"	f	class:Scene	signature:()
+Scene::Scene	.\Scene.cpp~	/^Scene::Scene()$/;"	f	class:Scene	signature:()
+Scene::Scene	.\Scene.h	/^        Scene();$/;"	p	class:Scene	access:protected	signature:()
+Scene::Scene	.\Scene.h~	/^        Scene();$/;"	p	class:Scene	file:	access:protected	signature:()
+Scene::currScene	.\Scene.cpp	/^Scene *Scene::currScene;$/;"	m	class:Scene	file:
+Scene::currScene	.\Scene.cpp~	/^Scene *Scene::currScene;$/;"	m	class:Scene	file:
+Scene::currScene	.\Scene.h	/^        static Scene *currScene;$/;"	m	class:Scene	access:protected
+Scene::currScene	.\Scene.h~	/^        static Scene *currScene;$/;"	m	class:Scene	file:	access:protected
+Scene::dispatchKeyboardEvent	.\Scene.cpp	/^void Scene::dispatchKeyboardEvent(unsigned char key, int x, int y)$/;"	f	class:Scene	signature:(unsigned char key, int x, int y)
+Scene::dispatchKeyboardEvent	.\Scene.cpp~	/^void Scene::dispatchKeyboardEvent(unsigned char key, int x, int y)$/;"	f	class:Scene	signature:(unsigned char key, int x, int y)
+Scene::dispatchKeyboardEvent	.\Scene.h	/^        static void dispatchKeyboardEvent(unsigned char key, int x, int y);$/;"	p	class:Scene	access:public	signature:(unsigned char key, int x, int y)
+Scene::dispatchKeyboardEvent	.\Scene.h~	/^        static void dispatchKeyboardEvent(unsigned char key, int x, int y);$/;"	p	class:Scene	file:	access:public	signature:(unsigned char key, int x, int y)
+Scene::dispatchKeyboardSpecialEvent	.\Scene.cpp	/^void Scene::dispatchKeyboardSpecialEvent(int key, int x, int y)$/;"	f	class:Scene	signature:(int key, int x, int y)
+Scene::dispatchKeyboardSpecialEvent	.\Scene.cpp~	/^void Scene::dispatchKeyboardSpecialEvent(int key, int x, int y)$/;"	f	class:Scene	signature:(int key, int x, int y)
+Scene::dispatchKeyboardSpecialEvent	.\Scene.h	/^        static void dispatchKeyboardSpecialEvent(int key, int x, int y);$/;"	p	class:Scene	access:public	signature:(int key, int x, int y)
+Scene::dispatchKeyboardSpecialEvent	.\Scene.h~	/^        static void dispatchKeyboardSpecialEvent(int key, int x, int y);$/;"	p	class:Scene	file:	access:public	signature:(int key, int x, int y)
+Scene::dispatchMouseEvent	.\Scene.cpp	/^void Scene::dispatchMouseEvent(int button, int state, int x, int y)$/;"	f	class:Scene	signature:(int button, int state, int x, int y)
+Scene::dispatchMouseEvent	.\Scene.cpp~	/^void Scene::dispatchMouseEvent(int button, int state, int x, int y)$/;"	f	class:Scene	signature:(int button, int state, int x, int y)
+Scene::dispatchMouseEvent	.\Scene.h	/^        static void dispatchMouseEvent(int button, int state, int x, int y);$/;"	p	class:Scene	access:public	signature:(int button, int state, int x, int y)
+Scene::dispatchMouseEvent	.\Scene.h~	/^        static void dispatchMouseEvent(int button, int state, int x, int y);$/;"	p	class:Scene	file:	access:public	signature:(int button, int state, int x, int y)
+Scene::dispatchMouseMotionEvent	.\Scene.cpp	/^void Scene::dispatchMouseMotionEvent(int x, int y)$/;"	f	class:Scene	signature:(int x, int y)
+Scene::dispatchMouseMotionEvent	.\Scene.cpp~	/^void Scene::dispatchMouseMotionEvent(int x, int y)$/;"	f	class:Scene	signature:(int x, int y)
+Scene::dispatchMouseMotionEvent	.\Scene.h	/^        static void dispatchMouseMotionEvent(int x, int y);$/;"	p	class:Scene	access:public	signature:(int x, int y)
+Scene::dispatchMouseMotionEvent	.\Scene.h~	/^        static void dispatchMouseMotionEvent(int x, int y);$/;"	p	class:Scene	file:	access:public	signature:(int x, int y)
+Scene::dispatchMousePassiveMotionEvent	.\Scene.cpp	/^void Scene::dispatchMousePassiveMotionEvent(int x, int y)$/;"	f	class:Scene	signature:(int x, int y)
+Scene::dispatchMousePassiveMotionEvent	.\Scene.cpp~	/^void Scene::dispatchMousePassiveMotionEvent(int x, int y)$/;"	f	class:Scene	signature:(int x, int y)
+Scene::dispatchMousePassiveMotionEvent	.\Scene.h	/^        static void dispatchMousePassiveMotionEvent(int x, int y);$/;"	p	class:Scene	access:public	signature:(int x, int y)
+Scene::dispatchMousePassiveMotionEvent	.\Scene.h~	/^        static void dispatchMousePassiveMotionEvent(int x, int y);$/;"	p	class:Scene	file:	access:public	signature:(int x, int y)
+Scene::dispatchReshape	.\Scene.cpp	/^void Scene::dispatchReshape(int w, int h)$/;"	f	class:Scene	signature:(int w, int h)
+Scene::dispatchReshape	.\Scene.cpp~	/^void Scene::dispatchReshape(int w, int h)$/;"	f	class:Scene	signature:(int w, int h)
+Scene::dispatchReshape	.\Scene.h	/^        static void dispatchReshape(int w, int h);$/;"	p	class:Scene	access:public	signature:(int w, int h)
+Scene::dispatchReshape	.\Scene.h~	/^        static void dispatchReshape(int w, int h);$/;"	p	class:Scene	file:	access:public	signature:(int w, int h)
+Scene::dispatchSceneRender	.\Scene.cpp	/^void Scene::dispatchSceneRender()$/;"	f	class:Scene	signature:()
+Scene::dispatchSceneRender	.\Scene.cpp~	/^void Scene::dispatchSceneRender()$/;"	f	class:Scene	signature:()
+Scene::dispatchSceneRender	.\Scene.h	/^        static void dispatchSceneRender();$/;"	p	class:Scene	access:public	signature:()
+Scene::dispatchSceneRender	.\Scene.h~	/^        static void dispatchSceneRender();$/;"	p	class:Scene	file:	access:public	signature:()
+Scene::handleKeyboardEvent	.\Scene.h	/^        virtual BOOL handleKeyboardEvent(unsigned char key, int x, int y) = 0;$/;"	p	class:Scene	access:protected	signature:(unsigned char key, int x, int y)
+Scene::handleKeyboardEvent	.\Scene.h~	/^        virtual BOOL handleKeyboardEvent(unsigned char key, int x, int y) = 0;$/;"	p	class:Scene	file:	access:protected	signature:(unsigned char key, int x, int y)
+Scene::handleKeyboardSpecialEvent	.\Scene.h	/^        virtual BOOL handleKeyboardSpecialEvent(int key, int x, int y) = 0;$/;"	p	class:Scene	access:protected	signature:(int key, int x, int y)
+Scene::handleKeyboardSpecialEvent	.\Scene.h~	/^        virtual BOOL handleKeyboardSpecialEvent(int key, int x, int y) = 0;$/;"	p	class:Scene	file:	access:protected	signature:(int key, int x, int y)
+Scene::handleMouseEvent	.\Scene.h	/^        virtual BOOL handleMouseEvent(int button, int state, int x, int y) = 0;$/;"	p	class:Scene	access:protected	signature:(int button, int state, int x, int y)
+Scene::handleMouseEvent	.\Scene.h~	/^        virtual BOOL handleMouseEvent(int button, int state, int x, int y) = 0;$/;"	p	class:Scene	file:	access:protected	signature:(int button, int state, int x, int y)
+Scene::handleMouseMotionEvent	.\Scene.h	/^        virtual BOOL handleMouseMotionEvent(int x, int y) = 0;$/;"	p	class:Scene	access:protected	signature:(int x, int y)
+Scene::handleMouseMotionEvent	.\Scene.h~	/^        virtual BOOL handleMouseMotionEvent(int x, int y) = 0;$/;"	p	class:Scene	file:	access:protected	signature:(int x, int y)
+Scene::handleMousePassiveMotionEvent	.\Scene.h	/^        virtual BOOL handleMousePassiveMotionEvent(int x, int y) = 0;$/;"	p	class:Scene	access:protected	signature:(int x, int y)
+Scene::handleMousePassiveMotionEvent	.\Scene.h~	/^        virtual BOOL handleMousePassiveMotionEvent(int x, int y) = 0;$/;"	p	class:Scene	file:	access:protected	signature:(int x, int y)
+Scene::renderScene	.\Scene.h	/^        virtual BOOL renderScene() = 0;$/;"	p	class:Scene	access:protected	signature:()
+Scene::renderScene	.\Scene.h~	/^        virtual BOOL renderScene() = 0;$/;"	p	class:Scene	file:	access:protected	signature:()
+Scene::reshape	.\Scene.h	/^        virtual BOOL reshape(int w, int h) = 0;$/;"	p	class:Scene	access:protected	signature:(int w, int h)
+Scene::reshape	.\Scene.h~	/^        virtual BOOL reshape(int w, int h) = 0;$/;"	p	class:Scene	file:	access:protected	signature:(int w, int h)
+Scene::screens	.\Scene.h	/^        vector<Screen *> screens;$/;"	m	class:Scene	access:public
+Scene::screens	.\Scene.h~	/^        vector<Screen *> screens;$/;"	m	class:Scene	file:	access:public
+Scene::startScene	.\Scene.h	/^        virtual BOOL startScene() = 0;$/;"	p	class:Scene	access:public	signature:()
+Scene::startScene	.\Scene.h~	/^        virtual BOOL startScene() = 0;$/;"	p	class:Scene	file:	access:public	signature:()
+Scene::~Scene	.\Scene.cpp	/^Scene::~Scene()$/;"	f	class:Scene	signature:()
+Scene::~Scene	.\Scene.cpp~	/^Scene::~Scene()$/;"	f	class:Scene	signature:()
+Scene::~Scene	.\Scene.h	/^        virtual ~Scene(void) = 0;$/;"	p	class:Scene	access:public	signature:(void)
+Scene::~Scene	.\Scene.h~	/^        virtual ~Scene(void) = 0;$/;"	p	class:Scene	file:	access:public	signature:(void)
+Screen	.\Screen.cpp	/^Screen::Screen()$/;"	f	class:Screen	signature:()
+Screen	.\Screen.cpp~	/^Screen::Screen()$/;"	f	class:Screen	signature:()
+Screen	.\Screen.h	/^        Screen();$/;"	p	class:Screen	access:public	signature:()
+Screen	.\Screen.h	/^class Screen$/;"	c
+Screen	.\Screen.h~	/^        Screen();$/;"	p	class:Screen	file:	access:public	signature:()
+Screen	.\Screen.h~	/^class Screen$/;"	c	file:
+Screen::Screen	.\Screen.cpp	/^Screen::Screen()$/;"	f	class:Screen	signature:()
+Screen::Screen	.\Screen.cpp~	/^Screen::Screen()$/;"	f	class:Screen	signature:()
+Screen::Screen	.\Screen.h	/^        Screen();$/;"	p	class:Screen	access:public	signature:()
+Screen::Screen	.\Screen.h~	/^        Screen();$/;"	p	class:Screen	file:	access:public	signature:()
+Screen::cancelKMBinds	.\Screen.cpp	/^BOOL Screen::cancelKMBinds()$/;"	f	class:Screen	signature:()
+Screen::cancelKMBinds	.\Screen.cpp~	/^BOOL Screen::cancelKMBinds()$/;"	f	class:Screen	signature:()
+Screen::cancelKMBinds	.\Screen.h	/^        BOOL cancelKMBinds();$/;"	p	class:Screen	access:public	signature:()
+Screen::cancelKMBinds	.\Screen.h~	/^        BOOL cancelKMBinds();$/;"	p	class:Screen	file:	access:public	signature:()
+Screen::clear	.\Screen.cpp	/^BOOL Screen::clear()$/;"	f	class:Screen	signature:()
+Screen::clear	.\Screen.cpp~	/^BOOL Screen::clear()$/;"	f	class:Screen	signature:()
+Screen::clear	.\Screen.h	/^        BOOL clear();$/;"	p	class:Screen	access:public	signature:()
+Screen::clear	.\Screen.h~	/^        BOOL clear();$/;"	p	class:Screen	file:	access:public	signature:()
+Screen::displayMode	.\Screen.h	/^        UINT displayMode;$/;"	m	class:Screen	access:private
+Screen::displayMode	.\Screen.h~	/^        UINT displayMode;$/;"	m	class:Screen	file:	access:private
+Screen::displayString	.\Screen.cpp	/^BOOL Screen::displayString(string str, float x, float y)$/;"	f	class:Screen	signature:(string str, float x, float y)
+Screen::displayString	.\Screen.cpp~	/^BOOL Screen::displayString(string str, float x, float y)$/;"	f	class:Screen	signature:(string str, float x, float y)
+Screen::displayString	.\Screen.h	/^        BOOL displayString(string str, float x, float y);$/;"	p	class:Screen	access:public	signature:(string str, float x, float y)
+Screen::displayString	.\Screen.h~	/^        BOOL displayString(string str, float x, float y);$/;"	p	class:Screen	file:	access:public	signature:(string str, float x, float y)
+Screen::initGlut	.\Screen.cpp	/^BOOL Screen::initGlut(DEVMODE devMode,$/;"	f	class:Screen	signature:(DEVMODE devMode, UINT displayMode, string title)
+Screen::initGlut	.\Screen.cpp~	/^BOOL Screen::initGlut(DEVMODE devMode,$/;"	f	class:Screen	signature:(DEVMODE devMode, UINT displayMode, string title)
+Screen::initGlut	.\Screen.h	/^        BOOL initGlut(DEVMODE devMode,$/;"	p	class:Screen	access:public	signature:(DEVMODE devMode, UINT displayMode, string title)
+Screen::initGlut	.\Screen.h~	/^        BOOL initGlut(DEVMODE devMode,$/;"	p	class:Screen	file:	access:public	signature:(DEVMODE devMode, UINT displayMode, string title)
+Screen::render	.\Screen.cpp	/^void Screen::render()$/;"	f	class:Screen	signature:()
+Screen::render	.\Screen.cpp~	/^void Screen::render()$/;"	f	class:Screen	signature:()
+Screen::render	.\Screen.h	/^        void render();$/;"	p	class:Screen	access:public	signature:()
+Screen::setDisplayFunc	.\Screen.cpp	/^BOOL Screen::setDisplayFunc(void (*displayFunc)(void))$/;"	f	class:Screen	signature:(void (*displayFunc)(void))
+Screen::setDisplayFunc	.\Screen.cpp~	/^BOOL Screen::setDisplayFunc(void (*displayFunc)(void))$/;"	f	class:Screen	signature:(void (*displayFunc)(void))
+Screen::setDisplayFunc	.\Screen.h	/^        BOOL setDisplayFunc(void (*displayFunc)(void));$/;"	p	class:Screen	access:public	signature:(void (*displayFunc)(void))
+Screen::setDisplayFunc	.\Screen.h~	/^        BOOL setDisplayFunc(void (*displayFunc)(void));$/;"	p	class:Screen	file:	access:public	signature:(void (*displayFunc)(void))
+Screen::setKeyboardFunc	.\Screen.cpp	/^BOOL Screen::setKeyboardFunc(void (*func)(unsigned char key, int x, int y))$/;"	f	class:Screen	signature:(void (*func)(unsigned char key, int x, int y))
+Screen::setKeyboardFunc	.\Screen.cpp~	/^BOOL Screen::setKeyboardFunc(void (*func)(unsigned char key, int x, int y))$/;"	f	class:Screen	signature:(void (*func)(unsigned char key, int x, int y))
+Screen::setKeyboardFunc	.\Screen.h	/^        BOOL setKeyboardFunc(void (*func)(unsigned char key, int x, int y));$/;"	p	class:Screen	access:public	signature:(void (*func)(unsigned char key, int x, int y))
+Screen::setKeyboardFunc	.\Screen.h~	/^        BOOL setKeyboardFunc(void (*func)(unsigned char key, int x, int y));$/;"	p	class:Screen	file:	access:public	signature:(void (*func)(unsigned char key, int x, int y))
+Screen::setKeyboardSpecialFunc	.\Screen.cpp	/^BOOL Screen::setKeyboardSpecialFunc(void (*func)(int key, int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int key, int x, int y))
+Screen::setKeyboardSpecialFunc	.\Screen.cpp~	/^BOOL Screen::setKeyboardSpecialFunc(void (*func)(int key, int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int key, int x, int y))
+Screen::setKeyboardSpecialFunc	.\Screen.h	/^        BOOL setKeyboardSpecialFunc(void (*func)(int key, int x, int y));$/;"	p	class:Screen	access:public	signature:(void (*func)(int key, int x, int y))
+Screen::setKeyboardSpecialFunc	.\Screen.h~	/^        BOOL setKeyboardSpecialFunc(void (*func)(int key, int x, int y));$/;"	p	class:Screen	file:	access:public	signature:(void (*func)(int key, int x, int y))
+Screen::setMouseFunc	.\Screen.cpp	/^BOOL Screen::setMouseFunc(void (*func)(int button, int state, int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int button, int state, int x, int y))
+Screen::setMouseFunc	.\Screen.cpp~	/^BOOL Screen::setMouseFunc(void (*func)(int button, int state, int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int button, int state, int x, int y))
+Screen::setMouseFunc	.\Screen.h	/^        BOOL setMouseFunc(void (*func)(int button, int state, int x, int y));$/;"	p	class:Screen	access:public	signature:(void (*func)(int button, int state, int x, int y))
+Screen::setMouseFunc	.\Screen.h~	/^        BOOL setMouseFunc(void (*func)(int button, int state, int x, int y));$/;"	p	class:Screen	file:	access:public	signature:(void (*func)(int button, int state, int x, int y))
+Screen::setMouseMotionFunc	.\Screen.cpp	/^BOOL Screen::setMouseMotionFunc(void (*func)(int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int x, int y))
+Screen::setMouseMotionFunc	.\Screen.cpp~	/^BOOL Screen::setMouseMotionFunc(void (*func)(int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int x, int y))
+Screen::setMouseMotionFunc	.\Screen.h	/^        BOOL setMouseMotionFunc(void (*func)(int x, int y));$/;"	p	class:Screen	access:public	signature:(void (*func)(int x, int y))
+Screen::setMouseMotionFunc	.\Screen.h~	/^        BOOL setMouseMotionFunc(void (*func)(int x, int y));$/;"	p	class:Screen	file:	access:public	signature:(void (*func)(int x, int y))
+Screen::setMousePassiveMotionFunc	.\Screen.cpp	/^BOOL Screen::setMousePassiveMotionFunc(void (*func)(int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int x, int y))
+Screen::setMousePassiveMotionFunc	.\Screen.cpp~	/^BOOL Screen::setMousePassiveMotionFunc(void (*func)(int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int x, int y))
+Screen::setMousePassiveMotionFunc	.\Screen.h	/^        BOOL setMousePassiveMotionFunc(void (*func)(int x, int y));$/;"	p	class:Screen	access:public	signature:(void (*func)(int x, int y))
+Screen::setMousePassiveMotionFunc	.\Screen.h~	/^        BOOL setMousePassiveMotionFunc(void (*func)(int x, int y));$/;"	p	class:Screen	file:	access:public	signature:(void (*func)(int x, int y))
+Screen::setReshapeFunc	.\Screen.cpp	/^BOOL Screen::setReshapeFunc(void (*func)(int w, int h))$/;"	f	class:Screen	signature:(void (*func)(int w, int h))
+Screen::setReshapeFunc	.\Screen.cpp~	/^BOOL Screen::setReshapeFunc(void (*func)(int w, int h))$/;"	f	class:Screen	signature:(void (*func)(int w, int h))
+Screen::setReshapeFunc	.\Screen.h	/^        BOOL setReshapeFunc(void (*func)(int w, int h));$/;"	p	class:Screen	access:public	signature:(void (*func)(int w, int h))
+Screen::setReshapeFunc	.\Screen.h~	/^        BOOL setReshapeFunc(void (*func)(int w, int h));$/;"	p	class:Screen	file:	access:public	signature:(void (*func)(int w, int h))
+Screen::testRenderScene	.\Screen.cpp	/^void Screen::testRenderScene()$/;"	f	class:Screen	signature:()
+Screen::testRenderScene	.\Screen.cpp~	/^void Screen::testRenderScene()$/;"	f	class:Screen	signature:()
+Screen::testRenderScene	.\Screen.h	/^        static void testRenderScene();$/;"	p	class:Screen	access:public	signature:()
+Screen::testRenderScene	.\Screen.h~	/^        static void testRenderScene();$/;"	p	class:Screen	file:	access:public	signature:()
+Screen::~Screen	.\Screen.cpp	/^Screen::~Screen(void)$/;"	f	class:Screen	signature:(void)
+Screen::~Screen	.\Screen.cpp~	/^Screen::~Screen(void)$/;"	f	class:Screen	signature:(void)
+Screen::~Screen	.\Screen.h	/^        ~Screen();$/;"	p	class:Screen	access:public	signature:()
+Screen::~Screen	.\Screen.h~	/^        ~Screen();$/;"	p	class:Screen	file:	access:public	signature:()
+Separate2D3DViewScene	.\Separate2D3DViewScene.cpp	/^Separate2D3DViewScene::Separate2D3DViewScene(void)$/;"	f	class:Separate2D3DViewScene	signature:(void)
+Separate2D3DViewScene	.\Separate2D3DViewScene.cpp~	/^Separate2D3DViewScene::Separate2D3DViewScene(void)$/;"	f	class:Separate2D3DViewScene	signature:(void)
+Separate2D3DViewScene	.\Separate2D3DViewScene.h	/^        Separate2D3DViewScene(void);$/;"	p	class:Separate2D3DViewScene	access:public	signature:(void)
+Separate2D3DViewScene	.\Separate2D3DViewScene.h	/^class Separate2D3DViewScene :$/;"	c	inherits:MixedObjectViewScene
+Separate2D3DViewScene	.\Separate2D3DViewScene.h~	/^        Separate2D3DViewScene(void);$/;"	p	class:Separate2D3DViewScene	file:	access:public	signature:(void)
+Separate2D3DViewScene	.\Separate2D3DViewScene.h~	/^class Separate2D3DViewScene :$/;"	c	file:	inherits:MixedObjectViewScene
+Separate2D3DViewScene::Separate2D3DViewScene	.\Separate2D3DViewScene.cpp	/^Separate2D3DViewScene::Separate2D3DViewScene(void)$/;"	f	class:Separate2D3DViewScene	signature:(void)
+Separate2D3DViewScene::Separate2D3DViewScene	.\Separate2D3DViewScene.cpp~	/^Separate2D3DViewScene::Separate2D3DViewScene(void)$/;"	f	class:Separate2D3DViewScene	signature:(void)
+Separate2D3DViewScene::Separate2D3DViewScene	.\Separate2D3DViewScene.h	/^        Separate2D3DViewScene(void);$/;"	p	class:Separate2D3DViewScene	access:public	signature:(void)
+Separate2D3DViewScene::Separate2D3DViewScene	.\Separate2D3DViewScene.h~	/^        Separate2D3DViewScene(void);$/;"	p	class:Separate2D3DViewScene	file:	access:public	signature:(void)
+Separate2D3DViewScene::handleKeyboardEvent	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(unsigned char key, int x, int y)
+Separate2D3DViewScene::handleKeyboardEvent	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(unsigned char key, int x, int y)
+Separate2D3DViewScene::handleKeyboardEvent	.\Separate2D3DViewScene.h	/^        virtual BOOL handleKeyboardEvent(unsigned char key, int x, int y);$/;"	p	class:Separate2D3DViewScene	access:private	signature:(unsigned char key, int x, int y)
+Separate2D3DViewScene::handleKeyboardEvent	.\Separate2D3DViewScene.h~	/^        virtual BOOL handleKeyboardEvent(unsigned char key, int x, int y);$/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:(unsigned char key, int x, int y)
+Separate2D3DViewScene::handleKeyboardSpecialEvent	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::handleKeyboardSpecialEvent(int key, int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int key, int x, int y)
+Separate2D3DViewScene::handleKeyboardSpecialEvent	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::handleKeyboardSpecialEvent(int key, int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int key, int x, int y)
+Separate2D3DViewScene::handleKeyboardSpecialEvent	.\Separate2D3DViewScene.h	/^        virtual BOOL handleKeyboardSpecialEvent(int key, int x, int y);$/;"	p	class:Separate2D3DViewScene	access:private	signature:(int key, int x, int y)
+Separate2D3DViewScene::handleKeyboardSpecialEvent	.\Separate2D3DViewScene.h~	/^        virtual BOOL handleKeyboardSpecialEvent(int key, int x, int y);$/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:(int key, int x, int y)
+Separate2D3DViewScene::handleMouseEvent	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::handleMouseEvent(int button, int state, int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int button, int state, int x, int y)
+Separate2D3DViewScene::handleMouseEvent	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::handleMouseEvent(int button, int state, int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int button, int state, int x, int y)
+Separate2D3DViewScene::handleMouseEvent	.\Separate2D3DViewScene.h	/^        virtual BOOL handleMouseEvent(int button, int state, int x, int y);$/;"	p	class:Separate2D3DViewScene	access:private	signature:(int button, int state, int x, int y)
+Separate2D3DViewScene::handleMouseEvent	.\Separate2D3DViewScene.h~	/^        virtual BOOL handleMouseEvent(int button, int state, int x, int y);$/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:(int button, int state, int x, int y)
+Separate2D3DViewScene::handleMouseMotionEvent	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::handleMouseMotionEvent(int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int x, int y)
+Separate2D3DViewScene::handleMouseMotionEvent	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::handleMouseMotionEvent(int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int x, int y)
+Separate2D3DViewScene::handleMouseMotionEvent	.\Separate2D3DViewScene.h	/^        virtual BOOL handleMouseMotionEvent(int x, int y);$/;"	p	class:Separate2D3DViewScene	access:private	signature:(int x, int y)
+Separate2D3DViewScene::handleMouseMotionEvent	.\Separate2D3DViewScene.h~	/^        virtual BOOL handleMouseMotionEvent(int x, int y);$/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:(int x, int y)
+Separate2D3DViewScene::handleMousePassiveMotionEvent	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::handleMousePassiveMotionEvent(int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int x, int y)
+Separate2D3DViewScene::handleMousePassiveMotionEvent	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::handleMousePassiveMotionEvent(int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int x, int y)
+Separate2D3DViewScene::handleMousePassiveMotionEvent	.\Separate2D3DViewScene.h	/^        virtual BOOL handleMousePassiveMotionEvent(int x, int y);$/;"	p	class:Separate2D3DViewScene	access:private	signature:(int x, int y)
+Separate2D3DViewScene::handleMousePassiveMotionEvent	.\Separate2D3DViewScene.h~	/^        virtual BOOL handleMousePassiveMotionEvent(int x, int y);$/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:(int x, int y)
+Separate2D3DViewScene::renderScene	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::renderScene()$/;"	f	class:Separate2D3DViewScene	signature:()
+Separate2D3DViewScene::renderScene	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::renderScene()$/;"	f	class:Separate2D3DViewScene	signature:()
+Separate2D3DViewScene::renderScene	.\Separate2D3DViewScene.h	/^        virtual BOOL renderScene(); $/;"	p	class:Separate2D3DViewScene	access:private	signature:()
+Separate2D3DViewScene::renderScene	.\Separate2D3DViewScene.h~	/^        virtual BOOL renderScene(); $/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:()
+Separate2D3DViewScene::reshape	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::reshape(int w, int h)$/;"	f	class:Separate2D3DViewScene	signature:(int w, int h)
+Separate2D3DViewScene::reshape	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::reshape(int w, int h)$/;"	f	class:Separate2D3DViewScene	signature:(int w, int h)
+Separate2D3DViewScene::reshape	.\Separate2D3DViewScene.h	/^        virtual BOOL reshape(int w, int h);$/;"	p	class:Separate2D3DViewScene	access:private	signature:(int w, int h)
+Separate2D3DViewScene::reshape	.\Separate2D3DViewScene.h~	/^        virtual BOOL reshape(int w, int h);$/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:(int w, int h)
+Separate2D3DViewScene::startScene	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::startScene()$/;"	f	class:Separate2D3DViewScene	signature:()
+Separate2D3DViewScene::startScene	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::startScene()$/;"	f	class:Separate2D3DViewScene	signature:()
+Separate2D3DViewScene::startScene	.\Separate2D3DViewScene.h	/^        virtual BOOL startScene();$/;"	p	class:Separate2D3DViewScene	access:public	signature:()
+Separate2D3DViewScene::~Separate2D3DViewScene	.\Separate2D3DViewScene.cpp	/^Separate2D3DViewScene::~Separate2D3DViewScene(void)$/;"	f	class:Separate2D3DViewScene	signature:(void)
+Separate2D3DViewScene::~Separate2D3DViewScene	.\Separate2D3DViewScene.cpp~	/^Separate2D3DViewScene::~Separate2D3DViewScene(void)$/;"	f	class:Separate2D3DViewScene	signature:(void)
+Separate2D3DViewScene::~Separate2D3DViewScene	.\Separate2D3DViewScene.h	/^        virtual ~Separate2D3DViewScene(void);$/;"	p	class:Separate2D3DViewScene	access:public	signature:(void)
+Separate2D3DViewScene::~Separate2D3DViewScene	.\Separate2D3DViewScene.h~	/^        virtual ~Separate2D3DViewScene(void);$/;"	p	class:Separate2D3DViewScene	file:	access:public	signature:(void)
 TOPMARGIN	.\experiment.rc	/^        TOPMARGIN, 7$/;"	v
+TestObject	.\TestObject.cpp	/^TestObject::TestObject(void)$/;"	f	class:TestObject	signature:(void)
+TestObject	.\TestObject.cpp~	/^TestObject::TestObject(void)$/;"	f	class:TestObject	signature:(void)
+TestObject	.\TestObject.h	/^        TestObject(void);$/;"	p	class:TestObject	access:public	signature:(void)
+TestObject	.\TestObject.h	/^class TestObject$/;"	c
+TestObject	.\TestObject.h~	/^        TestObject(void);$/;"	p	class:TestObject	file:	access:public	signature:(void)
+TestObject	.\TestObject.h~	/^class TestObject$/;"	c	file:
+TestObject::TestObject	.\TestObject.cpp	/^TestObject::TestObject(void)$/;"	f	class:TestObject	signature:(void)
+TestObject::TestObject	.\TestObject.cpp~	/^TestObject::TestObject(void)$/;"	f	class:TestObject	signature:(void)
+TestObject::TestObject	.\TestObject.h	/^        TestObject(void);$/;"	p	class:TestObject	access:public	signature:(void)
+TestObject::TestObject	.\TestObject.h~	/^        TestObject(void);$/;"	p	class:TestObject	file:	access:public	signature:(void)
+TestObject::~TestObject	.\TestObject.cpp	/^TestObject::~TestObject(void)$/;"	f	class:TestObject	signature:(void)
+TestObject::~TestObject	.\TestObject.cpp~	/^TestObject::~TestObject(void)$/;"	f	class:TestObject	signature:(void)
+TestObject::~TestObject	.\TestObject.h	/^        virtual ~TestObject(void);$/;"	p	class:TestObject	access:public	signature:(void)
+TestObject::~TestObject	.\TestObject.h~	/^        virtual ~TestObject(void);$/;"	p	class:TestObject	file:	access:public	signature:(void)
+Trial	.\Trial.cpp	/^Trial::Trial()$/;"	f	class:Trial	signature:()
+Trial	.\Trial.cpp~	/^Trial::Trial()$/;"	f	class:Trial	signature:()
+Trial	.\Trial.h	/^        Trial();$/;"	p	class:Trial	access:private	signature:()
+Trial	.\Trial.h	/^class Trial$/;"	c
+Trial	.\Trial.h~	/^        Trial();$/;"	p	class:Trial	file:	access:private	signature:()
+Trial	.\Trial.h~	/^class Trial$/;"	c	file:
+Trial::IDLE	.\Trial.h	/^        enum state {IDLE, PRE_TRIAL_SCENE, MAIN_SCENE};$/;"	e	enum:Trial::state
+Trial::MAIN_SCENE	.\Trial.h	/^        enum state {IDLE, PRE_TRIAL_SCENE, MAIN_SCENE};$/;"	e	enum:Trial::state
+Trial::PRE_TRIAL_SCENE	.\Trial.h	/^        enum state {IDLE, PRE_TRIAL_SCENE, MAIN_SCENE};$/;"	e	enum:Trial::state
+Trial::Trial	.\Trial.cpp	/^Trial::Trial()$/;"	f	class:Trial	signature:()
+Trial::Trial	.\Trial.cpp~	/^Trial::Trial()$/;"	f	class:Trial	signature:()
+Trial::Trial	.\Trial.h	/^        Trial();$/;"	p	class:Trial	access:private	signature:()
+Trial::Trial	.\Trial.h~	/^        Trial();$/;"	p	class:Trial	file:	access:private	signature:()
+Trial::currState	.\Trial.h	/^        enum state currState;$/;"	m	class:Trial	typeref:enum:Trial::state	access:private
+Trial::currState	.\Trial.h~	/^        enum state currState;$/;"	m	class:Trial	typeref:enum:Trial::state	file:	access:private
+Trial::getInstance	.\Trial.cpp	/^Trial *Trial::getInstance()$/;"	f	class:Trial	signature:()
+Trial::getInstance	.\Trial.cpp~	/^Trial *Trial::getInstance()$/;"	f	class:Trial	signature:()
+Trial::getInstance	.\Trial.h	/^        static Trial* getInstance();$/;"	p	class:Trial	access:public	signature:()
+Trial::getInstance	.\Trial.h~	/^        static Trial* getInstance();$/;"	p	class:Trial	file:	access:public	signature:()
+Trial::m_pInstance	.\Trial.cpp	/^auto_ptr<Trial> Trial::m_pInstance;$/;"	m	class:Trial	file:
+Trial::m_pInstance	.\Trial.cpp~	/^auto_ptr<Trial> Trial::m_pInstance;$/;"	m	class:Trial	file:
+Trial::m_pInstance	.\Trial.h	/^        static auto_ptr<Trial> m_pInstance;$/;"	m	class:Trial	access:private
+Trial::m_pInstance	.\Trial.h~	/^        static auto_ptr<Trial> m_pInstance;$/;"	m	class:Trial	file:	access:private
+Trial::proceedNextScene	.\Trial.cpp	/^BOOL Trial::proceedNextScene()$/;"	f	class:Trial	signature:()
+Trial::proceedNextScene	.\Trial.cpp~	/^BOOL Trial::proceedNextScene()$/;"	f	class:Trial	signature:()
+Trial::proceedNextScene	.\Trial.h	/^        BOOL proceedNextScene();$/;"	p	class:Trial	access:public	signature:()
+Trial::proceedNextScene	.\Trial.h~	/^        BOOL proceedNextScene();$/;"	p	class:Trial	file:	access:public	signature:()
+Trial::startTrial	.\Trial.cpp	/^BOOL Trial::startTrial()$/;"	f	class:Trial	signature:()
+Trial::startTrial	.\Trial.cpp~	/^BOOL Trial::startTrial()$/;"	f	class:Trial	signature:()
+Trial::startTrial	.\Trial.h	/^        BOOL startTrial();$/;"	p	class:Trial	access:public	signature:()
+Trial::startTrial	.\Trial.h~	/^        BOOL startTrial();$/;"	p	class:Trial	file:	access:public	signature:()
+Trial::state	.\Trial.h	/^        enum state {IDLE, PRE_TRIAL_SCENE, MAIN_SCENE};$/;"	g	class:Trial	access:public
+Trial::stepTrial	.\Trial.cpp	/^BOOL Trial::stepTrial()$/;"	f	class:Trial	signature:()
+Trial::stepTrial	.\Trial.cpp~	/^BOOL Trial::stepTrial()$/;"	f	class:Trial	signature:()
+Trial::stepTrial	.\Trial.h	/^        BOOL stepTrial(); $/;"	p	class:Trial	access:public	signature:()
+Trial::stepTrial	.\Trial.h~	/^        BOOL stepTrial(); $/;"	p	class:Trial	file:	access:public	signature:()
+Trial::trialID	.\Trial.h	/^        UINT trialID;$/;"	m	class:Trial	access:public
+Trial::trialID	.\Trial.h~	/^        UINT trialID;$/;"	m	class:Trial	file:	access:public
+Trial::~Trial	.\Trial.cpp	/^Trial::~Trial(void)$/;"	f	class:Trial	signature:(void)
+Trial::~Trial	.\Trial.cpp~	/^Trial::~Trial(void)$/;"	f	class:Trial	signature:(void)
+Trial::~Trial	.\Trial.h	/^        ~Trial();$/;"	p	class:Trial	access:public	signature:()
+Trial::~Trial	.\Trial.h~	/^        ~Trial();$/;"	p	class:Trial	file:	access:public	signature:()
 WIN32_LEAN_AND_MEAN	.\stdafx.h	10;"	d
 WINVER	.\targetver.h	11;"	d
-_APS_NEXT_COMMAND_VALUE	.\resource.h	33;"	d
-_APS_NEXT_CONTROL_VALUE	.\resource.h	34;"	d
-_APS_NEXT_RESOURCE_VALUE	.\resource.h	32;"	d
-_APS_NEXT_SYMED_VALUE	.\resource.h	35;"	d
-_APS_NO_MFC	.\resource.h	31;"	d
+WinMain	.\experiment.cpp	/^int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,$/;"	f	signature:( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
+WinMain	.\experiment.cpp~	/^int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,$/;"	f	signature:( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
+_APS_NEXT_COMMAND_VALUE	.\resource.h	35;"	d
+_APS_NEXT_CONTROL_VALUE	.\resource.h	36;"	d
+_APS_NEXT_RESOURCE_VALUE	.\resource.h	34;"	d
+_APS_NEXT_SYMED_VALUE	.\resource.h	37;"	d
+_APS_NO_MFC	.\resource.h	33;"	d
 _H_CONFWND_	.\ConfWnd.h	2;"	d
 _H_CONFWND_	.\ConfWnd.h~	2;"	d	file:
+_H_SCREEN_	.\Screen.h	2;"	d
+_H_SCREEN_	.\Screen.h~	2;"	d	file:
 _WIN32_IE	.\targetver.h	23;"	d
 _WIN32_WINDOWS	.\targetver.h	19;"	d
 _WIN32_WINNT	.\targetver.h	15;"	d
-bpp	.\ConfWnd.h	/^        DWORD bpp; \/\/ bits per pixel$/;"	m	class:ConfWnd	access:public
-bpp	.\ConfWnd.h~	/^        UINT bpp; \/\/ bits per pixel$/;"	m	class:ConfWnd	file:	access:public
+bpp	.\ConfWnd.h~	/^        DWORD bpp; \/\/ bits per pixel$/;"	m	class:ConfWnd	file:	access:public
+buildString	.\PreTrialScene.cpp	/^string PreTrialScene::buildString()$/;"	f	class:PreTrialScene	signature:()
+buildString	.\PreTrialScene.cpp~	/^string PreTrialScene::buildString()$/;"	f	class:PreTrialScene	signature:()
+buildString	.\PreTrialScene.h	/^        virtual string buildString();$/;"	p	class:PreTrialScene	access:private	signature:()
+buildString	.\PreTrialScene.h~	/^        virtual string buildString();$/;"	p	class:PreTrialScene	file:	access:private	signature:()
+buildString	.\PureWordScene.h	/^        virtual string buildString(void) = 0; $/;"	p	class:PureWordScene	access:protected	signature:(void)
+c	.\Debug\experiment.pdb	/^/;"	v
+cancelKMBinds	.\Screen.cpp	/^BOOL Screen::cancelKMBinds()$/;"	f	class:Screen	signature:()
+cancelKMBinds	.\Screen.cpp~	/^BOOL Screen::cancelKMBinds()$/;"	f	class:Screen	signature:()
+cancelKMBinds	.\Screen.h	/^        BOOL cancelKMBinds();$/;"	p	class:Screen	access:public	signature:()
+cancelKMBinds	.\Screen.h~	/^        BOOL cancelKMBinds();$/;"	p	class:Screen	file:	access:public	signature:()
+clear	.\Screen.cpp	/^BOOL Screen::clear()$/;"	f	class:Screen	signature:()
+clear	.\Screen.cpp~	/^BOOL Screen::clear()$/;"	f	class:Screen	signature:()
+clear	.\Screen.h	/^        BOOL clear();$/;"	p	class:Screen	access:public	signature:()
+clear	.\Screen.h~	/^        BOOL clear();$/;"	p	class:Screen	file:	access:public	signature:()
+closeOutputFile	.\experiment.cpp	/^BOOL Experiment::closeOutputFile()$/;"	f	class:Experiment	signature:()
+closeOutputFile	.\experiment.cpp~	/^BOOL Experiment::closeOutputFile()$/;"	f	class:Experiment	signature:()
+closeOutputFile	.\experiment.h	/^        BOOL closeOutputFile();$/;"	p	class:Experiment	access:private	signature:()
+closeOutputFile	.\experiment.h~	/^        BOOL closeOutputFile();$/;"	p	class:Experiment	file:	access:private	signature:()
 confWndProc	.\ConfWnd.cpp	/^INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG lParam)$/;"	f	class:ConfWnd	signature:(HWND hDlg, UINT message, UINT wParam, LONG lParam)
 confWndProc	.\ConfWnd.cpp~	/^INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG lParam)$/;"	f	class:ConfWnd	signature:(HWND hDlg, UINT message, UINT wParam, LONG lParam)
 confWndProc	.\ConfWnd.h	/^        static INT_PTR CALLBACK confWndProc(HWND hWnd, UINT message, UINT wParam, LONG lParam);$/;"	p	class:ConfWnd	access:public	signature:(HWND hWnd, UINT message, UINT wParam, LONG lParam)
@@ -166,33 +620,198 @@ confirmConfiguration	.\ConfWnd.cpp	/^void ConfWnd::confirmConfiguration(HWND hDl
 confirmConfiguration	.\ConfWnd.cpp~	/^void ConfWnd::confirmConfiguration(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
 confirmConfiguration	.\ConfWnd.h	/^        void confirmConfiguration(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
 confirmConfiguration	.\ConfWnd.h~	/^        void confirmConfiguration(HWND hDlg);$/;"	p	class:ConfWnd	file:	access:private	signature:(HWND hDlg)
+currScene	.\Scene.cpp	/^Scene *Scene::currScene;$/;"	m	class:Scene	file:
+currScene	.\Scene.cpp~	/^Scene *Scene::currScene;$/;"	m	class:Scene	file:
+currScene	.\Scene.h	/^        static Scene *currScene;$/;"	m	class:Scene	access:protected
+currScene	.\Scene.h~	/^        static Scene *currScene;$/;"	m	class:Scene	file:	access:protected
+currSecNo	.\experiment.h	/^        unsigned int currSecNo;$/;"	m	class:Experiment	access:public
+currSecNo	.\experiment.h~	/^        unsigned int currSecNo;$/;"	m	class:Experiment	file:	access:public
+currState	.\Trial.h	/^        enum state currState;$/;"	m	class:Trial	typeref:enum:Trial::state	access:private
+currState	.\Trial.h~	/^        enum state currState;$/;"	m	class:Trial	typeref:enum:Trial::state	file:	access:private
+debug	.\experiment.cpp	/^int const Experiment::debug = 0;$/;"	m	class:Experiment	file:
+debug	.\experiment.cpp~	/^int const Experiment::debug = 0;$/;"	m	class:Experiment	file:
+debug	.\experiment.h	/^        static const int debug;$/;"	m	class:Experiment	access:public
+debug	.\experiment.h~	/^        static const int debug;$/;"	m	class:Experiment	file:	access:public
+devMode	.\ConfWnd.h	/^        DEVMODE devMode;$/;"	m	class:ConfWnd	access:public
+devMode	.\experiment.h	/^        DEVMODE devMode; \/\/ display settings$/;"	m	class:Experiment	access:public
+devMode	.\experiment.h~	/^        DEVMODE devMode; \/\/ display settings$/;"	m	class:Experiment	file:	access:public
+dispatchKeyboardEvent	.\Scene.cpp	/^void Scene::dispatchKeyboardEvent(unsigned char key, int x, int y)$/;"	f	class:Scene	signature:(unsigned char key, int x, int y)
+dispatchKeyboardEvent	.\Scene.cpp~	/^void Scene::dispatchKeyboardEvent(unsigned char key, int x, int y)$/;"	f	class:Scene	signature:(unsigned char key, int x, int y)
+dispatchKeyboardEvent	.\Scene.h	/^        static void dispatchKeyboardEvent(unsigned char key, int x, int y);$/;"	p	class:Scene	access:public	signature:(unsigned char key, int x, int y)
+dispatchKeyboardEvent	.\Scene.h~	/^        static void dispatchKeyboardEvent(unsigned char key, int x, int y);$/;"	p	class:Scene	file:	access:public	signature:(unsigned char key, int x, int y)
+dispatchKeyboardSpecialEvent	.\Scene.cpp	/^void Scene::dispatchKeyboardSpecialEvent(int key, int x, int y)$/;"	f	class:Scene	signature:(int key, int x, int y)
+dispatchKeyboardSpecialEvent	.\Scene.cpp~	/^void Scene::dispatchKeyboardSpecialEvent(int key, int x, int y)$/;"	f	class:Scene	signature:(int key, int x, int y)
+dispatchKeyboardSpecialEvent	.\Scene.h	/^        static void dispatchKeyboardSpecialEvent(int key, int x, int y);$/;"	p	class:Scene	access:public	signature:(int key, int x, int y)
+dispatchKeyboardSpecialEvent	.\Scene.h~	/^        static void dispatchKeyboardSpecialEvent(int key, int x, int y);$/;"	p	class:Scene	file:	access:public	signature:(int key, int x, int y)
+dispatchMouseEvent	.\Scene.cpp	/^void Scene::dispatchMouseEvent(int button, int state, int x, int y)$/;"	f	class:Scene	signature:(int button, int state, int x, int y)
+dispatchMouseEvent	.\Scene.cpp~	/^void Scene::dispatchMouseEvent(int button, int state, int x, int y)$/;"	f	class:Scene	signature:(int button, int state, int x, int y)
+dispatchMouseEvent	.\Scene.h	/^        static void dispatchMouseEvent(int button, int state, int x, int y);$/;"	p	class:Scene	access:public	signature:(int button, int state, int x, int y)
+dispatchMouseEvent	.\Scene.h~	/^        static void dispatchMouseEvent(int button, int state, int x, int y);$/;"	p	class:Scene	file:	access:public	signature:(int button, int state, int x, int y)
+dispatchMouseMotionEvent	.\Scene.cpp	/^void Scene::dispatchMouseMotionEvent(int x, int y)$/;"	f	class:Scene	signature:(int x, int y)
+dispatchMouseMotionEvent	.\Scene.cpp~	/^void Scene::dispatchMouseMotionEvent(int x, int y)$/;"	f	class:Scene	signature:(int x, int y)
+dispatchMouseMotionEvent	.\Scene.h	/^        static void dispatchMouseMotionEvent(int x, int y);$/;"	p	class:Scene	access:public	signature:(int x, int y)
+dispatchMouseMotionEvent	.\Scene.h~	/^        static void dispatchMouseMotionEvent(int x, int y);$/;"	p	class:Scene	file:	access:public	signature:(int x, int y)
+dispatchMousePassiveMotionEvent	.\Scene.cpp	/^void Scene::dispatchMousePassiveMotionEvent(int x, int y)$/;"	f	class:Scene	signature:(int x, int y)
+dispatchMousePassiveMotionEvent	.\Scene.cpp~	/^void Scene::dispatchMousePassiveMotionEvent(int x, int y)$/;"	f	class:Scene	signature:(int x, int y)
+dispatchMousePassiveMotionEvent	.\Scene.h	/^        static void dispatchMousePassiveMotionEvent(int x, int y);$/;"	p	class:Scene	access:public	signature:(int x, int y)
+dispatchMousePassiveMotionEvent	.\Scene.h~	/^        static void dispatchMousePassiveMotionEvent(int x, int y);$/;"	p	class:Scene	file:	access:public	signature:(int x, int y)
+dispatchReshape	.\Scene.cpp	/^void Scene::dispatchReshape(int w, int h)$/;"	f	class:Scene	signature:(int w, int h)
+dispatchReshape	.\Scene.cpp~	/^void Scene::dispatchReshape(int w, int h)$/;"	f	class:Scene	signature:(int w, int h)
+dispatchReshape	.\Scene.h	/^        static void dispatchReshape(int w, int h);$/;"	p	class:Scene	access:public	signature:(int w, int h)
+dispatchReshape	.\Scene.h~	/^        static void dispatchReshape(int w, int h);$/;"	p	class:Scene	file:	access:public	signature:(int w, int h)
+dispatchSceneRender	.\Scene.cpp	/^void Scene::dispatchSceneRender()$/;"	f	class:Scene	signature:()
+dispatchSceneRender	.\Scene.cpp~	/^void Scene::dispatchSceneRender()$/;"	f	class:Scene	signature:()
+dispatchSceneRender	.\Scene.h	/^        static void dispatchSceneRender();$/;"	p	class:Scene	access:public	signature:()
+dispatchSceneRender	.\Scene.h~	/^        static void dispatchSceneRender();$/;"	p	class:Scene	file:	access:public	signature:()
 displayConfWnd	.\ConfWnd.cpp	/^INT_PTR ConfWnd::displayConfWnd(HINSTANCE ghInstance)$/;"	f	class:ConfWnd	signature:(HINSTANCE ghInstance)
 displayConfWnd	.\ConfWnd.cpp~	/^INT_PTR ConfWnd::displayConfWnd(HINSTANCE ghInstance)$/;"	f	class:ConfWnd	signature:(HINSTANCE ghInstance)
 displayConfWnd	.\ConfWnd.h	/^        INT_PTR displayConfWnd(HINSTANCE ghInstance);$/;"	p	class:ConfWnd	access:public	signature:(HINSTANCE ghInstance)
 displayConfWnd	.\ConfWnd.h~	/^        INT_PTR displayConfWnd(HINSTANCE ghInstance);$/;"	p	class:ConfWnd	file:	access:public	signature:(HINSTANCE ghInstance)
+displayMode	.\Screen.h	/^        UINT displayMode;$/;"	m	class:Screen	access:private
+displayMode	.\Screen.h~	/^        UINT displayMode;$/;"	m	class:Screen	file:	access:private
+displayString	.\Screen.cpp	/^BOOL Screen::displayString(string str, float x, float y)$/;"	f	class:Screen	signature:(string str, float x, float y)
+displayString	.\Screen.cpp~	/^BOOL Screen::displayString(string str, float x, float y)$/;"	f	class:Screen	signature:(string str, float x, float y)
+displayString	.\Screen.h	/^        BOOL displayString(string str, float x, float y);$/;"	p	class:Screen	access:public	signature:(string str, float x, float y)
+displayString	.\Screen.h~	/^        BOOL displayString(string str, float x, float y);$/;"	p	class:Screen	file:	access:public	signature:(string str, float x, float y)
 error	.\Debug\BuildLog.htm	/^/;"	p	file:	signature:(s)
-experiMode	.\ConfWnd.h	/^        unsigned int experiMode;$/;"	m	class:ConfWnd	access:public
-experiMode	.\ConfWnd.h~	/^        unsigned int experiMode;$/;"	m	class:ConfWnd	file:	access:public
+experiMode	.\ConfWnd.h	/^        unsigned int experiMode; \/\/ 0 -- experiment mode; 1 -- practice mode;$/;"	m	class:ConfWnd	access:public
+experiMode	.\ConfWnd.h~	/^        unsigned int experiMode; \/\/ 0 -- experiment mode; 1 -- practice mode;$/;"	m	class:ConfWnd	file:	access:public
+experiMode	.\experiment.h	/^        unsigned int experiMode; \/\/ 0 -- experiment mode; 1 -- practice mode;$/;"	m	class:Experiment	access:public
+experiMode	.\experiment.h~	/^        unsigned int experiMode; \/\/ 0 -- experiment mode; 1 -- practice mode;$/;"	m	class:Experiment	file:	access:public
 experiment	.\Debug\BuildLog.htm	/^/;"	v
 format	.\tags	/^!_TAG_FILE_FORMAT	2	\/extended format; --format=1 will not append ;" to lines\/$/;"	v
 getInstance	.\ConfWnd.cpp	/^ConfWnd* ConfWnd::getInstance()$/;"	f	class:ConfWnd	signature:()
 getInstance	.\ConfWnd.cpp~	/^ConfWnd* ConfWnd::getInstance()$/;"	f	class:ConfWnd	signature:()
 getInstance	.\ConfWnd.h	/^        static ConfWnd *getInstance();$/;"	p	class:ConfWnd	access:public	signature:()
 getInstance	.\ConfWnd.h~	/^        static ConfWnd *getInstance();$/;"	p	class:ConfWnd	file:	access:public	signature:()
-invalid	.\.ConfWnd.cpp.swp	/^/;"	v
+getInstance	.\Trial.cpp	/^Trial *Trial::getInstance()$/;"	f	class:Trial	signature:()
+getInstance	.\Trial.cpp~	/^Trial *Trial::getInstance()$/;"	f	class:Trial	signature:()
+getInstance	.\Trial.h	/^        static Trial* getInstance();$/;"	p	class:Trial	access:public	signature:()
+getInstance	.\Trial.h~	/^        static Trial* getInstance();$/;"	p	class:Trial	file:	access:public	signature:()
+getInstance	.\experiment.cpp	/^Experiment *Experiment::getInstance(HINSTANCE hInstance)$/;"	f	class:Experiment	signature:(HINSTANCE hInstance)
+getInstance	.\experiment.cpp~	/^Experiment *Experiment::getInstance(HINSTANCE hInstance)$/;"	f	class:Experiment	signature:(HINSTANCE hInstance)
+getInstance	.\experiment.h	/^        static Experiment *getInstance(HINSTANCE hInstance);$/;"	p	class:Experiment	access:public	signature:(HINSTANCE hInstance)
+getInstance	.\experiment.h~	/^        static Experiment *getInstance(HINSTANCE hInstance);$/;"	p	class:Experiment	file:	access:public	signature:(HINSTANCE hInstance)
+hFileOut	.\experiment.h	/^        fstream hFileOut;$/;"	m	class:Experiment	access:private
+hFileOut	.\experiment.h~	/^        fstream hFileOut;$/;"	m	class:Experiment	file:	access:private
+hInst	.\experiment.h	/^        HINSTANCE hInst;$/;"	m	class:Experiment	access:private
+hInst	.\experiment.h~	/^        HINSTANCE hInst;$/;"	m	class:Experiment	file:	access:private
+handleKeyboardEvent	.\PreTrialScene.cpp	/^BOOL PreTrialScene::handleKeyboardEvent(unsigned char key, int x, int y)$/;"	f	class:PreTrialScene	signature:(unsigned char key, int x, int y)
+handleKeyboardEvent	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::handleKeyboardEvent(unsigned char key, int x, int y)$/;"	f	class:PreTrialScene	signature:(unsigned char key, int x, int y)
+handleKeyboardEvent	.\PreTrialScene.h	/^        virtual BOOL handleKeyboardEvent(unsigned char key, int x, int y);$/;"	p	class:PreTrialScene	access:private	signature:(unsigned char key, int x, int y)
+handleKeyboardEvent	.\Scene.h	/^        virtual BOOL handleKeyboardEvent(unsigned char key, int x, int y) = 0;$/;"	p	class:Scene	access:protected	signature:(unsigned char key, int x, int y)
+handleKeyboardEvent	.\Scene.h~	/^        virtual BOOL handleKeyboardEvent(unsigned char key, int x, int y) = 0;$/;"	p	class:Scene	file:	access:protected	signature:(unsigned char key, int x, int y)
+handleKeyboardEvent	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(unsigned char key, int x, int y)
+handleKeyboardEvent	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(unsigned char key, int x, int y)
+handleKeyboardEvent	.\Separate2D3DViewScene.h	/^        virtual BOOL handleKeyboardEvent(unsigned char key, int x, int y);$/;"	p	class:Separate2D3DViewScene	access:private	signature:(unsigned char key, int x, int y)
+handleKeyboardEvent	.\Separate2D3DViewScene.h~	/^        virtual BOOL handleKeyboardEvent(unsigned char key, int x, int y);$/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:(unsigned char key, int x, int y)
+handleKeyboardSpecialEvent	.\PreTrialScene.cpp	/^BOOL PreTrialScene::handleKeyboardSpecialEvent(int key, int x, int y)$/;"	f	class:PreTrialScene	signature:(int key, int x, int y)
+handleKeyboardSpecialEvent	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::handleKeyboardSpecialEvent(int key, int x, int y)$/;"	f	class:PreTrialScene	signature:(int key, int x, int y)
+handleKeyboardSpecialEvent	.\PreTrialScene.h	/^        virtual BOOL handleKeyboardSpecialEvent(int key, int x, int y);$/;"	p	class:PreTrialScene	access:private	signature:(int key, int x, int y)
+handleKeyboardSpecialEvent	.\Scene.h	/^        virtual BOOL handleKeyboardSpecialEvent(int key, int x, int y) = 0;$/;"	p	class:Scene	access:protected	signature:(int key, int x, int y)
+handleKeyboardSpecialEvent	.\Scene.h~	/^        virtual BOOL handleKeyboardSpecialEvent(int key, int x, int y) = 0;$/;"	p	class:Scene	file:	access:protected	signature:(int key, int x, int y)
+handleKeyboardSpecialEvent	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::handleKeyboardSpecialEvent(int key, int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int key, int x, int y)
+handleKeyboardSpecialEvent	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::handleKeyboardSpecialEvent(int key, int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int key, int x, int y)
+handleKeyboardSpecialEvent	.\Separate2D3DViewScene.h	/^        virtual BOOL handleKeyboardSpecialEvent(int key, int x, int y);$/;"	p	class:Separate2D3DViewScene	access:private	signature:(int key, int x, int y)
+handleKeyboardSpecialEvent	.\Separate2D3DViewScene.h~	/^        virtual BOOL handleKeyboardSpecialEvent(int key, int x, int y);$/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:(int key, int x, int y)
+handleMouseEvent	.\PreTrialScene.cpp	/^BOOL PreTrialScene::handleMouseEvent(int button, int state, int x, int y)$/;"	f	class:PreTrialScene	signature:(int button, int state, int x, int y)
+handleMouseEvent	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::handleMouseEvent(int button, int state, int x, int y)$/;"	f	class:PreTrialScene	signature:(int button, int state, int x, int y)
+handleMouseEvent	.\PreTrialScene.h	/^        virtual BOOL handleMouseEvent(int button, int state, int x, int y);$/;"	p	class:PreTrialScene	access:private	signature:(int button, int state, int x, int y)
+handleMouseEvent	.\Scene.h	/^        virtual BOOL handleMouseEvent(int button, int state, int x, int y) = 0;$/;"	p	class:Scene	access:protected	signature:(int button, int state, int x, int y)
+handleMouseEvent	.\Scene.h~	/^        virtual BOOL handleMouseEvent(int button, int state, int x, int y) = 0;$/;"	p	class:Scene	file:	access:protected	signature:(int button, int state, int x, int y)
+handleMouseEvent	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::handleMouseEvent(int button, int state, int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int button, int state, int x, int y)
+handleMouseEvent	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::handleMouseEvent(int button, int state, int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int button, int state, int x, int y)
+handleMouseEvent	.\Separate2D3DViewScene.h	/^        virtual BOOL handleMouseEvent(int button, int state, int x, int y);$/;"	p	class:Separate2D3DViewScene	access:private	signature:(int button, int state, int x, int y)
+handleMouseEvent	.\Separate2D3DViewScene.h~	/^        virtual BOOL handleMouseEvent(int button, int state, int x, int y);$/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:(int button, int state, int x, int y)
+handleMouseMotionEvent	.\PreTrialScene.cpp	/^BOOL PreTrialScene::handleMouseMotionEvent(int x, int y)$/;"	f	class:PreTrialScene	signature:(int x, int y)
+handleMouseMotionEvent	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::handleMouseMotionEvent(int x, int y)$/;"	f	class:PreTrialScene	signature:(int x, int y)
+handleMouseMotionEvent	.\PreTrialScene.h	/^        virtual BOOL handleMouseMotionEvent(int x, int y);$/;"	p	class:PreTrialScene	access:private	signature:(int x, int y)
+handleMouseMotionEvent	.\Scene.h	/^        virtual BOOL handleMouseMotionEvent(int x, int y) = 0;$/;"	p	class:Scene	access:protected	signature:(int x, int y)
+handleMouseMotionEvent	.\Scene.h~	/^        virtual BOOL handleMouseMotionEvent(int x, int y) = 0;$/;"	p	class:Scene	file:	access:protected	signature:(int x, int y)
+handleMouseMotionEvent	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::handleMouseMotionEvent(int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int x, int y)
+handleMouseMotionEvent	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::handleMouseMotionEvent(int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int x, int y)
+handleMouseMotionEvent	.\Separate2D3DViewScene.h	/^        virtual BOOL handleMouseMotionEvent(int x, int y);$/;"	p	class:Separate2D3DViewScene	access:private	signature:(int x, int y)
+handleMouseMotionEvent	.\Separate2D3DViewScene.h~	/^        virtual BOOL handleMouseMotionEvent(int x, int y);$/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:(int x, int y)
+handleMousePassiveMotionEvent	.\PreTrialScene.cpp	/^BOOL PreTrialScene::handleMousePassiveMotionEvent(int x, int y)$/;"	f	class:PreTrialScene	signature:(int x, int y)
+handleMousePassiveMotionEvent	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::handleMousePassiveMotionEvent(int x, int y)$/;"	f	class:PreTrialScene	signature:(int x, int y)
+handleMousePassiveMotionEvent	.\PreTrialScene.h	/^        virtual BOOL handleMousePassiveMotionEvent(int x, int y);$/;"	p	class:PreTrialScene	access:private	signature:(int x, int y)
+handleMousePassiveMotionEvent	.\Scene.h	/^        virtual BOOL handleMousePassiveMotionEvent(int x, int y) = 0;$/;"	p	class:Scene	access:protected	signature:(int x, int y)
+handleMousePassiveMotionEvent	.\Scene.h~	/^        virtual BOOL handleMousePassiveMotionEvent(int x, int y) = 0;$/;"	p	class:Scene	file:	access:protected	signature:(int x, int y)
+handleMousePassiveMotionEvent	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::handleMousePassiveMotionEvent(int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int x, int y)
+handleMousePassiveMotionEvent	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::handleMousePassiveMotionEvent(int x, int y)$/;"	f	class:Separate2D3DViewScene	signature:(int x, int y)
+handleMousePassiveMotionEvent	.\Separate2D3DViewScene.h	/^        virtual BOOL handleMousePassiveMotionEvent(int x, int y);$/;"	p	class:Separate2D3DViewScene	access:private	signature:(int x, int y)
+handleMousePassiveMotionEvent	.\Separate2D3DViewScene.h~	/^        virtual BOOL handleMousePassiveMotionEvent(int x, int y);$/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:(int x, int y)
+initGlut	.\Screen.cpp	/^BOOL Screen::initGlut(DEVMODE devMode,$/;"	f	class:Screen	signature:(DEVMODE devMode, UINT displayMode, string title)
+initGlut	.\Screen.cpp~	/^BOOL Screen::initGlut(DEVMODE devMode,$/;"	f	class:Screen	signature:(DEVMODE devMode, UINT displayMode, string title)
+initGlut	.\Screen.h	/^        BOOL initGlut(DEVMODE devMode,$/;"	p	class:Screen	access:public	signature:(DEVMODE devMode, UINT displayMode, string title)
+initGlut	.\Screen.h~	/^        BOOL initGlut(DEVMODE devMode,$/;"	p	class:Screen	file:	access:public	signature:(DEVMODE devMode, UINT displayMode, string title)
+initOutputFile	.\experiment.cpp	/^BOOL Experiment::initOutputFile()$/;"	f	class:Experiment	signature:()
+initOutputFile	.\experiment.cpp~	/^BOOL Experiment::initOutputFile()$/;"	f	class:Experiment	signature:()
+initOutputFile	.\experiment.h	/^        BOOL initOutputFile();$/;"	p	class:Experiment	access:private	signature:()
+initOutputFile	.\experiment.h~	/^        BOOL initOutputFile();$/;"	p	class:Experiment	file:	access:private	signature:()
+initSystem	.\experiment.cpp	/^BOOL Experiment::initSystem()$/;"	f	class:Experiment	signature:()
+initSystem	.\experiment.cpp~	/^BOOL Experiment::initSystem()$/;"	f	class:Experiment	signature:()
+initSystem	.\experiment.h	/^        BOOL initSystem();$/;"	p	class:Experiment	access:private	signature:()
+initSystem	.\experiment.h~	/^        BOOL initSystem();$/;"	p	class:Experiment	file:	access:private	signature:()
+isNewSection	.\experiment.cpp	/^BOOL Experiment::isNewSection()$/;"	f	class:Experiment	signature:()
+isNewSection	.\experiment.cpp~	/^BOOL Experiment::isNewSection()$/;"	f	class:Experiment	signature:()
+isNewSection	.\experiment.h	/^        BOOL isNewSection(); $/;"	p	class:Experiment	access:public	signature:()
+isNewSection	.\experiment.h~	/^        BOOL isNewSection(); $/;"	p	class:Experiment	file:	access:public	signature:()
 m_pInstance	.\ConfWnd.cpp	/^auto_ptr<ConfWnd> ConfWnd::m_pInstance;$/;"	m	class:ConfWnd	file:
 m_pInstance	.\ConfWnd.cpp~	/^auto_ptr<ConfWnd> ConfWnd::m_pInstance;$/;"	m	class:ConfWnd	file:
 m_pInstance	.\ConfWnd.h	/^        static auto_ptr<ConfWnd> m_pInstance;$/;"	m	class:ConfWnd	access:private
 m_pInstance	.\ConfWnd.h~	/^        static auto_ptr<ConfWnd> m_pInstance;$/;"	m	class:ConfWnd	file:	access:private
+m_pInstance	.\Trial.cpp	/^auto_ptr<Trial> Trial::m_pInstance;$/;"	m	class:Trial	file:
+m_pInstance	.\Trial.cpp~	/^auto_ptr<Trial> Trial::m_pInstance;$/;"	m	class:Trial	file:
+m_pInstance	.\Trial.h	/^        static auto_ptr<Trial> m_pInstance;$/;"	m	class:Trial	access:private
+m_pInstance	.\Trial.h~	/^        static auto_ptr<Trial> m_pInstance;$/;"	m	class:Trial	file:	access:private
+m_pInstance	.\experiment.cpp	/^auto_ptr<Experiment> Experiment::m_pInstance;$/;"	m	class:Experiment	file:
+m_pInstance	.\experiment.cpp~	/^auto_ptr<Experiment> Experiment::m_pInstance;$/;"	m	class:Experiment	file:
+m_pInstance	.\experiment.h	/^        static auto_ptr<Experiment> m_pInstance;$/;"	m	class:Experiment	access:private
+m_pInstance	.\experiment.h~	/^        static auto_ptr<Experiment> m_pInstance;$/;"	m	class:Experiment	file:	access:private
 m_secNo	.\ConfWnd.h	/^        string m_secNo;$/;"	m	class:ConfWnd	access:private
 m_secNo	.\ConfWnd.h~	/^        string m_secNo;$/;"	m	class:ConfWnd	file:	access:private
 maxSecNo	.\ConfWnd.h	/^        unsigned int maxSecNo;$/;"	m	class:ConfWnd	access:public
 maxSecNo	.\ConfWnd.h~	/^        unsigned int maxSecNo;$/;"	m	class:ConfWnd	file:	access:public
+maxSecNo	.\experiment.h	/^        unsigned int maxSecNo;$/;"	m	class:Experiment	access:public
+maxSecNo	.\experiment.h~	/^        unsigned int maxSecNo;$/;"	m	class:Experiment	file:	access:public
 nbsp	.\Debug\BuildLog.htm	/^/;"	v
 outFilename	.\ConfWnd.h	/^        string outFilename;$/;"	m	class:ConfWnd	access:public
 outFilename	.\ConfWnd.h~	/^        string outFilename;$/;"	m	class:ConfWnd	file:	access:public
-refreshRate	.\ConfWnd.h	/^        DWORD refreshRate;$/;"	m	class:ConfWnd	access:public
-refreshRate	.\ConfWnd.h~	/^        UINT refreshRate;$/;"	m	class:ConfWnd	file:	access:public
+outFilename	.\experiment.h	/^        string outFilename;$/;"	m	class:Experiment	access:public
+outFilename	.\experiment.h~	/^        string outFilename;$/;"	m	class:Experiment	file:	access:public
+proceedExperiment	.\experiment.cpp	/^void Experiment::proceedExperiment()$/;"	f	class:Experiment	signature:()
+proceedExperiment	.\experiment.cpp~	/^void Experiment::proceedExperiment()$/;"	f	class:Experiment	signature:()
+proceedExperiment	.\experiment.h	/^        static void proceedExperiment();$/;"	p	class:Experiment	access:public	signature:()
+proceedExperiment	.\experiment.h~	/^        static void proceedExperiment();$/;"	p	class:Experiment	file:	access:public	signature:()
+proceedNextScene	.\Trial.cpp	/^BOOL Trial::proceedNextScene()$/;"	f	class:Trial	signature:()
+proceedNextScene	.\Trial.cpp~	/^BOOL Trial::proceedNextScene()$/;"	f	class:Trial	signature:()
+proceedNextScene	.\Trial.h	/^        BOOL proceedNextScene();$/;"	p	class:Trial	access:public	signature:()
+proceedNextScene	.\Trial.h~	/^        BOOL proceedNextScene();$/;"	p	class:Trial	file:	access:public	signature:()
+refreshRate	.\ConfWnd.h~	/^        DWORD refreshRate;$/;"	m	class:ConfWnd	file:	access:public
+render	.\Screen.cpp	/^void Screen::render()$/;"	f	class:Screen	signature:()
+render	.\Screen.cpp~	/^void Screen::render()$/;"	f	class:Screen	signature:()
+render	.\Screen.h	/^        void render();$/;"	p	class:Screen	access:public	signature:()
+renderScene	.\PreTrialScene.cpp	/^BOOL PreTrialScene::renderScene()$/;"	f	class:PreTrialScene	signature:()
+renderScene	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::renderScene()$/;"	f	class:PreTrialScene	signature:()
+renderScene	.\PreTrialScene.h	/^        virtual BOOL renderScene(); $/;"	p	class:PreTrialScene	access:private	signature:()
+renderScene	.\PreTrialScene.h~	/^        virtual BOOL renderScene(); $/;"	p	class:PreTrialScene	file:	access:private	signature:()
+renderScene	.\Scene.h	/^        virtual BOOL renderScene() = 0;$/;"	p	class:Scene	access:protected	signature:()
+renderScene	.\Scene.h~	/^        virtual BOOL renderScene() = 0;$/;"	p	class:Scene	file:	access:protected	signature:()
+renderScene	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::renderScene()$/;"	f	class:Separate2D3DViewScene	signature:()
+renderScene	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::renderScene()$/;"	f	class:Separate2D3DViewScene	signature:()
+renderScene	.\Separate2D3DViewScene.h	/^        virtual BOOL renderScene(); $/;"	p	class:Separate2D3DViewScene	access:private	signature:()
+renderScene	.\Separate2D3DViewScene.h~	/^        virtual BOOL renderScene(); $/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:()
+reshape	.\PreTrialScene.cpp	/^BOOL PreTrialScene::reshape(int w, int h)$/;"	f	class:PreTrialScene	signature:(int w, int h)
+reshape	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::reshape(int w, int h)$/;"	f	class:PreTrialScene	signature:(int w, int h)
+reshape	.\PreTrialScene.h	/^        virtual BOOL reshape(int w, int h);$/;"	p	class:PreTrialScene	access:private	signature:(int w, int h)
+reshape	.\PreTrialScene.h~	/^        virtual BOOL reshape(int w, int h);$/;"	p	class:PreTrialScene	file:	access:private	signature:(int w, int h)
+reshape	.\Scene.h	/^        virtual BOOL reshape(int w, int h) = 0;$/;"	p	class:Scene	access:protected	signature:(int w, int h)
+reshape	.\Scene.h~	/^        virtual BOOL reshape(int w, int h) = 0;$/;"	p	class:Scene	file:	access:protected	signature:(int w, int h)
+reshape	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::reshape(int w, int h)$/;"	f	class:Separate2D3DViewScene	signature:(int w, int h)
+reshape	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::reshape(int w, int h)$/;"	f	class:Separate2D3DViewScene	signature:(int w, int h)
+reshape	.\Separate2D3DViewScene.h	/^        virtual BOOL reshape(int w, int h);$/;"	p	class:Separate2D3DViewScene	access:private	signature:(int w, int h)
+reshape	.\Separate2D3DViewScene.h~	/^        virtual BOOL reshape(int w, int h);$/;"	p	class:Separate2D3DViewScene	file:	access:private	signature:(int w, int h)
 ruleKeywords	.\ConfWnd.cpp	/^const string ConfWnd::ruleKeywords[] = {"\/SID\/", "\/Date\/", "\/Time\/"};$/;"	m	class:ConfWnd	file:
 ruleKeywords	.\ConfWnd.cpp~	/^const string ConfWnd::ruleKeywords[] = {"\/SID\/", "\/Date\/", "\/Time\/"};$/;"	m	class:ConfWnd	file:
 ruleKeywords	.\ConfWnd.h	/^        static const string ruleKeywords[];$/;"	m	class:ConfWnd	access:public
@@ -201,14 +820,77 @@ ruleKeywordsNo	.\ConfWnd.cpp	/^const int ConfWnd::ruleKeywordsNo = 3;$/;"	m	clas
 ruleKeywordsNo	.\ConfWnd.cpp~	/^const int ConfWnd::ruleKeywordsNo = 3;$/;"	m	class:ConfWnd	file:
 ruleKeywordsNo	.\ConfWnd.h	/^        static const int ruleKeywordsNo;$/;"	m	class:ConfWnd	access:public
 ruleKeywordsNo	.\ConfWnd.h~	/^        static const int ruleKeywordsNo;$/;"	m	class:ConfWnd	file:	access:public
-srcHeight	.\ConfWnd.h	/^        DWORD srcHeight;$/;"	m	class:ConfWnd	access:public
-srcHeight	.\ConfWnd.h~	/^        UINT srcHeight;$/;"	m	class:ConfWnd	file:	access:public
-srcWidth	.\ConfWnd.h	/^        DWORD srcWidth;$/;"	m	class:ConfWnd	access:public
-srcWidth	.\ConfWnd.h~	/^        UINT srcWidth;$/;"	m	class:ConfWnd	file:	access:public
+screens	.\Scene.h	/^        vector<Screen *> screens;$/;"	m	class:Scene	access:public
+screens	.\Scene.h~	/^        vector<Screen *> screens;$/;"	m	class:Scene	file:	access:public
+screens	.\experiment.h	/^        vector<Screen *> screens;$/;"	m	class:Experiment	access:public
+screens	.\experiment.h~	/^        vector<Screen *> screens;$/;"	m	class:Experiment	file:	access:public
+setDisplayFunc	.\Screen.cpp	/^BOOL Screen::setDisplayFunc(void (*displayFunc)(void))$/;"	f	class:Screen	signature:(void (*displayFunc)(void))
+setDisplayFunc	.\Screen.cpp~	/^BOOL Screen::setDisplayFunc(void (*displayFunc)(void))$/;"	f	class:Screen	signature:(void (*displayFunc)(void))
+setDisplayFunc	.\Screen.h	/^        BOOL setDisplayFunc(void (*displayFunc)(void));$/;"	p	class:Screen	access:public	signature:(void (*displayFunc)(void))
+setDisplayFunc	.\Screen.h~	/^        BOOL setDisplayFunc(void (*displayFunc)(void));$/;"	p	class:Screen	file:	access:public	signature:(void (*displayFunc)(void))
+setKeyboardFunc	.\Screen.cpp	/^BOOL Screen::setKeyboardFunc(void (*func)(unsigned char key, int x, int y))$/;"	f	class:Screen	signature:(void (*func)(unsigned char key, int x, int y))
+setKeyboardFunc	.\Screen.cpp~	/^BOOL Screen::setKeyboardFunc(void (*func)(unsigned char key, int x, int y))$/;"	f	class:Screen	signature:(void (*func)(unsigned char key, int x, int y))
+setKeyboardFunc	.\Screen.h	/^        BOOL setKeyboardFunc(void (*func)(unsigned char key, int x, int y));$/;"	p	class:Screen	access:public	signature:(void (*func)(unsigned char key, int x, int y))
+setKeyboardFunc	.\Screen.h~	/^        BOOL setKeyboardFunc(void (*func)(unsigned char key, int x, int y));$/;"	p	class:Screen	file:	access:public	signature:(void (*func)(unsigned char key, int x, int y))
+setKeyboardSpecialFunc	.\Screen.cpp	/^BOOL Screen::setKeyboardSpecialFunc(void (*func)(int key, int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int key, int x, int y))
+setKeyboardSpecialFunc	.\Screen.cpp~	/^BOOL Screen::setKeyboardSpecialFunc(void (*func)(int key, int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int key, int x, int y))
+setKeyboardSpecialFunc	.\Screen.h	/^        BOOL setKeyboardSpecialFunc(void (*func)(int key, int x, int y));$/;"	p	class:Screen	access:public	signature:(void (*func)(int key, int x, int y))
+setKeyboardSpecialFunc	.\Screen.h~	/^        BOOL setKeyboardSpecialFunc(void (*func)(int key, int x, int y));$/;"	p	class:Screen	file:	access:public	signature:(void (*func)(int key, int x, int y))
+setMouseFunc	.\Screen.cpp	/^BOOL Screen::setMouseFunc(void (*func)(int button, int state, int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int button, int state, int x, int y))
+setMouseFunc	.\Screen.cpp~	/^BOOL Screen::setMouseFunc(void (*func)(int button, int state, int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int button, int state, int x, int y))
+setMouseFunc	.\Screen.h	/^        BOOL setMouseFunc(void (*func)(int button, int state, int x, int y));$/;"	p	class:Screen	access:public	signature:(void (*func)(int button, int state, int x, int y))
+setMouseFunc	.\Screen.h~	/^        BOOL setMouseFunc(void (*func)(int button, int state, int x, int y));$/;"	p	class:Screen	file:	access:public	signature:(void (*func)(int button, int state, int x, int y))
+setMouseMotionFunc	.\Screen.cpp	/^BOOL Screen::setMouseMotionFunc(void (*func)(int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int x, int y))
+setMouseMotionFunc	.\Screen.cpp~	/^BOOL Screen::setMouseMotionFunc(void (*func)(int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int x, int y))
+setMouseMotionFunc	.\Screen.h	/^        BOOL setMouseMotionFunc(void (*func)(int x, int y));$/;"	p	class:Screen	access:public	signature:(void (*func)(int x, int y))
+setMouseMotionFunc	.\Screen.h~	/^        BOOL setMouseMotionFunc(void (*func)(int x, int y));$/;"	p	class:Screen	file:	access:public	signature:(void (*func)(int x, int y))
+setMousePassiveMotionFunc	.\Screen.cpp	/^BOOL Screen::setMousePassiveMotionFunc(void (*func)(int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int x, int y))
+setMousePassiveMotionFunc	.\Screen.cpp~	/^BOOL Screen::setMousePassiveMotionFunc(void (*func)(int x, int y))$/;"	f	class:Screen	signature:(void (*func)(int x, int y))
+setMousePassiveMotionFunc	.\Screen.h	/^        BOOL setMousePassiveMotionFunc(void (*func)(int x, int y));$/;"	p	class:Screen	access:public	signature:(void (*func)(int x, int y))
+setMousePassiveMotionFunc	.\Screen.h~	/^        BOOL setMousePassiveMotionFunc(void (*func)(int x, int y));$/;"	p	class:Screen	file:	access:public	signature:(void (*func)(int x, int y))
+setReshapeFunc	.\Screen.cpp	/^BOOL Screen::setReshapeFunc(void (*func)(int w, int h))$/;"	f	class:Screen	signature:(void (*func)(int w, int h))
+setReshapeFunc	.\Screen.cpp~	/^BOOL Screen::setReshapeFunc(void (*func)(int w, int h))$/;"	f	class:Screen	signature:(void (*func)(int w, int h))
+setReshapeFunc	.\Screen.h	/^        BOOL setReshapeFunc(void (*func)(int w, int h));$/;"	p	class:Screen	access:public	signature:(void (*func)(int w, int h))
+setReshapeFunc	.\Screen.h~	/^        BOOL setReshapeFunc(void (*func)(int w, int h));$/;"	p	class:Screen	file:	access:public	signature:(void (*func)(int w, int h))
+srcHeight	.\ConfWnd.h~	/^        DWORD srcHeight;$/;"	m	class:ConfWnd	file:	access:public
+srcWidth	.\ConfWnd.h~	/^        DWORD srcWidth;$/;"	m	class:ConfWnd	file:	access:public
+startProgram	.\experiment.cpp	/^BOOL Experiment::startProgram()$/;"	f	class:Experiment	signature:()
+startProgram	.\experiment.cpp~	/^BOOL Experiment::startProgram()$/;"	f	class:Experiment	signature:()
+startProgram	.\experiment.h	/^        BOOL startProgram();$/;"	p	class:Experiment	access:public	signature:()
+startProgram	.\experiment.h~	/^        BOOL startProgram();$/;"	p	class:Experiment	file:	access:public	signature:()
+startScene	.\PreTrialScene.cpp	/^BOOL PreTrialScene::startScene()$/;"	f	class:PreTrialScene	signature:()
+startScene	.\PreTrialScene.cpp~	/^BOOL PreTrialScene::startScene()$/;"	f	class:PreTrialScene	signature:()
+startScene	.\PreTrialScene.h	/^        virtual BOOL startScene();$/;"	p	class:PreTrialScene	access:public	signature:()
+startScene	.\PreTrialScene.h~	/^        virtual BOOL startScene();$/;"	p	class:PreTrialScene	file:	access:public	signature:()
+startScene	.\Scene.h	/^        virtual BOOL startScene() = 0;$/;"	p	class:Scene	access:public	signature:()
+startScene	.\Scene.h~	/^        virtual BOOL startScene() = 0;$/;"	p	class:Scene	file:	access:public	signature:()
+startScene	.\Separate2D3DViewScene.cpp	/^BOOL Separate2D3DViewScene::startScene()$/;"	f	class:Separate2D3DViewScene	signature:()
+startScene	.\Separate2D3DViewScene.cpp~	/^BOOL Separate2D3DViewScene::startScene()$/;"	f	class:Separate2D3DViewScene	signature:()
+startScene	.\Separate2D3DViewScene.h	/^        virtual BOOL startScene();$/;"	p	class:Separate2D3DViewScene	access:public	signature:()
+startTrial	.\Trial.cpp	/^BOOL Trial::startTrial()$/;"	f	class:Trial	signature:()
+startTrial	.\Trial.cpp~	/^BOOL Trial::startTrial()$/;"	f	class:Trial	signature:()
+startTrial	.\Trial.h	/^        BOOL startTrial();$/;"	p	class:Trial	access:public	signature:()
+startTrial	.\Trial.h~	/^        BOOL startTrial();$/;"	p	class:Trial	file:	access:public	signature:()
+state	.\Trial.h	/^        enum state {IDLE, PRE_TRIAL_SCENE, MAIN_SCENE};$/;"	g	class:Trial	access:public
+stepTrial	.\Trial.cpp	/^BOOL Trial::stepTrial()$/;"	f	class:Trial	signature:()
+stepTrial	.\Trial.cpp~	/^BOOL Trial::stepTrial()$/;"	f	class:Trial	signature:()
+stepTrial	.\Trial.h	/^        BOOL stepTrial(); $/;"	p	class:Trial	access:public	signature:()
+stepTrial	.\Trial.h~	/^        BOOL stepTrial(); $/;"	p	class:Trial	file:	access:public	signature:()
+stubObjects	.\experiment.h	/^        vector<TestObject> stubObjects;$/;"	m	class:Experiment	access:public
 subjectID	.\ConfWnd.h	/^        string subjectID;$/;"	m	class:ConfWnd	access:public
 subjectID	.\ConfWnd.h~	/^        string subjectID;$/;"	m	class:ConfWnd	file:	access:public
+subjectID	.\experiment.h	/^        string subjectID;$/;"	m	class:Experiment	access:public
+subjectID	.\experiment.h~	/^        string subjectID;$/;"	m	class:Experiment	file:	access:public
+testRenderScene	.\Screen.cpp	/^void Screen::testRenderScene()$/;"	f	class:Screen	signature:()
+testRenderScene	.\Screen.cpp~	/^void Screen::testRenderScene()$/;"	f	class:Screen	signature:()
+testRenderScene	.\Screen.h	/^        static void testRenderScene();$/;"	p	class:Screen	access:public	signature:()
+testRenderScene	.\Screen.h~	/^        static void testRenderScene();$/;"	p	class:Screen	file:	access:public	signature:()
+trialID	.\Trial.h	/^        UINT trialID;$/;"	m	class:Trial	access:public
+trialID	.\Trial.h~	/^        UINT trialID;$/;"	m	class:Trial	file:	access:public
 trialsInOneSec	.\ConfWnd.h	/^        unsigned int trialsInOneSec;$/;"	m	class:ConfWnd	access:public
 trialsInOneSec	.\ConfWnd.h~	/^        unsigned int trialsInOneSec;$/;"	m	class:ConfWnd	file:	access:public
+trialsInOneSec	.\experiment.h	/^        unsigned int trialsInOneSec;$/;"	m	class:Experiment	access:public
+trialsInOneSec	.\experiment.h~	/^        unsigned int trialsInOneSec;$/;"	m	class:Experiment	file:	access:public
 updateOutputFilename	.\ConfWnd.cpp	/^void ConfWnd::updateOutputFilename(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
 updateOutputFilename	.\ConfWnd.cpp~	/^void ConfWnd::updateOutputFilename(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
 updateOutputFilename	.\ConfWnd.h	/^        void updateOutputFilename(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
@@ -225,7 +907,49 @@ validateFileExistance	.\ConfWnd.cpp	/^int ConfWnd::validateFileExistance(HWND hD
 validateFileExistance	.\ConfWnd.cpp~	/^int ConfWnd::validateFileExistance(HWND hDlg)$/;"	f	class:ConfWnd	signature:(HWND hDlg)
 validateFileExistance	.\ConfWnd.h	/^        int validateFileExistance(HWND hDlg);$/;"	p	class:ConfWnd	access:private	signature:(HWND hDlg)
 validateFileExistance	.\ConfWnd.h~	/^        int validateFileExistance(HWND hDlg);$/;"	p	class:ConfWnd	file:	access:private	signature:(HWND hDlg)
+writeOutputs	.\experiment.h	/^        BOOL writeOutputs(string strOutputs);$/;"	p	class:Experiment	access:public	signature:(string strOutputs)
+writeOutputs	.\experiment.h~	/^        BOOL writeOutputs(string strOutputs);$/;"	p	class:Experiment	file:	access:public	signature:(string strOutputs)
 ~ConfWnd	.\ConfWnd.cpp	/^ConfWnd::~ConfWnd(void)$/;"	f	class:ConfWnd	signature:(void)
 ~ConfWnd	.\ConfWnd.cpp~	/^ConfWnd::~ConfWnd(void)$/;"	f	class:ConfWnd	signature:(void)
 ~ConfWnd	.\ConfWnd.h	/^        ~ConfWnd();$/;"	p	class:ConfWnd	access:public	signature:()
 ~ConfWnd	.\ConfWnd.h~	/^        ~ConfWnd();$/;"	p	class:ConfWnd	file:	access:public	signature:()
+~CylinderObject	.\CylinderObject.cpp	/^CylinderObject::~CylinderObject(void)$/;"	f	class:CylinderObject	signature:(void)
+~CylinderObject	.\CylinderObject.cpp~	/^CylinderObject::~CylinderObject(void)$/;"	f	class:CylinderObject	signature:(void)
+~CylinderObject	.\CylinderObject.h	/^        virtual ~CylinderObject(void);$/;"	p	class:CylinderObject	access:public	signature:(void)
+~CylinderObject	.\CylinderObject.h~	/^        virtual ~CylinderObject(void);$/;"	p	class:CylinderObject	file:	access:public	signature:(void)
+~Experiment	.\experiment.cpp	/^Experiment::~Experiment(void)$/;"	f	class:Experiment	signature:(void)
+~Experiment	.\experiment.cpp~	/^Experiment::~Experiment(void)$/;"	f	class:Experiment	signature:(void)
+~Experiment	.\experiment.h	/^        ~Experiment();$/;"	p	class:Experiment	access:public	signature:()
+~Experiment	.\experiment.h~	/^        ~Experiment();$/;"	p	class:Experiment	file:	access:public	signature:()
+~MixedObjectViewScene	.\MixedObjectViewScene.cpp	/^MixedObjectViewScene::~MixedObjectViewScene(void)$/;"	f	class:MixedObjectViewScene	signature:(void)
+~MixedObjectViewScene	.\MixedObjectViewScene.cpp~	/^MixedObjectViewScene::~MixedObjectViewScene(void)$/;"	f	class:MixedObjectViewScene	signature:(void)
+~MixedObjectViewScene	.\MixedObjectViewScene.h	/^        virtual ~MixedObjectViewScene(void);$/;"	p	class:MixedObjectViewScene	access:public	signature:(void)
+~MixedObjectViewScene	.\MixedObjectViewScene.h~	/^        virtual ~MixedObjectViewScene(void);$/;"	p	class:MixedObjectViewScene	file:	access:public	signature:(void)
+~PreTrialScene	.\PreTrialScene.cpp	/^PreTrialScene::~PreTrialScene(void)$/;"	f	class:PreTrialScene	signature:(void)
+~PreTrialScene	.\PreTrialScene.cpp~	/^PreTrialScene::~PreTrialScene(void)$/;"	f	class:PreTrialScene	signature:(void)
+~PreTrialScene	.\PreTrialScene.h	/^        virtual ~PreTrialScene(void);$/;"	p	class:PreTrialScene	access:public	signature:(void)
+~PreTrialScene	.\PreTrialScene.h~	/^        virtual ~PreTrialScene(void);$/;"	p	class:PreTrialScene	file:	access:public	signature:(void)
+~PureWordScene	.\PureWordScene.cpp	/^PureWordScene::~PureWordScene(void)$/;"	f	class:PureWordScene	signature:(void)
+~PureWordScene	.\PureWordScene.cpp~	/^PureWordScene::~PureWordScene(void)$/;"	f	class:PureWordScene	signature:(void)
+~PureWordScene	.\PureWordScene.h	/^        virtual ~PureWordScene(void);$/;"	p	class:PureWordScene	access:public	signature:(void)
+~PureWordScene	.\PureWordScene.h~	/^        virtual ~PureWordScene(void);$/;"	p	class:PureWordScene	file:	access:public	signature:(void)
+~Scene	.\Scene.cpp	/^Scene::~Scene()$/;"	f	class:Scene	signature:()
+~Scene	.\Scene.cpp~	/^Scene::~Scene()$/;"	f	class:Scene	signature:()
+~Scene	.\Scene.h	/^        virtual ~Scene(void) = 0;$/;"	p	class:Scene	access:public	signature:(void)
+~Scene	.\Scene.h~	/^        virtual ~Scene(void) = 0;$/;"	p	class:Scene	file:	access:public	signature:(void)
+~Screen	.\Screen.cpp	/^Screen::~Screen(void)$/;"	f	class:Screen	signature:(void)
+~Screen	.\Screen.cpp~	/^Screen::~Screen(void)$/;"	f	class:Screen	signature:(void)
+~Screen	.\Screen.h	/^        ~Screen();$/;"	p	class:Screen	access:public	signature:()
+~Screen	.\Screen.h~	/^        ~Screen();$/;"	p	class:Screen	file:	access:public	signature:()
+~Separate2D3DViewScene	.\Separate2D3DViewScene.cpp	/^Separate2D3DViewScene::~Separate2D3DViewScene(void)$/;"	f	class:Separate2D3DViewScene	signature:(void)
+~Separate2D3DViewScene	.\Separate2D3DViewScene.cpp~	/^Separate2D3DViewScene::~Separate2D3DViewScene(void)$/;"	f	class:Separate2D3DViewScene	signature:(void)
+~Separate2D3DViewScene	.\Separate2D3DViewScene.h	/^        virtual ~Separate2D3DViewScene(void);$/;"	p	class:Separate2D3DViewScene	access:public	signature:(void)
+~Separate2D3DViewScene	.\Separate2D3DViewScene.h~	/^        virtual ~Separate2D3DViewScene(void);$/;"	p	class:Separate2D3DViewScene	file:	access:public	signature:(void)
+~TestObject	.\TestObject.cpp	/^TestObject::~TestObject(void)$/;"	f	class:TestObject	signature:(void)
+~TestObject	.\TestObject.cpp~	/^TestObject::~TestObject(void)$/;"	f	class:TestObject	signature:(void)
+~TestObject	.\TestObject.h	/^        virtual ~TestObject(void);$/;"	p	class:TestObject	access:public	signature:(void)
+~TestObject	.\TestObject.h~	/^        virtual ~TestObject(void);$/;"	p	class:TestObject	file:	access:public	signature:(void)
+~Trial	.\Trial.cpp	/^Trial::~Trial(void)$/;"	f	class:Trial	signature:(void)
+~Trial	.\Trial.cpp~	/^Trial::~Trial(void)$/;"	f	class:Trial	signature:(void)
+~Trial	.\Trial.h	/^        ~Trial();$/;"	p	class:Trial	access:public	signature:()
+~Trial	.\Trial.h~	/^        ~Trial();$/;"	p	class:Trial	file:	access:public	signature:()

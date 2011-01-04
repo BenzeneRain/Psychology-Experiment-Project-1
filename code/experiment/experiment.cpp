@@ -6,6 +6,11 @@
 #include "ConfWnd.h"
 #include "Screen.h"
 #include "Trial.h"
+#include "TestObject.h"
+#include "CylinderObject.h"
+
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 
@@ -307,6 +312,9 @@ BOOL Experiment::initSystem()
     this->trialsInOneSec = pConfWnd->trialsInOneSec;
     this->devMode = pConfWnd->devMode;
 
+    this->stubObjects.push_back(dynamic_cast<TestObject *>(new CylinderObject()));
+
+    srand((unsigned int)time(NULL));
     return TRUE;
 }
 
@@ -316,7 +324,7 @@ void Experiment::proceedExperiment()
     if(pExperi->currSecNo < pExperi->maxSecNo)
     {
         Trial *pTrial = Trial::getInstance();
-
+        
         pTrial->startTrial();
         //TODO:
         //proceed trials
@@ -328,6 +336,20 @@ void Experiment::proceedExperiment()
         //
 
     }
+}
+
+BOOL Experiment::isNewSection()
+{
+   Trial *pTrial = Trial::getInstance();
+   if(pTrial->trialID == 0)
+   {
+       return TRUE;
+   }
+   else
+   {
+       return FALSE;
+   }
+
 }
 
 auto_ptr<Experiment> Experiment::m_pInstance;
