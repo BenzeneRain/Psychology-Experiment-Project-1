@@ -22,10 +22,12 @@ class Experiment
         BOOL isNewSection(); 
         static void proceedExperiment();
 
+        enum enumExperiMode {EXPERIMENT = 0, PRACTICE = 1};
+
         string subjectID;
         unsigned int maxSecNo;
         unsigned int currSecNo;
-        unsigned int experiMode; // 0 -- experiment mode; 1 -- practice mode;
+        enumExperiMode experiMode; // 0 -- experiment mode; 1 -- practice mode;
         string outFilename;
         unsigned int trialsInOneSec;
         DEVMODE devMode; // display settings

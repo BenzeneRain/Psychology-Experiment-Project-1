@@ -22,6 +22,7 @@ BOOL Separate2D3DViewScene::startScene()
 
     // Get the random object
     this->pObj = this->getRandObj(); 
+    this->pObj->setRandPara();
     if(Experiment::debug)
     {
         MessageBox(NULL, (this->pObj->getObjName()).c_str(), NULL, NULL);

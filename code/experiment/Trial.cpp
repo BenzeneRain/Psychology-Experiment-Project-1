@@ -40,7 +40,21 @@ BOOL Trial::proceedNextScene()
             ret = pScene->startScene();
             break;
         case MAIN_SCENE:
-            //TODO: Finish the trial
+            {
+                Experiment *pExperi = Experiment::getInstance();
+                if(pExperi->experiMode == Experiment)
+                {
+                    //TODO: In experiment mode, so start next trial
+                }
+                else
+                {
+                    //TODO: In practice mode, so show the result comparison
+                    
+                }
+                //TODO: Finish the trial
+                break;
+            }
+        case POST_TRIAL_SCENE:
             break;
         default:
             break;
