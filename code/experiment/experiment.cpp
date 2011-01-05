@@ -274,10 +274,10 @@ BOOL Experiment::startProgram()
     // TODO: Write fixed configurations to the output file
 
     // TODO: main body
+    this->proceedExperiment();
 
     // TODO: dispose
 
-    MessageBox(NULL, "Leave the main loop!", "", 0);
     if(this->experiMode == 0)
     {
         this->closeOutputFile();
@@ -327,27 +327,26 @@ BOOL Experiment::initSystem()
     return TRUE;
 }
 
-void Experiment::proceedExperiment()
+BOOL Experiment::proceedExperiment()
 {
-    Experiment *pExperi = Experiment::getInstance(NULL);
-    if(pExperi->currSecNo < pExperi->maxSecNo)
+    while(this->currSecNo < this->maxSecNo)
     {
         Trial *pTrial = Trial::getInstance();
         
         //proceed trials
         pTrial->startTrial();
     }
-    else
-    {
-        //show post-experiment scene
-        static auto_ptr<Scene> apScene;
-        Scene *pScene;
 
-        apScene.reset(new PostExperimentScene());
-        pScene = apScene.get();        
-                
-        pScene->startScene();
-    }
+    //show post-experiment scene
+    static auto_ptr<Scene> apScene;
+    Scene *pScene;
+
+    apScene.reset(new PostExperimentScene());
+    pScene = apScene.get();        
+
+    pScene->startScene();
+
+    return TRUE;
 }
 
 BOOL Experiment::isNewSection()

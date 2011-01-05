@@ -24,7 +24,11 @@ class Screen
         BOOL setMouseMotionFunc(void (*func)(int x, int y));
         BOOL setMousePassiveMotionFunc(void (*func)(int x, int y));
 
+        BOOL run();
+
         void render();
+
+        BOOL stopped;
 
         // the function is only for test purpose 
         static void testRenderScene();

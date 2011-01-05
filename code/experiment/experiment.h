@@ -22,7 +22,6 @@ class Experiment
         BOOL startProgram();
         BOOL writeOutputs(string strOutputs);
         BOOL isNewSection(); 
-        static void proceedExperiment();
 
         string subjectID;
         unsigned int maxSecNo;
@@ -43,6 +42,7 @@ class Experiment
         BOOL initSystem();
         BOOL initOutputFile();
         BOOL closeOutputFile();
+        BOOL proceedExperiment();
 
         HINSTANCE hInst;
         fstream hFileOut;

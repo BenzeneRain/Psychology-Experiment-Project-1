@@ -25,42 +25,49 @@ BOOL Trial::proceedNextScene()
     static auto_ptr<Scene> apScene;
     Scene *pScene;
     BOOL ret;
+    BOOL trialFinished = FALSE;
 
-    switch(this->currState)
+    while(trialFinished == FALSE)
     {
-        case IDLE:
-            apScene.reset(new PreTrialScene());
-            pScene = apScene.get();        
-            this->currState = PRE_TRIAL_SCENE;
-            ret = pScene->startScene();
-            break;
-        case PRE_TRIAL_SCENE:
-            apScene.reset(new Separate2D3DViewScene());
-            pScene = apScene.get();        
-            this->currState = MAIN_SCENE;
-            ret = pScene->startScene();
-            break;
-        case MAIN_SCENE:
-            {
-                Experiment *pExperi = Experiment::getInstance(NULL);
-                if(pExperi->experiMode == EXPERIMENT)
-                {
-                    this->currState = IDLE;
-                    this->stepTrial();
-                    Experiment::proceedExperiment();
-                }
-                else
-                {
-                    //TODO: In practice mode, so show the result comparison
-                    
-                }
-                //TODO: Finish the trial
+        switch(this->currState)
+        {
+            case IDLE:
+                apScene.reset(new PreTrialScene());
+                pScene = apScene.get();        
+                this->currState = PRE_TRIAL_SCENE;
+                ret = pScene->startScene();
                 break;
-            }
-        case POST_TRIAL_SCENE:
-            break;
-        default:
-            break;
+            case PRE_TRIAL_SCENE:
+                apScene.reset(new Separate2D3DViewScene());
+                pScene = apScene.get();        
+                this->currState = MAIN_SCENE;
+                ret = pScene->startScene();
+                break;
+            case MAIN_SCENE:
+                {
+                    Experiment *pExperi = Experiment::getInstance(NULL);
+                    if(pExperi->experiMode == EXPERIMENT)
+                    {
+                        this->currState = IDLE;
+                        this->stepTrial();
+                        trialFinished = TRUE;
+                    }
+                    else
+                    {
+                        //TODO: In practice mode, so show the result comparison
+
+                    }
+                    //TODO: Finish the trial
+                    break;
+                }
+            case POST_TRIAL_SCENE:
+                this->currState = IDLE;
+                trialFinished = TRUE;
+                break;
+            default:
+                trialFinished = TRUE;
+                break;
+        }
     }
     return TRUE;
 }

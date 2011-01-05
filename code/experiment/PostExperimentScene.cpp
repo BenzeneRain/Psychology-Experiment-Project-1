@@ -44,6 +44,16 @@ BOOL PostExperimentScene::startScene()
       ((Screen *)*it)->setKeyboardFunc(Scene::dispatchKeyboardEvent);
       ((Screen *)*it)->setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
     }  
+
+    // Start running the scene
+    // FIX: This is actually a run design if there are multiple screens
+    // e.g. the program will be blocked for each run()
+    for(vector<Screen *>::iterator it = this->screens.begin();
+        it != this->screens.end(); it ++)
+    {
+      ((Screen *)*it)->run();
+    }  
+
     return TRUE;
 }
 
@@ -75,14 +85,17 @@ BOOL PostExperimentScene::reshape(int w, int h)
     return TRUE;
 }
 
-
 BOOL PostExperimentScene::handleKeyboardEvent(unsigned char key, int x, int y)
 {
     switch(key)
     {
         case VK_SPACE:
             {
-                glutLeaveMainLoop();
+                for(vector<Screen *>::iterator it = this->screens.begin();
+                        it != this->screens.end(); it ++)
+                {
+                    ((Screen *)*it)->stopped = TRUE;
+                }  
                 break;
             }
         default:

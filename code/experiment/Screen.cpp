@@ -7,6 +7,7 @@ using namespace std;
 
 Screen::Screen()
 {
+    stopped = TRUE;
 }
 
 Screen::~Screen(void)
@@ -31,21 +32,11 @@ BOOL Screen::initGlut(DEVMODE devMode,
 
     // Init the glut 
     glutInitDisplayMode(displayMode);
-    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION);
     glutInitWindowSize(devMode.dmPelsWidth, devMode.dmPelsHeight);
     glutCreateWindow(title.c_str());
     glutFullScreen();
 
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    if(!Experiment::debug)
-    {
-        this->setDisplayFunc(Experiment::proceedExperiment);
-    }
-    else
-    {
-        this->setDisplayFunc(Screen::testRenderScene);
-    }
-    glutMainLoop();
     return TRUE;
 }
 
@@ -138,6 +129,18 @@ BOOL Screen::clear()
     this->render();
 
     return TRUE;
+}
+
+BOOL Screen::run()
+{
+   this->stopped = FALSE; 
+
+   while(this->stopped == FALSE)
+   {
+       glutMainLoopEvent();
+   }
+
+   return TRUE;
 }
 
 // the function is only for test purpose

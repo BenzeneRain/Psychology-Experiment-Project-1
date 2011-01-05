@@ -50,6 +50,16 @@ BOOL Separate2D3DViewScene::startScene()
       ((Screen *)*it)->setKeyboardFunc(Scene::dispatchKeyboardEvent);
       ((Screen *)*it)->setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
     }  
+
+    // Start running the scene
+    // FIX: This is actually a run design if there are multiple screens
+    // e.g. the program will be blocked for each run()
+    for(vector<Screen *>::iterator it = this->screens.begin();
+        it != this->screens.end(); it ++)
+    {
+      ((Screen *)*it)->run();
+    }  
+
     return TRUE;
 }
 
@@ -69,21 +79,23 @@ BOOL Separate2D3DViewScene::reshape(int w, int h)
     return TRUE;
 }
 
-
 BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)
 {
     switch(key)
     {
         case VK_SPACE:
             {
+                for(vector<Screen *>::iterator it = this->screens.begin();
+                        it != this->screens.end(); it ++)
+                {
+                    ((Screen *)*it)->stopped = TRUE;
+                }  
+
                 //TODO: If in experiment mode, write the test outputs
 
                 //Release the object
                 delete this->pObj;
 
-                // Proceed to the next scene
-                Trial *pTrial = Trial::getInstance();
-                pTrial->proceedNextScene();
                 break;
             }
         default:

@@ -48,6 +48,17 @@ BOOL PreTrialScene::startScene()
       ((Screen *)*it)->setKeyboardFunc(Scene::dispatchKeyboardEvent);
       ((Screen *)*it)->setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
     }  
+
+
+    // Start running the scene
+    // FIX: This is actually a run design if there are multiple screens
+    // e.g. the program will be blocked for each run()
+    for(vector<Screen *>::iterator it = this->screens.begin();
+        it != this->screens.end(); it ++)
+    {
+      ((Screen *)*it)->run();
+    }  
+
     return TRUE;
 }
 
@@ -100,8 +111,12 @@ BOOL PreTrialScene::handleKeyboardEvent(unsigned char key, int x, int y)
     {
         case VK_SPACE:
             {
-                Trial *pTrial = Trial::getInstance();
-                pTrial->proceedNextScene();
+                for(vector<Screen *>::iterator it = this->screens.begin();
+                        it != this->screens.end(); it ++)
+                {
+                    ((Screen *)*it)->stopped = TRUE;
+                }  
+
                 break;
             }
         default:
