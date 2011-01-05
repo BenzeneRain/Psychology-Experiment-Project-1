@@ -9,6 +9,7 @@ Separate2D3DViewScene::Separate2D3DViewScene(void)
 
 Separate2D3DViewScene::~Separate2D3DViewScene(void)
 {
+    delete this->pObj;
 }
 
 BOOL Separate2D3DViewScene::startScene()
@@ -92,9 +93,6 @@ BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)
                 }  
 
                 //TODO: If in experiment mode, write the test outputs
-
-                //Release the object
-                delete this->pObj;
 
                 break;
             }

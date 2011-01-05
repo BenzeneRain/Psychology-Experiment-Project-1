@@ -187,6 +187,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Overlapped2DViewScene.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\PostExperimentScene.cpp"
 				>
 			</File>
@@ -258,6 +262,10 @@
 			</File>
 			<File
 				RelativePath=".\MixedObjectViewScene.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Overlapped2DViewScene.h"
 				>
 			</File>
 			<File

@@ -10,7 +10,6 @@ class Separate2D3DViewScene :
 
         virtual BOOL startScene();
 
-    protected:
         TestObject *pObj;
 
     private:

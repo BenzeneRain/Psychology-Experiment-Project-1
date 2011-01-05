@@ -3,6 +3,8 @@
 #include "Scene.h"
 #include "PreTrialScene.h"
 #include "Separate2D3DViewScene.h"
+#include "Overlapped2DViewScene.h"
+#include "TestObject.h"
 #include "experiment.h"
 
 Trial::Trial()
@@ -27,6 +29,7 @@ BOOL Trial::proceedNextScene()
     BOOL ret;
     BOOL trialFinished = FALSE;
 
+    // go through all scenes
     while(trialFinished == FALSE)
     {
         switch(this->currState)
@@ -54,7 +57,15 @@ BOOL Trial::proceedNextScene()
                     }
                     else
                     {
-                        //TODO: In practice mode, so show the result comparison
+                        // In practice mode, so show the result comparison
+                        
+                        TestObject *pObject = ((dynamic_cast<Separate2D3DViewScene *>(pScene))->pObj);
+                        TestObject *pNewObj = pObject->newObj(*pObject);
+
+                        apScene.reset(new Overlapped2DViewScene(*pNewObj));
+                        pScene = apScene.get();        
+                        this->currState = POST_TRIAL_SCENE;
+                        ret = pScene->startScene();
 
                     }
                     //TODO: Finish the trial
@@ -62,6 +73,7 @@ BOOL Trial::proceedNextScene()
                 }
             case POST_TRIAL_SCENE:
                 this->currState = IDLE;
+                this->stepTrial();
                 trialFinished = TRUE;
                 break;
             default:
@@ -87,6 +99,7 @@ BOOL Trial::stepTrial()
     return TRUE;
 }
 
+// Below are the codes for the singalton
 auto_ptr<Trial> Trial::m_pInstance;
 
 Trial *Trial::getInstance()

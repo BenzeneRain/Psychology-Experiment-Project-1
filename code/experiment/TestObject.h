@@ -10,9 +10,11 @@ class TestObject
 {
     public:
         TestObject(void);
+        TestObject(TestObject& rObj);
         virtual ~TestObject(void);
     
         virtual TestObject * newObj(void) = 0;
+        virtual TestObject * newObj(TestObject& rObject) = 0;
         virtual string getObjName(void) = 0;
         virtual UINT getObjID(void) = 0;
         virtual void setRandPara(void);

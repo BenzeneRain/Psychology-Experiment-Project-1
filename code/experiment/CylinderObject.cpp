@@ -5,7 +5,7 @@ using namespace std;
 
 const UINT CylinderObject::objectID = 1;
 
-CylinderObject::CylinderObject(void)
+CylinderObject::CylinderObject(void) : TestObject()
 {
     this->objName = string("Cylinder");
 
@@ -17,6 +17,12 @@ CylinderObject::CylinderObject(void)
     radiusRange.push_back(0.9f);
 }
 
+CylinderObject::CylinderObject(CylinderObject &rObj) : TestObject(rObj)
+{
+   this->objName = string("Cylinder");
+   this->radius = rObj.radius;
+}
+
 CylinderObject::~CylinderObject(void)
 {
 }
@@ -24,6 +30,11 @@ CylinderObject::~CylinderObject(void)
 TestObject *CylinderObject::newObj(void)
 {
    return (new CylinderObject()); 
+}
+
+TestObject *CylinderObject::newObj(TestObject &rObject)
+{
+   return (new CylinderObject(static_cast< CylinderObject& >(rObject))); 
 }
 
 string CylinderObject::getObjName(void)

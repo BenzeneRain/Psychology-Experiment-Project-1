@@ -236,33 +236,35 @@ BOOL Experiment::startProgram()
     ConfWnd *pConfWnd = ConfWnd::getInstance();
     ret = pConfWnd->displayConfWnd(this->hInst);
 
+    // If Configuration failed or Exit button is pressed, 
+    // directly exit the program
     if(ret == FALSE)
     {
         return FALSE; 
     }
 
+    // Initialize the system
     this->initSystem();
 
-    auto_ptr<Screen> apScreen;
-    apScreen.reset(new Screen);
 
-    Screen * pScreen = apScreen.get();
-    this->screens.push_back(pScreen);
-
-    // FIX: init Glut should be put to the end of the initialization
-    // otherwise other initialization routines will not be executed
-    if(!Experiment::debug)
+    // Initialize the glut
+    for(vector<Screen *>::iterator it = this->screens.begin();
+            it != this->screens.end(); it ++)
     {
-        pScreen->initGlut(this->devMode,
-                GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH,
-                string("Experiment"));
-    }
-    else
-    {
-        pScreen->initGlut(this->devMode,
-                GLUT_RGB | GLUT_SINGLE,
-                string("Experiment"));
-    }
+        Screen *pScreen = (Screen *) *it;
+        if(!Experiment::debug)
+        {
+            pScreen->initGlut(this->devMode,
+                    GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH,
+                    string("Experiment"));
+        }
+        else
+        {
+            pScreen->initGlut(this->devMode,
+                    GLUT_RGB | GLUT_SINGLE,
+                    string("Experiment"));
+        }
+    }  
     // Initialize the output file if in experiment mode
     if(this->experiMode == 0)
     {
@@ -273,10 +275,10 @@ BOOL Experiment::startProgram()
 
     // TODO: Write fixed configurations to the output file
 
-    // TODO: main body
+    // main body
     this->proceedExperiment();
 
-    // TODO: dispose
+    // dispose
 
     if(this->experiMode == 0)
     {
@@ -312,6 +314,7 @@ BOOL Experiment::closeOutputFile()
 
 BOOL Experiment::initSystem()
 {
+    // get the configurations
     ConfWnd *pConfWnd = ConfWnd::getInstance();
 
     this->subjectID = pConfWnd->subjectID;
@@ -321,19 +324,32 @@ BOOL Experiment::initSystem()
     this->trialsInOneSec = pConfWnd->trialsInOneSec;
     this->devMode = pConfWnd->devMode;
 
-    this->stubObjects.push_back(dynamic_cast<TestObject *>(new CylinderObject()));
+    // Register Test Objects
+    this->stubObjects.push_back(new CylinderObject());
 
+    // Initialize random seed
     srand((unsigned int)time(NULL));
+
+    // Initialize screen class
+    static auto_ptr<Screen> apScreen;
+    apScreen.reset(new Screen);
+
+    Screen * pScreen = apScreen.get();
+    this->screens.push_back(pScreen);
+
     return TRUE;
 }
 
 BOOL Experiment::proceedExperiment()
 {
+    Trial *pTrial = Trial::getInstance();
+
+    // TODO: We can add Pre-Experiment Scene here
+    // if needed
+
+    //proceed trials
     while(this->currSecNo < this->maxSecNo)
     {
-        Trial *pTrial = Trial::getInstance();
-        
-        //proceed trials
         pTrial->startTrial();
     }
 
@@ -363,6 +379,7 @@ BOOL Experiment::isNewSection()
 
 }
 
+// Below are singalton implementations
 auto_ptr<Experiment> Experiment::m_pInstance;
 
 Experiment *Experiment::getInstance(HINSTANCE hInstance)

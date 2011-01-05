@@ -31,6 +31,27 @@ TestObject::TestObject(void)
     maxRotDegRange.push_back(120.0f);
 }
 
+TestObject::TestObject(TestObject& rObj)
+{
+   this->slant = rObj.slant;
+
+   this->height = rObj.height;
+   this->tilt = rObj.tilt;
+   this->initZAsptRatio = rObj.initZAsptRatio;
+   this->adjZAsptRatio = rObj.adjZAsptRatio;
+   this->rotSpeed = rObj.rotSpeed;
+   this->maxRotDeg = rObj.maxRotDeg;
+
+   this->proj2DMode = rObj.proj2DMode;
+
+   this->slantRange = rObj.slantRange;
+   this->heightRange = rObj.heightRange;
+   this->tiltRange = rObj.tiltRange;
+   this->initZAsptRatioRange = rObj.initZAsptRatioRange;
+   this->rotSpeedRange = rObj.rotSpeedRange;
+   this->maxRotDegRange = rObj.maxRotDegRange;
+}
+
 TestObject::~TestObject(void)
 {
 }

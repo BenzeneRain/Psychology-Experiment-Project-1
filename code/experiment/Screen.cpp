@@ -36,6 +36,7 @@ BOOL Screen::initGlut(DEVMODE devMode,
     glutCreateWindow(title.c_str());
     glutFullScreen();
 
+    // Set the background color
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     return TRUE;
 }
@@ -96,8 +97,11 @@ BOOL Screen::displayString(string str, float x, float y)
     return TRUE;
 }
 
+// Call this before actual rendering
 void Screen::render()
 {
+    // If we set double buffer, then swap the buffer
+    // If we set single buffer, just flush the buffer
     if(((this->displayMode) & GLUT_DOUBLE) != 0)
     {
         glutSwapBuffers();
@@ -131,6 +135,7 @@ BOOL Screen::clear()
     return TRUE;
 }
 
+// Call this after everything ready
 BOOL Screen::run()
 {
    this->stopped = FALSE; 
