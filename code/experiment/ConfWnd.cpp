@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "ConfWnd.h"
+#include "experiment.h"
 #include <Windowsx.h>
 #include <sstream>
 #include <fstream>
@@ -282,11 +283,11 @@ void ConfWnd::confirmConfiguration(HWND hDlg)
     ret = IsDlgButtonChecked(hDlg, IDC_RADIO1);
     if(ret == BST_CHECKED)
     {
-        pConfWnd->experiMode = 0;
+        pConfWnd->experiMode = EXPERIMENT;
     }
     else
     {
-        pConfWnd->experiMode = 1;
+        pConfWnd->experiMode = PRACTICE;
     }
 
     // If in experiment mode, store the output filename

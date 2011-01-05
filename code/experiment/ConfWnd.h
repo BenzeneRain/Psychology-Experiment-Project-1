@@ -2,8 +2,10 @@
 #define _H_CONFWND_
 
 #include "stdafx.h"
+#include "experiment.h"
 #include <string>
 #include <memory>
+
 
 using namespace std;
 
@@ -22,7 +24,7 @@ class ConfWnd
 
         string subjectID;
         unsigned int maxSecNo;
-        unsigned int experiMode; // 0 -- experiment mode; 1 -- practice mode;
+        enumExperiMode experiMode; // 0 -- experiment mode; 1 -- practice mode;
         string outFilename;
         unsigned int trialsInOneSec;
         DEVMODE devMode;

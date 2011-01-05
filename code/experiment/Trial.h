@@ -11,7 +11,7 @@ class Trial
         ~Trial();
         static Trial* getInstance();
 
-        enum state {IDLE, PRE_TRIAL_SCENE, MAIN_SCENE};
+        enum state {IDLE, PRE_TRIAL_SCENE, MAIN_SCENE, POST_TRIAL_SCENE};
 
         BOOL startTrial();
         BOOL stepTrial(); 

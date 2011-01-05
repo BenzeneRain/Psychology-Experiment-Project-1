@@ -88,6 +88,17 @@ BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)
 
 BOOL Separate2D3DViewScene::handleKeyboardSpecialEvent(int key, int x, int y)
 {
+    switch(key)
+    {
+        case GLUT_KEY_UP:
+            pObj->adjustAsptRatio(0.1f);
+            break;
+        case GLUT_KEY_DOWN:
+            pObj->adjustAsptRatio(-0.1f);
+            break;
+        default:
+            break;
+    }
     return TRUE;
 }
 

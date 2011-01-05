@@ -10,6 +10,8 @@
 
 using namespace std;
 
+enum enumExperiMode {EXPERIMENT = 0, PRACTICE = 1};
+
 // Experiment should be a singleton as well
 class Experiment
 {
@@ -21,8 +23,6 @@ class Experiment
         BOOL writeOutputs(string strOutputs);
         BOOL isNewSection(); 
         static void proceedExperiment();
-
-        enum enumExperiMode {EXPERIMENT = 0, PRACTICE = 1};
 
         string subjectID;
         unsigned int maxSecNo;

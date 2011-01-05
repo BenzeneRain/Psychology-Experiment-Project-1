@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "PreTrialScene.h"
 #include "Separate2D3DViewScene.h"
+#include "experiment.h"
 
 Trial::Trial()
 {
@@ -41,8 +42,8 @@ BOOL Trial::proceedNextScene()
             break;
         case MAIN_SCENE:
             {
-                Experiment *pExperi = Experiment::getInstance();
-                if(pExperi->experiMode == Experiment)
+                Experiment *pExperi = Experiment::getInstance(NULL);
+                if(pExperi->experiMode == EXPERIMENT)
                 {
                     //TODO: In experiment mode, so start next trial
                 }

@@ -248,6 +248,8 @@ BOOL Experiment::startProgram()
     Screen * pScreen = apScreen.get();
     this->screens.push_back(pScreen);
 
+    // FIX: init Glut should be put to the end of the initialization
+    // otherwise other initialization routines will not be executed
     if(!Experiment::debug)
     {
         pScreen->initGlut(this->devMode,
@@ -265,6 +267,8 @@ BOOL Experiment::startProgram()
         if(ret == FALSE)
             return FALSE;
     }
+
+    // TODO: Write fixed configurations to the output file
 
     // TODO: main body
 

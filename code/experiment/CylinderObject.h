@@ -16,16 +16,13 @@ class CylinderObject :
         virtual string getObjName(void);
         virtual UINT getObjID(void);
         virtual void setRandPara(void);
+        virtual BOOL adjustAsptRatio(int delta);
 
         GLfloat radius;
+        static const UINT objectID;
 
-        //TODO:How to represent the range?
-//        const GLfloat[] slant;
-//        const GLfloat[] height;
-//        const GLfloat[] tilt;
-//        const GLfloat[] initZAsptRatio;
-//        const GLfloat[] rotSpeed;
-//        const GLfloat[] maxRotDeg;
+        // value range of the parameters
+        vector<GLfloat> radiusRange;
     private:
         string objName;
 };
