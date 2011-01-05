@@ -31,6 +31,7 @@ BOOL Screen::initGlut(DEVMODE devMode,
 
     // Init the glut 
     glutInitDisplayMode(displayMode);
+    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION);
     glutInitWindowSize(devMode.dmPelsWidth, devMode.dmPelsHeight);
     glutCreateWindow(title.c_str());
     glutFullScreen();

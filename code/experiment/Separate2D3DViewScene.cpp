@@ -76,6 +76,12 @@ BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)
     {
         case VK_SPACE:
             {
+                //TODO: If in experiment mode, write the test outputs
+
+                //Release the object
+                delete this->pObj;
+
+                // Proceed to the next scene
                 Trial *pTrial = Trial::getInstance();
                 pTrial->proceedNextScene();
                 break;

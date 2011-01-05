@@ -8,6 +8,7 @@
 #include "Trial.h"
 #include "TestObject.h"
 #include "CylinderObject.h"
+#include "PostExperimentScene.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -253,12 +254,14 @@ BOOL Experiment::startProgram()
     if(!Experiment::debug)
     {
         pScreen->initGlut(this->devMode,
-                GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH, string("Experiment"));
+                GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH,
+                string("Experiment"));
     }
     else
     {
         pScreen->initGlut(this->devMode,
-                GLUT_RGB | GLUT_SINGLE, string("Experiment"));
+                GLUT_RGB | GLUT_SINGLE,
+                string("Experiment"));
     }
     // Initialize the output file if in experiment mode
     if(this->experiMode == 0)
@@ -273,6 +276,8 @@ BOOL Experiment::startProgram()
     // TODO: main body
 
     // TODO: dispose
+
+    MessageBox(NULL, "Leave the main loop!", "", 0);
     if(this->experiMode == 0)
     {
         this->closeOutputFile();
@@ -329,16 +334,19 @@ void Experiment::proceedExperiment()
     {
         Trial *pTrial = Trial::getInstance();
         
-        pTrial->startTrial();
-        //TODO:
         //proceed trials
+        pTrial->startTrial();
     }
     else
     {
-        //TODO:
         //show post-experiment scene
-        //
+        static auto_ptr<Scene> apScene;
+        Scene *pScene;
 
+        apScene.reset(new PostExperimentScene());
+        pScene = apScene.get();        
+                
+        pScene->startScene();
     }
 }
 

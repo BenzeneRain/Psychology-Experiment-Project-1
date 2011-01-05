@@ -16,7 +16,7 @@ class TestObject
         virtual string getObjName(void) = 0;
         virtual UINT getObjID(void) = 0;
         virtual void setRandPara(void);
-        virtual BOOL adjustAsptRatio(int delta) = 0;
+        virtual BOOL adjustAsptRatio(GLfloat delta) = 0;
 
         enum enumProj2DMode {ORTHOGONAL, PROJECTION};
 

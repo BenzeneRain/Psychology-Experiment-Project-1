@@ -20,7 +20,7 @@ Scene::~Scene()
 
 void Scene::dispatchSceneRender()
 {
-    Scene::currScene->renderScene(); 
+     Scene::currScene->renderScene(); 
 }
 
 void Scene::dispatchKeyboardEvent(unsigned char key, int x, int y)

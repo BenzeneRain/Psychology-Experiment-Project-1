@@ -45,7 +45,9 @@ BOOL Trial::proceedNextScene()
                 Experiment *pExperi = Experiment::getInstance(NULL);
                 if(pExperi->experiMode == EXPERIMENT)
                 {
-                    //TODO: In experiment mode, so start next trial
+                    this->currState = IDLE;
+                    this->stepTrial();
+                    Experiment::proceedExperiment();
                 }
                 else
                 {
@@ -65,6 +67,16 @@ BOOL Trial::proceedNextScene()
 
 BOOL Trial::stepTrial()
 {
+    Experiment *pExperi = Experiment::getInstance(NULL);
+
+    this->trialID ++;
+
+    if(this->trialID >= pExperi->trialsInOneSec)
+    {
+        this->trialID = 0;
+        pExperi->currSecNo ++;
+    }
+
     return TRUE;
 }
 

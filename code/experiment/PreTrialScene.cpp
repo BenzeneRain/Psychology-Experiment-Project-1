@@ -81,6 +81,7 @@ BOOL PreTrialScene::renderScene()
     return TRUE;
 }
 
+// FIX: We should move it to the Screen class
 BOOL PreTrialScene::reshape(int w, int h)
 {
 	glViewport(0, 0, w, h);

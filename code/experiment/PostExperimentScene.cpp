@@ -1,0 +1,112 @@
+#include "StdAfx.h"
+#include "PostExperimentScene.h"
+
+#include <vector>
+#include <algorithm>
+#include <sstream>
+
+PostExperimentScene::PostExperimentScene(void)
+{
+}
+
+PostExperimentScene::~PostExperimentScene(void)
+{
+}
+
+BOOL PostExperimentScene::startScene()
+{
+    // Cancel all keyboards and mouses events bindings
+    for(vector<Screen *>::iterator it = this->screens.begin();
+        it != this->screens.end(); it ++)
+    {
+        ((Screen *)*it)->cancelKMBinds();
+    }   
+
+    // Clear the screen
+    for(vector<Screen *>::iterator it = this->screens.begin();
+        it != this->screens.end(); it ++)
+    {
+        ((Screen *)*it)->clear();
+    }  
+
+    // set display function and reshape function
+    for(vector<Screen *>::iterator it = this->screens.begin();
+        it != this->screens.end(); it ++)
+    {
+        ((Screen *)*it)->setDisplayFunc(Scene::dispatchSceneRender);
+        ((Screen *)*it)->setReshapeFunc(Scene::dispatchReshape);
+    }  
+     
+    // Bind new keyboards and mouses events
+    for(vector<Screen *>::iterator it = this->screens.begin();
+        it != this->screens.end(); it ++)
+    {
+      ((Screen *)*it)->setKeyboardFunc(Scene::dispatchKeyboardEvent);
+      ((Screen *)*it)->setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
+    }  
+    return TRUE;
+}
+
+string PostExperimentScene::buildString()
+{
+    string message("This is the end of the experiment. Thank you!");
+    return message;
+}
+
+BOOL PostExperimentScene::renderScene()
+{
+    string message; 
+
+    message = this->buildString();
+    this->screens[0]->displayString(message, 0.0, 0.0);
+	
+    return TRUE;
+}
+
+// FIX: We should move it to the Screen class
+BOOL PostExperimentScene::reshape(int w, int h)
+{
+	glViewport(0, 0, w, h);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+    
+    return TRUE;
+}
+
+
+BOOL PostExperimentScene::handleKeyboardEvent(unsigned char key, int x, int y)
+{
+    switch(key)
+    {
+        case VK_SPACE:
+            {
+                glutLeaveMainLoop();
+                break;
+            }
+        default:
+            break;
+    }
+    return TRUE;
+}
+
+BOOL PostExperimentScene::handleKeyboardSpecialEvent(int key, int x, int y)
+{
+    return TRUE;
+}
+
+BOOL PostExperimentScene::handleMouseEvent(int button, int state, int x, int y)
+{
+    return TRUE;
+}
+
+BOOL PostExperimentScene::handleMouseMotionEvent(int x, int y)
+{
+    return TRUE;
+}
+
+BOOL PostExperimentScene::handleMousePassiveMotionEvent(int x, int y)
+{
+    return TRUE;
+}

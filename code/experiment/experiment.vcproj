@@ -187,6 +187,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PostExperimentScene.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\PreTrialScene.cpp"
 				>
 			</File>
@@ -254,6 +258,10 @@
 			</File>
 			<File
 				RelativePath=".\MixedObjectViewScene.h"
+				>
+			</File>
+			<File
+				RelativePath=".\PostExperimentScene.h"
 				>
 			</File>
 			<File

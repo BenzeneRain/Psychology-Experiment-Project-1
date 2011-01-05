@@ -48,7 +48,7 @@ void CylinderObject::setRandPara()
     this->radius = this->radiusRange[randIndex];
 }
 
-BOOL CylinderObject::adjustAsptRatio(int delta)
+BOOL CylinderObject::adjustAsptRatio(GLfloat delta)
 {
     if(adjZAsptRatio + delta <= 0)
     {
