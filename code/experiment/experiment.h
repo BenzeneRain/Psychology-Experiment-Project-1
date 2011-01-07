@@ -50,6 +50,7 @@ class Experiment
         BOOL initOutputFile();
         BOOL closeOutputFile();
         BOOL proceedExperiment();
+        BOOL disposeSystem();
 
         BOOL recordConfigurations();
 

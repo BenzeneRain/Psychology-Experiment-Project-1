@@ -48,9 +48,15 @@ BOOL Trial::proceedNextScene()
                 break;
             case MAIN_SCENE:
                 {
+                    TestObject *pObject = ((dynamic_cast<Separate2D3DViewScene *>(pScene))->pObj);
+                    TestObject *pNewObj = pObject->newObj(*pObject);
+
                     Experiment *pExperi = Experiment::getInstance(NULL);
                     if(pExperi->experiMode == EXPERIMENT)
                     {
+                        //TODO: Write the trial result to the output file
+                      
+
                         this->currState = IDLE;
                         this->stepTrial();
                         trialFinished = TRUE;
@@ -58,16 +64,14 @@ BOOL Trial::proceedNextScene()
                     else
                     {
                         // In practice mode, so show the result comparison
-                        
-                        TestObject *pObject = ((dynamic_cast<Separate2D3DViewScene *>(pScene))->pObj);
-                        TestObject *pNewObj = pObject->newObj(*pObject);
-
                         apScene.reset(new Overlapped2DViewScene(*pNewObj));
                         pScene = apScene.get();        
                         this->currState = POST_TRIAL_SCENE;
                         ret = pScene->startScene();
 
                     }
+
+                    delete pNewObj;
                     //TODO: Finish the trial
                     break;
                 }

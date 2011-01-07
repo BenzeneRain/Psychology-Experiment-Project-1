@@ -273,20 +273,19 @@ BOOL Experiment::startProgram()
         ret = this->initOutputFile();
         if(ret == FALSE)
             return FALSE;
+
+        // Write fixed configurations to the output file
+        this->recordConfigurations();
     }
 
-    // Write fixed configurations to the output file
-    this->recordConfigurations();
 
     // main body
     this->proceedExperiment();
 
     // dispose
 
-    if(this->experiMode == 0)
-    {
-        this->closeOutputFile();
-    }
+    this->disposeSystem();
+    
     return TRUE;
 }
 
@@ -422,6 +421,26 @@ BOOL Experiment::recordConfigurations()
 BOOL Experiment::writeOutputs(string& strOutputs)
 {
     this->hFileOut << strOutputs;
+
+    return TRUE;
+}
+
+BOOL Experiment::disposeSystem()
+{
+    // If in experiment mode, close the output file
+    if(this->experiMode == 0)
+    {
+        this->closeOutputFile();
+    }
+
+    // Delete Registered Test Objects
+    while(!this->stubObjects.empty())
+    {
+        TestObject *pObj = this->stubObjects.back();
+        delete pObj;
+
+        this->stubObjects.pop_back();
+    }
 
     return TRUE;
 }
