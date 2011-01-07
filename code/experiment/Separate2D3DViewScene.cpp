@@ -48,8 +48,8 @@ BOOL Separate2D3DViewScene::startScene()
     for(vector<Screen *>::iterator it = this->screens.begin();
         it != this->screens.end(); it ++)
     {
-      ((Screen *)*it)->setKeyboardFunc(Scene::dispatchKeyboardEvent);
-      ((Screen *)*it)->setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
+        ((Screen *)*it)->setKeyboardFunc(Scene::dispatchKeyboardEvent);
+        ((Screen *)*it)->setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
     }  
 
     // Start running the scene
@@ -58,7 +58,9 @@ BOOL Separate2D3DViewScene::startScene()
     for(vector<Screen *>::iterator it = this->screens.begin();
         it != this->screens.end(); it ++)
     {
-      ((Screen *)*it)->run();
+        this->reshape(((Screen *)*it)->rDevMode.dmPelsWidth,
+                ((Screen *)*it)->rDevMode.dmPelsHeight);
+        ((Screen *)*it)->run();
     }  
 
     return TRUE;
@@ -66,17 +68,38 @@ BOOL Separate2D3DViewScene::startScene()
 
 BOOL Separate2D3DViewScene::renderScene()
 {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    glPushMatrix();
+
+    gluLookAt(0.0f, 30.0f, 30.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    
+    glColor3ub(255, 255, 255);
+    glRotatef(90, 1.0f, 0.0f, 0.0f);
+    this->pObj->draw();
+
+    glPopMatrix();
+
+    this->screens[0]->render();
     return TRUE;
 }
 
 BOOL Separate2D3DViewScene::reshape(int w, int h)
 {
-	glViewport(0, 0, w, h);
+    glViewport(0, 0, w, h);
+
+    GLfloat fAspect = (GLfloat)w / (GLfloat)h;
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-    
+
+    gluPerspective(35.0f, fAspect, 0.01f, 50.0f);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
     return TRUE;
 }
 

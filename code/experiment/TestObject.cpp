@@ -14,9 +14,9 @@ TestObject::TestObject(void)
     // the configuration files later
     slantRange.push_back(0.0f);
 
-    heightRange.push_back(0.1f);
-    heightRange.push_back(0.5f);
-    heightRange.push_back(0.9f);
+    heightRange.push_back(3.0f);
+    heightRange.push_back(5.0f);
+    heightRange.push_back(9.0f);
     
     tiltRange.push_back(0.0f);
 
@@ -62,7 +62,7 @@ void TestObject::setRandPara()
 {
     int randIndex;
 
-    // FIX: rand() maybe is not good enough
+    // FIX: rand() maybe not good enough
 
     randIndex = rand() % this->slantRange.size();
     this->slant = this->slantRange[randIndex];
@@ -140,6 +140,23 @@ string TestObject::genObjDesc()
             ossObj << " " << (GLfloat)(*it);
         }
     ossObj << endl;
+
+    return ossObj.str();
+}
+
+string TestObject::genObjPara()
+{
+    ostringstream ossObj;
+
+    ossObj << "Object ID: " << this->getObjID() << endl;
+    ossObj << "Object type: " << this->getObjName() << endl;
+    ossObj << "Object slant: " << this->slant << endl;
+    ossObj << "Object height: " << this->height << endl;
+    ossObj << "Object tilt: " << this->tilt << endl;
+    ossObj << "Object initial aspect ratio on Z-axis: " << this->initZAsptRatio << endl;
+    ossObj << "Object aspect ratio on Z-axis after subject adjusted: " << this->adjZAsptRatio << endl;
+    ossObj << "Object rotation speed: " << this->rotSpeed << endl;
+    ossObj << "Object maximum rotation degree: " << this->maxRotDeg << endl;
 
     return ossObj.str();
 }

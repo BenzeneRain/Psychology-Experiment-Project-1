@@ -45,8 +45,8 @@ BOOL PreTrialScene::startScene()
     for(vector<Screen *>::iterator it = this->screens.begin();
         it != this->screens.end(); it ++)
     {
-      ((Screen *)*it)->setKeyboardFunc(Scene::dispatchKeyboardEvent);
-      ((Screen *)*it)->setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
+        ((Screen *)*it)->setKeyboardFunc(Scene::dispatchKeyboardEvent);
+        ((Screen *)*it)->setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
     }  
 
 
@@ -56,7 +56,9 @@ BOOL PreTrialScene::startScene()
     for(vector<Screen *>::iterator it = this->screens.begin();
         it != this->screens.end(); it ++)
     {
-      ((Screen *)*it)->run();
+        this->reshape(((Screen *)*it)->rDevMode.dmPelsWidth,
+                ((Screen *)*it)->rDevMode.dmPelsHeight);
+        ((Screen *)*it)->run();
     }  
 
     return TRUE;
@@ -95,12 +97,15 @@ BOOL PreTrialScene::renderScene()
 // FIX: We should move it to the Screen class
 BOOL PreTrialScene::reshape(int w, int h)
 {
-	glViewport(0, 0, w, h);
+    glViewport(0, 0, w, h);
+
+    GLfloat fAspect = (GLfloat)w / (GLfloat)h;
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-    
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
     return TRUE;
 }
 

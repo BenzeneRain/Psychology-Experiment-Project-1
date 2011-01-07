@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "Screen.h"
+#include "TestObject.h"
 #include <memory>
 using namespace std;
 
@@ -16,6 +17,7 @@ class Trial
         BOOL startTrial();
         BOOL stepTrial(); 
         BOOL proceedNextScene();
+        BOOL recordTrialInfo(TestObject& );
         
         UINT trialID;
 

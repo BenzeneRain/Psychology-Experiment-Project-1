@@ -7,11 +7,10 @@ using namespace std;
 class Screen
 {
     public:
-        Screen();
+        Screen(DEVMODE&);
         ~Screen();
 
-        BOOL initGlut(DEVMODE devMode,
-            UINT displayMode, string title);
+        BOOL initGlut(UINT displayMode, string title);
 
         BOOL cancelKMBinds();
         BOOL clear();
@@ -29,6 +28,7 @@ class Screen
         void render();
 
         BOOL stopped;
+        DEVMODE &rDevMode;
 
         // the function is only for test purpose 
         static void testRenderScene();

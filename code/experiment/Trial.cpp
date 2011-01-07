@@ -7,6 +7,12 @@
 #include "TestObject.h"
 #include "experiment.h"
 
+#include <vector>
+#include <sstream>
+#include <string>
+
+using namespace std;
+
 Trial::Trial()
 {
     this->trialID = 0;
@@ -54,9 +60,9 @@ BOOL Trial::proceedNextScene()
                     Experiment *pExperi = Experiment::getInstance(NULL);
                     if(pExperi->experiMode == EXPERIMENT)
                     {
-                        //TODO: Write the trial result to the output file
-                      
-
+                        // Write the trial result to the output file
+                        this->recordTrialInfo(*pNewObj);
+                           
                         this->currState = IDLE;
                         this->stepTrial();
                         trialFinished = TRUE;
@@ -72,7 +78,6 @@ BOOL Trial::proceedNextScene()
                     }
 
                     delete pNewObj;
-                    //TODO: Finish the trial
                     break;
                 }
             case POST_TRIAL_SCENE:
@@ -99,6 +104,20 @@ BOOL Trial::stepTrial()
         this->trialID = 0;
         pExperi->currSecNo ++;
     }
+
+    return TRUE;
+}
+
+BOOL Trial::recordTrialInfo(TestObject& rObj)
+{
+    ostringstream ossTI; // TI = Trial Information  
+
+    ossTI << "Trial ID: " << this->trialID + 1 << endl;
+    ossTI << rObj.genObjPara() ;
+
+    Experiment *pExperi = Experiment::getInstance(NULL);
+
+    pExperi->writeOutputs(ossTI.str());
 
     return TRUE;
 }

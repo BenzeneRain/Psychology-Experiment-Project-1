@@ -5,7 +5,8 @@
 
 using namespace std;
 
-Screen::Screen()
+Screen::Screen(DEVMODE& devMode):
+    rDevMode(devMode)
 {
     stopped = TRUE;
 }
@@ -15,11 +16,10 @@ Screen::~Screen(void)
 }
 
 // This part can be seen as SetupRC with other initializations
-BOOL Screen::initGlut(DEVMODE devMode,
-        UINT displayMode, string title)
+BOOL Screen::initGlut(UINT displayMode, string title)
 {
     // Change the display settings to the selected resolution and refresh rate
-    if(ChangeDisplaySettings(&devMode, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
+    if(ChangeDisplaySettings(&rDevMode, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
     {
         MessageBox(NULL, "Cannot change to selected desktop resolution.", NULL, MB_OK | MB_ICONSTOP);
         return FALSE;
@@ -32,12 +32,13 @@ BOOL Screen::initGlut(DEVMODE devMode,
 
     // Init the glut 
     glutInitDisplayMode(displayMode);
-    glutInitWindowSize(devMode.dmPelsWidth, devMode.dmPelsHeight);
+    glutInitWindowSize(rDevMode.dmPelsWidth, rDevMode.dmPelsHeight);
     glutCreateWindow(title.c_str());
     glutFullScreen();
 
     // Set the background color
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
     return TRUE;
 }
 

@@ -256,14 +256,12 @@ BOOL Experiment::startProgram()
         Screen *pScreen = (Screen *) *it;
         if(!Experiment::debug)
         {
-            pScreen->initGlut(this->devMode,
-                    GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH,
+            pScreen->initGlut(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH,
                     string("Experiment"));
         }
         else
         {
-            pScreen->initGlut(this->devMode,
-                    GLUT_RGB | GLUT_SINGLE,
+            pScreen->initGlut(GLUT_RGB | GLUT_SINGLE,
                     string("Experiment"));
         }
     }  
@@ -336,7 +334,7 @@ BOOL Experiment::initSystem()
 
     // Initialize screen class
     static auto_ptr<Screen> apScreen;
-    apScreen.reset(new Screen);
+    apScreen.reset(new Screen(this->devMode));
 
     Screen * pScreen = apScreen.get();
     this->screens.push_back(pScreen);
@@ -411,7 +409,6 @@ BOOL Experiment::recordConfigurations()
         string strTestObjDesc = ((TestObject *)(*it))->genObjDesc();
         ossConf << strTestObjDesc << endl;
     }   
-
 
     ret = this->writeOutputs(ossConf.str());
 

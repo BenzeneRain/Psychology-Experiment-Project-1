@@ -43,17 +43,19 @@ BOOL Overlapped2DViewScene::startScene()
     for(vector<Screen *>::iterator it = this->screens.begin();
         it != this->screens.end(); it ++)
     {
-      ((Screen *)*it)->setKeyboardFunc(Scene::dispatchKeyboardEvent);
-      ((Screen *)*it)->setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
+        ((Screen *)*it)->setKeyboardFunc(Scene::dispatchKeyboardEvent);
+        ((Screen *)*it)->setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
     }  
 
     // Start running the scene
     // FIX: This is actually a run design if there are multiple screens
     // e.g. the program will be blocked for each run()
     for(vector<Screen *>::iterator it = this->screens.begin();
-        it != this->screens.end(); it ++)
+            it != this->screens.end(); it ++)
     {
-      ((Screen *)*it)->run();
+        this->reshape(((Screen *)*it)->rDevMode.dmPelsWidth,
+                ((Screen *)*it)->rDevMode.dmPelsHeight);
+        ((Screen *)*it)->run();
     }  
 
     return TRUE;
@@ -66,12 +68,18 @@ BOOL Overlapped2DViewScene::renderScene()
 
 BOOL Overlapped2DViewScene::reshape(int w, int h)
 {
-	glViewport(0, 0, w, h);
+    glViewport(0, 0, w, h);
+
+    GLfloat fAspect = (GLfloat)w / (GLfloat)h;
+
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-    
+
+    gluPerspective(35.0f, fAspect, 0.01f, 50.0f);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
     return TRUE;
 }
 

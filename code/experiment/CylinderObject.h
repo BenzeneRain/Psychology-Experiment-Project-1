@@ -19,7 +19,10 @@ class CylinderObject :
         virtual UINT getObjID(void);
         virtual void setRandPara(void);
         virtual BOOL adjustAsptRatio(GLfloat delta);
-        virtual string genObjDesc(void);
+        virtual void draw();
+
+        virtual string genObjDesc(void); // get the object descriptions (fixed part)
+        virtual string genObjPara(void); // get the object parameters (varied part)
 
         GLfloat radius;
         static const UINT objectID;

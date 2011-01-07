@@ -14,9 +14,9 @@ CylinderObject::CylinderObject(void) : TestObject()
     // Initialize the ranges
     // FIX: The value should be read from
     // the configuration files later
-    radiusRange.push_back(0.3f);
-    radiusRange.push_back(0.6f);
-    radiusRange.push_back(0.9f);
+    radiusRange.push_back(1.0f);
+    radiusRange.push_back(2.0f);
+    radiusRange.push_back(3.0f);
 }
 
 CylinderObject::CylinderObject(CylinderObject &rObj) : TestObject(rObj)
@@ -93,4 +93,38 @@ string CylinderObject::genObjDesc()
     strDesc += ossObj.str();
 
     return strDesc;
+}
+
+string CylinderObject::genObjPara()
+{
+    string strPara;
+
+    strPara = TestObject::genObjPara();
+
+    ostringstream ossObj;
+
+    ossObj << "Radius: " << this->radius << endl;
+
+    strPara += ossObj.str();
+
+    return strPara;
+}
+
+void CylinderObject::draw()
+{
+    GLUquadricObj *pCylinder;
+
+    pCylinder = gluNewQuadric();
+
+    gluQuadricDrawStyle(pCylinder, GLU_FILL);
+    gluQuadricNormals(pCylinder, GLU_SMOOTH);
+
+    // Draw the cylinder
+    gluCylinder(pCylinder, this->radius, this->radius, this->height, 32, 32);
+
+    gluDeleteQuadric(pCylinder);
+
+    // TODO: Draw the upper face
+
+    // TODO: Draw the bottom face
 }

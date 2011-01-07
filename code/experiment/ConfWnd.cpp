@@ -399,20 +399,21 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
                             {
                                 MessageBox(NULL, "Some blanks are invalid, and please check.\n"
                                         "Notice that the total number of trials cannot be zero, and "
-                                        "the output filename cannot be nothing.", "Configuration Warning!", MB_OK);
+                                        "the output filename cannot be nothing.", "Configuration Warning!",
+                                        MB_OK | MB_ICONERROR);
                                 succeed = FALSE;
                             }
+
+                            if(succeed == FALSE)
+                                break;
 
                             // Validate if the output file is existed
                             if(pConfWnd->validateFileExistance(hDlg) != 0)
                             {
                                 int ret;
                                 ret = MessageBox(NULL, "The chosen output file is existed."
-                                    " Do you want to overwrite it or not?", NULL, MB_YESNO);
-                                if (ret == IDNO)
-                                {
-                                    succeed = FALSE;
-                                }
+                                    " Choose another filename please.", NULL, MB_OK | MB_ICONERROR);
+                                succeed = FALSE;
                             }
                         
                             if(succeed)
