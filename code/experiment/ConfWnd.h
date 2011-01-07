@@ -29,6 +29,9 @@ class ConfWnd
         unsigned int trialsInOneSec;
         DEVMODE devMode;
 
+        string strDate;
+        string strTime;
+
     private:
         ConfWnd();
         void updateTrialNo(HWND hDlg);

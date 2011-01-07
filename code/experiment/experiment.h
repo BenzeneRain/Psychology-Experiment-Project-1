@@ -20,7 +20,7 @@ class Experiment
         ~Experiment();
 
         BOOL startProgram();
-        BOOL writeOutputs(string strOutputs);
+        BOOL writeOutputs(string& strOutputs);
         BOOL isNewSection(); 
 
         string subjectID;
@@ -30,6 +30,13 @@ class Experiment
         string outFilename;
         unsigned int trialsInOneSec;
         DEVMODE devMode; // display settings
+
+        // Time when starting the experiment.
+        // This time is actually not the time exactly starting the 
+        // experment, but a little bit earlier when the output filename
+        // is automatically updated
+        string strDate;
+        string strTime;
 
         vector<Screen *> screens;
         vector<TestObject *> stubObjects;
@@ -43,6 +50,8 @@ class Experiment
         BOOL initOutputFile();
         BOOL closeOutputFile();
         BOOL proceedExperiment();
+
+        BOOL recordConfigurations();
 
         HINSTANCE hInst;
         fstream hFileOut;

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "CylinderObject.h"
 #include <string>
+#include <sstream>
+#include <string>
 using namespace std;
 
 const UINT CylinderObject::objectID = 1;
@@ -70,4 +72,25 @@ BOOL CylinderObject::adjustAsptRatio(GLfloat delta)
         adjZAsptRatio += delta;
         return TRUE;
     }
+}
+
+string CylinderObject::genObjDesc()
+{
+    string strDesc;
+
+    strDesc = TestObject::genObjDesc();
+
+    ostringstream ossObj;
+
+    ossObj << "Radius range: ";
+    for(vector<GLfloat>::iterator it = this->radiusRange.begin(); 
+        it != this->radiusRange.end(); it ++)
+        {
+            ossObj << (GLfloat)(*it) << " ";
+        }
+    ossObj << endl;
+
+    strDesc += ossObj.str();
+
+    return strDesc;
 }

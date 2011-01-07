@@ -12,6 +12,8 @@
 
 #include <stdlib.h>
 #include <time.h>
+#include <sstream>
+#include <fstream>
 
 using namespace std;
 
@@ -273,7 +275,8 @@ BOOL Experiment::startProgram()
             return FALSE;
     }
 
-    // TODO: Write fixed configurations to the output file
+    // Write fixed configurations to the output file
+    this->recordConfigurations();
 
     // main body
     this->proceedExperiment();
@@ -323,6 +326,8 @@ BOOL Experiment::initSystem()
     this->outFilename = pConfWnd->outFilename;
     this->trialsInOneSec = pConfWnd->trialsInOneSec;
     this->devMode = pConfWnd->devMode;
+    this->strDate = pConfWnd->strDate;
+    this->strTime = pConfWnd->strTime;
 
     // Register Test Objects
     this->stubObjects.push_back(new CylinderObject());
@@ -377,6 +382,48 @@ BOOL Experiment::isNewSection()
        return FALSE;
    }
 
+}
+
+BOOL Experiment::recordConfigurations()
+{
+    BOOL ret;
+    
+    ostringstream ossConf;
+
+    ossConf << "Subject ID: " << this->subjectID << endl;
+    ossConf << "Max section number: " << this->maxSecNo << endl;
+    ossConf << "Number of trials in one section: " << this->trialsInOneSec << endl;
+
+    ossConf << "Screen resolution: " << this->devMode.dmPelsWidth
+            << " X " << this->devMode.dmPelsHeight << endl;
+
+    // FIX: this is actually the max refresh rate, but sometimes it cannot be reached
+    // due to heavy load, such as open the MultiSample option
+    ossConf << "Screen refresh rate: " << this->devMode.dmDisplayFrequency << "Hz" << endl;
+    ossConf << "Bit per pixel of the Screen: " << this->devMode.dmBitsPerPel << endl;
+
+    ossConf << "Experiment start time: " << this->strDate << " " << this->strTime << endl;
+
+    ossConf << "Test object information: " << endl;
+    // Output Test Object List
+    for(vector<TestObject *>::iterator it = this->stubObjects.begin();
+        it != this->stubObjects.end(); it ++)
+    {
+        string strTestObjDesc = ((TestObject *)(*it))->genObjDesc();
+        ossConf << strTestObjDesc << endl;
+    }   
+
+
+    ret = this->writeOutputs(ossConf.str());
+
+    return ret;
+}
+
+BOOL Experiment::writeOutputs(string& strOutputs)
+{
+    this->hFileOut << strOutputs;
+
+    return TRUE;
 }
 
 // Below are singalton implementations

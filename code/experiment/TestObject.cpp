@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "TestObject.h"
 #include <vector>
+#include <string>
+#include <sstream>
 using namespace std;
 
 const UINT TestObject::objectID = 0;
@@ -82,4 +84,62 @@ void TestObject::setRandPara()
 
     // Set adjAsptRatio
     this->adjZAsptRatio = this->initZAsptRatio;
+}
+
+string TestObject::genObjDesc()
+{
+    ostringstream ossObj;
+
+    ossObj << "Object ID: " << this->getObjID() << endl;
+    ossObj << "Object type: " << this->getObjName() << endl;
+
+    ossObj << "Slant range:";
+    for(vector<GLfloat>::iterator it = this->slantRange.begin(); 
+        it != this->slantRange.end(); it ++)
+        {
+            ossObj << " " << (GLfloat)(*it);
+        }
+    ossObj << endl;
+
+    ossObj << "Height range:";
+    for(vector<GLfloat>::iterator it = this->heightRange.begin(); 
+        it != this->heightRange.end(); it ++)
+        {
+            ossObj << " " << (GLfloat)(*it);
+        }
+    ossObj << endl;
+
+    ossObj << "Tilt range:";
+    for(vector<GLfloat>::iterator it = this->tiltRange.begin(); 
+        it != this->tiltRange.end(); it ++)
+        {
+            ossObj << " " << (GLfloat)(*it);
+        }
+    ossObj << endl;
+
+    ossObj << "Initial aspect ratio on Z-axis range:";
+    for(vector<GLfloat>::iterator it = this->initZAsptRatioRange.begin(); 
+        it != this->initZAsptRatioRange.end(); it ++)
+        {
+            ossObj << " " << (GLfloat)(*it);
+        }
+    ossObj << endl;
+
+    ossObj << "Object rotation speed range:";
+    for(vector<GLfloat>::iterator it = this->rotSpeedRange.begin(); 
+        it != this->rotSpeedRange.end(); it ++)
+        {
+            ossObj << " " << (GLfloat)(*it);
+        }
+    ossObj << endl;
+
+    ossObj << "Object maximum rotation degree range:";
+    for(vector<GLfloat>::iterator it = this->maxRotDegRange.begin(); 
+        it != this->maxRotDegRange.end(); it ++)
+        {
+            ossObj << " " << (GLfloat)(*it);
+        }
+    ossObj << endl;
+
+    return ossObj.str();
 }

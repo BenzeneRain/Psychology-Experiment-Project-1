@@ -82,6 +82,15 @@ void ConfWnd::updateOutputFilename(HWND hDlg)
 
     GetLocalTime(p_st);
 
+    ostringstream ossDate;
+    ossDate << p_st->wYear << '-' << p_st->wMonth << '-' << p_st->wDay;
+
+    ostringstream ossTime;
+    ossTime << p_st->wHour << '-' << p_st->wMinute;
+
+    this->strDate = ossDate.str();
+    this->strTime = ossTime.str();
+
     prevPos = 0;
     startPos = strRule.find('/');
     while(startPos != string::npos &&
@@ -110,17 +119,13 @@ void ConfWnd::updateOutputFilename(HWND hDlg)
                         // the Keyword is "/Date/"
                     case 1:
                         {
-                            ostringstream ossDate;
-                            ossDate << p_st->wYear << '-' << p_st->wMonth << '-' << p_st->wDay;
-                            outputFilename += ossDate.str();
+                            outputFilename += this->strDate;
                             break;
                         }
                         // the Keyword is "/Time/"
                     case 2:
                         {
-                            ostringstream ossTime;
-                            ossTime << p_st->wHour << '-' << p_st->wMinute;
-                            outputFilename += ossTime.str();
+                            outputFilename += this->strTime;
                             break;
                         }
                 }
