@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "Screen.h"
+#include "Scene.h"
 #include "experiment.h"
 #include <sstream>
 
 using namespace std;
+
 
 Screen::Screen(DEVMODE& devMode):
     rDevMode(devMode)
@@ -16,7 +18,7 @@ Screen::~Screen(void)
 }
 
 // This part can be seen as SetupRC with other initializations
-BOOL Screen::initGlut(UINT displayMode, string title)
+BOOL Screen::initGlut(UINT displayMode, string title, vector<HBITMAP>& hBitmaps)
 {
     // Change the display settings to the selected resolution and refresh rate
     if(ChangeDisplaySettings(&rDevMode, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
@@ -28,6 +30,7 @@ BOOL Screen::initGlut(UINT displayMode, string title)
     // __argc and __argv are global variables
     // storing the arguments for the program
     glutInit(&__argc, __argv);
+    glewInit();
     this->displayMode = displayMode;
 
     // Init the glut 
@@ -38,6 +41,37 @@ BOOL Screen::initGlut(UINT displayMode, string title)
 
     // Set the background color
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearStencil(0x0);
+
+    glEnable(GL_DEPTH_TEST);
+
+    // Setting up textures
+    this->texNo = hBitmaps.size();
+
+    this->texIDs = new GLuint[this->texNo];
+    glGenTextures(this->texNo, this->texIDs);
+
+    for(int i = 0; i < hBitmaps.size(); i ++)
+    {
+        glBindTexture(GL_TEXTURE_2D, this->texIDs[i]);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);  
+
+        BITMAP bm;
+        HBITMAP hBitmap;
+
+        hBitmap = hBitmaps[i];
+        GetObject(hBitmap, sizeof(bm), &bm);
+
+        BYTE *imageBuffer = new BYTE[bm.bmWidthBytes * bm.bmHeight];
+        GetBitmapBits(hBitmap, bm.bmWidthBytes * bm.bmHeight, imageBuffer);
+
+        gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, bm.bmWidth, bm.bmHeight,
+                GL_RGBA, GL_UNSIGNED_BYTE, imageBuffer);
+        delete imageBuffer;
+    }
+
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
     return TRUE;
 }
@@ -139,14 +173,14 @@ BOOL Screen::clear()
 // Call this after everything ready
 BOOL Screen::run()
 {
-   this->stopped = FALSE; 
+    this->stopped = FALSE; 
 
-   while(this->stopped == FALSE)
-   {
-       glutMainLoopEvent();
-   }
+    while(this->stopped == FALSE)
+    {
+        glutMainLoopEvent();
+    }
 
-   return TRUE;
+    return TRUE;
 }
 
 // the function is only for test purpose

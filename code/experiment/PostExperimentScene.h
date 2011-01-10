@@ -20,4 +20,5 @@ class PostExperimentScene :
         virtual BOOL handleMouseEvent(int button, int state, int x, int y);
         virtual BOOL handleMouseMotionEvent(int x, int y);
         virtual BOOL handleMousePassiveMotionEvent(int x, int y);
+        virtual BOOL initDisplay(Screen& scr);
 };

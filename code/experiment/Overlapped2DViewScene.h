@@ -22,4 +22,5 @@ class Overlapped2DViewScene :
         virtual BOOL handleMouseEvent(int button, int state, int x, int y);
         virtual BOOL handleMouseMotionEvent(int x, int y);
         virtual BOOL handleMousePassiveMotionEvent(int x, int y);
+        virtual BOOL initDisplay(Screen& scr);
 };

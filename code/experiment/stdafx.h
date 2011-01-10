@@ -18,8 +18,11 @@
 #include <tchar.h>
 
 // opengl header files
+#include <gl/glew.h>
 #include <gl/gl.h>
 #include <gl/glu.h>
 #include <gl/freeglut.h>
 #include <gl/freeglut_ext.h>
-// TODO: reference additional headers your program requires here
+
+#pragma comment(lib, "glew32.lib")
+// reference additional headers your program requires here

@@ -6,12 +6,10 @@
 
 using namespace std;
 
-Scene::Scene()
+Scene::Scene():
+    screens(Experiment::getInstance(NULL)->screens)
 {
     Scene::currScene = this;
-
-    Experiment *pExperi = Experiment::getInstance(NULL);
-    this->screens = pExperi->screens;
 }
 
 Scene::~Scene()

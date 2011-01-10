@@ -53,9 +53,9 @@ BOOL Overlapped2DViewScene::startScene()
     for(vector<Screen *>::iterator it = this->screens.begin();
             it != this->screens.end(); it ++)
     {
-        this->reshape(((Screen *)*it)->rDevMode.dmPelsWidth,
-                ((Screen *)*it)->rDevMode.dmPelsHeight);
-        ((Screen *)*it)->run();
+        Screen *pScr = (Screen *) *it;
+        this->initDisplay(*pScr);
+        pScr->run();
     }  
 
     return TRUE;
@@ -79,6 +79,19 @@ BOOL Overlapped2DViewScene::reshape(int w, int h)
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
+    return TRUE;
+}
+
+BOOL Overlapped2DViewScene::initDisplay(Screen& scr)
+{
+    this->reshape(scr.rDevMode.dmPelsWidth, scr.rDevMode.dmPelsHeight); 
+
+    // Disable texture
+    glDisable(GL_TEXTURE_2D);
+    
+    // Disable multisample
+    glEnable(GL_MULTISAMPLE);
 
     return TRUE;
 }

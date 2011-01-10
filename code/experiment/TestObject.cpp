@@ -14,9 +14,9 @@ TestObject::TestObject(void)
     // the configuration files later
     slantRange.push_back(0.0f);
 
-    heightRange.push_back(3.0f);
-    heightRange.push_back(5.0f);
-    heightRange.push_back(9.0f);
+    heightRange.push_back(60.0f);
+    heightRange.push_back(70.0f);
+    heightRange.push_back(80.0f);
     
     tiltRange.push_back(0.0f);
 

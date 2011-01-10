@@ -56,9 +56,9 @@ BOOL PreTrialScene::startScene()
     for(vector<Screen *>::iterator it = this->screens.begin();
         it != this->screens.end(); it ++)
     {
-        this->reshape(((Screen *)*it)->rDevMode.dmPelsWidth,
-                ((Screen *)*it)->rDevMode.dmPelsHeight);
-        ((Screen *)*it)->run();
+        Screen *pScr = (Screen *) *it;
+        this->initDisplay(*pScr);
+        pScr->run();
     }  
 
     return TRUE;
@@ -109,6 +109,18 @@ BOOL PreTrialScene::reshape(int w, int h)
     return TRUE;
 }
 
+BOOL PreTrialScene::initDisplay(Screen& scr)
+{
+    this->reshape(scr.rDevMode.dmPelsWidth, scr.rDevMode.dmPelsHeight); 
+
+    // Disable texture
+    glDisable(GL_TEXTURE_2D);
+
+    // Disable multisample
+    glDisable(GL_MULTISAMPLE);
+
+    return TRUE;
+}
 
 BOOL PreTrialScene::handleKeyboardEvent(unsigned char key, int x, int y)
 {

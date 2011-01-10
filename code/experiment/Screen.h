@@ -1,7 +1,8 @@
-#ifndef _H_SCREEN_
-#define _H_SCREEN_
+#pragma once
+
 #include "stdafx.h"
 #include <string>
+#include <vector>
 using namespace std;
 
 class Screen
@@ -10,7 +11,7 @@ class Screen
         Screen(DEVMODE&);
         ~Screen();
 
-        BOOL initGlut(UINT displayMode, string title);
+        BOOL initGlut(UINT displayMode, string title, vector<HBITMAP>& hBitmaps);
 
         BOOL cancelKMBinds();
         BOOL clear();
@@ -30,6 +31,9 @@ class Screen
         BOOL stopped;
         DEVMODE &rDevMode;
 
+        int texNo;
+        GLuint *texIDs;
+
         // the function is only for test purpose 
         static void testRenderScene();
     private:
@@ -38,4 +42,3 @@ class Screen
         
 };
 
-#endif /* _H_SCREEN_ */

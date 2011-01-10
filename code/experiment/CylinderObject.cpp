@@ -14,9 +14,9 @@ CylinderObject::CylinderObject(void) : TestObject()
     // Initialize the ranges
     // FIX: The value should be read from
     // the configuration files later
-    radiusRange.push_back(1.0f);
-    radiusRange.push_back(2.0f);
-    radiusRange.push_back(3.0f);
+    radiusRange.push_back(20.0f);
+    radiusRange.push_back(30.0f);
+    radiusRange.push_back(40.0f);
 }
 
 CylinderObject::CylinderObject(CylinderObject &rObj) : TestObject(rObj)
@@ -114,17 +114,46 @@ void CylinderObject::draw()
 {
     GLUquadricObj *pCylinder;
 
+    glPushMatrix();
+
+    glRotatef(90, -1.0f, 0.0f, 0.0f);
+
     pCylinder = gluNewQuadric();
 
     gluQuadricDrawStyle(pCylinder, GLU_FILL);
     gluQuadricNormals(pCylinder, GLU_SMOOTH);
+    gluQuadricTexture(pCylinder, GL_TRUE);
 
     // Draw the cylinder
-    gluCylinder(pCylinder, this->radius, this->radius, this->height, 32, 32);
+    gluCylinder(pCylinder, this->radius, this->radius, this->height, 1024, 1024);
 
     gluDeleteQuadric(pCylinder);
 
-    // TODO: Draw the upper face
+    // Draw the bottom face
+    pCylinder = gluNewQuadric();
 
-    // TODO: Draw the bottom face
+    gluQuadricDrawStyle(pCylinder, GLU_FILL);
+    gluQuadricNormals(pCylinder, GLU_SMOOTH);
+    gluQuadricTexture(pCylinder, GL_TRUE);
+
+    gluDisk(pCylinder, 0.0f, this->radius, 1024, 1024);
+    gluDeleteQuadric(pCylinder);
+
+    // Draw the top face
+
+    glPushMatrix();
+    glTranslatef(0.0f, 0.0f, this->height);
+
+    pCylinder = gluNewQuadric();
+
+    gluQuadricDrawStyle(pCylinder, GLU_FILL);
+    gluQuadricNormals(pCylinder, GLU_SMOOTH);
+    gluQuadricTexture(pCylinder, GL_TRUE);
+
+    gluDisk(pCylinder, 0.0f, this->radius, 1024, 1024);
+    gluDeleteQuadric(pCylinder);
+
+    glPopMatrix();
+
+    glPopMatrix();
 }

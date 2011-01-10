@@ -41,6 +41,7 @@ class Experiment
         vector<Screen *> screens;
         vector<TestObject *> stubObjects;
 
+
         //This option is for debugging
         static const int debug;
 
@@ -56,6 +57,7 @@ class Experiment
 
         HINSTANCE hInst;
         fstream hFileOut;
+        vector<HBITMAP> hBitmaps;
 
         static auto_ptr<Experiment> m_pInstance;
 
