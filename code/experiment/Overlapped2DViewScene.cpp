@@ -64,6 +64,49 @@ BOOL Overlapped2DViewScene::startScene()
 
 BOOL Overlapped2DViewScene::renderScene()
 {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    // FIX: should not hard code texID[0]
+    // and any other codes
+
+    for(unsigned int i = 0; i < this->screens.size(); i ++)
+    {
+        int scrWidth = this->screens[i]->rDevMode.dmPelsWidth;
+        int scrHeight = this->screens[i]->rDevMode.dmPelsHeight;
+        GLfloat fAspect = (GLfloat)scrWidth / (GLfloat)scrHeight;
+
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+
+        if(scrWidth <= scrHeight)
+            glOrtho(-100.0, 100.0, -100.0/fAspect, 100.0/fAspect, 100.0, -100.0);
+        else
+            glOrtho(-100.0*fAspect, 100.0*fAspect, -100.0, 100.0, 100.0, -100.0);
+
+        gluLookAt(0.0f, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+
+        glDisable(GL_TEXTURE_2D);
+        // Draw the cylinder before adjust in 2D
+        glPushMatrix();
+        glColor3ub(255, 255, 255);
+        glTranslatef(0.0f, -20.0f, 0.0f);
+        glScalef(1.0f, 1.0f, this->pObj->initZAsptRatio);
+        this->pObj->draw(GLU_SILHOUETTE);
+        glPopMatrix();
+
+        // Draw the cylinder after adjust in 2D
+        glPushMatrix();
+        glColor3ub(255, 0, 0);
+        glTranslatef(0.0f, -20.0f, 0.0f);
+        glScalef(1.0f, 1.0f, this->pObj->adjZAsptRatio);
+        this->pObj->draw(GLU_SILHOUETTE);
+        glPopMatrix();
+
+        this->screens[i]->render();
+    }
     return TRUE;
 }
 
@@ -76,7 +119,10 @@ BOOL Overlapped2DViewScene::reshape(int w, int h)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-    gluPerspective(35.0f, fAspect, 0.01f, 50.0f);
+    if(w <= h)
+        glOrtho(-100.0, 100.0, -100.0/fAspect, 100.0/fAspect, 100.0, -100.0);
+    else
+        glOrtho(-100.0*fAspect, 100.0*fAspect, -100.0, 100.0, 100.0, -100.0);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -108,8 +154,6 @@ BOOL Overlapped2DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)
                 {
                     ((Screen *)*it)->stopped = TRUE;
                 }  
-
-                //TODO: If in experiment mode, write the test outputs
 
                 break;
             }

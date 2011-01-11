@@ -28,6 +28,7 @@ TestObject::TestObject(void)
     this->rotSpeedRange.push_back(25.0f);
     this->rotSpeedRange.push_back(40.0f);
 
+    this->maxRotDegRange.push_back(20.0f);
     this->maxRotDegRange.push_back(60.0f);
     this->maxRotDegRange.push_back(90.0f);
     this->maxRotDegRange.push_back(120.0f);
@@ -85,8 +86,8 @@ void TestObject::setRandPara()
     randIndex = rand() % this->maxRotDegRange.size();
     this->maxRotDeg = this->maxRotDegRange[randIndex];
 
-    // Set adjAsptRatio
-    this->adjZAsptRatio = this->initZAsptRatio;
+    randIndex = rand() % this->initZAsptRatioRange.size();
+    this->adjZAsptRatio = this->initZAsptRatioRange[randIndex];
 }
 
 string TestObject::genObjDesc()

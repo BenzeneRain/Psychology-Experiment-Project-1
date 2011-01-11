@@ -122,7 +122,7 @@ BOOL Separate2D3DViewScene::renderScene()
         glTranslatef(0.0f, -20.0f, 0.0f);
         glScalef(1.0f, 1.0f, this->pObj->initZAsptRatio);
         glRotatef(this->pObj->currRotDeg, 0.0f, 1.0f, 0.0f);
-        this->pObj->draw();
+        this->pObj->draw(GLU_FILL);
         glPopMatrix();
 
         //////////////////////////////////////////////////////
@@ -147,7 +147,7 @@ BOOL Separate2D3DViewScene::renderScene()
         glPushMatrix();
         // Draw the cylinder in 2D
         glScalef(1.0f, 1.0f, this->pObj->adjZAsptRatio);
-        this->pObj->draw();
+        this->pObj->draw(GLU_FILL);
 
         glPopMatrix();
 
@@ -208,8 +208,6 @@ BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)
                 {
                     ((Screen *)*it)->stopped = TRUE;
                 }  
-
-                //TODO: If in experiment mode, write the test outputs
 
                 break;
             }

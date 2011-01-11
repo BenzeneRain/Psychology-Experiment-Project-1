@@ -110,7 +110,7 @@ string CylinderObject::genObjPara()
     return strPara;
 }
 
-void CylinderObject::draw()
+void CylinderObject::draw(int drawStyle)
 {
     GLUquadricObj *pCylinder;
 
@@ -120,7 +120,7 @@ void CylinderObject::draw()
 
     pCylinder = gluNewQuadric();
 
-    gluQuadricDrawStyle(pCylinder, GLU_FILL);
+    gluQuadricDrawStyle(pCylinder, drawStyle);
     gluQuadricNormals(pCylinder, GLU_SMOOTH);
     gluQuadricTexture(pCylinder, GL_TRUE);
 
@@ -132,7 +132,7 @@ void CylinderObject::draw()
     // Draw the bottom face
     pCylinder = gluNewQuadric();
 
-    gluQuadricDrawStyle(pCylinder, GLU_FILL);
+    gluQuadricDrawStyle(pCylinder, drawStyle);
     gluQuadricNormals(pCylinder, GLU_SMOOTH);
     gluQuadricTexture(pCylinder, GL_TRUE);
 
@@ -146,7 +146,7 @@ void CylinderObject::draw()
 
     pCylinder = gluNewQuadric();
 
-    gluQuadricDrawStyle(pCylinder, GLU_FILL);
+    gluQuadricDrawStyle(pCylinder, drawStyle);
     gluQuadricNormals(pCylinder, GLU_SMOOTH);
     gluQuadricTexture(pCylinder, GL_TRUE);
 

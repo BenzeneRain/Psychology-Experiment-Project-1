@@ -87,8 +87,9 @@ string PreTrialScene::buildString()
 
 BOOL PreTrialScene::renderScene()
 {
-    string message; 
+    string message;
 
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     message = this->buildString();
     this->screens[0]->displayString(message, 0.0, 0.0);
 	

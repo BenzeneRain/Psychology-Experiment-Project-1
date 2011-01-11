@@ -19,7 +19,7 @@ class TestObject
         virtual UINT getObjID(void) = 0;
         virtual void setRandPara(void);
         virtual BOOL adjustAsptRatio(GLfloat delta) = 0;
-        virtual void draw(void) = 0;
+        virtual void draw(int drawStyle) = 0;
 
         virtual string genObjDesc(); // get the object descriptions (fixed part)
         virtual string genObjPara(); // get the object parameters (varied part)
