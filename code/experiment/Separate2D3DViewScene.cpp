@@ -94,6 +94,8 @@ BOOL Separate2D3DViewScene::renderScene()
     // FIX: should not hard code texID[0]
     // and any other codes
 
+    glEnable(GL_MULTISAMPLE);
+
     for(unsigned int i = 0; i < this->screens.size(); i ++)
     {
         int scrWidth = this->screens[i]->rDevMode.dmPelsWidth;
@@ -182,17 +184,17 @@ BOOL Separate2D3DViewScene::initDisplay(Screen& scr)
 {
     this->reshape(scr.rDevMode.dmPelsWidth, scr.rDevMode.dmPelsHeight); 
 
-    glEnable(GL_TEXTURE_2D);
+    //glEnable(GL_TEXTURE_2D);
 
-    //glDisable(GL_MULTISAMPLE);
-    glEnable(GL_MULTISAMPLE);
-
-    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    //glEnable(GL_BLEND);
-    //glEnable(GL_POINT_SMOOTH);
-    //glEnable(GL_LINE_SMOOTH);
-    //glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
-    //glEnable(GL_POLYGON_SMOOTH);
+//    glDisable(GL_MULTISAMPLE);
+     glEnable(GL_MULTISAMPLE);
+//
+//    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//    glEnable(GL_BLEND);
+//    glEnable(GL_POINT_SMOOTH);
+//    glEnable(GL_LINE_SMOOTH);
+//    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
+//    glEnable(GL_POLYGON_SMOOTH);
 
     return TRUE;
 }

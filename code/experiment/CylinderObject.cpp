@@ -125,7 +125,7 @@ void CylinderObject::draw(int drawStyle)
     gluQuadricTexture(pCylinder, GL_TRUE);
 
     // Draw the cylinder
-    gluCylinder(pCylinder, this->radius, this->radius, this->height, 1024, 1024);
+    gluCylinder(pCylinder, this->radius, this->radius, this->height, 32, 32);
 
     gluDeleteQuadric(pCylinder);
 
