@@ -24,7 +24,10 @@ class TestObject
         virtual string genObjDesc(); // get the object descriptions (fixed part)
         virtual string genObjPara(); // get the object parameters (varied part)
 
+        void reverseRotDirection();
+
         enum enumProj2DMode {ORTHOGONAL, PROJECTION};
+        enum enumRotDirection {CLOCKWISE, COUNTERCLOCKWISE};
 
         static const UINT objectID;
 
@@ -39,6 +42,9 @@ class TestObject
         GLfloat adjZAsptRatio;
         GLfloat rotSpeed;
         GLfloat maxRotDeg;
+
+        GLfloat currRotDeg;
+        enumRotDirection rotDirection;
       
         // Value range of the parameters
         vector<GLfloat> slantRange;

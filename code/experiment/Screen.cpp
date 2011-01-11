@@ -51,7 +51,7 @@ BOOL Screen::initGlut(UINT displayMode, string title, vector<HBITMAP>& hBitmaps)
     this->texIDs = new GLuint[this->texNo];
     glGenTextures(this->texNo, this->texIDs);
 
-    for(int i = 0; i < hBitmaps.size(); i ++)
+    for(unsigned int i = 0; i < hBitmaps.size(); i ++)
     {
         glBindTexture(GL_TEXTURE_2D, this->texIDs[i]);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
@@ -85,6 +85,9 @@ BOOL Screen::cancelKMBinds()
     glutMouseFunc(NULL);
     glutMotionFunc(NULL);
     glutPassiveMotionFunc(NULL);
+
+    glutKeyboardUpFunc(NULL);
+
     return TRUE;
 }
 
@@ -160,6 +163,25 @@ BOOL Screen::setReshapeFunc(void (*func)(int w, int h))
     return TRUE;
 }
 
+BOOL Screen::setTimerFunc(unsigned int msecs, void (*func)(int timerID), int timerID)
+{
+    if(msecs == 0)
+        msecs = 1;
+    glutTimerFunc(msecs, func, timerID);
+    return TRUE;
+}
+
+void Screen::nullTimerFunc(int timerID)
+{
+    return;
+}
+
+BOOL Screen::setIdleFunc(void (*func)(void))
+{
+    glutIdleFunc(func);
+    return TRUE;
+}
+
 // Clear the screen
 BOOL Screen::clear()
 {
@@ -167,6 +189,18 @@ BOOL Screen::clear()
 
     this->render();
 
+    return TRUE;
+}
+
+// Use this to reset all the glut functions
+BOOL Screen::resetAllFunc()
+{
+    this->cancelKMBinds();
+    //this->setDisplayFunc(NULL); 
+    //this->setReshapeFunc(NULL);
+    this->setTimerFunc(0, Screen::nullTimerFunc, 0); 
+    //this->setIdleFunc(NULL);
+    
     return TRUE;
 }
 

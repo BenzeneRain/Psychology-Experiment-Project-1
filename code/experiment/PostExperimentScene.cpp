@@ -16,10 +16,11 @@ PostExperimentScene::~PostExperimentScene(void)
 BOOL PostExperimentScene::startScene()
 {
     // Cancel all keyboards and mouses events bindings
+    // and reset all other functions, e.g. display
     for(vector<Screen *>::iterator it = this->screens.begin();
         it != this->screens.end(); it ++)
     {
-        ((Screen *)*it)->cancelKMBinds();
+        ((Screen *)*it)->resetAllFunc();
     }   
 
     // Clear the screen
@@ -138,6 +139,11 @@ BOOL PostExperimentScene::handleMouseMotionEvent(int x, int y)
 }
 
 BOOL PostExperimentScene::handleMousePassiveMotionEvent(int x, int y)
+{
+    return TRUE;
+}
+
+BOOL PostExperimentScene::handleTimerEvent(int timerID)
 {
     return TRUE;
 }

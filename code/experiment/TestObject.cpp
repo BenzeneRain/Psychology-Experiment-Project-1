@@ -12,46 +12,49 @@ TestObject::TestObject(void)
     // Initialize the ranges
     // FIX: The value should be read from
     // the configuration files later
-    slantRange.push_back(0.0f);
+    this->slantRange.push_back(0.0f);
 
-    heightRange.push_back(60.0f);
-    heightRange.push_back(70.0f);
-    heightRange.push_back(80.0f);
-    
-    tiltRange.push_back(0.0f);
+    this->heightRange.push_back(60.0f);
+    this->heightRange.push_back(70.0f);
+    this->heightRange.push_back(80.0f);
 
-    initZAsptRatioRange.push_back(0.8f);
-    initZAsptRatioRange.push_back(1.0f);
-    initZAsptRatioRange.push_back(1.2f);
+    this->tiltRange.push_back(0.0f);
 
-    rotSpeedRange.push_back(1.0f);
-    rotSpeedRange.push_back(5.0f);
-    rotSpeedRange.push_back(10.0f);
+    this->initZAsptRatioRange.push_back(0.8f);
+    this->initZAsptRatioRange.push_back(1.0f);
+    this->initZAsptRatioRange.push_back(1.2f);
 
-    maxRotDegRange.push_back(60.0f);
-    maxRotDegRange.push_back(90.0f);
-    maxRotDegRange.push_back(120.0f);
+    this->rotSpeedRange.push_back(20.0f);
+    this->rotSpeedRange.push_back(25.0f);
+    this->rotSpeedRange.push_back(40.0f);
+
+    this->maxRotDegRange.push_back(60.0f);
+    this->maxRotDegRange.push_back(90.0f);
+    this->maxRotDegRange.push_back(120.0f);
+
+    this->currRotDeg = 0;
+    this->rotDirection = CLOCKWISE;
 }
 
 TestObject::TestObject(TestObject& rObj)
 {
-   this->slant = rObj.slant;
+    this->slant = rObj.slant;
 
-   this->height = rObj.height;
-   this->tilt = rObj.tilt;
-   this->initZAsptRatio = rObj.initZAsptRatio;
-   this->adjZAsptRatio = rObj.adjZAsptRatio;
-   this->rotSpeed = rObj.rotSpeed;
-   this->maxRotDeg = rObj.maxRotDeg;
+    this->height = rObj.height;
+    this->tilt = rObj.tilt;
+    this->initZAsptRatio = rObj.initZAsptRatio;
+    this->adjZAsptRatio = rObj.adjZAsptRatio;
+    this->rotSpeed = rObj.rotSpeed;
+    this->maxRotDeg = rObj.maxRotDeg;
 
-   this->proj2DMode = rObj.proj2DMode;
+    this->proj2DMode = rObj.proj2DMode;
 
-   this->slantRange = rObj.slantRange;
-   this->heightRange = rObj.heightRange;
-   this->tiltRange = rObj.tiltRange;
-   this->initZAsptRatioRange = rObj.initZAsptRatioRange;
-   this->rotSpeedRange = rObj.rotSpeedRange;
-   this->maxRotDegRange = rObj.maxRotDegRange;
+    this->slantRange = rObj.slantRange;
+    this->heightRange = rObj.heightRange;
+    this->tiltRange = rObj.tiltRange;
+    this->initZAsptRatioRange = rObj.initZAsptRatioRange;
+    this->rotSpeedRange = rObj.rotSpeedRange;
+    this->maxRotDegRange = rObj.maxRotDegRange;
 }
 
 TestObject::~TestObject(void)
@@ -95,50 +98,50 @@ string TestObject::genObjDesc()
 
     ossObj << "Slant range:";
     for(vector<GLfloat>::iterator it = this->slantRange.begin(); 
-        it != this->slantRange.end(); it ++)
-        {
-            ossObj << " " << (GLfloat)(*it);
-        }
+            it != this->slantRange.end(); it ++)
+    {
+        ossObj << " " << (GLfloat)(*it);
+    }
     ossObj << endl;
 
     ossObj << "Height range:";
     for(vector<GLfloat>::iterator it = this->heightRange.begin(); 
-        it != this->heightRange.end(); it ++)
-        {
-            ossObj << " " << (GLfloat)(*it);
-        }
+            it != this->heightRange.end(); it ++)
+    {
+        ossObj << " " << (GLfloat)(*it);
+    }
     ossObj << endl;
 
     ossObj << "Tilt range:";
     for(vector<GLfloat>::iterator it = this->tiltRange.begin(); 
-        it != this->tiltRange.end(); it ++)
-        {
-            ossObj << " " << (GLfloat)(*it);
-        }
+            it != this->tiltRange.end(); it ++)
+    {
+        ossObj << " " << (GLfloat)(*it);
+    }
     ossObj << endl;
 
     ossObj << "Initial aspect ratio on Z-axis range:";
     for(vector<GLfloat>::iterator it = this->initZAsptRatioRange.begin(); 
-        it != this->initZAsptRatioRange.end(); it ++)
-        {
-            ossObj << " " << (GLfloat)(*it);
-        }
+            it != this->initZAsptRatioRange.end(); it ++)
+    {
+        ossObj << " " << (GLfloat)(*it);
+    }
     ossObj << endl;
 
     ossObj << "Object rotation speed range:";
     for(vector<GLfloat>::iterator it = this->rotSpeedRange.begin(); 
-        it != this->rotSpeedRange.end(); it ++)
-        {
-            ossObj << " " << (GLfloat)(*it);
-        }
+            it != this->rotSpeedRange.end(); it ++)
+    {
+        ossObj << " " << (GLfloat)(*it);
+    }
     ossObj << endl;
 
     ossObj << "Object maximum rotation degree range:";
     for(vector<GLfloat>::iterator it = this->maxRotDegRange.begin(); 
-        it != this->maxRotDegRange.end(); it ++)
-        {
-            ossObj << " " << (GLfloat)(*it);
-        }
+            it != this->maxRotDegRange.end(); it ++)
+    {
+        ossObj << " " << (GLfloat)(*it);
+    }
     ossObj << endl;
 
     return ossObj.str();
@@ -159,4 +162,12 @@ string TestObject::genObjPara()
     ossObj << "Object maximum rotation degree: " << this->maxRotDeg << endl;
 
     return ossObj.str();
+}
+
+void TestObject::reverseRotDirection()
+{
+    if(this->rotDirection == CLOCKWISE)
+        this->rotDirection = COUNTERCLOCKWISE;
+    else
+        this->rotDirection = CLOCKWISE;
 }

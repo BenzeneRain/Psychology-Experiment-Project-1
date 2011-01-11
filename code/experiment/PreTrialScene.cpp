@@ -20,10 +20,11 @@ PreTrialScene::~PreTrialScene(void)
 BOOL PreTrialScene::startScene()
 {
     // Cancel all keyboards and mouses events bindings
+    // and reset all other functions, e.g. display
     for(vector<Screen *>::iterator it = this->screens.begin();
         it != this->screens.end(); it ++)
     {
-        ((Screen *)*it)->cancelKMBinds();
+        ((Screen *)*it)->resetAllFunc();
     }   
 
     // Clear the screen
@@ -158,6 +159,11 @@ BOOL PreTrialScene::handleMouseMotionEvent(int x, int y)
 }
 
 BOOL PreTrialScene::handleMousePassiveMotionEvent(int x, int y)
+{
+    return TRUE;
+}
+
+BOOL PreTrialScene::handleTimerEvent(int timerID)
 {
     return TRUE;
 }

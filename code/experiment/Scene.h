@@ -19,6 +19,7 @@ class Scene
         static void dispatchMouseEvent(int button, int state, int x, int y);
         static void dispatchMouseMotionEvent(int x, int y);
         static void dispatchMousePassiveMotionEvent(int x, int y);
+        static void dispatchTimerEvent(int timerID);
          
         vector<Screen *>& screens;
 
@@ -31,6 +32,7 @@ class Scene
         virtual BOOL handleMouseEvent(int button, int state, int x, int y) = 0;
         virtual BOOL handleMouseMotionEvent(int x, int y) = 0;
         virtual BOOL handleMousePassiveMotionEvent(int x, int y) = 0;
+        virtual BOOL handleTimerEvent(int timerID) = 0;
         virtual BOOL initDisplay(Screen& scr) = 0;
 
         static Scene *currScene;

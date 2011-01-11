@@ -12,6 +12,7 @@ class Separate2D3DViewScene :
 
         TestObject *pObj;
 
+        static const int TIMERID;
     private:
         virtual BOOL renderScene(); 
         virtual BOOL reshape(int w, int h);
@@ -20,5 +21,6 @@ class Separate2D3DViewScene :
         virtual BOOL handleMouseEvent(int button, int state, int x, int y);
         virtual BOOL handleMouseMotionEvent(int x, int y);
         virtual BOOL handleMousePassiveMotionEvent(int x, int y);
+        virtual BOOL handleTimerEvent(int timerID);
         virtual BOOL initDisplay(Screen& scr);
 };

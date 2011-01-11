@@ -18,10 +18,11 @@ Overlapped2DViewScene::~Overlapped2DViewScene(void)
 BOOL Overlapped2DViewScene::startScene()
 {
     // Cancel all keyboards and mouses events bindings
+    // and reset all other functions, e.g. display
     for(vector<Screen *>::iterator it = this->screens.begin();
         it != this->screens.end(); it ++)
     {
-        ((Screen *)*it)->cancelKMBinds();
+        ((Screen *)*it)->resetAllFunc();
     }   
 
     // Clear the screen
@@ -137,4 +138,9 @@ BOOL Overlapped2DViewScene::handleMousePassiveMotionEvent(int x, int y)
 {
     return TRUE;
 
+}
+
+BOOL Overlapped2DViewScene::handleTimerEvent(int timerID)
+{
+    return TRUE;
 }

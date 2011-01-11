@@ -51,4 +51,9 @@ void Scene::dispatchReshape(int w, int h)
     Scene::currScene->reshape(w, h);
 }
 
+void Scene::dispatchTimerEvent(int timerID)
+{
+    Scene::currScene->handleTimerEvent(timerID);
+}
+
 Scene *Scene::currScene;
