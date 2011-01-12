@@ -62,9 +62,15 @@ BOOL Separate2D3DViewScene::startScene()
     {
         Screen *pScr = (Screen *) *it;
         GLfloat msecs;
-        msecs = 1000.0f / this->pObj->rotSpeed;
-        pScr->setTimerFunc((unsigned int)msecs,
-                Scene::dispatchTimerEvent, Separate2D3DViewScene::TIMERID);
+
+        // Set the rotSpeed to 0 can make
+        // the object stay still.
+        if(this->pObj->rotSpeed != 0)
+        {
+            msecs = 1000.0f / this->pObj->rotSpeed;
+            pScr->setTimerFunc((unsigned int)msecs,
+                    Scene::dispatchTimerEvent, Separate2D3DViewScene::TIMERID);
+        }
     }  
 
     // Start running the scene
@@ -258,9 +264,15 @@ BOOL Separate2D3DViewScene::handleTimerEvent(int timerID)
         {
             Screen *pScr = (Screen *) *it;
             GLfloat msecs;
-            msecs = 1000.0f / this->pObj->rotSpeed;
-            pScr->setTimerFunc((unsigned int)msecs,
-                    Scene::dispatchTimerEvent, Separate2D3DViewScene::TIMERID);
+            
+            // Set the rotSpeed to 0 can make
+            // the object stay still.
+            if(this->pObj->rotSpeed != 0)
+            {
+                msecs = 1000.0f / this->pObj->rotSpeed;
+                pScr->setTimerFunc((unsigned int)msecs,
+                        Scene::dispatchTimerEvent, Separate2D3DViewScene::TIMERID);
+            }
         }  
     }
 

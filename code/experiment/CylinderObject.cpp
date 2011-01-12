@@ -19,6 +19,19 @@ CylinderObject::CylinderObject(void) : TestObject()
     radiusRange.push_back(40.0f);
 }
 
+CylinderObject::CylinderObject(vector<GLfloat>& slantRange,
+                            vector<GLfloat>& heightRange,
+                            vector<GLfloat>& tiltRange,
+                            vector<GLfloat>& initZAsptRatioRange,
+                            vector<GLfloat>& rotSpeedRange,
+                            vector<GLfloat>& maxRotDegRange,
+                            vector<GLfloat>& radiusRange):
+    TestObject(slantRange, heightRange, tiltRange, initZAsptRatioRange,
+            rotSpeedRange, maxRotDegRange) 
+{
+    this->radiusRange = radiusRange;    
+}
+
 CylinderObject::CylinderObject(CylinderObject &rObj) : TestObject(rObj)
 {
    this->objName = string("Cylinder");

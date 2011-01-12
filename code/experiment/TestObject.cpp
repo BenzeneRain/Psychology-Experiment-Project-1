@@ -37,6 +37,24 @@ TestObject::TestObject(void)
     this->rotDirection = CLOCKWISE;
 }
 
+TestObject::TestObject(vector<GLfloat>& slantRange,
+                    vector<GLfloat>& heightRange,
+                    vector<GLfloat>& tiltRange,
+                    vector<GLfloat>& initZAsptRatioRange,
+                    vector<GLfloat>& rotSpeedRange,
+                    vector<GLfloat>& maxRotDegRange)
+{
+    this->slantRange = slantRange;
+    this->heightRange = heightRange;
+    this->tiltRange = tiltRange;
+    this->initZAsptRatioRange = initZAsptRatioRange;
+    this->rotSpeedRange = rotSpeedRange;
+    this->maxRotDegRange = maxRotDegRange;
+
+    this->currRotDeg = 0;
+    this->rotDirection = CLOCKWISE;
+}
+
 TestObject::TestObject(TestObject& rObj)
 {
     this->slant = rObj.slant;

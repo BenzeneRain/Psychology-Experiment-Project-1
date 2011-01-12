@@ -25,4 +25,10 @@
 #include <gl/freeglut_ext.h>
 
 #pragma comment(lib, "glew32.lib")
+
 // reference additional headers your program requires here
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;

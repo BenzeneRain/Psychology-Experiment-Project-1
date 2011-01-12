@@ -10,11 +10,19 @@ class CylinderObject :
 {
     public:
         CylinderObject(void);
+        CylinderObject(vector<GLfloat>& slantRange,
+                vector<GLfloat>& heightRange,
+                vector<GLfloat>& tiltRange,
+                vector<GLfloat>& initZAsptRatioRange,
+                vector<GLfloat>& rotSpeedRange,
+                vector<GLfloat>& maxRotDegRange,
+                vector<GLfloat>& radiusRange);
         CylinderObject(CylinderObject &rObj);
         virtual ~CylinderObject(void);
 
         virtual TestObject * newObj(void);
         virtual TestObject * newObj(TestObject &rObject);
+
         virtual string getObjName(void);
         virtual UINT getObjID(void);
         virtual void setRandPara(void);

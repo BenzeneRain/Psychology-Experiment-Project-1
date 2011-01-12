@@ -10,11 +10,19 @@ class TestObject
 {
     public:
         TestObject(void);
+        TestObject(vector<GLfloat>& slantRange,
+                   vector<GLfloat>& heightRange,
+                   vector<GLfloat>& tiltRange,
+                   vector<GLfloat>& initZAsptRatioRange,
+                   vector<GLfloat>& rotSpeedRange,
+                   vector<GLfloat>& maxRotDegRange);
+
         TestObject(TestObject& rObj);
         virtual ~TestObject(void);
     
         virtual TestObject * newObj(void) = 0;
         virtual TestObject * newObj(TestObject& rObject) = 0;
+
         virtual string getObjName(void) = 0;
         virtual UINT getObjID(void) = 0;
         virtual void setRandPara(void);
