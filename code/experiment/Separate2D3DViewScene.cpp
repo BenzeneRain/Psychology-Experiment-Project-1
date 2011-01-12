@@ -54,11 +54,6 @@ BOOL Separate2D3DViewScene::startScene()
         Screen *pScr = (Screen *) *it;
         pScr->setKeyboardFunc(Scene::dispatchKeyboardEvent);
         pScr->setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
-
-        GLfloat msecs;
-        msecs = 1000.0f / this->pObj->rotSpeed;
-        pScr->setTimerFunc((unsigned int)msecs,
-                Scene::dispatchTimerEvent, Separate2D3DViewScene::TIMERID);
     }  
 
     //bind timer event
@@ -93,8 +88,6 @@ BOOL Separate2D3DViewScene::renderScene()
 
     // FIX: should not hard code texID[0]
     // and any other codes
-
-    glEnable(GL_MULTISAMPLE);
 
     for(unsigned int i = 0; i < this->screens.size(); i ++)
     {
@@ -147,7 +140,7 @@ BOOL Separate2D3DViewScene::renderScene()
 
         glDisable(GL_TEXTURE_2D);
         glPushMatrix();
-        // Draw the cylinder in 2D
+        //Draw the cylinder in 2D
         glScalef(1.0f, 1.0f, this->pObj->adjZAsptRatio);
         this->pObj->draw(GLU_FILL);
 
@@ -184,17 +177,7 @@ BOOL Separate2D3DViewScene::initDisplay(Screen& scr)
 {
     this->reshape(scr.rDevMode.dmPelsWidth, scr.rDevMode.dmPelsHeight); 
 
-    //glEnable(GL_TEXTURE_2D);
-
-//    glDisable(GL_MULTISAMPLE);
-     glEnable(GL_MULTISAMPLE);
-//
-//    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//    glEnable(GL_BLEND);
-//    glEnable(GL_POINT_SMOOTH);
-//    glEnable(GL_LINE_SMOOTH);
-//    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
-//    glEnable(GL_POLYGON_SMOOTH);
+    glEnable(GL_MULTISAMPLE);
 
     return TRUE;
 }
@@ -224,10 +207,10 @@ BOOL Separate2D3DViewScene::handleKeyboardSpecialEvent(int key, int x, int y)
     switch(key)
     {
         case GLUT_KEY_UP:
-            pObj->adjustAsptRatio(0.1f);
+            pObj->adjustAsptRatio(0.01f);
             break;
         case GLUT_KEY_DOWN:
-            pObj->adjustAsptRatio(-0.1f);
+            pObj->adjustAsptRatio(-0.01f);
             break;
         default:
             break;
@@ -252,20 +235,22 @@ BOOL Separate2D3DViewScene::handleMousePassiveMotionEvent(int x, int y)
 
 BOOL Separate2D3DViewScene::handleTimerEvent(int timerID)
 {
+    GLfloat step = 1.0f;
+
     if(timerID == Separate2D3DViewScene::TIMERID)
     {
         if((this->pObj->rotDirection == TestObject::CLOCKWISE &&
-                    this->pObj->currRotDeg - 1.0f < -(this->pObj->maxRotDeg)) ||
+                    this->pObj->currRotDeg - step < -(this->pObj->maxRotDeg)) ||
                 (this->pObj->rotDirection == TestObject::COUNTERCLOCKWISE && 
-                 this->pObj->currRotDeg + 1.0f > this->pObj->maxRotDeg))
+                 this->pObj->currRotDeg + step > this->pObj->maxRotDeg))
         {
             this->pObj->reverseRotDirection(); 
         }
 
         if(this->pObj->rotDirection == TestObject::CLOCKWISE)
-            this->pObj->currRotDeg -= 1.0f;
+            this->pObj->currRotDeg -= step;
         else
-            this->pObj->currRotDeg += 1.0f;
+            this->pObj->currRotDeg += step;
 
         //bind timer event
         for(vector<Screen *>::iterator it = this->screens.begin();

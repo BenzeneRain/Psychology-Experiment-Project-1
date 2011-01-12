@@ -138,6 +138,10 @@ BOOL Screen::displayString(string str, float x, float y)
 // Call this before actual rendering
 void Screen::render()
 {
+    // TODO: caculate the FPS
+      
+
+
     // If we set double buffer, then swap the buffer
     // If we set single buffer, just flush the buffer
     if(((this->displayMode) & GLUT_DOUBLE) != 0)

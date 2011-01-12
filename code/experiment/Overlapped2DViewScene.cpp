@@ -73,12 +73,41 @@ BOOL Overlapped2DViewScene::renderScene()
     {
         int scrWidth = this->screens[i]->rDevMode.dmPelsWidth;
         int scrHeight = this->screens[i]->rDevMode.dmPelsHeight;
-        GLfloat fAspect = (GLfloat)scrWidth / (GLfloat)scrHeight;
+        int halfWidth = scrWidth >> 1;
+        GLfloat fAspect = (GLfloat)halfWidth / (GLfloat)scrHeight;
+
+        //////////////////////////////////////////////////////
+        // Draw the left part
+        glViewport(0, 0, halfWidth, scrHeight);
 
         glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
 
-        if(scrWidth <= scrHeight)
+        gluPerspective(60.0f, fAspect, 0.01f, 300.0f);
+        gluLookAt(0.0f, 120.0f, 150.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glColor3ub(255, 255, 255);
+
+        glEnable(GL_TEXTURE_2D);
+        // Draw the cylinder in 3D view
+        glPushMatrix();
+        glBindTexture(GL_TEXTURE_2D, this->screens[i]->texIDs[0]);
+        glTranslatef(0.0f, -20.0f, 0.0f);
+        glScalef(1.0f, 1.0f, this->pObj->initZAsptRatio);
+        glRotatef(this->pObj->currRotDeg, 0.0f, 1.0f, 0.0f);
+        this->pObj->draw(GLU_FILL);
+        glPopMatrix();
+
+        //////////////////////////////////////////////////////
+        // Draw the right part
+        glViewport(halfWidth + 1, 0, halfWidth, scrHeight);
+
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+
+        if(halfWidth <= scrHeight)
             glOrtho(-100.0, 100.0, -100.0/fAspect, 100.0/fAspect, 100.0, -100.0);
         else
             glOrtho(-100.0*fAspect, 100.0*fAspect, -100.0, 100.0, 100.0, -100.0);
@@ -89,24 +118,38 @@ BOOL Overlapped2DViewScene::renderScene()
         glLoadIdentity();
 
         glDisable(GL_TEXTURE_2D);
-        // Draw the cylinder before adjust in 2D
-        glPushMatrix();
-        glColor3ub(255, 255, 255);
-        glTranslatef(0.0f, -20.0f, 0.0f);
-        glScalef(1.0f, 1.0f, this->pObj->initZAsptRatio);
-        this->pObj->draw(GLU_SILHOUETTE);
-        glPopMatrix();
 
         // Draw the cylinder after adjust in 2D
         glPushMatrix();
-        glColor3ub(255, 0, 0);
+        glColor3ub(255, 255, 255);
         glTranslatef(0.0f, -20.0f, 0.0f);
         glScalef(1.0f, 1.0f, this->pObj->adjZAsptRatio);
-        this->pObj->draw(GLU_SILHOUETTE);
+        this->pObj->draw(GLU_FILL);
         glPopMatrix();
+
+        // Draw the cylinder before adjust in 2D
+        glPushMatrix();
+        glColor3ub(255, 0, 0);
+        //glTranslatef(0.0f, -20.0f, 0.0f);
+        glScalef(1.0f, 1.0f, this->pObj->initZAsptRatio);
+        glEnable(GL_LINE_STIPPLE);
+        glLineStipple(1, 0xf0f0);
+
+        GLfloat normalLineSize[2];
+        glGetFloatv(GL_LINE_WIDTH_RANGE, normalLineSize);
+        glLineWidth(3.0f);
+        this->pObj->draw(GLU_SILHOUETTE);
+        glLineWidth(normalLineSize[0]);
+        glDisable(GL_LINE_STIPPLE);
+        glPopMatrix();
+
+        //////////////////////////////////////////////////////
+        // Switch to the full screen and display
+        glViewport(0, 0, scrWidth, scrHeight);
 
         this->screens[i]->render();
     }
+
     return TRUE;
 }
 
@@ -134,10 +177,7 @@ BOOL Overlapped2DViewScene::initDisplay(Screen& scr)
 {
     this->reshape(scr.rDevMode.dmPelsWidth, scr.rDevMode.dmPelsHeight); 
 
-    // Disable texture
-    glDisable(GL_TEXTURE_2D);
-    
-    // Disable multisample
+    // Enable multisample
     glEnable(GL_MULTISAMPLE);
 
     return TRUE;

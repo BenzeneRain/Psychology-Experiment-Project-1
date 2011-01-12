@@ -136,7 +136,7 @@ void CylinderObject::draw(int drawStyle)
     gluQuadricNormals(pCylinder, GLU_SMOOTH);
     gluQuadricTexture(pCylinder, GL_TRUE);
 
-    gluDisk(pCylinder, 0.0f, this->radius, 1024, 1024);
+    gluDisk(pCylinder, 0.0f, this->radius, 1024, 2);
     gluDeleteQuadric(pCylinder);
 
     // Draw the top face
@@ -150,7 +150,7 @@ void CylinderObject::draw(int drawStyle)
     gluQuadricNormals(pCylinder, GLU_SMOOTH);
     gluQuadricTexture(pCylinder, GL_TRUE);
 
-    gluDisk(pCylinder, 0.0f, this->radius, 1024, 1024);
+    gluDisk(pCylinder, 0.0f, this->radius, 1024, 2);
     gluDeleteQuadric(pCylinder);
 
     glPopMatrix();
