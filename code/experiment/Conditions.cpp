@@ -13,8 +13,17 @@ Conditions::Conditions(string& filename, int numConditions,
 
     // TODO: Support for the texture and motion later
 
-    // Suppose the condition file is organized like this
-    // Object Names, Constraint weight, Slant Range, Tilt Range, Height Range, Initial Z Aspect Ratio Range, Rotation Speed Range, Max Rotation Degree Range, Object Specific Parameters     
+    // Suppose the condition file is organized like this for one constraint
+    // Object Names
+    // Constraint weight
+    // Slant Range
+    // Tilt Range
+    // Height Range
+    // Initial Z Aspect Ratio Range
+    // Rotation Speed Range
+    // Max Rotation Degree Range
+    // Object Specific Parameters     
+    //
     // P.S:
     // Object Names format: "# of Object Names" "Name1" "Name2" ...
     // e.g.: 2 Cylinder Cube
@@ -52,7 +61,6 @@ Conditions::Conditions(string& filename, int numConditions,
         {
             string name;
             
-            // TODO: handle comma at the end of the object names
             fin >> name;
             if(nameMap.find(name) != nameMap.end())
             {
@@ -94,14 +102,108 @@ Conditions::Conditions(string& filename, int numConditions,
 
 Conditions::~Conditions(void)
 {
-    for(unsigned int i = 0; i < this->constrains.size(); i ++)
+    vector<condCons_t>& rConstraints = this->constraints;
+    
+    for(unsigned int i = 0; i < rConstraints.size(); i ++)
     {
-        while(!this->constrains.templateObjects.empty())
+        vector<TestObject *>& rTestObjects = rConstraints[i].templateObjects;
+        while(!rTestObjects.empty())
         {
-            TestObject *pObj = this->constrains.templateObjects.back();
+            TestObject *pObj = rTestObjects.back();
             
             delete pObj;
-            this->constrains.templateObject.pop_back();
+            rTestObjects.pop_back();
         }
     }
+}
+
+template<typename T>
+BOOL Conditions::readRange(ifstream& fin, vector<T>& vec)
+{
+    char rangeType;
+
+    try
+    {
+        fin >> rangeType;
+        switch(rangeType)
+        {
+            case 'R':
+                break;
+            case 'S':
+                {
+                    int size;
+                    fin >> size;
+
+                    for(int i = 0; i < size; i ++)
+                    {
+                        T value;
+                        fin >> value;
+                        vec.push_back(value);
+                    }
+                    break;
+                }
+            default:
+                return FALSE;
+        }
+    }
+    catch(ifstream::failure e)
+    {
+        MessageBox(NULL, e.what().c_str(), NULL, MB_OK|MB_ICONERROR);
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+void Conditions::addConstraint(condCons_t& constraint)
+{
+    this->constraints.push_back(constraint);
+}
+
+// Generate a condition according to the specified constraint
+void Conditions::addCondition(int constraintIndex)
+{
+
+}
+
+// Add the existing condition to the condition list
+void Conditions::addCondition(cond_t& condition)
+{
+    this->conditions.push_back(condition);
+}
+
+void Conditions::shuffleConditions()
+{
+    random_shuffle(this->conditions.begin(), this->conditions.end());
+}
+
+void Conditions::generateConditions()
+{
+    int totalWeights = 0;
+    vector<int> accumulateWeight;
+    int prevAccWeight = 0;
+    int currAccWeight = 0;
+
+    for(unsigned int i = 0; i < this->constraints.size(); i ++)
+    {
+        currAccWeight = prevAccWeight + this->constraints[i].weight;
+        accumulateWeight.push_back(currAccWeight - 1);
+        prevAccWeight = currAccWeight;
+    }
+
+    totalWeights = currAccWeight;
+
+    for(int i = 0; i < this->numConditions; i ++)
+    {
+        int randomWeight = rand() % totalWeights; 
+
+        vector<int>::iterator it = 
+            lower_bound(accumulateWeight.begin(), accumulateWeight.end(), randomWeight);
+
+        int index = it - accumulateWeight.begin();
+             
+        this->addCondition(index);
+    }
+
+    this->shuffleConditions();
 }

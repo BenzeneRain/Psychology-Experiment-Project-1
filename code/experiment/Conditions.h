@@ -25,18 +25,22 @@ class Conditions
 
         cond_t& operator[](int &rhs);
 
-        void addConstraint(condCons_t& constrain);
+        void addConstraint(condCons_t& constraint);
         
-        void addCondition();
+        void addCondition(int constraintIndex);
         void addCondition(cond_t& condition);
 
         void generateConditions();
+        void shuffleConditions();
 
         vector<condCons_t>& getAllConstraints();
         vector<cond_t>& getAllConditions();
     private:
-        vector<condCons_t> constrains;
+        vector<condCons_t> constraints;
         vector<cond_t> conditions;
+
+        template<typename T>
+        BOOL readRange(ifstream& fin, vector<T>& vec);
 
         int numConditions;
 
