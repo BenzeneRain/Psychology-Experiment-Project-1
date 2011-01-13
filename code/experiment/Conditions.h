@@ -14,6 +14,7 @@ struct conditionStruct
 };
 typedef struct conditionStruct cond_t;
 
+
 class Conditions
 {
     public:
@@ -43,8 +44,10 @@ class Conditions
         template<typename T>
         BOOL readRange(ifstream& fin, vector<T>& vec, char& type);
 
-        int numConditions;
+        BOOL cylinderParameterReadingFunction(ifstream& fin, condCons_t& constraint);
 
+        int numConditions;
         // Forbid the operations below
         Conditions& operator=(Conditions& rhs); 
 };
+

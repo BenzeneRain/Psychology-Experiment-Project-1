@@ -45,9 +45,7 @@ Conditions::Conditions(string& filename, int numConditions,
     
     // Assume the Configuration file is complete and valid
 
-    // Build the mapping between the templateObjects and their names
-    
-
+    // Build the mapping between the object Factories and their product names
     this->objectFactoryNameMap.clear();
     for(unsigned int i = 0; i < this->objectFactories.size(); i ++)
         this->objectFactoryNameMap[this->objectFactories[i]->getProductName()] 
@@ -103,6 +101,13 @@ Conditions::Conditions(string& filename, int numConditions,
         this->readRange<GLfloat>(fin, pNewConstraint->maxRotDegRange, pNewConstraint->maxRotDegRangeType);
 
         // TODO: Read Object Specific Parameters
+        for(unsigned int i = 0; i < pNewConstraint->objectNames.size(); i ++)
+        {
+            if(!pNewConstraint->objectNames[i].compare("Cylinder"))
+            {
+                this->cylinderParameterReadingFunction(fin, *pNewConstraint);
+            }
+        }
 
         // Add the constaint
         this->addConstraint(*pNewConstraint);
@@ -250,3 +255,14 @@ const vector<cond_t>& Conditions::getAllConditions()
 {
     return this->conditions;
 }
+
+BOOL Conditions::cylinderParameterReadingFunction(ifstream& fin, condCons_t& constraint)
+{
+    BOOL ret;
+    
+    // Read Radius Range
+    ret = this->readRange<GLfloat>(fin, constraint.radiusRange, constraint.radiusRangeType);
+
+    return ret;
+}
+
