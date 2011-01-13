@@ -179,6 +179,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\CylinderFactory.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\CylinderObject.cpp"
 				>
 			</File>
@@ -243,6 +247,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\TestObjectFactory.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Trial.cpp"
 				>
 			</File>
@@ -253,11 +261,19 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\ConditionConstraints.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Conditions.h"
 				>
 			</File>
 			<File
 				RelativePath=".\ConfWnd.h"
+				>
+			</File>
+			<File
+				RelativePath=".\CylinderFactory.h"
 				>
 			</File>
 			<File
@@ -314,6 +330,10 @@
 			</File>
 			<File
 				RelativePath=".\TestObject.h"
+				>
+			</File>
+			<File
+				RelativePath=".\TestObjectFactory.h"
 				>
 			</File>
 			<File

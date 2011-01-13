@@ -1,13 +1,15 @@
 #include "stdafx.h"
 #include "Conditions.h"
+#include "TestObjectFactory.h"
 #include "TestObject.h"
 #include <fstream>
-#include <hash_map>
+
 
 using namespace stdext;
 
 Conditions::Conditions(string& filename, int numConditions,
-        vector<TestObject *>templateObjects)
+        vector<TestObjectFactory *>& rObjectFactories):
+    objectFactories(rObjectFactories)
 {
     this->numConditions = numConditions;
 
@@ -44,10 +46,12 @@ Conditions::Conditions(string& filename, int numConditions,
     // Assume the Configuration file is complete and valid
 
     // Build the mapping between the templateObjects and their names
-    hash_map<string, TestObject *> nameMap;
+    
 
-    for(unsigned int i = 0; i < templateObjects.size(); i ++)
-        nameMap[templateObjects[i]->getObjName()] = templateObjects[i];
+    this->objectFactoryNameMap.clear();
+    for(unsigned int i = 0; i < this->objectFactories.size(); i ++)
+        this->objectFactoryNameMap[this->objectFactories[i]->getProductName()] 
+            = this->objectFactories[i];
 
     ifstream fin(filename.c_str());
     while(fin.good())
@@ -62,9 +66,9 @@ Conditions::Conditions(string& filename, int numConditions,
             string name;
             
             fin >> name;
-            if(nameMap.find(name) != nameMap.end())
+            if(this->objectFactoryNameMap.find(name) != this->objectFactoryNameMap.end())
             {
-                pNewConstraint->templateObjects.push_back(nameMap[name]);
+                pNewConstraint->objectNames.push_back(name);
             }
             else
             {
@@ -80,17 +84,23 @@ Conditions::Conditions(string& filename, int numConditions,
 
         pNewConstraint->weight = weight;
 
-        // TODO: Read Slant Range
+        // Read Slant Range
+        this->readRange<GLfloat>(fin, pNewConstraint->slantRange, pNewConstraint->slantRangeType);
 
-        // TODO: Read Tilt Range
+        // Read Tilt Range
+        this->readRange<GLfloat>(fin, pNewConstraint->tiltRange, pNewConstraint->tiltRangeType);
         
-        // TODO: Read Height Range
+        // Read Height Range
+        this->readRange<GLfloat>(fin, pNewConstraint->heightRange, pNewConstraint->heightRangeType);
 
-        // TODO: Read Initial Z Aspect Ratio Range
+        // Read Initial Z Aspect Ratio Range
+        this->readRange<GLfloat>(fin, pNewConstraint->initZAsptRatioRange, pNewConstraint->initZAsptRatioRangeType);
 
-        // TODO: Read Rotation Speed Range
+        // Read Rotation Speed Range
+        this->readRange<GLfloat>(fin, pNewConstraint->rotSpeedRange, pNewConstraint->rotSpeedRangeType);
 
-        // TODO: Max Rotation Degree Range
+        // Max Rotation Degree Range
+        this->readRange<GLfloat>(fin, pNewConstraint->maxRotDegRange, pNewConstraint->maxRotDegRangeType);
 
         // TODO: Read Object Specific Parameters
 
@@ -102,23 +112,34 @@ Conditions::Conditions(string& filename, int numConditions,
 
 Conditions::~Conditions(void)
 {
+    // Dispose constraints
     vector<condCons_t>& rConstraints = this->constraints;
     
-    for(unsigned int i = 0; i < rConstraints.size(); i ++)
+    while(!rConstraints.empty())
     {
-        vector<TestObject *>& rTestObjects = rConstraints[i].templateObjects;
-        while(!rTestObjects.empty())
-        {
-            TestObject *pObj = rTestObjects.back();
-            
-            delete pObj;
-            rTestObjects.pop_back();
-        }
+        condCons_t *pCondCons = &rConstraints.back();
+        delete pCondCons;
+
+        rConstraints.pop_back();
+    }
+
+    // Dispose conditions
+    vector<cond_t>& rConditions = this->conditions;
+
+    while(!rConditions.empty())
+    {
+        cond_t *pCondition = &rConditions.back();
+        TestObject *pObject = pCondition->pRealObject;
+
+        delete pObject;
+        delete pCondition;
+
+        rConditions.pop_back();
     }
 }
 
 template<typename T>
-BOOL Conditions::readRange(ifstream& fin, vector<T>& vec)
+BOOL Conditions::readRange(ifstream& fin, vector<T>& vec, char& type)
 {
     char rangeType;
 
@@ -145,10 +166,12 @@ BOOL Conditions::readRange(ifstream& fin, vector<T>& vec)
             default:
                 return FALSE;
         }
+
+        type = rangeType;
     }
     catch(ifstream::failure e)
     {
-        MessageBox(NULL, e.what().c_str(), NULL, MB_OK|MB_ICONERROR);
+        MessageBox(NULL, e.what(), NULL, MB_OK|MB_ICONERROR);
         return FALSE;
     }
 
@@ -163,7 +186,17 @@ void Conditions::addConstraint(condCons_t& constraint)
 // Generate a condition according to the specified constraint
 void Conditions::addCondition(int constraintIndex)
 {
+   int randIndex;
+   randIndex = rand() % this->constraints[constraintIndex].objectNames.size();
 
+   TestObjectFactory *pFactory = this->objectFactoryNameMap[
+       this->constraints[constraintIndex].objectNames[randIndex]];
+
+   cond_t *pNewCondition = new cond_t;
+
+   pNewCondition->pRealObject = pFactory->createObject(this->constraints[constraintIndex]);
+
+   this->conditions.push_back(*pNewCondition);
 }
 
 // Add the existing condition to the condition list
@@ -206,4 +239,14 @@ void Conditions::generateConditions()
     }
 
     this->shuffleConditions();
+}
+
+const vector<condCons_t>& Conditions::getAllConstraints()
+{
+    return this->constraints;
+}
+
+const vector<cond_t>& Conditions::getAllConditions()
+{
+    return this->conditions;
 }

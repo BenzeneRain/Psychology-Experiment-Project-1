@@ -1,18 +1,16 @@
 #pragma once
 
 #include "stdafx.h"
+#include "ConditionConstraints.h"
+#include "TestObjectFactory.h"
 #include "TestObject.h"
+#include <hash_map>
 
-struct conditionConstraints
-{
-    vector<TestObject *> templateObjects;
-    int weight; // The weight of the number of this kind of conditions in all conditions
-};
-typedef struct conditionConstraints condCons_t;
+using namespace stdext;
 
 struct conditionStruct
 {
-    TestObject *realObject;
+    TestObject *pRealObject;
 };
 typedef struct conditionStruct cond_t;
 
@@ -20,7 +18,7 @@ class Conditions
 {
     public:
         explicit Conditions(string& filename, int numConditions,
-                vector<TestObject *>templateObjects);
+                vector<TestObjectFactory *>& rObjectFactories);
         ~Conditions(void);
 
         cond_t& operator[](int &rhs);
@@ -33,14 +31,17 @@ class Conditions
         void generateConditions();
         void shuffleConditions();
 
-        vector<condCons_t>& getAllConstraints();
-        vector<cond_t>& getAllConditions();
+        const vector<condCons_t>& getAllConstraints();
+        const vector<cond_t>& getAllConditions();
+
     private:
         vector<condCons_t> constraints;
         vector<cond_t> conditions;
+        vector<TestObjectFactory *> objectFactories;
+        hash_map<string, TestObjectFactory *> objectFactoryNameMap;
 
         template<typename T>
-        BOOL readRange(ifstream& fin, vector<T>& vec);
+        BOOL readRange(ifstream& fin, vector<T>& vec, char& type);
 
         int numConditions;
 
