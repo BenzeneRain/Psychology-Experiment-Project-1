@@ -18,71 +18,42 @@ BOOL Separate2D3DViewScene::startScene()
 {
     // Cancel all keyboards and mouses events bindings
     // and reset all other functions, e.g. display
-    for(vector<Screen *>::iterator it = this->screens.begin();
-            it != this->screens.end(); it ++)
-    {
-        ((Screen *)*it)->resetAllFunc();
-    }   
+    this->rScreen.resetAllFunc();
 
     // Get the random object
     TestObject& rObject = *this->condition.pRealObject;
     if(Experiment::debug)
     {
-        MessageBox(NULL, (rObject.getObjName()).c_str(), NULL, NULL);
+        MessageBox(NULL, (LPCSTR)((rObject.getObjName()).c_str()), NULL, NULL);
     }
 
     // Clear the screen
-    for(vector<Screen *>::iterator it = this->screens.begin();
-            it != this->screens.end(); it ++)
-    {
-        ((Screen *)*it)->clear();
-    }  
+    this->rScreen.clear();
 
     // set display function and reshape function
-    for(vector<Screen *>::iterator it = this->screens.begin();
-            it != this->screens.end(); it ++)
-    {
-        ((Screen *)*it)->setDisplayFunc(Scene::dispatchSceneRender);
-        ((Screen *)*it)->setReshapeFunc(Scene::dispatchReshape);
-    }  
+    this->rScreen.setDisplayFunc(Scene::dispatchSceneRender);
+    this->rScreen.setReshapeFunc(Scene::dispatchReshape);
 
     // Bind new keyboards and mouses events
-    for(vector<Screen *>::iterator it = this->screens.begin();
-            it != this->screens.end(); it ++)
-    {
-        Screen *pScr = (Screen *) *it;
-        pScr->setKeyboardFunc(Scene::dispatchKeyboardEvent);
-        pScr->setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
-    }  
+    this->rScreen.setKeyboardFunc(Scene::dispatchKeyboardEvent);
+    this->rScreen.setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
 
     //bind timer event
-    for(vector<Screen *>::iterator it = this->screens.begin();
-            it != this->screens.end(); it ++)
+    GLfloat msecs;
+    // Set the rotSpeed to 0 can make
+    // the object stay still.
+    if(rObject.rotSpeed != 0)
     {
-        Screen *pScr = (Screen *) *it;
-        GLfloat msecs;
-
-        // Set the rotSpeed to 0 can make
-        // the object stay still.
-        if(rObject.rotSpeed != 0)
-        {
-            msecs = 1000.0f / rObject.rotSpeed;
-            pScr->setTimerFunc((unsigned int)msecs,
-                    Scene::dispatchTimerEvent, Separate2D3DViewScene::TIMERID);
-        }
-    }  
+        msecs = 1000.0f / rObject.rotSpeed;
+        this->rScreen.setTimerFunc((unsigned int)msecs,
+                Scene::dispatchTimerEvent, Separate2D3DViewScene::TIMERID);
+    }
 
     // Start running the scene
     // FIX: This is actually a run design if there are multiple screens
     // e.g. the program will be blocked for each run()
-    for(vector<Screen *>::iterator it = this->screens.begin();
-            it != this->screens.end(); it ++)
-    {
-        Screen *pScr = (Screen *) *it;
-        this->initDisplay(*pScr);
-        pScr->run();
-    }  
-
+    this->initDisplay();
+    this->rScreen.run();
 
     return TRUE;
 }
@@ -96,69 +67,64 @@ BOOL Separate2D3DViewScene::renderScene()
     // FIX: should not hard code texID[0]
     // and any other codes
 
-    for(unsigned int i = 0; i < this->screens.size(); i ++)
-    {
-        int scrWidth = this->screens[i]->rDevMode.dmPelsWidth;
-        int scrHeight = this->screens[i]->rDevMode.dmPelsHeight;
-        int halfWidth = scrWidth >> 1;
-        GLfloat fAspect = (GLfloat)halfWidth / (GLfloat)scrHeight;
+    int scrWidth = this->rScreen.rDevMode.dmPelsWidth;
+    int scrHeight = this->rScreen.rDevMode.dmPelsHeight;
+    int halfWidth = scrWidth >> 1;
+    GLfloat fAspect = (GLfloat)halfWidth / (GLfloat)scrHeight;
 
-        //////////////////////////////////////////////////////
-        // Draw the left part
-        glViewport(0, 0, halfWidth, scrHeight);
+    //////////////////////////////////////////////////////
+    // Draw the left part
+    glViewport(0, 0, halfWidth, scrHeight);
 
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
 
-        gluPerspective(60.0f, fAspect, 0.01f, 300.0f);
-        gluLookAt(0.0f, 120.0f, 150.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    gluPerspective(60.0f, fAspect, 0.01f, 300.0f);
+    gluLookAt(0.0f, 120.0f, 150.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-        glColor3ub(255, 255, 255);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glColor3ub(255, 255, 255);
 
-        glEnable(GL_TEXTURE_2D);
-        // Draw the cylinder in 3D view
-        glPushMatrix();
-        glBindTexture(GL_TEXTURE_2D, this->screens[i]->texIDs[0]);
-        glTranslatef(0.0f, -20.0f, 0.0f);
-        glScalef(1.0f, 1.0f, rObject.initZAsptRatio);
-        glRotatef(rObject.currRotDeg, 0.0f, 1.0f, 0.0f);
-        rObject.draw(GLU_FILL);
-        glPopMatrix();
+    // Draw the cylinder in 3D view
+    glPushMatrix();
+    glTranslatef(0.0f, -20.0f, 0.0f);
+    glScalef(1.0f, 1.0f, rObject.initZAsptRatio);
+    glRotatef(rObject.currRotDeg, 0.0f, 1.0f, 0.0f);
+    rObject.draw(GLU_FILL, TRUE);
+    glPopMatrix();
 
-        //////////////////////////////////////////////////////
-        // Draw the right part
-        glViewport(halfWidth + 1, 0, halfWidth, scrHeight);
+    //////////////////////////////////////////////////////
+    // Draw the right part
+    glViewport(halfWidth + 1, 0, halfWidth, scrHeight);
 
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
 
-        if(halfWidth <= scrHeight)
-            glOrtho(-100.0, 100.0, -100.0/fAspect, 100.0/fAspect, 100.0, -100.0);
-        else
-            glOrtho(-100.0*fAspect, 100.0*fAspect, -100.0, 100.0, 100.0, -100.0);
+    if(halfWidth <= scrHeight)
+        glOrtho(-100.0, 100.0, -100.0/fAspect, 100.0/fAspect, 100.0, -100.0);
+    else
+        glOrtho(-100.0*fAspect, 100.0*fAspect, -100.0, 100.0, 100.0, -100.0);
 
-        gluLookAt(0.0f, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+    gluLookAt(0.0f, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
 
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-        glColor3ub(255, 255, 255);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glColor3ub(255, 255, 255);
 
-        glDisable(GL_TEXTURE_2D);
-        glPushMatrix();
-        //Draw the cylinder in 2D
-        glScalef(1.0f, 1.0f, rObject.adjZAsptRatio);
-        rObject.draw(GLU_FILL);
+    glPushMatrix();
+    //Draw the cylinder in 2D
+    glScalef(1.0f, 1.0f, rObject.adjZAsptRatio);
+    rObject.draw(GLU_FILL, FALSE);
 
-        glPopMatrix();
+    glPopMatrix();
 
-        //////////////////////////////////////////////////////
-        // Switch to the full screen and display
-        glViewport(0, 0, scrWidth, scrHeight);
+    //////////////////////////////////////////////////////
+    // Switch to the full screen and display
+    glViewport(0, 0, scrWidth, scrHeight);
 
-        this->screens[i]->render();
-    }
+    this->rScreen.render();
+
     return TRUE;
 }
 
@@ -180,9 +146,10 @@ BOOL Separate2D3DViewScene::reshape(int w, int h)
     return TRUE;
 }
 
-BOOL Separate2D3DViewScene::initDisplay(Screen& scr)
+BOOL Separate2D3DViewScene::initDisplay()
 {
-    this->reshape(scr.rDevMode.dmPelsWidth, scr.rDevMode.dmPelsHeight); 
+    this->reshape(this->rScreen.rDevMode.dmPelsWidth,
+            this->rScreen.rDevMode.dmPelsHeight); 
 
     glEnable(GL_MULTISAMPLE);
 
@@ -195,12 +162,7 @@ BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)
     {
         case VK_SPACE:
             {
-                for(vector<Screen *>::iterator it = this->screens.begin();
-                        it != this->screens.end(); it ++)
-                {
-                    ((Screen *)*it)->stopped = TRUE;
-                }  
-
+                this->rScreen.stopped = TRUE;
                 break;
             }
         default:
@@ -263,22 +225,17 @@ BOOL Separate2D3DViewScene::handleTimerEvent(int timerID)
             rObject.currRotDeg += step;
 
         //bind timer event
-        for(vector<Screen *>::iterator it = this->screens.begin();
-                it != this->screens.end(); it ++)
+        GLfloat msecs;
+
+        // Set the rotSpeed to 0 can make
+        // the object stay still.
+        if(rObject.rotSpeed != 0)
         {
-            Screen *pScr = (Screen *) *it;
-            GLfloat msecs;
-            
-            // Set the rotSpeed to 0 can make
-            // the object stay still.
-            if(rObject.rotSpeed != 0)
-            {
-                msecs = 1000.0f / rObject.rotSpeed;
-                pScr->setTimerFunc((unsigned int)msecs,
-                        Scene::dispatchTimerEvent, Separate2D3DViewScene::TIMERID);
-            }
-        }  
-    }
+            msecs = 1000.0f / rObject.rotSpeed;
+            this->rScreen.setTimerFunc((unsigned int)msecs,
+                    Scene::dispatchTimerEvent, Separate2D3DViewScene::TIMERID);
+        }
+    }  
 
     return TRUE;
 }

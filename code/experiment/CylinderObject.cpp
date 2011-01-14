@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "TestObject.h"
 #include "CylinderObject.h"
 #include <string>
 #include <sstream>
@@ -25,11 +26,15 @@ CylinderObject::CylinderObject(vector<GLfloat>& slantRange,
                             vector<GLfloat>& initZAsptRatioRange,
                             vector<GLfloat>& rotSpeedRange,
                             vector<GLfloat>& maxRotDegRange,
-                            vector<GLfloat>& radiusRange):
+                            vector<GLfloat>& radiusRange,
+                            vector<GLuint>& textureID):
     TestObject(slantRange, heightRange, tiltRange, initZAsptRatioRange,
             rotSpeedRange, maxRotDegRange) 
 {
     this->radiusRange = radiusRange;    
+    this->topTextureID = textureID[0];
+    this->bottomTextureID = textureID[1];
+    this->sideTextureID = textureID[2];
 }
 
 CylinderObject::CylinderObject(CylinderObject &rObj) : TestObject(rObj)
@@ -123,50 +128,72 @@ string CylinderObject::genObjPara()
     return strPara;
 }
 
-void CylinderObject::draw(int drawStyle)
+void CylinderObject::draw(int drawStyle, BOOL enableTexture)
 {
     GLUquadricObj *pCylinder;
 
-    glPushMatrix();
+    if(enableTexture)
+    {
+        glEnable(GL_TEXTURE_2D);
+    }
+    else
+    {
+        glDisable(GL_TEXTURE_2D);
+    }
 
-    glRotatef(90, -1.0f, 0.0f, 0.0f);
+    {
+        glPushMatrix();
+        glRotatef(90, -1.0f, 0.0f, 0.0f);
 
-    pCylinder = gluNewQuadric();
+        if(enableTexture)
+        {
+            glBindTexture(GL_TEXTURE_2D, this->sideTextureID);
+        }
+        pCylinder = gluNewQuadric();
+        gluQuadricDrawStyle(pCylinder, drawStyle);
+        gluQuadricNormals(pCylinder, GLU_SMOOTH);
+        gluQuadricTexture(pCylinder, GL_TRUE);
 
-    gluQuadricDrawStyle(pCylinder, drawStyle);
-    gluQuadricNormals(pCylinder, GLU_SMOOTH);
-    gluQuadricTexture(pCylinder, GL_TRUE);
+        // Draw the cylinder
+        gluCylinder(pCylinder, this->radius, this->radius, this->height, 32, 32);
 
-    // Draw the cylinder
-    gluCylinder(pCylinder, this->radius, this->radius, this->height, 32, 32);
+        gluDeleteQuadric(pCylinder);
 
-    gluDeleteQuadric(pCylinder);
+        // Draw the bottom face
+        if(enableTexture)
+        {
+            glBindTexture(GL_TEXTURE_2D, this->bottomTextureID);
+        }
+        pCylinder = gluNewQuadric();
+        gluQuadricDrawStyle(pCylinder, drawStyle);
+        gluQuadricNormals(pCylinder, GLU_SMOOTH);
+        gluQuadricTexture(pCylinder, GL_TRUE);
 
-    // Draw the bottom face
-    pCylinder = gluNewQuadric();
+        gluDisk(pCylinder, 0.0f, this->radius, 1024, 2);
+        gluDeleteQuadric(pCylinder);
 
-    gluQuadricDrawStyle(pCylinder, drawStyle);
-    gluQuadricNormals(pCylinder, GLU_SMOOTH);
-    gluQuadricTexture(pCylinder, GL_TRUE);
+        {
+            // Draw the top face
+            glPushMatrix();
+            glTranslatef(0.0f, 0.0f, this->height);
 
-    gluDisk(pCylinder, 0.0f, this->radius, 1024, 2);
-    gluDeleteQuadric(pCylinder);
+            if(enableTexture)
+            {
+                glBindTexture(GL_TEXTURE_2D, this->topTextureID);
+            }
+            pCylinder = gluNewQuadric();
+            gluQuadricDrawStyle(pCylinder, drawStyle);
+            gluQuadricNormals(pCylinder, GLU_SMOOTH);
+            gluQuadricTexture(pCylinder, GL_TRUE);
 
-    // Draw the top face
+            gluDisk(pCylinder, 0.0f, this->radius, 1024, 2);
+            gluDeleteQuadric(pCylinder);
 
-    glPushMatrix();
-    glTranslatef(0.0f, 0.0f, this->height);
+            glPopMatrix();
+        }
 
-    pCylinder = gluNewQuadric();
+        glPopMatrix();
+    }
 
-    gluQuadricDrawStyle(pCylinder, drawStyle);
-    gluQuadricNormals(pCylinder, GLU_SMOOTH);
-    gluQuadricTexture(pCylinder, GL_TRUE);
-
-    gluDisk(pCylinder, 0.0f, this->radius, 1024, 2);
-    gluDeleteQuadric(pCylinder);
-
-    glPopMatrix();
-
-    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
 }

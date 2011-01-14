@@ -55,7 +55,7 @@ void ConfWnd::updateOutputFilename(HWND hDlg)
     uiSubjectIDLen = SendMessage(hSubjectIDEditBox, EM_LINELENGTH, 0, 0);
 
     char *lpstrSubjectID = new char [uiSubjectIDLen + 10];
-    GetDlgItemText(hDlg, IDC_EDIT4, lpstrSubjectID, uiSubjectIDLen + 1);
+    GetDlgItemText(hDlg, IDC_EDIT4, (LPSTR)lpstrSubjectID, uiSubjectIDLen + 1);
     string strSubjectID(lpstrSubjectID);
     delete [] lpstrSubjectID;
 
@@ -68,7 +68,7 @@ void ConfWnd::updateOutputFilename(HWND hDlg)
 
     char *lpstrRule = new char[uiRuleLen + 10];
 
-    GetDlgItemText(hDlg, IDC_EDIT5, lpstrRule, uiRuleLen + 1);
+    GetDlgItemText(hDlg, IDC_EDIT5, (LPSTR)lpstrRule, uiRuleLen + 1);
 
     string strRule(lpstrRule);
     delete [] lpstrRule;
@@ -237,7 +237,7 @@ int ConfWnd::validateFileExistance(HWND hDlg)
     uiOutputFilenameLen = SendMessage(hOutputFilenameEditBox, EM_LINELENGTH, 0, 0);
 
     char *lpstrOutputFilename = new char[uiOutputFilenameLen + 10];
-    GetDlgItemText(hDlg, IDC_EDIT6, lpstrOutputFilename, uiOutputFilenameLen + 1);
+    GetDlgItemText(hDlg, IDC_EDIT6, (LPSTR)lpstrOutputFilename, uiOutputFilenameLen + 1);
 
     // try open the file
     ifstream fin(lpstrOutputFilename);
@@ -266,7 +266,7 @@ void ConfWnd::confirmConfiguration(HWND hDlg)
     uiSubjectIDLen = SendMessage(hSubjectIDEditBox, EM_LINELENGTH, 0, 0);
 
     char *lpstrSubjectID = new char [uiSubjectIDLen + 10];
-    GetDlgItemText(hDlg, IDC_EDIT4, lpstrSubjectID, uiSubjectIDLen + 1);
+    GetDlgItemText(hDlg, IDC_EDIT4, (LPSTR)lpstrSubjectID, uiSubjectIDLen + 1);
     pConfWnd->subjectID = string(lpstrSubjectID);
     delete [] lpstrSubjectID;
 
@@ -306,7 +306,7 @@ void ConfWnd::confirmConfiguration(HWND hDlg)
         uiOutputFilenameLen = SendMessage(hOutputFilenameEditBox, EM_LINELENGTH, 0, 0);
 
         char *lpstrOutputFilename = new char[uiOutputFilenameLen + 10];
-        GetDlgItemText(hDlg, IDC_EDIT6, lpstrOutputFilename, uiOutputFilenameLen + 1);
+        GetDlgItemText(hDlg, IDC_EDIT6, (LPSTR)lpstrOutputFilename, uiOutputFilenameLen + 1);
         
         pConfWnd->outFilename = string(lpstrOutputFilename);
 
@@ -337,8 +337,8 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
                 // Set the default values to blanks
                 SetDlgItemInt(hDlg, IDC_EDIT2, 0, FALSE); // Number of section
                 SetDlgItemInt(hDlg, IDC_EDIT1, 0, FALSE); // Number of trials in one section
-                SetDlgItemText(hDlg, IDC_EDIT4, (const char *)("0")); // Subject ID
-                SetDlgItemText(hDlg, IDC_EDIT5, (const char *)("/SID/-/Date/-/Time/.txt")); // Output Filename Rule
+                SetDlgItemText(hDlg, IDC_EDIT4, (LPCSTR)("0")); // Subject ID
+                SetDlgItemText(hDlg, IDC_EDIT5, (LPCSTR)("/SID/-/Date/-/Time/.txt")); // Output Filename Rule
 
                 // 1. Update total section numbers
                 // 2. Update output filename
@@ -397,9 +397,9 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
                             // Validate the blanks
                             if(pConfWnd->validateBlanks(hDlg) != 0)
                             {
-                                MessageBox(NULL, "Some blanks are invalid, and please check.\n"
+                                MessageBox(NULL, (LPCSTR)"Some blanks are invalid, and please check.\n"
                                         "Notice that the total number of trials cannot be zero, and "
-                                        "the output filename cannot be nothing.", "Configuration Warning!",
+                                        "the output filename cannot be nothing.", (LPCSTR)"Configuration Warning!",
                                         MB_OK | MB_ICONERROR);
                                 succeed = FALSE;
                             }
@@ -411,7 +411,7 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
                             if(pConfWnd->validateFileExistance(hDlg) != 0)
                             {
                                 int ret;
-                                ret = MessageBox(NULL, "The chosen output file is existed."
+                                ret = MessageBox(NULL, (LPCSTR)"The chosen output file is existed."
                                     " Choose another filename please.", NULL, MB_OK | MB_ICONERROR);
                                 succeed = FALSE;
                             }

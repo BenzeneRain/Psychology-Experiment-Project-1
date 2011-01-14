@@ -11,7 +11,7 @@ class Screen
         Screen(DEVMODE&);
         ~Screen();
 
-        BOOL initGlut(UINT displayMode, string title, vector<HBITMAP>& hBitmaps);
+        BOOL initGlut(UINT displayMode, string title);
 
         BOOL cancelKMBinds();
         BOOL clear();
@@ -26,6 +26,8 @@ class Screen
         BOOL setMousePassiveMotionFunc(void (*func)(int x, int y));
         BOOL setTimerFunc(unsigned int msecs, void (*func)(int timerID), int timerID);
         BOOL setIdleFunc(void (*func)(void));
+
+        BOOL initTextures(vector<HBITMAP>& hBitmaps);
 
         BOOL run();
         void render();

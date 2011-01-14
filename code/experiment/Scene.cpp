@@ -7,7 +7,7 @@
 using namespace std;
 
 Scene::Scene():
-    screens(Experiment::getInstance(NULL)->screens)
+    rScreen(*Experiment::getInstance(NULL)->pScreen)
 {
     Scene::currScene = this;
 }

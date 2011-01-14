@@ -58,26 +58,14 @@ BOOL Experiment::startProgram()
     }
 
     // Initialize the system
-    this->initSystem();
-
-
-    // Initialize the glut
-    for(vector<Screen *>::iterator it = this->screens.begin();
-            it != this->screens.end(); it ++)
+    ret = this->initSystem();
+    if(ret == FALSE)
     {
-        Screen *pScreen = (Screen *) *it;
-        if(!Experiment::debug)
-        {
-            pScreen->initGlut(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH |
-                GLUT_MULTISAMPLE | GLUT_STENCIL,
-                "Experiment", this->hBitmaps);
-        }
-        else
-        {
-            pScreen->initGlut(GLUT_RGB | GLUT_SINGLE,
-                "Experiment", this->hBitmaps);
-        }
-    }  
+        // dispose
+        this->disposeSystem();
+        return FALSE; 
+    }
+
     // Initialize the output file if in experiment mode
     if(this->experiMode == 0)
     {
@@ -94,7 +82,6 @@ BOOL Experiment::startProgram()
     this->proceedExperiment();
 
     // dispose
-
     this->disposeSystem();
     
     return TRUE;
@@ -109,7 +96,8 @@ BOOL Experiment::initOutputFile()
     }
     catch(fstream::failure err)
     {
-        MessageBox(NULL, "Fail to open the output file. The program will exit silently.", "Error", 0);
+        MessageBox(NULL, (LPCSTR)"Fail to open the output file. The program will exit silently.", 
+            (LPCSTR)"Error", 0);
         return FALSE;
     }
 }
@@ -127,6 +115,7 @@ BOOL Experiment::closeOutputFile()
 
 BOOL Experiment::initSystem()
 {
+    BOOL ret = TRUE;
     // get the configurations
     ConfWnd *pConfWnd = ConfWnd::getInstance();
 
@@ -146,30 +135,28 @@ BOOL Experiment::initSystem()
     srand((unsigned int)time(NULL));
 
     // Initialize screen class
-    static auto_ptr<Screen> apScreen;
-    apScreen.reset(new Screen(this->devMode));
+    this->pScreen = new Screen(this->devMode);
 
-    Screen * pScreen = apScreen.get();
-    this->screens.push_back(pScreen);
-
-    // FIX: Load texture files
-    HBITMAP hBitmap;
-    hBitmap = (HBITMAP)::LoadImage(NULL, "./textures/voron_higher_resrgb.bmp", 
-        IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-    if(hBitmap == NULL)
+    // Initialize the glut
+    if(!Experiment::debug)
     {
-        MessageBox(NULL, "Fail to load the texture", NULL, MB_OK | MB_ICONERROR);
-        return FALSE;
+        this->pScreen->initGlut(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH |
+                GLUT_MULTISAMPLE | GLUT_STENCIL,
+                "Experiment");
     }
-    this->hBitmaps.push_back(hBitmap);
-
+    else
+    {
+        this->pScreen->initGlut(GLUT_RGB | GLUT_SINGLE,
+                "Experiment");
+    }
 
     // Initialize the conditions
     // FIX: the filename should not be here
     this->experimentConditions = new Conditions(string("config.txt"), this->maxSecNo * this->trialsInOneSec,
-            this->objectFactories);
-    this->experimentConditions->generateConditions();
-    return TRUE;
+            this->objectFactories, *this->pScreen);
+    ret = this->experimentConditions->initConditions();
+
+    return ret;
 }
 
 BOOL Experiment::proceedExperiment()
@@ -201,9 +188,7 @@ BOOL Experiment::proceedExperiment()
     }
 
     //show post-experiment scene
-    Scene *pScene;
-
-    pScene = new PostExperimentScene();
+    Scene *pScene = new PostExperimentScene();
     pScene->startScene();
     delete pScene;
 
@@ -282,15 +267,6 @@ BOOL Experiment::disposeSystem()
         delete pObjectFactory;
 
         this->objectFactories.pop_back();
-    }
-
-    // Delete Bitmap resources
-    while(!this->hBitmaps.empty())
-    {
-        HBITMAP hBitmap = this->hBitmaps.back();
-        DeleteObject(hBitmap);
-
-        this->hBitmaps.pop_back();
     }
 
     // Delete Conditions

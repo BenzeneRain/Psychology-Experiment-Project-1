@@ -4,6 +4,7 @@
 #include "ConditionConstraints.h"
 #include "TestObjectFactory.h"
 #include "TestObject.h"
+#include "Screen.h"
 #include <hash_map>
 
 using namespace stdext;
@@ -11,6 +12,7 @@ using namespace stdext;
 struct conditionStruct
 {
     TestObject *pRealObject;
+    vector<GLuint> textureID;
 };
 typedef struct conditionStruct cond_t;
 
@@ -18,11 +20,11 @@ typedef struct conditionStruct cond_t;
 class Conditions
 {
     public:
-        explicit Conditions(string& filename, int numConditions,
-                vector<TestObjectFactory *>& rObjectFactories);
+        explicit Conditions(string& rFilename, int numConditions,
+                vector<TestObjectFactory *>& rObjectFactories, Screen& rScr);
         ~Conditions(void);
 
-        cond_t& operator[](int &rhs);
+        BOOL initConditions();
 
         void addConstraint(condCons_t* pConstraint);
         
@@ -32,6 +34,7 @@ class Conditions
         void generateConditions();
         void shuffleConditions();
 
+        cond_t& operator[](int &rhs);
         const vector<condCons_t *>& getAllConstraints();
         const vector<cond_t *>& getAllConditions();
 
@@ -41,10 +44,18 @@ class Conditions
         vector<TestObjectFactory *>& objectFactories;
         hash_map<string, TestObjectFactory *> objectFactoryNameMap;
 
+        string filename;
+        vector<HBITMAP> hBitmaps;
+        hash_map<string, int> bitmapNameMap;
+
         template<typename T>
         BOOL readRange(ifstream& fin, vector<T>& vec, char& type);
+        BOOL readConstraints(ifstream& fin);
+        BOOL readTextures(ifstream& fin);
 
         BOOL cylinderParameterReadingFunction(ifstream& fin, condCons_t& constraint);
+
+        Screen& rScreen;
 
         int numConditions;
         // Forbid the operations below

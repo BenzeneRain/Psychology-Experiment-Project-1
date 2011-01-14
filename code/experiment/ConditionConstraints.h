@@ -1,7 +1,6 @@
 #pragma once
 #include "stdafx.h"
 
-
 struct conditionConstraints
 {
     vector<string> objectNames;
@@ -26,6 +25,8 @@ struct conditionConstraints
 
     vector<GLfloat> maxRotDegRange;
     char maxRotDegRangeType;
+
+    vector< vector<string> * > textureGroups;
 
     int weight; // The weight of the number of this kind of conditions in all conditions
 };

@@ -10,7 +10,7 @@ class TestObjectFactory
         TestObjectFactory(void);
         virtual ~TestObjectFactory(void);
 
-        virtual TestObject* createObject(condCons_t& constraint) = 0;
+        virtual TestObject* createObject(condCons_t& constraint, vector<GLuint>& textureIDs) = 0;
         virtual const string getProductName() = 0;
 
     protected:

@@ -21,46 +21,25 @@ BOOL PreTrialScene::startScene()
 {
     // Cancel all keyboards and mouses events bindings
     // and reset all other functions, e.g. display
-    for(vector<Screen *>::iterator it = this->screens.begin();
-        it != this->screens.end(); it ++)
-    {
-        ((Screen *)*it)->resetAllFunc();
-    }   
+    this->rScreen.resetAllFunc();
 
     // Clear the screen
-    for(vector<Screen *>::iterator it = this->screens.begin();
-        it != this->screens.end(); it ++)
-    {
-        ((Screen *)*it)->clear();
-    }  
+    this->rScreen.clear();
 
     // set display function and reshape function
-    for(vector<Screen *>::iterator it = this->screens.begin();
-        it != this->screens.end(); it ++)
-    {
-        ((Screen *)*it)->setDisplayFunc(Scene::dispatchSceneRender);
-        ((Screen *)*it)->setReshapeFunc(Scene::dispatchReshape);
-    }  
+    this->rScreen.setDisplayFunc(Scene::dispatchSceneRender);
+    this->rScreen.setReshapeFunc(Scene::dispatchReshape);
      
     // Bind new keyboards and mouses events
-    for(vector<Screen *>::iterator it = this->screens.begin();
-        it != this->screens.end(); it ++)
-    {
-        ((Screen *)*it)->setKeyboardFunc(Scene::dispatchKeyboardEvent);
-        ((Screen *)*it)->setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
-    }  
+    this->rScreen.setKeyboardFunc(Scene::dispatchKeyboardEvent);
+    this->rScreen.setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
 
 
     // Start running the scene
     // FIX: This is actually a run design if there are multiple screens
     // e.g. the program will be blocked for each run()
-    for(vector<Screen *>::iterator it = this->screens.begin();
-        it != this->screens.end(); it ++)
-    {
-        Screen *pScr = (Screen *) *it;
-        this->initDisplay(*pScr);
-        pScr->run();
-    }  
+    this->initDisplay();
+    this->rScreen.run();
 
     return TRUE;
 }
@@ -91,7 +70,7 @@ BOOL PreTrialScene::renderScene()
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     message = this->buildString();
-    this->screens[0]->displayString(message, 0.0, 0.0);
+    this->rScreen.displayString(message, 0.0, 0.0);
 	
     return TRUE;
 }
@@ -111,9 +90,10 @@ BOOL PreTrialScene::reshape(int w, int h)
     return TRUE;
 }
 
-BOOL PreTrialScene::initDisplay(Screen& scr)
+BOOL PreTrialScene::initDisplay()
 {
-    this->reshape(scr.rDevMode.dmPelsWidth, scr.rDevMode.dmPelsHeight); 
+    this->reshape(this->rScreen.rDevMode.dmPelsWidth,
+            this->rScreen.rDevMode.dmPelsHeight); 
 
     // Disable texture
     glDisable(GL_TEXTURE_2D);
@@ -130,12 +110,7 @@ BOOL PreTrialScene::handleKeyboardEvent(unsigned char key, int x, int y)
     {
         case VK_SPACE:
             {
-                for(vector<Screen *>::iterator it = this->screens.begin();
-                        it != this->screens.end(); it ++)
-                {
-                    ((Screen *)*it)->stopped = TRUE;
-                }  
-
+                this->rScreen.stopped = TRUE;
                 break;
             }
         default:

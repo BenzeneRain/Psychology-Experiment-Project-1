@@ -16,7 +16,8 @@ class CylinderObject :
                 vector<GLfloat>& initZAsptRatioRange,
                 vector<GLfloat>& rotSpeedRange,
                 vector<GLfloat>& maxRotDegRange,
-                vector<GLfloat>& radiusRange);
+                vector<GLfloat>& radiusRange,
+                vector<GLuint>& textureID);
         CylinderObject(CylinderObject &rObj);
         virtual ~CylinderObject(void);
 
@@ -27,13 +28,17 @@ class CylinderObject :
         virtual UINT getObjID(void);
         virtual void setRandPara(void);
         virtual BOOL adjustAsptRatio(GLfloat delta);
-        virtual void draw(int drawStyle);
+        virtual void draw(int drawStyle, BOOL enableTexture);
 
         virtual string genObjDesc(void); // get the object descriptions (fixed part)
         virtual string genObjPara(void); // get the object parameters (varied part)
 
         GLfloat radius;
         static const UINT objectID;
+
+        GLuint topTextureID;
+        GLuint bottomTextureID;
+        GLuint sideTextureID;
 
         // value range of the parameters
         vector<GLfloat> radiusRange;

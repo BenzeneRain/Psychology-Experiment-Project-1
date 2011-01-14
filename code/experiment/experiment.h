@@ -41,7 +41,7 @@ class Experiment
         string strDate;
         string strTime;
 
-        vector<Screen *> screens;
+        Screen  *pScreen;
 
         Conditions *experimentConditions; 
 
@@ -60,7 +60,6 @@ class Experiment
 
         HINSTANCE hInst;
         fstream hFileOut;
-        vector<HBITMAP> hBitmaps;
 
         vector<TestObjectFactory *> objectFactories;
 

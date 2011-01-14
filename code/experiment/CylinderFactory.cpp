@@ -10,15 +10,18 @@ CylinderFactory::~CylinderFactory(void)
 {
 }
 
-TestObject* CylinderFactory::createObject(condCons_t& constraint)
+TestObject* CylinderFactory::createObject(condCons_t& constraint, vector<GLuint>& textureIDs)
 {
+    // TODO: Check if the number of textures is larger than 3
+
     TestObject *pObj = new CylinderObject(constraint.slantRange, 
             constraint.heightRange,
             constraint.tiltRange,
             constraint.initZAsptRatioRange,
             constraint.rotSpeedRange,
             constraint.maxRotDegRange,
-            constraint.radiusRange);
+            constraint.radiusRange,
+            textureIDs);
 
     return pObj;
 }

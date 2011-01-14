@@ -15,15 +15,17 @@ Screen::Screen(DEVMODE& devMode):
 
 Screen::~Screen(void)
 {
+    glDeleteTextures(this->texNo, this->texIDs);
+    delete this->texIDs;
 }
 
 // This part can be seen as SetupRC with other initializations
-BOOL Screen::initGlut(UINT displayMode, string title, vector<HBITMAP>& hBitmaps)
+BOOL Screen::initGlut(UINT displayMode, string title)
 {
     // Change the display settings to the selected resolution and refresh rate
     if(ChangeDisplaySettings(&rDevMode, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
     {
-        MessageBox(NULL, "Cannot change to selected desktop resolution.", NULL, MB_OK | MB_ICONSTOP);
+        MessageBox(NULL, (LPCSTR)"Cannot change to selected desktop resolution.", NULL, MB_OK | MB_ICONSTOP);
         return FALSE;
     }
 
@@ -45,10 +47,18 @@ BOOL Screen::initGlut(UINT displayMode, string title, vector<HBITMAP>& hBitmaps)
 
     glEnable(GL_DEPTH_TEST);
 
-    // Setting up textures
+    // Setting up textures environment
+    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+
+    return TRUE;
+}
+
+BOOL Screen::initTextures(vector<HBITMAP>& hBitmaps)
+{
     this->texNo = hBitmaps.size();
 
     this->texIDs = new GLuint[this->texNo];
+    memset(this->texIDs, 0, sizeof(GLuint) * this->texNo);
     glGenTextures(this->texNo, this->texIDs);
 
     for(unsigned int i = 0; i < hBitmaps.size(); i ++)
@@ -70,8 +80,6 @@ BOOL Screen::initGlut(UINT displayMode, string title, vector<HBITMAP>& hBitmaps)
                 GL_RGBA, GL_UNSIGNED_BYTE, imageBuffer);
         delete imageBuffer;
     }
-
-    glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
     return TRUE;
 }
