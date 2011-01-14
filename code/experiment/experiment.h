@@ -2,7 +2,8 @@
 #include "stdafx.h"
 #include "resource.h"
 #include "Screen.h"
-#include "TestObject.h"
+#include "TestObjectFactory.h"
+#include "Conditions.h"
 #include <string>
 #include <fstream>
 #include <memory>
@@ -31,6 +32,8 @@ class Experiment
         unsigned int trialsInOneSec;
         DEVMODE devMode; // display settings
 
+        unsigned int currTrialID;
+
         // Time when starting the experiment.
         // This time is actually not the time exactly starting the 
         // experment, but a little bit earlier when the output filename
@@ -39,8 +42,8 @@ class Experiment
         string strTime;
 
         vector<Screen *> screens;
-        vector<TestObject *> stubObjects;
 
+        Conditions *experimentConditions; 
 
         //This option is for debugging
         static const int debug;
@@ -58,6 +61,8 @@ class Experiment
         HINSTANCE hInst;
         fstream hFileOut;
         vector<HBITMAP> hBitmaps;
+
+        vector<TestObjectFactory *> objectFactories;
 
         static auto_ptr<Experiment> m_pInstance;
 

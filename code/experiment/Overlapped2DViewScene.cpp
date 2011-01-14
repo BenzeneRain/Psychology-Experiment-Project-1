@@ -1,18 +1,13 @@
 #include "stdafx.h"
 #include "Overlapped2DViewScene.h"
 
-Overlapped2DViewScene::Overlapped2DViewScene(void)
+Overlapped2DViewScene::Overlapped2DViewScene(cond_t& cond):
+    condition(cond)
 {
-}
-
-Overlapped2DViewScene::Overlapped2DViewScene(TestObject &rObject)
-{
-    this->pObj = rObject.newObj(rObject);
 }
 
 Overlapped2DViewScene::~Overlapped2DViewScene(void)
 {
-    delete this->pObj;
 }
 
 BOOL Overlapped2DViewScene::startScene()
@@ -64,6 +59,7 @@ BOOL Overlapped2DViewScene::startScene()
 
 BOOL Overlapped2DViewScene::renderScene()
 {
+    TestObject& rObject = *this->condition.pRealObject;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // FIX: should not hard code texID[0]
@@ -95,9 +91,9 @@ BOOL Overlapped2DViewScene::renderScene()
         glPushMatrix();
         glBindTexture(GL_TEXTURE_2D, this->screens[i]->texIDs[0]);
         glTranslatef(0.0f, -20.0f, 0.0f);
-        glScalef(1.0f, 1.0f, this->pObj->initZAsptRatio);
-        glRotatef(this->pObj->currRotDeg, 0.0f, 1.0f, 0.0f);
-        this->pObj->draw(GLU_FILL);
+        glScalef(1.0f, 1.0f, rObject.initZAsptRatio);
+        glRotatef(rObject.currRotDeg, 0.0f, 1.0f, 0.0f);
+        rObject.draw(GLU_FILL);
         glPopMatrix();
 
         //////////////////////////////////////////////////////
@@ -123,22 +119,22 @@ BOOL Overlapped2DViewScene::renderScene()
         glPushMatrix();
         glColor3ub(255, 255, 255);
         glTranslatef(0.0f, -20.0f, 0.0f);
-        glScalef(1.0f, 1.0f, this->pObj->adjZAsptRatio);
-        this->pObj->draw(GLU_FILL);
+        glScalef(1.0f, 1.0f, rObject.adjZAsptRatio);
+        rObject.draw(GLU_FILL);
         glPopMatrix();
 
         // Draw the cylinder before adjust in 2D
         glPushMatrix();
         glColor3ub(255, 0, 0);
         //glTranslatef(0.0f, -20.0f, 0.0f);
-        glScalef(1.0f, 1.0f, this->pObj->initZAsptRatio);
+        glScalef(1.0f, 1.0f, rObject.initZAsptRatio);
         glEnable(GL_LINE_STIPPLE);
         glLineStipple(1, 0xf0f0);
 
         GLfloat normalLineSize[2];
         glGetFloatv(GL_LINE_WIDTH_RANGE, normalLineSize);
         glLineWidth(3.0f);
-        this->pObj->draw(GLU_SILHOUETTE);
+        rObject.draw(GLU_SILHOUETTE);
         glLineWidth(normalLineSize[0]);
         glDisable(GL_LINE_STIPPLE);
         glPopMatrix();

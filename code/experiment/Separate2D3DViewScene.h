@@ -1,16 +1,15 @@
 #pragma once
 #include "mixedobjectviewscene.h"
+#include "Conditions.h"
 
 class Separate2D3DViewScene :
     public MixedObjectViewScene
 {
     public:
-        Separate2D3DViewScene(void);
+        Separate2D3DViewScene(cond_t& cond);
         virtual ~Separate2D3DViewScene(void);
 
         virtual BOOL startScene();
-
-        TestObject *pObj;
 
         static const int TIMERID;
     private:
@@ -23,4 +22,6 @@ class Separate2D3DViewScene :
         virtual BOOL handleMousePassiveMotionEvent(int x, int y);
         virtual BOOL handleTimerEvent(int timerID);
         virtual BOOL initDisplay(Screen& scr);
+
+        cond_t& condition;
 };

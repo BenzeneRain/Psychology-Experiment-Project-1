@@ -9,9 +9,8 @@ class CylinderFactory :
         CylinderFactory(void);
         virtual ~CylinderFactory(void);
 
-        TestObject* createObject(condCons_t& constraint);
-
-        virtual string getObjectName() = 0;
+        virtual TestObject* createObject(condCons_t& constraint);
+        virtual const string getProductName();
 
     private:
         string productName;

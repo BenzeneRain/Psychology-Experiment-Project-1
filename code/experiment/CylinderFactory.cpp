@@ -22,3 +22,8 @@ TestObject* CylinderFactory::createObject(condCons_t& constraint)
 
     return pObj;
 }
+
+const string CylinderFactory::getProductName()
+{
+    return this->productName;
+}

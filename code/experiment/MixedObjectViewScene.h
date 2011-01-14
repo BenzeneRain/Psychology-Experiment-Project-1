@@ -8,8 +8,4 @@ class MixedObjectViewScene :
     public:
         MixedObjectViewScene(void);
         virtual ~MixedObjectViewScene(void);
-    
-    protected:
-        TestObject *getRandObj(void);
-        TestObject *pObj;
 };

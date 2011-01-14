@@ -6,8 +6,8 @@
 #include "ConfWnd.h"
 #include "Screen.h"
 #include "Trial.h"
-#include "TestObject.h"
-#include "CylinderObject.h"
+#include "TestObjectFactory.h"
+#include "CylinderFactory.h"
 #include "PostExperimentScene.h"
 
 #include <stdlib.h>
@@ -34,6 +34,7 @@ Experiment::Experiment(HINSTANCE hInstance)
 {
     this->hInst = hInstance;
     this->currSecNo = 0;
+    this->currTrialID = 0;
 };
 
 Experiment::~Experiment(void)
@@ -138,8 +139,8 @@ BOOL Experiment::initSystem()
     this->strDate = pConfWnd->strDate;
     this->strTime = pConfWnd->strTime;
 
-    // Register Test Objects
-    this->stubObjects.push_back(new CylinderObject());
+    // Register Test Objects Factories
+    this->objectFactories.push_back(new CylinderFactory());
 
     // Initialize random seed
     srand((unsigned int)time(NULL));
@@ -151,7 +152,7 @@ BOOL Experiment::initSystem()
     Screen * pScreen = apScreen.get();
     this->screens.push_back(pScreen);
 
-    // Load texture files
+    // FIX: Load texture files
     HBITMAP hBitmap;
     hBitmap = (HBITMAP)::LoadImage(NULL, "./textures/voron_higher_resrgb.bmp", 
         IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
@@ -160,15 +161,20 @@ BOOL Experiment::initSystem()
         MessageBox(NULL, "Fail to load the texture", NULL, MB_OK | MB_ICONERROR);
         return FALSE;
     }
-
     this->hBitmaps.push_back(hBitmap);
 
+
+    // Initialize the conditions
+    // FIX: the filename should not be here
+    this->experimentConditions = new Conditions(string("config.txt"), this->maxSecNo * this->trialsInOneSec,
+            this->objectFactories);
+    this->experimentConditions->generateConditions();
     return TRUE;
 }
 
 BOOL Experiment::proceedExperiment()
 {
-    Trial *pTrial = Trial::getInstance();
+    Trial *pTrial;
 
     // TODO: We can add Pre-Experiment Scene here
     // if needed
@@ -176,25 +182,37 @@ BOOL Experiment::proceedExperiment()
     //proceed trials
     while(this->currSecNo < this->maxSecNo)
     {
+        int conditionID = this->currSecNo * this->trialsInOneSec
+                + this->currTrialID;
+
+        pTrial = new Trial(this->currTrialID,
+                (*this->experimentConditions)[conditionID]);
+
         pTrial->startTrial();
+        this->currTrialID ++;
+
+        if(this->currTrialID >= this->trialsInOneSec)
+        {
+            this->currTrialID = 0;
+            this->currSecNo ++;
+        }
+
+        delete pTrial;
     }
 
     //show post-experiment scene
-    static auto_ptr<Scene> apScene;
     Scene *pScene;
 
-    apScene.reset(new PostExperimentScene());
-    pScene = apScene.get();        
-
+    pScene = new PostExperimentScene();
     pScene->startScene();
+    delete pScene;
 
     return TRUE;
 }
 
 BOOL Experiment::isNewSection()
 {
-   Trial *pTrial = Trial::getInstance();
-   if(pTrial->trialID == 0)
+   if(this->currTrialID == 0)
    {
        return TRUE;
    }
@@ -218,21 +236,24 @@ BOOL Experiment::recordConfigurations()
     ossConf << "Screen resolution: " << this->devMode.dmPelsWidth
             << " X " << this->devMode.dmPelsHeight << endl;
 
-    // FIX: this is actually the max refresh rate, but sometimes it cannot be reached
-    // due to heavy load, such as open the MultiSample option
+    // FIX: this is actually the max refresh rate, but we also need to record fps 
     ossConf << "Screen refresh rate: " << this->devMode.dmDisplayFrequency << "Hz" << endl;
     ossConf << "Bit per pixel of the Screen: " << this->devMode.dmBitsPerPel << endl;
 
     ossConf << "Experiment start time: " << this->strDate << " " << this->strTime << endl;
 
     ossConf << "Test object information: " << endl;
+    
     // Output Test Object List
-    for(vector<TestObject *>::iterator it = this->stubObjects.begin();
-        it != this->stubObjects.end(); it ++)
-    {
-        string strTestObjDesc = ((TestObject *)(*it))->genObjDesc();
-        ossConf << strTestObjDesc << endl;
-    }   
+    //for(vector<TestObject *>::iterator it = this->stubObjects.begin();
+    //    it != this->stubObjects.end(); it ++)
+    //{
+    //    string strTestObjDesc = ((TestObject *)(*it))->genObjDesc();
+    //    ossConf << strTestObjDesc << endl;
+    //}   
+
+
+    // TODO: Output Condition list
 
     ret = this->writeOutputs(ossConf.str());
 
@@ -255,12 +276,12 @@ BOOL Experiment::disposeSystem()
     }
 
     // Delete Registered Test Objects
-    while(!this->stubObjects.empty())
+    while(!this->objectFactories.empty())
     {
-        TestObject *pObj = this->stubObjects.back();
-        delete pObj;
+        TestObjectFactory *pObjectFactory = this->objectFactories.back();
+        delete pObjectFactory;
 
-        this->stubObjects.pop_back();
+        this->objectFactories.pop_back();
     }
 
     // Delete Bitmap resources
@@ -271,6 +292,9 @@ BOOL Experiment::disposeSystem()
 
         this->hBitmaps.pop_back();
     }
+
+    // Delete Conditions
+    delete this->experimentConditions;
 
     return TRUE;
 }

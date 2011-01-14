@@ -17,7 +17,7 @@ Conditions::Conditions(string& filename, int numConditions,
 
     // Suppose the condition file is organized like this for one constraint
     // Object Names
-    // Constraint weight
+    // Constraint Weight
     // Slant Range
     // Tilt Range
     // Height Range
@@ -100,7 +100,7 @@ Conditions::Conditions(string& filename, int numConditions,
         // Max Rotation Degree Range
         this->readRange<GLfloat>(fin, pNewConstraint->maxRotDegRange, pNewConstraint->maxRotDegRangeType);
 
-        // TODO: Read Object Specific Parameters
+        // Read Object Specific Parameters
         for(unsigned int i = 0; i < pNewConstraint->objectNames.size(); i ++)
         {
             if(!pNewConstraint->objectNames[i].compare("Cylinder"))
@@ -110,7 +110,7 @@ Conditions::Conditions(string& filename, int numConditions,
         }
 
         // Add the constaint
-        this->addConstraint(*pNewConstraint);
+        this->addConstraint(pNewConstraint);
     }
     fin.close();
 }
@@ -118,28 +118,26 @@ Conditions::Conditions(string& filename, int numConditions,
 Conditions::~Conditions(void)
 {
     // Dispose constraints
-    vector<condCons_t>& rConstraints = this->constraints;
+    vector<condCons_t *>& rConstraints = this->constraints;
     
     while(!rConstraints.empty())
     {
-        condCons_t *pCondCons = &rConstraints.back();
-        delete pCondCons;
-
+        condCons_t *pCondCons = rConstraints.back();
         rConstraints.pop_back();
+        delete pCondCons;
     }
 
     // Dispose conditions
-    vector<cond_t>& rConditions = this->conditions;
+    vector<cond_t *>& rConditions = this->conditions;
 
     while(!rConditions.empty())
     {
-        cond_t *pCondition = &rConditions.back();
+        cond_t *pCondition = rConditions.back();
         TestObject *pObject = pCondition->pRealObject;
+        rConditions.pop_back();
 
         delete pObject;
         delete pCondition;
-
-        rConditions.pop_back();
     }
 }
 
@@ -183,31 +181,32 @@ BOOL Conditions::readRange(ifstream& fin, vector<T>& vec, char& type)
     return TRUE;
 }
 
-void Conditions::addConstraint(condCons_t& constraint)
+void Conditions::addConstraint(condCons_t* pConstraint)
 {
-    this->constraints.push_back(constraint);
+    this->constraints.push_back(pConstraint);
 }
 
 // Generate a condition according to the specified constraint
 void Conditions::addCondition(int constraintIndex)
 {
    int randIndex;
-   randIndex = rand() % this->constraints[constraintIndex].objectNames.size();
+   randIndex = rand() % this->constraints[constraintIndex]->objectNames.size();
 
    TestObjectFactory *pFactory = this->objectFactoryNameMap[
-       this->constraints[constraintIndex].objectNames[randIndex]];
+       this->constraints[constraintIndex]->objectNames[randIndex]];
 
    cond_t *pNewCondition = new cond_t;
 
-   pNewCondition->pRealObject = pFactory->createObject(this->constraints[constraintIndex]);
+   pNewCondition->pRealObject = pFactory->createObject(*this->constraints[constraintIndex]);
+   pNewCondition->pRealObject->setRandPara();
 
-   this->conditions.push_back(*pNewCondition);
+   this->conditions.push_back(pNewCondition);
 }
 
 // Add the existing condition to the condition list
-void Conditions::addCondition(cond_t& condition)
+void Conditions::addCondition(cond_t* pCondition)
 {
-    this->conditions.push_back(condition);
+    this->conditions.push_back(pCondition);
 }
 
 void Conditions::shuffleConditions()
@@ -224,7 +223,7 @@ void Conditions::generateConditions()
 
     for(unsigned int i = 0; i < this->constraints.size(); i ++)
     {
-        currAccWeight = prevAccWeight + this->constraints[i].weight;
+        currAccWeight = prevAccWeight + this->constraints[i]->weight;
         accumulateWeight.push_back(currAccWeight - 1);
         prevAccWeight = currAccWeight;
     }
@@ -246,12 +245,12 @@ void Conditions::generateConditions()
     this->shuffleConditions();
 }
 
-const vector<condCons_t>& Conditions::getAllConstraints()
+const vector<condCons_t *>& Conditions::getAllConstraints()
 {
     return this->constraints;
 }
 
-const vector<cond_t>& Conditions::getAllConditions()
+const vector<cond_t *>& Conditions::getAllConditions()
 {
     return this->conditions;
 }
@@ -266,3 +265,7 @@ BOOL Conditions::cylinderParameterReadingFunction(ifstream& fin, condCons_t& con
     return ret;
 }
 
+cond_t& Conditions::operator[](int &rhs)
+{
+    return *this->conditions[rhs];
+}

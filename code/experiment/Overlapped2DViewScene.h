@@ -1,18 +1,15 @@
 #pragma once
 #include "mixedobjectviewscene.h"
+#include "Conditions.h"
 
 class Overlapped2DViewScene :
     public MixedObjectViewScene
 {
     public:
-        Overlapped2DViewScene(void);
-        Overlapped2DViewScene(TestObject &rObject);
+        Overlapped2DViewScene(cond_t& cond);
         virtual ~Overlapped2DViewScene(void);
 
         virtual BOOL startScene();
-
-    protected:
-        TestObject *pObj;
 
     private:
         virtual BOOL renderScene(); 
@@ -24,4 +21,6 @@ class Overlapped2DViewScene :
         virtual BOOL handleMousePassiveMotionEvent(int x, int y);
         virtual BOOL handleTimerEvent(int timerID);
         virtual BOOL initDisplay(Screen& scr);
+
+        cond_t& condition;
 };

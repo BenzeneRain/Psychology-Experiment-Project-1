@@ -5,6 +5,7 @@
 #include "Separate2D3DViewScene.h"
 #include "Overlapped2DViewScene.h"
 #include "TestObject.h"
+#include "Conditions.h"
 #include "experiment.h"
 
 #include <vector>
@@ -13,10 +14,12 @@
 
 using namespace std;
 
-Trial::Trial()
+Trial::Trial(int trialID, cond_t& cond):
+    condition(cond)
 {
-    this->trialID = 0;
+    this->trialID = trialID;
     this->currState = IDLE;
+    this->finished = FALSE;
 }
 
 Trial::~Trial(void)
@@ -25,112 +28,94 @@ Trial::~Trial(void)
 
 BOOL Trial::startTrial()
 {
-    return this->proceedNextScene();
+    BOOL ret = TRUE;
+
+    //Proceed to the next scene if
+    //the trial is not finished and 
+    //each scene is executed correctly
+    while(this->finished == FALSE &&
+            ret == TRUE)
+    {
+        ret = this->proceedNextScene();
+    }
+
+    return ret;
 }
 
 BOOL Trial::proceedNextScene()
 {
-    static auto_ptr<Scene> apScene;
     Scene *pScene;
     BOOL ret;
-    BOOL trialFinished = FALSE;
 
-    // go through all scenes
-    while(trialFinished == FALSE)
+    switch(this->currState)
     {
-        switch(this->currState)
-        {
-            case IDLE:
-                apScene.reset(new PreTrialScene());
-                pScene = apScene.get();        
+        case IDLE:
+            {
+                pScene = new PreTrialScene();
                 this->currState = PRE_TRIAL_SCENE;
                 ret = pScene->startScene();
+
+                delete pScene;
+
                 break;
-            case PRE_TRIAL_SCENE:
-                apScene.reset(new Separate2D3DViewScene());
-                pScene = apScene.get();        
+            }
+        case PRE_TRIAL_SCENE:
+            {
+                pScene = new Separate2D3DViewScene(this->condition);
                 this->currState = MAIN_SCENE;
                 ret = pScene->startScene();
+
+                delete pScene;
+
                 break;
-            case MAIN_SCENE:
+            }
+        case MAIN_SCENE:
+            {
+                Experiment *pExperi = Experiment::getInstance(NULL);
+                if(pExperi->experiMode == EXPERIMENT)
                 {
-                    TestObject *pObject = ((dynamic_cast<Separate2D3DViewScene *>(pScene))->pObj);
-                    TestObject *pNewObj = pObject->newObj(*pObject);
+                    // Write the trial result to the output file
+                    this->recordTrialInfo();
 
-                    Experiment *pExperi = Experiment::getInstance(NULL);
-                    if(pExperi->experiMode == EXPERIMENT)
-                    {
-                        // Write the trial result to the output file
-                        this->recordTrialInfo(*pNewObj);
-                           
-                        this->currState = IDLE;
-                        this->stepTrial();
-                        trialFinished = TRUE;
-                    }
-                    else
-                    {
-                        // In practice mode, so show the result comparison
-                        apScene.reset(new Overlapped2DViewScene(*pNewObj));
-                        pScene = apScene.get();        
-                        this->currState = POST_TRIAL_SCENE;
-                        ret = pScene->startScene();
-
-                    }
-
-                    delete pNewObj;
-                    break;
+                    this->currState = IDLE;
+                    this->finished = TRUE;
                 }
-            case POST_TRIAL_SCENE:
+                else
+                {
+                    // In practice mode, so show the result comparison
+                    pScene = new Overlapped2DViewScene(this->condition);
+                    this->currState = POST_TRIAL_SCENE;
+                    ret = pScene->startScene();
+
+                    delete pScene;
+                }
+
+                break;
+            }
+        case POST_TRIAL_SCENE:
+            {
                 this->currState = IDLE;
-                this->stepTrial();
-                trialFinished = TRUE;
+                this->finished = TRUE;
                 break;
-            default:
-                trialFinished = TRUE;
-                break;
-        }
+            }
+        default:
+            return FALSE;
+            break;
     }
     return TRUE;
 }
 
-BOOL Trial::stepTrial()
+BOOL Trial::recordTrialInfo()
 {
-    Experiment *pExperi = Experiment::getInstance(NULL);
-
-    this->trialID ++;
-
-    if(this->trialID >= pExperi->trialsInOneSec)
-    {
-        this->trialID = 0;
-        pExperi->currSecNo ++;
-    }
-
-    return TRUE;
-}
-
-BOOL Trial::recordTrialInfo(TestObject& rObj)
-{
+    TestObject& rObject = *this->condition.pRealObject;
     ostringstream ossTI; // TI = Trial Information  
 
     ossTI << "Trial ID: " << this->trialID + 1 << endl;
-    ossTI << rObj.genObjPara() ;
+    ossTI << rObject.genObjPara() ;
 
     Experiment *pExperi = Experiment::getInstance(NULL);
-
     pExperi->writeOutputs(ossTI.str());
 
     return TRUE;
 }
 
-// Below are the codes for the singalton
-auto_ptr<Trial> Trial::m_pInstance;
-
-Trial *Trial::getInstance()
-{
-    if(m_pInstance.get() == 0)
-    {
-        m_pInstance.reset(new Trial);
-    }
-
-    return m_pInstance.get();
-}

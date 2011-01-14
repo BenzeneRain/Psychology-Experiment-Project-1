@@ -24,21 +24,21 @@ class Conditions
 
         cond_t& operator[](int &rhs);
 
-        void addConstraint(condCons_t& constraint);
+        void addConstraint(condCons_t* pConstraint);
         
         void addCondition(int constraintIndex);
-        void addCondition(cond_t& condition);
+        void addCondition(cond_t* pCondition);
 
         void generateConditions();
         void shuffleConditions();
 
-        const vector<condCons_t>& getAllConstraints();
-        const vector<cond_t>& getAllConditions();
+        const vector<condCons_t *>& getAllConstraints();
+        const vector<cond_t *>& getAllConditions();
 
     private:
-        vector<condCons_t> constraints;
-        vector<cond_t> conditions;
-        vector<TestObjectFactory *> objectFactories;
+        vector<condCons_t *> constraints;
+        vector<cond_t *> conditions;
+        vector<TestObjectFactory *>& objectFactories;
         hash_map<string, TestObjectFactory *> objectFactoryNameMap;
 
         template<typename T>

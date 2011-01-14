@@ -5,13 +5,13 @@
 
 const int Separate2D3DViewScene::TIMERID = 1;
 
-Separate2D3DViewScene::Separate2D3DViewScene(void)
+Separate2D3DViewScene::Separate2D3DViewScene(cond_t& cond):
+    condition(cond)
 {
 }
 
 Separate2D3DViewScene::~Separate2D3DViewScene(void)
 {
-    delete this->pObj;
 }
 
 BOOL Separate2D3DViewScene::startScene()
@@ -25,11 +25,10 @@ BOOL Separate2D3DViewScene::startScene()
     }   
 
     // Get the random object
-    this->pObj = this->getRandObj(); 
-    this->pObj->setRandPara();
+    TestObject& rObject = *this->condition.pRealObject;
     if(Experiment::debug)
     {
-        MessageBox(NULL, (this->pObj->getObjName()).c_str(), NULL, NULL);
+        MessageBox(NULL, (rObject.getObjName()).c_str(), NULL, NULL);
     }
 
     // Clear the screen
@@ -65,9 +64,9 @@ BOOL Separate2D3DViewScene::startScene()
 
         // Set the rotSpeed to 0 can make
         // the object stay still.
-        if(this->pObj->rotSpeed != 0)
+        if(rObject.rotSpeed != 0)
         {
-            msecs = 1000.0f / this->pObj->rotSpeed;
+            msecs = 1000.0f / rObject.rotSpeed;
             pScr->setTimerFunc((unsigned int)msecs,
                     Scene::dispatchTimerEvent, Separate2D3DViewScene::TIMERID);
         }
@@ -90,6 +89,8 @@ BOOL Separate2D3DViewScene::startScene()
 
 BOOL Separate2D3DViewScene::renderScene()
 {
+    TestObject& rObject = *this->condition.pRealObject;
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // FIX: should not hard code texID[0]
@@ -121,9 +122,9 @@ BOOL Separate2D3DViewScene::renderScene()
         glPushMatrix();
         glBindTexture(GL_TEXTURE_2D, this->screens[i]->texIDs[0]);
         glTranslatef(0.0f, -20.0f, 0.0f);
-        glScalef(1.0f, 1.0f, this->pObj->initZAsptRatio);
-        glRotatef(this->pObj->currRotDeg, 0.0f, 1.0f, 0.0f);
-        this->pObj->draw(GLU_FILL);
+        glScalef(1.0f, 1.0f, rObject.initZAsptRatio);
+        glRotatef(rObject.currRotDeg, 0.0f, 1.0f, 0.0f);
+        rObject.draw(GLU_FILL);
         glPopMatrix();
 
         //////////////////////////////////////////////////////
@@ -147,8 +148,8 @@ BOOL Separate2D3DViewScene::renderScene()
         glDisable(GL_TEXTURE_2D);
         glPushMatrix();
         //Draw the cylinder in 2D
-        glScalef(1.0f, 1.0f, this->pObj->adjZAsptRatio);
-        this->pObj->draw(GLU_FILL);
+        glScalef(1.0f, 1.0f, rObject.adjZAsptRatio);
+        rObject.draw(GLU_FILL);
 
         glPopMatrix();
 
@@ -210,13 +211,15 @@ BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)
 
 BOOL Separate2D3DViewScene::handleKeyboardSpecialEvent(int key, int x, int y)
 {
+    TestObject& rObject = *this->condition.pRealObject;
+
     switch(key)
     {
         case GLUT_KEY_UP:
-            pObj->adjustAsptRatio(0.01f);
+            rObject.adjustAsptRatio(0.01f);
             break;
         case GLUT_KEY_DOWN:
-            pObj->adjustAsptRatio(-0.01f);
+            rObject.adjustAsptRatio(-0.01f);
             break;
         default:
             break;
@@ -242,21 +245,22 @@ BOOL Separate2D3DViewScene::handleMousePassiveMotionEvent(int x, int y)
 BOOL Separate2D3DViewScene::handleTimerEvent(int timerID)
 {
     GLfloat step = 1.0f;
+    TestObject& rObject = *this->condition.pRealObject;
 
     if(timerID == Separate2D3DViewScene::TIMERID)
     {
-        if((this->pObj->rotDirection == TestObject::CLOCKWISE &&
-                    this->pObj->currRotDeg - step < -(this->pObj->maxRotDeg)) ||
-                (this->pObj->rotDirection == TestObject::COUNTERCLOCKWISE && 
-                 this->pObj->currRotDeg + step > this->pObj->maxRotDeg))
+        if((rObject.rotDirection == TestObject::CLOCKWISE &&
+                    rObject.currRotDeg - step < -(rObject.maxRotDeg)) ||
+                (rObject.rotDirection == TestObject::COUNTERCLOCKWISE && 
+                 rObject.currRotDeg + step > rObject.maxRotDeg))
         {
-            this->pObj->reverseRotDirection(); 
+            rObject.reverseRotDirection(); 
         }
 
-        if(this->pObj->rotDirection == TestObject::CLOCKWISE)
-            this->pObj->currRotDeg -= step;
+        if(rObject.rotDirection == TestObject::CLOCKWISE)
+            rObject.currRotDeg -= step;
         else
-            this->pObj->currRotDeg += step;
+            rObject.currRotDeg += step;
 
         //bind timer event
         for(vector<Screen *>::iterator it = this->screens.begin();
@@ -267,9 +271,9 @@ BOOL Separate2D3DViewScene::handleTimerEvent(int timerID)
             
             // Set the rotSpeed to 0 can make
             // the object stay still.
-            if(this->pObj->rotSpeed != 0)
+            if(rObject.rotSpeed != 0)
             {
-                msecs = 1000.0f / this->pObj->rotSpeed;
+                msecs = 1000.0f / rObject.rotSpeed;
                 pScr->setTimerFunc((unsigned int)msecs,
                         Scene::dispatchTimerEvent, Separate2D3DViewScene::TIMERID);
             }
