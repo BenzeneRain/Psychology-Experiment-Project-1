@@ -112,56 +112,56 @@ string TestObject::genObjDesc()
 {
     ostringstream ossObj;
 
-    ossObj << "Object ID: " << this->getObjID() << endl;
-    ossObj << "Object type: " << this->getObjName() << endl;
+    ossObj << this->getObjID() << " "; // Object ID
+    ossObj << this->getObjName() << " "; // Object type
 
-    ossObj << "Slant range:";
-    for(vector<GLfloat>::iterator it = this->slantRange.begin(); 
-            it != this->slantRange.end(); it ++)
+    // Slant range
+    ossObj << this->slantRange.size();
+    for(unsigned int i = 0; i < this->slantRange.size(); i ++)
     {
-        ossObj << " " << (GLfloat)(*it);
+        ossObj << " " << this->slantRange[i];
     }
-    ossObj << endl;
+    ossObj << " ";
 
-    ossObj << "Height range:";
-    for(vector<GLfloat>::iterator it = this->heightRange.begin(); 
-            it != this->heightRange.end(); it ++)
+    // Tilt Range
+    ossObj << this->tiltRange.size();
+    for(unsigned int i = 0; i < this->tiltRange.size(); i ++)
     {
-        ossObj << " " << (GLfloat)(*it);
+        ossObj << " " << this->tiltRange[i];
     }
-    ossObj << endl;
+    ossObj << " ";
+    
+    // Height Range
+    ossObj << this->heightRange.size();
+    for(unsigned int i = 0; i < this->heightRange.size(); i ++)
+    {
+        ossObj << " " << this->heightRange[i];
+    }
+    ossObj << " ";
 
-    ossObj << "Tilt range:";
-    for(vector<GLfloat>::iterator it = this->tiltRange.begin(); 
-            it != this->tiltRange.end(); it ++)
+    // Initial Aspect Ratio on Z-axis range
+    ossObj << this->initZAsptRatioRange.size();
+    for(unsigned int i = 0; i < this->initZAsptRatioRange.size(); i ++) 
     {
-        ossObj << " " << (GLfloat)(*it);
+        ossObj << " " << this->initZAsptRatioRange[i];
     }
-    ossObj << endl;
+    ossObj << " ";
 
-    ossObj << "Initial aspect ratio on Z-axis range:";
-    for(vector<GLfloat>::iterator it = this->initZAsptRatioRange.begin(); 
-            it != this->initZAsptRatioRange.end(); it ++)
+    // Object Rotation Speed Range
+    ossObj << this->rotSpeedRange.size();
+    for(unsigned int i = 0; i < this->rotSpeedRange.size(); i ++) 
     {
-        ossObj << " " << (GLfloat)(*it);
+        ossObj << " " << this->rotSpeedRange[i];
     }
-    ossObj << endl;
+    ossObj << " ";
 
-    ossObj << "Object rotation speed range:";
-    for(vector<GLfloat>::iterator it = this->rotSpeedRange.begin(); 
-            it != this->rotSpeedRange.end(); it ++)
+    // Object maximum rotation degree Range
+    ossObj << this->maxRotDegRange.size();
+    for(unsigned int i = 0; i < this->maxRotDegRange.size(); i ++)
     {
-        ossObj << " " << (GLfloat)(*it);
+        ossObj << " " << this->maxRotDegRange[i];
     }
-    ossObj << endl;
-
-    ossObj << "Object maximum rotation degree range:";
-    for(vector<GLfloat>::iterator it = this->maxRotDegRange.begin(); 
-            it != this->maxRotDegRange.end(); it ++)
-    {
-        ossObj << " " << (GLfloat)(*it);
-    }
-    ossObj << endl;
+    ossObj << " ";
 
     return ossObj.str();
 }
@@ -170,15 +170,15 @@ string TestObject::genObjPara()
 {
     ostringstream ossObj;
 
-    ossObj << "Object ID: " << this->getObjID() << endl;
-    ossObj << "Object type: " << this->getObjName() << endl;
-    ossObj << "Object slant: " << this->slant << endl;
-    ossObj << "Object height: " << this->height << endl;
-    ossObj << "Object tilt: " << this->tilt << endl;
-    ossObj << "Object initial aspect ratio on Z-axis: " << this->initZAsptRatio << endl;
-    ossObj << "Object aspect ratio on Z-axis after subject adjusted: " << this->adjZAsptRatio << endl;
-    ossObj << "Object rotation speed: " << this->rotSpeed << endl;
-    ossObj << "Object maximum rotation degree: " << this->maxRotDeg << endl;
+    ossObj << this->getObjID() << " "; // Object ID
+    ossObj << this->getObjName() << " "; // Object type
+    ossObj << this->slant << " "; // slant
+    ossObj << this->tilt << " "; // tilt
+    ossObj << this->height << " "; // height
+    ossObj << this->initZAsptRatio << " "; // Object initial Aspect Ratio on Z axis
+    ossObj << this->adjZAsptRatio << " "; // Object aspect ratio on Z-axis after subject adjusted
+    ossObj << this->rotSpeed << " "; // Object Rotation Speed
+    ossObj << this->maxRotDeg << " "; // Object Maximum Rotation Degree
 
     return ossObj.str();
 }

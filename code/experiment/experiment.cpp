@@ -228,19 +228,23 @@ BOOL Experiment::recordConfigurations()
     ossConf << "Experiment start time: " << this->strDate << " " << this->strTime << endl;
 
     ossConf << "Test object information: " << endl;
-    
-    // Output Test Object List
-    //for(vector<TestObject *>::iterator it = this->stubObjects.begin();
-    //    it != this->stubObjects.end(); it ++)
-    //{
-    //    string strTestObjDesc = ((TestObject *)(*it))->genObjDesc();
-    //    ossConf << strTestObjDesc << endl;
-    //}   
-
-
-    // TODO: Output Condition list
 
     ret = this->writeOutputs(ossConf.str());
+    if(ret == FALSE)
+        return ret;
+    
+    ostringstream ossCond;
+    // Output Condition list
+    const vector<cond_t *> rConds = experimentConditions->getAllConditions(); 
+    for(unsigned int i = 0; i < rConds.size(); i ++)
+    {
+        ossCond << i + 1 << " "; // Condition ID
+        ossCond << rConds[i]->pRealObject->genObjDesc(); // Get object descriptions of the condition 
+        ossCond << endl;
+    }
+
+    ossCond << endl;
+    ret = this->writeOutputs(ossCond.str());
 
     return ret;
 }

@@ -221,10 +221,18 @@ BOOL Conditions::readConstraints(ifstream& fin)
                     string textureName;
                     fin >> textureName;
 
-                    // TODO: Should check the texture name existed or not
-                    (*textureList)[j] = textureName;
+                    if(this->bitmapNameMap.find(textureName) != this->bitmapNameMap.end())
+                    {
+                        (*textureList)[j] = textureName;
+                    }
+                    else
+                    {
+                        string message("There is no texture named ");
+                        message += textureName;
+                        MessageBox(NULL, (LPCSTR)(message.c_str()), NULL, MB_OK | MB_ICONWARNING);
+                    }
                 }
-                
+
                 pNewConstraint->textureGroups.push_back(textureList);
             }
 
@@ -340,6 +348,7 @@ void Conditions::addCondition(int constraintIndex)
    TestObjectFactory *pFactory = this->objectFactoryNameMap[
        this->constraints[constraintIndex]->objectNames[randIndex]];
 
+   // FIX: Check if the pRealObject is NULL or not
    pNewCondition->pRealObject = pFactory->createObject(*this->constraints[constraintIndex], pNewCondition->textureID);
    pNewCondition->pRealObject->setRandPara();
 

@@ -35,12 +35,14 @@ CylinderObject::CylinderObject(vector<GLfloat>& slantRange,
     this->topTextureID = textureID[0];
     this->bottomTextureID = textureID[1];
     this->sideTextureID = textureID[2];
+
+    this->objName = string("Cylinder");
 }
 
 CylinderObject::CylinderObject(CylinderObject &rObj) : TestObject(rObj)
 {
-   this->objName = string("Cylinder");
-   this->radius = rObj.radius;
+    this->objName = string("Cylinder");
+    this->radius = rObj.radius;
 }
 
 CylinderObject::~CylinderObject(void)
@@ -94,23 +96,19 @@ BOOL CylinderObject::adjustAsptRatio(GLfloat delta)
 
 string CylinderObject::genObjDesc()
 {
-    string strDesc;
-
-    strDesc = TestObject::genObjDesc();
 
     ostringstream ossObj;
+    ossObj << TestObject::genObjDesc();
 
-    ossObj << "Radius range: ";
-    for(vector<GLfloat>::iterator it = this->radiusRange.begin(); 
-        it != this->radiusRange.end(); it ++)
-        {
-            ossObj << (GLfloat)(*it) << " ";
-        }
-    ossObj << endl;
+    // Radius Range
+    ossObj << this->radiusRange.size();
+    for(unsigned int i = 0; i < this->radiusRange.size(); i ++)
+    {
+        ossObj << " " << this->radiusRange[i];
+    }
+    ossObj << " ";
 
-    strDesc += ossObj.str();
-
-    return strDesc;
+    return ossObj.str();
 }
 
 string CylinderObject::genObjPara()
@@ -121,7 +119,7 @@ string CylinderObject::genObjPara()
 
     ostringstream ossObj;
 
-    ossObj << "Radius: " << this->radius << endl;
+    ossObj << this->radius << " "; // Radius of the Cylinder
 
     strPara += ossObj.str();
 
@@ -169,7 +167,7 @@ void CylinderObject::draw(int drawStyle, BOOL enableTexture)
         gluQuadricNormals(pCylinder, GLU_SMOOTH);
         gluQuadricTexture(pCylinder, GL_TRUE);
 
-        gluDisk(pCylinder, 0.0f, this->radius, 1024, 2);
+        gluDisk(pCylinder, 0.0f, this->radius, 32, 1);
         gluDeleteQuadric(pCylinder);
 
         {
@@ -186,7 +184,7 @@ void CylinderObject::draw(int drawStyle, BOOL enableTexture)
             gluQuadricNormals(pCylinder, GLU_SMOOTH);
             gluQuadricTexture(pCylinder, GL_TRUE);
 
-            gluDisk(pCylinder, 0.0f, this->radius, 1024, 2);
+            gluDisk(pCylinder, 0.0f, this->radius, 32, 1);
             gluDeleteQuadric(pCylinder);
 
             glPopMatrix();

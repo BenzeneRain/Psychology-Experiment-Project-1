@@ -107,13 +107,16 @@ BOOL Trial::proceedNextScene()
 
 BOOL Trial::recordTrialInfo()
 {
+    Experiment *pExperi = Experiment::getInstance(NULL);
+
     TestObject& rObject = *this->condition.pRealObject;
     ostringstream ossTI; // TI = Trial Information  
 
-    ossTI << "Trial ID: " << this->trialID + 1 << endl;
-    ossTI << rObject.genObjPara() ;
+    ossTI << pExperi->currSecNo + 1 << " "; // Section Number
+    ossTI << this->trialID + 1 << " "; // Trial ID
+    ossTI << rObject.genObjPara();
+    ossTI << endl;
 
-    Experiment *pExperi = Experiment::getInstance(NULL);
     pExperi->writeOutputs(ossTI.str());
 
     return TRUE;
