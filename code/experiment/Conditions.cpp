@@ -129,8 +129,9 @@ BOOL Conditions::readConstraints(ifstream& fin)
     // )
     //
     // Constraint Weight 
-    // Slant Range 
-    // Tilt Range 
+    // Pitch Range (Slant)
+    // Yaw Range
+    // Roll Range (tilt)
     // Height Range 
     // Initial Z Aspect Ratio Range 
     // Rotation Speed Range 
@@ -284,11 +285,14 @@ BOOL Conditions::readConstraints(ifstream& fin)
 
             pNewConstraint->weight = weight;
 
-            // Read Slant Range
-            this->readRange<GLfloat>(fin, pNewConstraint->slantRange, pNewConstraint->slantRangeType);
+            // Read Pitch Range
+            this->readRange<GLfloat>(fin, pNewConstraint->pitchRange, pNewConstraint->pitchRangeType);
 
-            // Read Tilt Range
-            this->readRange<GLfloat>(fin, pNewConstraint->tiltRange, pNewConstraint->tiltRangeType);
+            // Read Yaw Range
+            this->readRange<GLfloat>(fin, pNewConstraint->yawRange, pNewConstraint->yawRangeType);
+
+            // Read Roll Range
+            this->readRange<GLfloat>(fin, pNewConstraint->rollRange, pNewConstraint->rollRangeType);
 
             // Read Height Range
             this->readRange<GLfloat>(fin, pNewConstraint->heightRange, pNewConstraint->heightRangeType);

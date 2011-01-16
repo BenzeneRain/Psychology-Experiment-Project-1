@@ -57,7 +57,7 @@ BOOL Overlapped2DViewScene::renderScene()
     glLoadIdentity();
 
     gluPerspective(60.0f, fAspect, 0.01f, 300.0f);
-    gluLookAt(0.0f, 120.0f, 150.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    gluLookAt(0.0f, 0.0f, 200.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -65,10 +65,8 @@ BOOL Overlapped2DViewScene::renderScene()
 
     // Draw the cylinder in 3D view
     glPushMatrix();
-    glTranslatef(0.0f, -20.0f, 0.0f);
     glScalef(1.0f, 1.0f, rObject.initZAsptRatio);
-    glRotatef(rObject.currRotDeg, 0.0f, 1.0f, 0.0f);
-    rObject.draw(GLU_FILL, TRUE);
+    rObject.draw(GLU_FILL, TRUE, TRUE, TRUE, 0.0f);
     glPopMatrix();
 
     //////////////////////////////////////////////////////
@@ -83,7 +81,7 @@ BOOL Overlapped2DViewScene::renderScene()
     else
         glOrtho(-100.0*fAspect, 100.0*fAspect, -100.0, 100.0, 100.0, -100.0);
 
-    gluLookAt(0.0f, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+    gluLookAt(0.0f, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -91,23 +89,22 @@ BOOL Overlapped2DViewScene::renderScene()
     // Draw the cylinder after adjust in 2D
     glPushMatrix();
     glColor3ub(255, 255, 255);
-    glTranslatef(0.0f, -20.0f, 0.0f);
     glScalef(1.0f, 1.0f, rObject.adjZAsptRatio);
-    rObject.draw(GLU_FILL, FALSE);
+    rObject.draw(GLU_FILL, FALSE, FALSE, FALSE, 0.0f);
     glPopMatrix();
 
     // Draw the cylinder before adjust in 2D
     glPushMatrix();
     glColor3ub(255, 0, 0);
-    //glTranslatef(0.0f, -20.0f, 0.0f);
     glScalef(1.0f, 1.0f, rObject.initZAsptRatio);
+    //glTranslatef(0.0f, -1.0f, 0.0f);
     glEnable(GL_LINE_STIPPLE);
     glLineStipple(1, 0xf0f0);
 
     GLfloat normalLineSize[2];
     glGetFloatv(GL_LINE_WIDTH_RANGE, normalLineSize);
     glLineWidth(3.0f);
-    rObject.draw(GLU_SILHOUETTE, FALSE);
+    rObject.draw(GLU_SILHOUETTE, FALSE, FALSE, FALSE, -1.0f);
     glLineWidth(normalLineSize[0]);
     glDisable(GL_LINE_STIPPLE);
     glPopMatrix();

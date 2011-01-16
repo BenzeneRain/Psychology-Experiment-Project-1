@@ -10,9 +10,10 @@ class CylinderObject :
     public TestObject
 {
     public:
-        CylinderObject(vector<GLfloat>& slantRange,
+        CylinderObject(vector<GLfloat>& pitchRange,
+                vector<GLfloat>& yawRange,
+                vector<GLfloat>& rollRange,
                 vector<GLfloat>& heightRange,
-                vector<GLfloat>& tiltRange,
                 vector<GLfloat>& initZAsptRatioRange,
                 vector<GLfloat>& rotSpeedRange,
                 vector<GLfloat>& maxRotDegRange,
@@ -27,7 +28,11 @@ class CylinderObject :
         virtual UINT getObjID(void);
         virtual void setRandPara(void);
         virtual BOOL adjustAsptRatio(GLfloat delta);
-        virtual void draw(int drawStyle, BOOL enableTexture);
+        virtual void draw(int drawStyle,
+                BOOL enableTexture,
+                BOOL enablePYRRotation,
+                BOOL enableMotion,
+                GLfloat zOffSet);
 
         virtual string genObjDesc(void); // get the object descriptions (fixed part)
         virtual string genObjPara(void); // get the object parameters (varied part)

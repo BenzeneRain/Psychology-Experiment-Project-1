@@ -10,9 +10,10 @@ using namespace std;
 class TestObject
 {
     public:
-        TestObject(vector<GLfloat>& slantRange,
-                   vector<GLfloat>& heightRange,
-                   vector<GLfloat>& tiltRange,
+        TestObject(vector<GLfloat>& pitchRange,
+                   vector<GLfloat>& yawRange,
+                   vector<GLfloat>& rollRange,
+                   vector<GLfloat>& heightRange,           
                    vector<GLfloat>& initZAsptRatioRange,
                    vector<GLfloat>& rotSpeedRange,
                    vector<GLfloat>& maxRotDegRange,
@@ -27,7 +28,11 @@ class TestObject
         virtual UINT getObjID(void) = 0;
         virtual void setRandPara(void);
         virtual BOOL adjustAsptRatio(GLfloat delta) = 0;
-        virtual void draw(int drawStyle, BOOL enableTexture) = 0;
+        virtual void draw(int drawStyle,
+                BOOL enableTexture,
+                BOOL enablePYRRotation,
+                BOOL enableMotion,
+                GLfloat zOffset) = 0;
 
         virtual string genObjDesc(); // get the object descriptions (fixed part)
         virtual string genObjPara(); // get the object parameters (varied part)
@@ -43,9 +48,10 @@ class TestObject
         
         enumProj2DMode proj2DMode;
 
-        GLfloat slant;
+        GLfloat pitch;
+        GLfloat yaw;
+        GLfloat roll;
         GLfloat height;
-        GLfloat tilt;
         GLfloat initZAsptRatio;
         GLfloat adjZAsptRatio;
         GLfloat rotSpeed;
@@ -55,9 +61,10 @@ class TestObject
         enumRotDirection rotDirection;
       
         // Value range of the parameters
-        vector<GLfloat> slantRange;
+        vector<GLfloat> pitchRange;
+        vector<GLfloat> yawRange;
+        vector<GLfloat> rollRange;
         vector<GLfloat> heightRange;
-        vector<GLfloat> tiltRange;
         vector<GLfloat> initZAsptRatioRange;
         vector<GLfloat> rotSpeedRange;
         vector<GLfloat> maxRotDegRange;

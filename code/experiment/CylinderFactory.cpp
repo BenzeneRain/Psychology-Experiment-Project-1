@@ -24,9 +24,10 @@ TestObject* CylinderFactory::createObject(condCons_t& constraint, vector<texture
         return NULL;
     }
 
-    TestObject *pObj = new CylinderObject(constraint.slantRange, 
+    TestObject *pObj = new CylinderObject(constraint.pitchRange, 
+            constraint.yawRange,
+            constraint.rollRange,
             constraint.heightRange,
-            constraint.tiltRange,
             constraint.initZAsptRatioRange,
             constraint.rotSpeedRange,
             constraint.maxRotDegRange,

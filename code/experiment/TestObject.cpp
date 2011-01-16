@@ -7,18 +7,20 @@ using namespace std;
 
 const UINT TestObject::objectID = 0;
 
-TestObject::TestObject(vector<GLfloat>& slantRange,
+TestObject::TestObject(vector<GLfloat>& pitchRange,
+                    vector<GLfloat>& yawRange,
+                    vector<GLfloat>& rollRange,
                     vector<GLfloat>& heightRange,
-                    vector<GLfloat>& tiltRange,
                     vector<GLfloat>& initZAsptRatioRange,
                     vector<GLfloat>& rotSpeedRange,
                     vector<GLfloat>& maxRotDegRange,
                     vector<texture_t *>& texs)
 {
     this->textures = texs;
-    this->slantRange = slantRange;
+    this->pitchRange = pitchRange;
+    this->yawRange = yawRange;
+    this->rollRange = rollRange;
     this->heightRange = heightRange;
-    this->tiltRange = tiltRange;
     this->initZAsptRatioRange = initZAsptRatioRange;
     this->rotSpeedRange = rotSpeedRange;
     this->maxRotDegRange = maxRotDegRange;
@@ -29,10 +31,11 @@ TestObject::TestObject(vector<GLfloat>& slantRange,
 
 TestObject::TestObject(TestObject& rObj)
 {
-    this->slant = rObj.slant;
+    this->pitch = rObj.pitch;
+    this->yaw = rObj.yaw;
+    this->roll = rObj.roll;
 
     this->height = rObj.height;
-    this->tilt = rObj.tilt;
     this->initZAsptRatio = rObj.initZAsptRatio;
     this->adjZAsptRatio = rObj.adjZAsptRatio;
     this->rotSpeed = rObj.rotSpeed;
@@ -40,9 +43,10 @@ TestObject::TestObject(TestObject& rObj)
 
     this->proj2DMode = rObj.proj2DMode;
 
-    this->slantRange = rObj.slantRange;
+    this->pitchRange = rObj.pitchRange;
+    this->yawRange = rObj.yawRange;
+    this->rollRange = rObj.rollRange;
     this->heightRange = rObj.heightRange;
-    this->tiltRange = rObj.tiltRange;
     this->initZAsptRatioRange = rObj.initZAsptRatioRange;
     this->rotSpeedRange = rObj.rotSpeedRange;
     this->maxRotDegRange = rObj.maxRotDegRange;
@@ -58,14 +62,17 @@ void TestObject::setRandPara()
 
     // FIX: rand() maybe not good enough
 
-    randIndex = rand() % this->slantRange.size();
-    this->slant = this->slantRange[randIndex];
+    randIndex = rand() % this->pitchRange.size();
+    this->pitch = this->pitchRange[randIndex];
+
+    randIndex = rand() % this->yawRange.size();
+    this->yaw = this->yawRange[randIndex];
+
+    randIndex = rand() % this->rollRange.size();
+    this->roll = this->rollRange[randIndex];
 
     randIndex = rand() % this->heightRange.size();
     this->height = this->heightRange[randIndex];
-
-    randIndex = rand() % this->tiltRange.size();
-    this->tilt = this->tiltRange[randIndex];
 
     randIndex = rand() % this->initZAsptRatioRange.size();
     this->initZAsptRatio = this->initZAsptRatioRange[randIndex];
@@ -87,19 +94,27 @@ string TestObject::genObjDesc()
     ossObj << this->getObjID() << " "; // Object ID
     ossObj << this->getObjName() << " "; // Object type
 
-    // Slant range
-    ossObj << this->slantRange.size();
-    for(unsigned int i = 0; i < this->slantRange.size(); i ++)
+    // Pitch range
+    ossObj << this->pitchRange.size();
+    for(unsigned int i = 0; i < this->pitchRange.size(); i ++)
     {
-        ossObj << " " << this->slantRange[i];
+        ossObj << " " << this->pitchRange[i];
     }
     ossObj << " ";
 
-    // Tilt Range
-    ossObj << this->tiltRange.size();
-    for(unsigned int i = 0; i < this->tiltRange.size(); i ++)
+    // Yaw Range
+    ossObj << this->yawRange.size();
+    for(unsigned int i = 0; i < this->yawRange.size(); i ++)
     {
-        ossObj << " " << this->tiltRange[i];
+        ossObj << " " << this->yawRange[i];
+    }
+    ossObj << " ";
+
+    // Roll Range
+    ossObj << this->rollRange.size();
+    for(unsigned int i = 0; i < this->rollRange.size(); i ++)
+    {
+        ossObj << " " << this->rollRange[i];
     }
     ossObj << " ";
     
@@ -144,8 +159,9 @@ string TestObject::genObjPara()
 
     ossObj << this->getObjID() << " "; // Object ID
     ossObj << this->getObjName() << " "; // Object type
-    ossObj << this->slant << " "; // slant
-    ossObj << this->tilt << " "; // tilt
+    ossObj << this->pitch << " "; // pitch
+    ossObj << this->yaw << " "; // yaw
+    ossObj << this->roll << " "; // roll
     ossObj << this->height << " "; // height
     ossObj << this->initZAsptRatio << " "; // Object initial Aspect Ratio on Z axis
     ossObj << this->adjZAsptRatio << " "; // Object aspect ratio on Z-axis after subject adjusted

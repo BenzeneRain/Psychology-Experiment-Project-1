@@ -8,14 +8,17 @@ struct conditionConstraints
     vector<GLfloat> radiusRange;
     char radiusRangeType;
 
-    vector<GLfloat> slantRange;
-    char slantRangeType;
+    vector<GLfloat> pitchRange;
+    char pitchRangeType;
+
+    vector<GLfloat> yawRange;
+    char yawRangeType;
+
+    vector<GLfloat> rollRange;
+    char rollRangeType;
 
     vector<GLfloat> heightRange;
     char heightRangeType;
-
-    vector<GLfloat> tiltRange;
-    char tiltRangeType;
 
     vector<GLfloat> initZAsptRatioRange;
     char initZAsptRatioRangeType;

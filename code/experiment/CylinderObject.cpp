@@ -4,20 +4,22 @@
 #include <string>
 #include <sstream>
 #include <string>
+#include <cmath>
 using namespace std;
 
 const UINT CylinderObject::objectID = 1;
 
-CylinderObject::CylinderObject(vector<GLfloat>& slantRange,
+CylinderObject::CylinderObject(vector<GLfloat>& pitchRange,
+                            vector<GLfloat>& yawRange,
+                            vector<GLfloat>& rollRange,
                             vector<GLfloat>& heightRange,
-                            vector<GLfloat>& tiltRange,
                             vector<GLfloat>& initZAsptRatioRange,
                             vector<GLfloat>& rotSpeedRange,
                             vector<GLfloat>& maxRotDegRange,
                             vector<texture_t *>& texs,
                             vector<GLfloat>& radiusRange):
-    TestObject(slantRange, heightRange, tiltRange, initZAsptRatioRange,
-            rotSpeedRange, maxRotDegRange, texs) 
+    TestObject(pitchRange, yawRange, rollRange, heightRange,
+        initZAsptRatioRange, rotSpeedRange, maxRotDegRange, texs) 
 {
     this->radiusRange = radiusRange;    
     this->topTextureID = 0;
@@ -119,15 +121,41 @@ string CylinderObject::genObjPara()
     return strPara;
 }
 
-void CylinderObject::draw(int drawStyle, BOOL enableTexture)
+void CylinderObject::draw(int drawStyle,
+                BOOL enableTexture,
+                BOOL enablePYRRotation,
+                BOOL enableMotion,
+                GLfloat zOffset)
 {
     GLUquadricObj *pCylinder;
+    GLfloat halfHeight = this->height / 2.0f;
 
     if(enableTexture == FALSE)
         glDisable(GL_TEXTURE_2D);
 
     glPushMatrix();
-    glRotatef(90, -1.0f, 0.0f, 0.0f);
+
+    // Apply the pitch, yaw and roll (suppose the coordination for us doesn't change
+    // by rotation that x is from left to right, y is from down to up, 
+    // and z is from far to near)
+    // FIX::::
+    if(enablePYRRotation)
+    {
+        glRotatef(this->pitch, 1.0f, 0.0f, 0.0f); // pitch, rotate refer to x-axis
+        glRotatef(this->yaw, 0.0f, sin(this->pitch), cos(this->pitch)); // yaw, rotate refer to y-axis
+        glRotatef(this->roll, sin(this->yaw), 
+            cos(this->pitch) * cos(this->yaw), 
+            sin(this->pitch) * cos(this->yaw)); // roll, rotate refer to z-axis
+    }
+
+    // Make the cylinder stand on the x-z plane
+    glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
+    glTranslatef(0.0f, 0.0f, -halfHeight + zOffset);
+
+    if(enableMotion)
+    {
+        glRotatef(this->currRotDeg, 0.0f, 0.0f, 1.0f);
+    }
 
     if(enableTexture)
     {
@@ -152,7 +180,8 @@ void CylinderObject::draw(int drawStyle, BOOL enableTexture)
     pCylinder = gluNewQuadric();
     gluQuadricDrawStyle(pCylinder, drawStyle);
     gluQuadricNormals(pCylinder, GLU_SMOOTH);
-    gluQuadricTexture(pCylinder, GL_TRUE);
+    if(enableTexture && this->textures[this->sideTextureID]->type == 'T')
+        gluQuadricTexture(pCylinder, GL_TRUE);
 
     // Draw the cylinder
     gluCylinder(pCylinder, this->radius, this->radius, this->height, 32, 32);
@@ -191,7 +220,8 @@ void CylinderObject::draw(int drawStyle, BOOL enableTexture)
     pCylinder = gluNewQuadric();
     gluQuadricDrawStyle(pCylinder, drawStyle);
     gluQuadricNormals(pCylinder, GLU_SMOOTH);
-    gluQuadricTexture(pCylinder, GL_TRUE);
+    if(enableTexture && this->textures[this->bottomTextureID]->type == 'T')
+        gluQuadricTexture(pCylinder, GL_TRUE);
 
     gluDisk(pCylinder, 0.0f, this->radius, 32, 1);
     gluDeleteQuadric(pCylinder);
@@ -232,7 +262,8 @@ void CylinderObject::draw(int drawStyle, BOOL enableTexture)
         pCylinder = gluNewQuadric();
         gluQuadricDrawStyle(pCylinder, drawStyle);
         gluQuadricNormals(pCylinder, GLU_SMOOTH);
-        gluQuadricTexture(pCylinder, GL_TRUE);
+        if(enableTexture && this->textures[this->topTextureID]->type == 'T')
+            gluQuadricTexture(pCylinder, GL_TRUE);
 
         gluDisk(pCylinder, 0.0f, this->radius, 32, 1);
         gluDeleteQuadric(pCylinder);

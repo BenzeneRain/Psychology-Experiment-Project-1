@@ -80,7 +80,7 @@ BOOL Separate2D3DViewScene::renderScene()
     glLoadIdentity();
 
     gluPerspective(60.0f, fAspect, 0.01f, 300.0f);
-    gluLookAt(0.0f, 120.0f, 150.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    gluLookAt(0.0f, 0.0f, 200.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -88,10 +88,8 @@ BOOL Separate2D3DViewScene::renderScene()
 
     // Draw the cylinder in 3D view
     glPushMatrix();
-    glTranslatef(0.0f, -20.0f, 0.0f);
     glScalef(1.0f, 1.0f, rObject.initZAsptRatio);
-    glRotatef(rObject.currRotDeg, 0.0f, 1.0f, 0.0f);
-    rObject.draw(GLU_FILL, TRUE);
+    rObject.draw(GLU_FILL, TRUE, TRUE, TRUE, 0.0f);
     glPopMatrix();
 
     //////////////////////////////////////////////////////
@@ -106,7 +104,7 @@ BOOL Separate2D3DViewScene::renderScene()
     else
         glOrtho(-100.0*fAspect, 100.0*fAspect, -100.0, 100.0, 100.0, -100.0);
 
-    gluLookAt(0.0f, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+    gluLookAt(0.0f, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -115,7 +113,7 @@ BOOL Separate2D3DViewScene::renderScene()
     glPushMatrix();
     //Draw the cylinder in 2D
     glScalef(1.0f, 1.0f, rObject.adjZAsptRatio);
-    rObject.draw(GLU_FILL, FALSE);
+    rObject.draw(GLU_FILL, FALSE, FALSE, FALSE, 0.0f);
 
     glPopMatrix();
 
