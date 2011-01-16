@@ -13,7 +13,8 @@ using namespace stdext;
 struct conditionStruct
 {
     TestObject *pRealObject;
-    vector<GLuint> textureID;
+
+    vector<texture_t *> textures;
 };
 typedef struct conditionStruct cond_t;
 
@@ -45,8 +46,8 @@ class Conditions
         hash_map<string, TestObjectFactory *> objectFactoryNameMap;
 
         string filename;
-        vector<texture_t *> textures;
-        hash_map<string, int> bitmapNameMap;
+        vector<rTexture_t *> textures;
+        hash_map<string, int> textureMap;
 
         template<typename T>
         BOOL readRange(ifstream& fin, vector<T>& vec, char& type);

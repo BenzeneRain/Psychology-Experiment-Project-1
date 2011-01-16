@@ -235,10 +235,11 @@ BOOL Experiment::recordConfigurations()
     
     ostringstream ossCond;
     // Output Condition list
-    const vector<cond_t *> rConds = experimentConditions->getAllConditions(); 
+    const vector<cond_t *>& rConds = experimentConditions->getAllConditions(); 
     for(unsigned int i = 0; i < rConds.size(); i ++)
     {
         ossCond << i + 1 << " "; // Condition ID
+
         ossCond << rConds[i]->pRealObject->genObjDesc(); // Get object descriptions of the condition 
         ossCond << endl;
     }

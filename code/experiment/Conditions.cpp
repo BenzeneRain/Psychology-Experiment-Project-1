@@ -44,7 +44,15 @@ Conditions::~Conditions(void)
     {
         cond_t *pCondition = rConditions.back();
         TestObject *pObject = pCondition->pRealObject;
+        vector<texture_t *>& rVecTexture = pCondition->textures;
         rConditions.pop_back();
+
+        while(!rVecTexture.empty())
+        {
+           texture_t *pTexture = rVecTexture.back();
+           rVecTexture.pop_back();
+           delete pTexture;
+        }
 
         delete pObject;
         delete pCondition;
@@ -53,7 +61,7 @@ Conditions::~Conditions(void)
     // Dispose textures
     while(!this->textures.empty())
     {
-        texture_t *pTexture = this->textures.back();
+        rTexture_t *pTexture = this->textures.back();
 
         if(pTexture->type == 'T')
         {
@@ -162,17 +170,18 @@ BOOL Conditions::readConstraints(ifstream& fin)
         // Read Texture information (only support bmp file now)
         int numTextures;
         fin >> numTextures;
-        
+
+        this->textureMap.clear();
         for(int iTextures = 0; iTextures < numTextures; iTextures ++)
         {
             string textureName;
             string filename;
             char textureType;
             
-            this->bitmapNameMap.clear();
-
             fin >> textureName >> textureType;
-                
+            rTexture_t *pTexture = new rTexture_t;  
+            pTexture->name = textureName;
+
             switch(textureType)
             {
                 case 'T':
@@ -190,20 +199,22 @@ BOOL Conditions::readConstraints(ifstream& fin)
                             return FALSE;
                         }
 
-                        texture_t *pTexture = new texture_t;
-
                         pTexture->type = 'T';
                         pTexture->hBitmap = hBitmap;
-                        this->textures.push_back(pTexture);
-                        bitmapNameMap[textureName] = iTextures;
                         break;
                     }
                 case 'C':
-                    break;
+                    {
+                        fin >> pTexture->color[0] >> pTexture->color[1] >> pTexture->color[2];
+                        pTexture->type = 'C';
+                        break;
+                    }
                 default:
                     break;
             }
 
+            this->textures.push_back(pTexture);
+            textureMap[textureName] = iTextures;
 
         }
 
@@ -252,7 +263,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
                     string textureName;
                     fin >> textureName;
 
-                    if(this->bitmapNameMap.find(textureName) != this->bitmapNameMap.end())
+                    if(this->textureMap.find(textureName) != this->textureMap.end())
                     {
                         (*textureList)[j] = textureName;
                     }
@@ -370,8 +381,27 @@ void Conditions::addCondition(int constraintIndex)
 
    for(unsigned int i = 0; i < textureList->size(); i ++)
    { 
-        int index = this->bitmapNameMap[(*textureList)[i]];
-        pNewCondition->textureID.push_back(this->rScreen.texIDs[index]);
+        int index = this->textureMap[(*textureList)[i]];
+
+        texture_t *pTexture = new texture_t;
+        pTexture->name = this->textures[index]->name;
+        switch(this->textures[index]->type)
+        {
+            case 'T':
+                pTexture->type = 'T';
+                pTexture->textureID = this->rScreen.texIDs[index];
+                pNewCondition->textures.push_back(pTexture);
+                break;
+            case 'C':
+                pTexture->type = 'C';
+                pTexture->color[0] = this->rScreen.colorIDs[index][0];
+                pTexture->color[1] = this->rScreen.colorIDs[index][1];
+                pTexture->color[2] = this->rScreen.colorIDs[index][2];
+                pNewCondition->textures.push_back(pTexture);
+                break;
+            default:
+                break;
+        }
    }
 
    // Produce object
@@ -380,7 +410,7 @@ void Conditions::addCondition(int constraintIndex)
        this->constraints[constraintIndex]->objectNames[randIndex]];
 
    // FIX: Check if the pRealObject is NULL or not
-   pNewCondition->pRealObject = pFactory->createObject(*this->constraints[constraintIndex], pNewCondition->textureID);
+   pNewCondition->pRealObject = pFactory->createObject(*this->constraints[constraintIndex], pNewCondition->textures);
    pNewCondition->pRealObject->setRandPara();
 
 

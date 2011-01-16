@@ -1,6 +1,7 @@
 #pragma once
 
 #include "stdafx.h"
+#include "texture.h"
 #include <string>
 #include <vector>
 
@@ -9,18 +10,17 @@ using namespace std;
 class TestObject
 {
     public:
-        TestObject(void);
         TestObject(vector<GLfloat>& slantRange,
                    vector<GLfloat>& heightRange,
                    vector<GLfloat>& tiltRange,
                    vector<GLfloat>& initZAsptRatioRange,
                    vector<GLfloat>& rotSpeedRange,
-                   vector<GLfloat>& maxRotDegRange);
+                   vector<GLfloat>& maxRotDegRange,
+                   vector<texture_t *>& texs);
 
         TestObject(TestObject& rObj);
         virtual ~TestObject(void);
     
-        virtual TestObject * newObj(void) = 0;
         virtual TestObject * newObj(TestObject& rObject) = 0;
 
         virtual string getObjName(void) = 0;
@@ -62,6 +62,7 @@ class TestObject
         vector<GLfloat> rotSpeedRange;
         vector<GLfloat> maxRotDegRange;
 
+        vector<texture_t *> textures;
     protected:
         string objName;
 };

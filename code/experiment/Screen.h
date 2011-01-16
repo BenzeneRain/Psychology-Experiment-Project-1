@@ -28,7 +28,7 @@ class Screen
         BOOL setTimerFunc(unsigned int msecs, void (*func)(int timerID), int timerID);
         BOOL setIdleFunc(void (*func)(void));
 
-        BOOL initTextures(vector<texture_t *>& textures);
+        BOOL initTextures(vector<rTexture_t *>& textures);
 
         BOOL run();
         void render();
@@ -40,6 +40,7 @@ class Screen
 
         int texNo;
         GLuint *texIDs;
+        vector< vector<GLuint> > colorIDs;
 
         // the function is only for test purpose 
         static void testRenderScene();

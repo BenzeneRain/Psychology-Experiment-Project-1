@@ -8,33 +8,21 @@ using namespace std;
 
 const UINT CylinderObject::objectID = 1;
 
-CylinderObject::CylinderObject(void) : TestObject()
-{
-    this->objName = string("Cylinder");
-
-    // Initialize the ranges
-    // FIX: The value should be read from
-    // the configuration files later
-    radiusRange.push_back(20.0f);
-    radiusRange.push_back(30.0f);
-    radiusRange.push_back(40.0f);
-}
-
 CylinderObject::CylinderObject(vector<GLfloat>& slantRange,
                             vector<GLfloat>& heightRange,
                             vector<GLfloat>& tiltRange,
                             vector<GLfloat>& initZAsptRatioRange,
                             vector<GLfloat>& rotSpeedRange,
                             vector<GLfloat>& maxRotDegRange,
-                            vector<GLfloat>& radiusRange,
-                            vector<GLuint>& textureID):
+                            vector<texture_t *>& texs,
+                            vector<GLfloat>& radiusRange):
     TestObject(slantRange, heightRange, tiltRange, initZAsptRatioRange,
-            rotSpeedRange, maxRotDegRange) 
+            rotSpeedRange, maxRotDegRange, texs) 
 {
     this->radiusRange = radiusRange;    
-    this->topTextureID = textureID[0];
-    this->bottomTextureID = textureID[1];
-    this->sideTextureID = textureID[2];
+    this->topTextureID = 0;
+    this->bottomTextureID = 1;
+    this->sideTextureID = 2;
 
     this->objName = string("Cylinder");
 }
@@ -49,11 +37,6 @@ CylinderObject::~CylinderObject(void)
 {
 }
         
-TestObject *CylinderObject::newObj(void)
-{
-   return (new CylinderObject()); 
-}
-
 TestObject *CylinderObject::newObj(TestObject &rObject)
 {
    return (new CylinderObject(static_cast< CylinderObject& >(rObject))); 
@@ -108,6 +91,11 @@ string CylinderObject::genObjDesc()
     }
     ossObj << " ";
 
+    ossObj << 3 << " "; // number of textures used
+    ossObj << this->textures[topTextureID]->name << " " // texture for top face
+        << this->textures[bottomTextureID]->name << " " // texture for bottom face
+        << this->textures[sideTextureID]->name << " "; // texture for side
+
     return ossObj.str();
 }
 
@@ -121,6 +109,11 @@ string CylinderObject::genObjPara()
 
     ossObj << this->radius << " "; // Radius of the Cylinder
 
+    ossObj << 3 << " "; // number of textures used
+    ossObj << this->textures[topTextureID]->name << " " // texture for top face
+        << this->textures[bottomTextureID]->name << " " // texture for bottom face
+        << this->textures[sideTextureID]->name << " "; // texture for side
+
     strPara += ossObj.str();
 
     return strPara;
@@ -130,38 +123,112 @@ void CylinderObject::draw(int drawStyle, BOOL enableTexture)
 {
     GLUquadricObj *pCylinder;
 
+    if(enableTexture == FALSE)
+        glDisable(GL_TEXTURE_2D);
+
+    glPushMatrix();
+    glRotatef(90, -1.0f, 0.0f, 0.0f);
+
     if(enableTexture)
     {
-        glEnable(GL_TEXTURE_2D);
+        switch(this->textures[this->sideTextureID]->type)
+        {
+            case 'T':
+                glEnable(GL_TEXTURE_2D);    
+                glBindTexture(GL_TEXTURE_2D,
+                    this->textures[this->sideTextureID]->textureID);
+                break;
+            case 'C':
+                glDisable(GL_TEXTURE_2D);
+                glColor3ub(this->textures[this->sideTextureID]->color[0],
+                        this->textures[this->sideTextureID]->color[1],
+                        this->textures[this->sideTextureID]->color[2]);
+                break;
+            default:
+                break;
+        }
     }
-    else
+
+    pCylinder = gluNewQuadric();
+    gluQuadricDrawStyle(pCylinder, drawStyle);
+    gluQuadricNormals(pCylinder, GLU_SMOOTH);
+    gluQuadricTexture(pCylinder, GL_TRUE);
+
+    // Draw the cylinder
+    gluCylinder(pCylinder, this->radius, this->radius, this->height, 32, 32);
+
+    gluDeleteQuadric(pCylinder);
+
+    if(enableTexture)
     {
-        glDisable(GL_TEXTURE_2D);
+        if(this->textures[this->sideTextureID]->type == 'T')
+            glDisable(GL_TEXTURE_2D);    
+        else
+            glColor3ub(255, 255, 255);
+    }
+
+    // Draw the bottom face
+    if(enableTexture)
+    {
+        switch(this->textures[this->bottomTextureID]->type)
+        {
+            case 'T':
+                glEnable(GL_TEXTURE_2D);    
+                glBindTexture(GL_TEXTURE_2D,
+                    this->textures[this->bottomTextureID]->textureID);
+                break;
+            case 'C':
+                glDisable(GL_TEXTURE_2D);
+                glColor3ub(this->textures[this->bottomTextureID]->color[0],
+                        this->textures[this->bottomTextureID]->color[1],
+                        this->textures[this->bottomTextureID]->color[2]);
+                break;
+            default:
+                break;
+        }
+    }
+
+    pCylinder = gluNewQuadric();
+    gluQuadricDrawStyle(pCylinder, drawStyle);
+    gluQuadricNormals(pCylinder, GLU_SMOOTH);
+    gluQuadricTexture(pCylinder, GL_TRUE);
+
+    gluDisk(pCylinder, 0.0f, this->radius, 32, 1);
+    gluDeleteQuadric(pCylinder);
+
+    if(enableTexture)
+    {
+        if(this->textures[this->bottomTextureID]->type == 'T')
+            glDisable(GL_TEXTURE_2D);    
+        else
+            glColor3ub(255, 255, 255);
     }
 
     {
+        // Draw the top face
         glPushMatrix();
-        glRotatef(90, -1.0f, 0.0f, 0.0f);
+        glTranslatef(0.0f, 0.0f, this->height);
 
         if(enableTexture)
         {
-            glBindTexture(GL_TEXTURE_2D, this->sideTextureID);
+            switch(this->textures[this->topTextureID]->type)
+            {
+                case 'T':
+                    glEnable(GL_TEXTURE_2D);    
+                    glBindTexture(GL_TEXTURE_2D,
+                        this->textures[this->topTextureID]->textureID);
+                    break;
+                case 'C':
+                    glDisable(GL_TEXTURE_2D);
+                    glColor3ub(this->textures[this->topTextureID]->color[0],
+                            this->textures[this->topTextureID]->color[1],
+                            this->textures[this->topTextureID]->color[2]);
+                    break;
+                default:
+                    break;
+            }
         }
-        pCylinder = gluNewQuadric();
-        gluQuadricDrawStyle(pCylinder, drawStyle);
-        gluQuadricNormals(pCylinder, GLU_SMOOTH);
-        gluQuadricTexture(pCylinder, GL_TRUE);
 
-        // Draw the cylinder
-        gluCylinder(pCylinder, this->radius, this->radius, this->height, 32, 32);
-
-        gluDeleteQuadric(pCylinder);
-
-        // Draw the bottom face
-        if(enableTexture)
-        {
-            glBindTexture(GL_TEXTURE_2D, this->bottomTextureID);
-        }
         pCylinder = gluNewQuadric();
         gluQuadricDrawStyle(pCylinder, drawStyle);
         gluQuadricNormals(pCylinder, GLU_SMOOTH);
@@ -170,28 +237,18 @@ void CylinderObject::draw(int drawStyle, BOOL enableTexture)
         gluDisk(pCylinder, 0.0f, this->radius, 32, 1);
         gluDeleteQuadric(pCylinder);
 
+        if(enableTexture)
         {
-            // Draw the top face
-            glPushMatrix();
-            glTranslatef(0.0f, 0.0f, this->height);
-
-            if(enableTexture)
-            {
-                glBindTexture(GL_TEXTURE_2D, this->topTextureID);
-            }
-            pCylinder = gluNewQuadric();
-            gluQuadricDrawStyle(pCylinder, drawStyle);
-            gluQuadricNormals(pCylinder, GLU_SMOOTH);
-            gluQuadricTexture(pCylinder, GL_TRUE);
-
-            gluDisk(pCylinder, 0.0f, this->radius, 32, 1);
-            gluDeleteQuadric(pCylinder);
-
-            glPopMatrix();
+            if(this->textures[this->topTextureID]->type == 'T')
+                glDisable(GL_TEXTURE_2D);    
+            else
+                glColor3ub(255, 255, 255);
         }
 
         glPopMatrix();
     }
+
+    glPopMatrix();
 
     glDisable(GL_TEXTURE_2D);
 }

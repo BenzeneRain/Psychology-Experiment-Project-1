@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "ConditionConstraints.h"
+#include "texture.h"
 #include "TestObject.h"
 
 class TestObjectFactory
@@ -10,7 +11,7 @@ class TestObjectFactory
         TestObjectFactory(void);
         virtual ~TestObjectFactory(void);
 
-        virtual TestObject* createObject(condCons_t& constraint, vector<GLuint>& textureIDs) = 0;
+        virtual TestObject* createObject(condCons_t& constraint, vector<texture_t *>& textures) = 0;
         virtual const string getProductName() = 0;
 
     protected:

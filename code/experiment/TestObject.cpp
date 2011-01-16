@@ -7,43 +7,15 @@ using namespace std;
 
 const UINT TestObject::objectID = 0;
 
-TestObject::TestObject(void)
-{
-    // Initialize the ranges
-    // FIX: The value should be read from
-    // the configuration files later
-    this->slantRange.push_back(0.0f);
-
-    this->heightRange.push_back(60.0f);
-    this->heightRange.push_back(70.0f);
-    this->heightRange.push_back(80.0f);
-
-    this->tiltRange.push_back(0.0f);
-
-    this->initZAsptRatioRange.push_back(0.8f);
-    this->initZAsptRatioRange.push_back(1.0f);
-    this->initZAsptRatioRange.push_back(1.2f);
-
-    this->rotSpeedRange.push_back(20.0f);
-    this->rotSpeedRange.push_back(25.0f);
-    this->rotSpeedRange.push_back(40.0f);
-
-    this->maxRotDegRange.push_back(20.0f);
-    this->maxRotDegRange.push_back(60.0f);
-    this->maxRotDegRange.push_back(90.0f);
-    this->maxRotDegRange.push_back(120.0f);
-
-    this->currRotDeg = 0;
-    this->rotDirection = CLOCKWISE;
-}
-
 TestObject::TestObject(vector<GLfloat>& slantRange,
                     vector<GLfloat>& heightRange,
                     vector<GLfloat>& tiltRange,
                     vector<GLfloat>& initZAsptRatioRange,
                     vector<GLfloat>& rotSpeedRange,
-                    vector<GLfloat>& maxRotDegRange)
+                    vector<GLfloat>& maxRotDegRange,
+                    vector<texture_t *>& texs)
 {
+    this->textures = texs;
     this->slantRange = slantRange;
     this->heightRange = heightRange;
     this->tiltRange = tiltRange;

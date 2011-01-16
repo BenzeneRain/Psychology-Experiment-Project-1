@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 #include "testobject.h"
+#include "texture.h"
 #include <string>
 
 using namespace std;
@@ -9,19 +10,17 @@ class CylinderObject :
     public TestObject
 {
     public:
-        CylinderObject(void);
         CylinderObject(vector<GLfloat>& slantRange,
                 vector<GLfloat>& heightRange,
                 vector<GLfloat>& tiltRange,
                 vector<GLfloat>& initZAsptRatioRange,
                 vector<GLfloat>& rotSpeedRange,
                 vector<GLfloat>& maxRotDegRange,
-                vector<GLfloat>& radiusRange,
-                vector<GLuint>& textureID);
+                vector<texture_t *>& texs,
+                vector<GLfloat>& radiusRange);
         CylinderObject(CylinderObject &rObj);
         virtual ~CylinderObject(void);
 
-        virtual TestObject * newObj(void);
         virtual TestObject * newObj(TestObject &rObject);
 
         virtual string getObjName(void);

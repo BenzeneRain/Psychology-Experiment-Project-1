@@ -10,14 +10,14 @@ CylinderFactory::~CylinderFactory(void)
 {
 }
 
-TestObject* CylinderFactory::createObject(condCons_t& constraint, vector<GLuint>& textureIDs)
+TestObject* CylinderFactory::createObject(condCons_t& constraint, vector<texture_t *>& textures)
 {
     // Check if the number of textures is larger than 3
-    if(textureIDs.size() < 3)
+    if(textures.size() < 3)
     {
         ostringstream ossWarning;
         ossWarning << "The Cylinder requires three textures, but only " 
-            << textureIDs.size() << " provided.";
+            << textures.size() << " provided.";
         
         string warningMsg = ossWarning.str();
         MessageBox(NULL, (LPCSTR)(warningMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
@@ -30,8 +30,8 @@ TestObject* CylinderFactory::createObject(condCons_t& constraint, vector<GLuint>
             constraint.initZAsptRatioRange,
             constraint.rotSpeedRange,
             constraint.maxRotDegRange,
-            constraint.radiusRange,
-            textureIDs);
+            textures,
+            constraint.radiusRange);
 
     return pObj;
 }
