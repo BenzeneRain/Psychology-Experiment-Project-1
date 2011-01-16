@@ -337,6 +337,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\texture.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Trial.h"
 				>
 			</File>

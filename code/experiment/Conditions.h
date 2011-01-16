@@ -5,6 +5,7 @@
 #include "TestObjectFactory.h"
 #include "TestObject.h"
 #include "Screen.h"
+#include "texture.h"
 #include <hash_map>
 
 using namespace stdext;
@@ -15,7 +16,6 @@ struct conditionStruct
     vector<GLuint> textureID;
 };
 typedef struct conditionStruct cond_t;
-
 
 class Conditions
 {
@@ -45,7 +45,7 @@ class Conditions
         hash_map<string, TestObjectFactory *> objectFactoryNameMap;
 
         string filename;
-        vector<HBITMAP> hBitmaps;
+        vector<texture_t *> textures;
         hash_map<string, int> bitmapNameMap;
 
         template<typename T>

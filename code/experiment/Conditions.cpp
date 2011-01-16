@@ -50,13 +50,19 @@ Conditions::~Conditions(void)
         delete pCondition;
     }
     
-    // Dispose hBitmaps
-    while(!this->hBitmaps.empty())
+    // Dispose textures
+    while(!this->textures.empty())
     {
-        HBITMAP hBitmap = this->hBitmaps.back();
-        DeleteObject(hBitmap);
+        texture_t *pTexture = this->textures.back();
 
-        this->hBitmaps.pop_back();
+        if(pTexture->type == 'T')
+        {
+            HBITMAP hBitmap = pTexture->hBitmap;
+            DeleteObject(hBitmap);
+        }
+        this->textures.pop_back();
+
+        delete pTexture;
     }
 }
 
@@ -89,11 +95,16 @@ BOOL Conditions::readConstraints(ifstream& fin)
 
     // First line has a number T, indicating the number of texutures used
     //
-    // Following T lines, each line has two components, the first one is the
-    // user-defined name(contain no space) for the texture, and the texture's
-    // relative path to the program plus the filename 
+    // Following T lines, each line has three components:
+    // the first one is the user-defined name(contain no space) for the texture; 
+    // the second one is and the texture's type, 'T' means it is from a texture file,
+    // and 'C' means it is a color;
+    // if the texture type is 'T', the third one is the relative path to the program
+    // plus the filename; if the texture type is 'C', the third one has three integers
+    // from 0 to 255, which indicating R, G and B
     // e.g.
-    // t1 ./texture/stone.bmp 
+    // t1 T ./texture/stone.bmp 
+    // c1 C 255 255 255
     // the user defined texture name will be used in constraint description
     // 
     // The T + 2 line has a number C indicating the number of constraints. Then
@@ -156,27 +167,47 @@ BOOL Conditions::readConstraints(ifstream& fin)
         {
             string textureName;
             string filename;
+            char textureType;
             
             this->bitmapNameMap.clear();
 
-            fin >> textureName >> filename;
-            
-            HBITMAP hBitmap = NULL;
-            hBitmap = (HBITMAP)::LoadImage(NULL, (LPCSTR)(filename.c_str()), 
-                    IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-            if(hBitmap == NULL)
+            fin >> textureName >> textureType;
+                
+            switch(textureType)
             {
-                string errorMsg = "Fail to load the texture ";
-                errorMsg += filename;
-                MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
-                return FALSE;
+                case 'T':
+                    {
+                        fin >> filename;
+
+                        HBITMAP hBitmap = NULL;
+                        hBitmap = (HBITMAP)::LoadImage(NULL, (LPCSTR)(filename.c_str()), 
+                                IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+                        if(hBitmap == NULL)
+                        {
+                            string errorMsg = "Fail to load the texture ";
+                            errorMsg += filename;
+                            MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+                            return FALSE;
+                        }
+
+                        texture_t *pTexture = new texture_t;
+
+                        pTexture->type = 'T';
+                        pTexture->hBitmap = hBitmap;
+                        this->textures.push_back(pTexture);
+                        bitmapNameMap[textureName] = iTextures;
+                        break;
+                    }
+                case 'C':
+                    break;
+                default:
+                    break;
             }
 
-            this->hBitmaps.push_back(hBitmap);
-            bitmapNameMap[textureName] = iTextures;
+
         }
 
-        this->rScreen.initTextures(this->hBitmaps);
+        this->rScreen.initTextures(this->textures);
     
         // Read constraints
         int numConstraints;

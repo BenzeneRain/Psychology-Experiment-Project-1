@@ -1,5 +1,5 @@
 1
-t1 ./textures/voron_higher_resrgb.bmp
+t1 T ./textures/voron_higher_resrgb.bmp
 2
 1 Cylinder
 1

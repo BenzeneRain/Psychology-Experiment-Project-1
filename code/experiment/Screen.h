@@ -1,6 +1,7 @@
 #pragma once
 
 #include "stdafx.h"
+#include "texture.h"
 #include <string>
 #include <vector>
 using namespace std;
@@ -27,7 +28,7 @@ class Screen
         BOOL setTimerFunc(unsigned int msecs, void (*func)(int timerID), int timerID);
         BOOL setIdleFunc(void (*func)(void));
 
-        BOOL initTextures(vector<HBITMAP>& hBitmaps);
+        BOOL initTextures(vector<texture_t *>& textures);
 
         BOOL run();
         void render();

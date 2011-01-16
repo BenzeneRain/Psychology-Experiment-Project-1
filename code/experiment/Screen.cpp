@@ -2,6 +2,7 @@
 #include "Screen.h"
 #include "Scene.h"
 #include "experiment.h"
+#include "texture.h"
 #include <sstream>
 
 using namespace std;
@@ -53,32 +54,35 @@ BOOL Screen::initGlut(UINT displayMode, string title)
     return TRUE;
 }
 
-BOOL Screen::initTextures(vector<HBITMAP>& hBitmaps)
+BOOL Screen::initTextures(vector<texture_t *>& textures)
 {
-    this->texNo = hBitmaps.size();
+    this->texNo = textures.size();
 
     this->texIDs = new GLuint[this->texNo];
     memset(this->texIDs, 0, sizeof(GLuint) * this->texNo);
     glGenTextures(this->texNo, this->texIDs);
 
-    for(unsigned int i = 0; i < hBitmaps.size(); i ++)
+    for(unsigned int i = 0; i < textures.size(); i ++)
     {
-        glBindTexture(GL_TEXTURE_2D, this->texIDs[i]);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);  
+        if(textures[i]->type == 'T')
+        { 
+            glBindTexture(GL_TEXTURE_2D, this->texIDs[i]);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);  
 
-        BITMAP bm;
-        HBITMAP hBitmap;
+            BITMAP bm;
+            HBITMAP hBitmap;
 
-        hBitmap = hBitmaps[i];
-        GetObject(hBitmap, sizeof(bm), &bm);
+            hBitmap = textures[i]->hBitmap;
+            GetObject(hBitmap, sizeof(bm), &bm);
 
-        BYTE *imageBuffer = new BYTE[bm.bmWidthBytes * bm.bmHeight];
-        GetBitmapBits(hBitmap, bm.bmWidthBytes * bm.bmHeight, imageBuffer);
+            BYTE *imageBuffer = new BYTE[bm.bmWidthBytes * bm.bmHeight];
+            GetBitmapBits(hBitmap, bm.bmWidthBytes * bm.bmHeight, imageBuffer);
 
-        gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, bm.bmWidth, bm.bmHeight,
-                GL_RGBA, GL_UNSIGNED_BYTE, imageBuffer);
-        delete imageBuffer;
+            gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, bm.bmWidth, bm.bmHeight,
+                    GL_RGBA, GL_UNSIGNED_BYTE, imageBuffer);
+            delete imageBuffer;
+        }
     }
 
     return TRUE;
