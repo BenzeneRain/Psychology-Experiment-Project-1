@@ -1,6 +1,7 @@
 #pragma once
 #include "mixedobjectviewscene.h"
 #include "Conditions.h"
+#include "StereoViewingFrameV2.h"
 
 class Separate2D3DViewScene :
     public MixedObjectViewScene

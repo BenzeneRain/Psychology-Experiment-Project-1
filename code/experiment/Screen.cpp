@@ -58,6 +58,8 @@ BOOL Screen::initGlut(UINT displayMode, string title)
     // Setting up textures environment
     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
+    this->stereoFrame.LoadFrame(string("calib.txt"));
+
     return TRUE;
 }
 

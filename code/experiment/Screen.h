@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "texture.h"
+#include "StereoViewingFrameV2.h"
 #include <string>
 #include <vector>
 using namespace std;
@@ -46,6 +47,8 @@ class Screen
         int texNo;
         GLuint *texIDs;
         vector< vector<GLuint> > colorIDs;
+
+        StereoViewingFrame stereoFrame;
 
         // the function is only for test purpose 
         static void testRenderScene();

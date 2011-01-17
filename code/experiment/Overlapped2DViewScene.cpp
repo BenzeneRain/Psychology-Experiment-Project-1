@@ -56,18 +56,16 @@ BOOL Overlapped2DViewScene::renderScene()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    gluPerspective(60.0f, fAspect, 0.01f, 300.0f);
-    gluLookAt(0.0f, 0.0f, 200.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    //gluPerspective(60.0f, fAspect, 0.01f, 300.0f);
+    //gluLookAt(0.0f, 0.0f, 200.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    glLoadMatrixd(this->rScreen.stereoFrame.centerprojmatrix.data());
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glColor3ub(255, 255, 255);
 
     // Draw the cylinder in 3D view
-    glPushMatrix();
-    glScalef(1.0f, 1.0f, rObject.initZAsptRatio);
-    rObject.draw(GLU_FILL, TRUE, TRUE, TRUE, 0.0f);
-    glPopMatrix();
+    rObject.draw(GLU_FILL, TRUE, TRUE, TRUE, rObject.initZAsptRatio, 0.0f);
 
     //////////////////////////////////////////////////////
     // Draw the right part
@@ -76,27 +74,29 @@ BOOL Overlapped2DViewScene::renderScene()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    if(halfWidth <= scrHeight)
-        glOrtho(-100.0, 100.0, -100.0/fAspect, 100.0/fAspect, 100.0, -100.0);
-    else
-        glOrtho(-100.0*fAspect, 100.0*fAspect, -100.0, 100.0, 100.0, -100.0);
+    float objWidth = 30.0f;
+    float objHeight = 30.0f;
+    float objDepth = 30.0f;
 
-    gluLookAt(0.0f, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f);
+    if(halfWidth <= scrHeight)
+        glOrtho(-objWidth, objWidth, -objHeight/fAspect, objHeight/fAspect, -objDepth, objDepth);
+    else
+        glOrtho(-objWidth*fAspect, objWidth*fAspect, -objHeight, objHeight, -objDepth, objDepth);
+    
+    gluLookAt(this->rScreen.stereoFrame.topCenterEye[0],
+        this->rScreen.stereoFrame.topCenterEye[1],
+        this->rScreen.stereoFrame.topCenterEye[2],
+        0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
     // Draw the cylinder after adjust in 2D
-    glPushMatrix();
     glColor3ub(255, 255, 255);
-    glScalef(1.0f, 1.0f, rObject.adjZAsptRatio);
-    rObject.draw(GLU_FILL, FALSE, FALSE, FALSE, 0.0f);
-    glPopMatrix();
+    rObject.draw(GLU_FILL, FALSE, FALSE, FALSE, rObject.adjZAsptRatio, 0.0f);
 
     // Draw the cylinder before adjust in 2D
-    glPushMatrix();
     glColor3ub(255, 0, 0);
-    glScalef(1.0f, 1.0f, rObject.initZAsptRatio);
     //glTranslatef(0.0f, -1.0f, 0.0f);
     glEnable(GL_LINE_STIPPLE);
     glLineStipple(1, 0xf0f0);
@@ -104,10 +104,9 @@ BOOL Overlapped2DViewScene::renderScene()
     GLfloat normalLineSize[2];
     glGetFloatv(GL_LINE_WIDTH_RANGE, normalLineSize);
     glLineWidth(3.0f);
-    rObject.draw(GLU_SILHOUETTE, FALSE, FALSE, FALSE, -1.0f);
+    rObject.draw(GLU_SILHOUETTE, FALSE, FALSE, FALSE, rObject.initZAsptRatio, 1.0f);
     glLineWidth(normalLineSize[0]);
     glDisable(GL_LINE_STIPPLE);
-    glPopMatrix();
 
     //////////////////////////////////////////////////////
     // Switch to the full screen and display
@@ -127,10 +126,10 @@ BOOL Overlapped2DViewScene::reshape(int w, int h)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-    if(w <= h)
-        glOrtho(-100.0, 100.0, -100.0/fAspect, 100.0/fAspect, 100.0, -100.0);
-    else
-        glOrtho(-100.0*fAspect, 100.0*fAspect, -100.0, 100.0, 100.0, -100.0);
+    //if(w <= h)
+    //    glOrtho(-100.0, 100.0, -100.0/fAspect, 100.0/fAspect, 100.0, -100.0);
+    //else
+    //    glOrtho(-100.0*fAspect, 100.0*fAspect, -100.0, 100.0, 100.0, -100.0);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();

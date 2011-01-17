@@ -88,10 +88,18 @@ BOOL Conditions::initConditions()
     ifstream fin(this->filename.c_str());
     ret = readConstraints(fin);
     if(ret == FALSE)
+    {
+        fin.close();
         return FALSE;
+    }
 
     // Generate conditions according to constraints
-    this->generateConditions();
+    ret = this->generateConditions();
+    if(ret == FALSE)
+    {
+        fin.close();
+        return FALSE;
+    }
 
     fin.close();
     return TRUE;
@@ -197,6 +205,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
                             string errorMsg = "Fail to load the texture ";
                             errorMsg += filename;
                             MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+                            
                             return FALSE;
                         }
 
@@ -243,9 +252,14 @@ BOOL Conditions::readConstraints(ifstream& fin)
                 }
                 else
                 {
-                    string message("There is no built in object named ");
-                    message += name;
-                    MessageBox(NULL, (LPCSTR)(message.c_str()), NULL, MB_OK | MB_ICONWARNING);
+                    ostringstream ossError;
+                    ossError << "There is no built in object named " << name <<
+                        "in Constaint " << iConstraint + 1 << ". Continue or not?";
+                    string message = ossError.str();
+                    int userChoice = 
+                        MessageBox(NULL, (LPCSTR)(message.c_str()), NULL, MB_YESNO | MB_ICONWARNING);
+                    if(userChoice == IDNO)
+                        return FALSE;
                 }
             }
 
@@ -270,9 +284,14 @@ BOOL Conditions::readConstraints(ifstream& fin)
                     }
                     else
                     {
-                        string message("There is no texture named ");
-                        message += textureName;
-                        MessageBox(NULL, (LPCSTR)(message.c_str()), NULL, MB_OK | MB_ICONWARNING);
+                        ostringstream ossError;
+                        ossError << "There is no texture named " << textureName << 
+                            " in Constraint " << iConstraint + 1 << ". Continue or not?";
+                        string message = ossError.str();
+                        int userChoice = 
+                            MessageBox(NULL, (LPCSTR)(message.c_str()), NULL, MB_YESNO | MB_ICONWARNING);
+                        if(userChoice == IDNO)
+                            return FALSE;
                     }
                 }
 
@@ -282,36 +301,74 @@ BOOL Conditions::readConstraints(ifstream& fin)
             // Read Constraint Weight
             int weight;
             fin >> weight;
-
+            BOOL ret;
+            
             pNewConstraint->weight = weight;
 
             // Read Pitch Range
-            this->readRange<GLfloat>(fin, pNewConstraint->pitchRange, pNewConstraint->pitchRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->pitchRange, pNewConstraint->pitchRangeType);
+            if(ret == FALSE)
+            {
+                this->printReadRangeError("pitch", iConstraint + 1);
+                return FALSE;
+            }
 
             // Read Yaw Range
-            this->readRange<GLfloat>(fin, pNewConstraint->yawRange, pNewConstraint->yawRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->yawRange, pNewConstraint->yawRangeType);
+            if(ret == FALSE)
+            {
+                this->printReadRangeError("yaw", iConstraint + 1);
+                return FALSE;
+            }
 
             // Read Roll Range
-            this->readRange<GLfloat>(fin, pNewConstraint->rollRange, pNewConstraint->rollRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->rollRange, pNewConstraint->rollRangeType);
+            if(ret == FALSE)
+            {
+                this->printReadRangeError("roll", iConstraint + 1);
+                return FALSE;
+            }
 
             // Read Height Range
-            this->readRange<GLfloat>(fin, pNewConstraint->heightRange, pNewConstraint->heightRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->heightRange, pNewConstraint->heightRangeType);
+            if(ret == FALSE)
+            {
+                this->printReadRangeError("height", iConstraint + 1);
+                return FALSE;
+            }
 
             // Read Initial Z Aspect Ratio Range
-            this->readRange<GLfloat>(fin, pNewConstraint->initZAsptRatioRange, pNewConstraint->initZAsptRatioRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->initZAsptRatioRange, pNewConstraint->initZAsptRatioRangeType);
+            if(ret == FALSE)
+            {
+                this->printReadRangeError("initial aspect ratio on z axis", iConstraint + 1);
+                return FALSE;
+            }
 
             // Read Rotation Speed Range
-            this->readRange<GLfloat>(fin, pNewConstraint->rotSpeedRange, pNewConstraint->rotSpeedRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->rotSpeedRange, pNewConstraint->rotSpeedRangeType);
+            if(ret == FALSE)
+            {
+                this->printReadRangeError("rotation speed", iConstraint + 1);
+                return FALSE;
+            }
 
             // Max Rotation Degree Range
-            this->readRange<GLfloat>(fin, pNewConstraint->maxRotDegRange, pNewConstraint->maxRotDegRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->maxRotDegRange, pNewConstraint->maxRotDegRangeType);
+            if(ret == FALSE)
+            {
+                this->printReadRangeError("max rotation degree", iConstraint + 1);
+                return FALSE;
+            }
 
             // Read Object Specific Parameters
             for(unsigned int i = 0; i < pNewConstraint->objectNames.size(); i ++)
             {
                 if(!pNewConstraint->objectNames[i].compare("Cylinder"))
                 {
-                    this->cylinderParameterReadingFunction(fin, *pNewConstraint);
+                    ret = this->cylinderParameterReadingFunction(fin, *pNewConstraint, iConstraint + 1);
+                    if(ret == FALSE)
+                        return FALSE;
                 }
             }
 
@@ -366,6 +423,14 @@ BOOL Conditions::readRange(ifstream& fin, vector<T>& vec, char& type)
     }
 
     return TRUE;
+}
+
+void Conditions::printReadRangeError(string name, int constraintID)
+{
+    ostringstream ossError;
+    ossError << "Invalid " << name << " range for constraint " << constraintID;
+    string message = ossError.str();
+    MessageBox(NULL, (LPCSTR)(message.c_str()), NULL, MB_OK | MB_ICONERROR);
 }
 
 void Conditions::addConstraint(condCons_t* pConstraint)
@@ -432,7 +497,7 @@ void Conditions::shuffleConditions()
     random_shuffle(this->conditions.begin(), this->conditions.end());
 }
 
-void Conditions::generateConditions()
+BOOL Conditions::generateConditions()
 {
     int totalWeights = 0;
     vector<int> accumulateWeight;
@@ -448,6 +513,15 @@ void Conditions::generateConditions()
 
     totalWeights = currAccWeight;
 
+    if(totalWeights == 0)
+    {
+        ostringstream ossError;
+        ossError << "Error found in the configuration file, please check it.";
+        string message = ossError.str();
+        MessageBox(NULL, (LPCSTR)(message.c_str()), NULL, MB_OK | MB_ICONERROR);
+        return FALSE;
+    }
+
     for(int i = 0; i < this->numConditions; i ++)
     {
         int randomWeight = rand() % totalWeights; 
@@ -461,6 +535,7 @@ void Conditions::generateConditions()
     }
 
     this->shuffleConditions();
+    return TRUE;
 }
 
 const vector<condCons_t *>& Conditions::getAllConstraints()
@@ -473,14 +548,19 @@ const vector<cond_t *>& Conditions::getAllConditions()
     return this->conditions;
 }
 
-BOOL Conditions::cylinderParameterReadingFunction(ifstream& fin, condCons_t& constraint)
+BOOL Conditions::cylinderParameterReadingFunction(ifstream& fin, condCons_t& constraint, int constraintID)
 {
     BOOL ret;
     
     // Read Radius Range
     ret = this->readRange<GLfloat>(fin, constraint.radiusRange, constraint.radiusRangeType);
+    if(ret == FALSE)
+    {
+        this->printReadRangeError("radius(Cylinder)", constraintID);
+        return FALSE;
+    }
 
-    return ret;
+    return TRUE;
 }
 
 cond_t& Conditions::operator[](int &rhs)

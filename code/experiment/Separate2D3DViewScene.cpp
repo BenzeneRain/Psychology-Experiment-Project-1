@@ -82,18 +82,17 @@ BOOL Separate2D3DViewScene::renderScene()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    gluPerspective(60.0f, fAspect, 0.01f, 300.0f);
-    gluLookAt(0.0f, 0.0f, 200.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    //gluPerspective(60.0f, fAspect, 0.01f, 300.0f);
+    //gluLookAt(0.0f, 0.0f, 200.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    //gluLookAt(0.0f, 50.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f);
+    glLoadMatrixd(this->rScreen.stereoFrame.centerprojmatrix.data());
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glColor3ub(255, 255, 255);
 
     // Draw the cylinder in 3D view
-    glPushMatrix();
-    glScalef(1.0f, 1.0f, rObject.initZAsptRatio);
-    rObject.draw(GLU_FILL, TRUE, TRUE, TRUE, 0.0f);
-    glPopMatrix();
+    rObject.draw(GLU_FILL, TRUE, TRUE, TRUE, rObject.initZAsptRatio, 0.0f);
 
     //////////////////////////////////////////////////////
     // Draw the right part
@@ -102,23 +101,26 @@ BOOL Separate2D3DViewScene::renderScene()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    if(halfWidth <= scrHeight)
-        glOrtho(-100.0, 100.0, -100.0/fAspect, 100.0/fAspect, 100.0, -100.0);
-    else
-        glOrtho(-100.0*fAspect, 100.0*fAspect, -100.0, 100.0, 100.0, -100.0);
+    float objWidth = 30.0f;
+    float objHeight = 30.0f;
+    float objDepth = 30.0f;
 
-    gluLookAt(0.0f, 100.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f);
+    if(halfWidth <= scrHeight)
+        glOrtho(-objWidth, objWidth, -objHeight/fAspect, objHeight/fAspect, -objDepth, objDepth);
+    else
+        glOrtho(-objWidth*fAspect, objWidth*fAspect, -objHeight, objHeight, -objDepth, objDepth);
+
+    gluLookAt(this->rScreen.stereoFrame.topCenterEye[0],
+        this->rScreen.stereoFrame.topCenterEye[1],
+        this->rScreen.stereoFrame.topCenterEye[2],
+        0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glColor3ub(255, 255, 255);
 
-    glPushMatrix();
     //Draw the cylinder in 2D
-    glScalef(1.0f, 1.0f, rObject.adjZAsptRatio);
-    rObject.draw(GLU_FILL, FALSE, FALSE, FALSE, 0.0f);
-
-    glPopMatrix();
+    rObject.draw(GLU_FILL, FALSE, FALSE, FALSE, rObject.adjZAsptRatio, 0.0f);
 
     //////////////////////////////////////////////////////
     // Switch to the full screen and display
@@ -139,8 +141,8 @@ BOOL Separate2D3DViewScene::reshape(int w, int h)
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    gluPerspective(35.0f, fAspect, 0.01f, 50.0f);
-    gluLookAt(0.0f, 30.0f, 30.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+    //gluPerspective(35.0f, fAspect, 0.01f, 50.0f);
+    //gluLookAt(0.0f, 30.0f, 30.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();

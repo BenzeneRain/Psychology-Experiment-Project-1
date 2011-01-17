@@ -32,6 +32,7 @@ class CylinderObject :
                 BOOL enableTexture,
                 BOOL enablePYRRotation,
                 BOOL enableMotion,
+                GLfloat zStretch,
                 GLfloat zOffSet);
 
         virtual string genObjDesc(void); // get the object descriptions (fixed part)

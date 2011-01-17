@@ -32,6 +32,7 @@ class TestObject
                 BOOL enableTexture,
                 BOOL enablePYRRotation,
                 BOOL enableMotion,
+                GLfloat zStretch,
                 GLfloat zOffset) = 0;
 
         virtual string genObjDesc(); // get the object descriptions (fixed part)

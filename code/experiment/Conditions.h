@@ -32,7 +32,7 @@ class Conditions
         void addCondition(int constraintIndex);
         void addCondition(cond_t* pCondition);
 
-        void generateConditions();
+        BOOL generateConditions();
         void shuffleConditions();
 
         cond_t& operator[](int &rhs);
@@ -51,10 +51,11 @@ class Conditions
 
         template<typename T>
         BOOL readRange(ifstream& fin, vector<T>& vec, char& type);
+        void printReadRangeError(string name, int constraintID);
         BOOL readConstraints(ifstream& fin);
         BOOL readTextures(ifstream& fin);
 
-        BOOL cylinderParameterReadingFunction(ifstream& fin, condCons_t& constraint);
+        BOOL cylinderParameterReadingFunction(ifstream& fin, condCons_t& constraint, int constraintID);
 
         Screen& rScreen;
 

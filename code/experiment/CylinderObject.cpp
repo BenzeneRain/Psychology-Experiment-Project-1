@@ -125,6 +125,7 @@ void CylinderObject::draw(int drawStyle,
                 BOOL enableTexture,
                 BOOL enablePYRRotation,
                 BOOL enableMotion,
+                GLfloat zStretch,
                 GLfloat zOffset)
 {
     GLUquadricObj *pCylinder;
@@ -138,14 +139,13 @@ void CylinderObject::draw(int drawStyle,
     // Apply the pitch, yaw and roll (suppose the coordination for us doesn't change
     // by rotation that x is from left to right, y is from down to up, 
     // and z is from far to near)
-    // FIX::::
     if(enablePYRRotation)
     {
         glRotatef(this->pitch, 1.0f, 0.0f, 0.0f); // pitch, rotate refer to x-axis
-        glRotatef(this->yaw, 0.0f, sin(this->pitch), cos(this->pitch)); // yaw, rotate refer to y-axis
+        glRotatef(this->yaw, 0.0f, cos(this->pitch), sin(this->pitch)); // yaw, rotate refer to y-axis
         glRotatef(this->roll, sin(this->yaw), 
-            cos(this->pitch) * cos(this->yaw), 
-            sin(this->pitch) * cos(this->yaw)); // roll, rotate refer to z-axis
+            sin(this->pitch) * cos(this->yaw), 
+            cos(this->pitch) * cos(this->yaw)); // roll, rotate refer to z-axis
     }
 
     // Make the cylinder stand on the x-z plane
@@ -156,6 +156,7 @@ void CylinderObject::draw(int drawStyle,
     {
         glRotatef(this->currRotDeg, 0.0f, 0.0f, 1.0f);
     }
+
 
     if(enableTexture)
     {
@@ -176,6 +177,10 @@ void CylinderObject::draw(int drawStyle,
                 break;
         }
     }
+
+    //glScalef(1.0f, 1.0f, zStretch);
+    // The Z-axis for us is actually Y-axis for the object after translation
+    glScalef(1.0f, zStretch, 1.0f);
 
     pCylinder = gluNewQuadric();
     gluQuadricDrawStyle(pCylinder, drawStyle);

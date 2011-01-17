@@ -26,6 +26,7 @@ TestObject::TestObject(vector<GLfloat>& pitchRange,
     this->maxRotDegRange = maxRotDegRange;
 
     this->currRotDeg = 0;
+    this->adjZAsptRatio = 1.0f;
     this->rotDirection = CLOCKWISE;
 }
 
@@ -83,8 +84,8 @@ void TestObject::setRandPara()
     randIndex = rand() % this->maxRotDegRange.size();
     this->maxRotDeg = this->maxRotDegRange[randIndex];
 
-    randIndex = rand() % this->initZAsptRatioRange.size();
-    this->adjZAsptRatio = this->initZAsptRatioRange[randIndex];
+    //randIndex = rand() % this->initZAsptRatioRange.size();
+    //this->adjZAsptRatio = this->initZAsptRatioRange[randIndex];
 }
 
 string TestObject::genObjDesc()
