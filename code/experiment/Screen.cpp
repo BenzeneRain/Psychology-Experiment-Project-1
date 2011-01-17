@@ -11,7 +11,14 @@ using namespace std;
 Screen::Screen(DEVMODE& devMode):
     rDevMode(devMode)
 {
-    stopped = TRUE;
+    this->stopped = TRUE;
+    this->onSampleFPS = FALSE;
+
+    QueryPerformanceFrequency(&this->CounterFrequency);
+
+    this->fps = 0;
+    iFrames = 0;
+    QueryPerformanceCounter(&this->FPSCount);
 }
 
 Screen::~Screen(void)
@@ -161,8 +168,27 @@ BOOL Screen::displayString(string str, float x, float y)
 // Call this before actual rendering
 void Screen::render()
 {
-    // TODO: caculate the FPS
+    // calculate the FPS
       
+    if(this->onSampleFPS)
+    {
+        this->iFrames ++;
+        if(this->iFrames == 100)
+        {
+            float fTime;
+            LARGE_INTEGER lCurrent;
+
+            QueryPerformanceCounter(&lCurrent);
+
+            fTime = (float)(lCurrent.QuadPart - this->FPSCount.QuadPart) /
+                (float)this->CounterFrequency.QuadPart;
+
+            this->fps = (float)iFrames / fTime;
+
+            this->iFrames = 0;
+            QueryPerformanceCounter(&this->FPSCount);
+        }
+    }
 
 
     // If we set double buffer, then swap the buffer
@@ -242,6 +268,37 @@ BOOL Screen::run()
     }
 
     return TRUE;
+}
+
+
+BOOL Screen::startSampleFPS()
+{
+    this->onSampleFPS = TRUE;
+    this->fps = 0;
+    iFrames = 0;
+    QueryPerformanceCounter(&this->FPSCount);
+    return TRUE;
+}
+
+BOOL Screen::stopSampleFPS()
+{
+    this->onSampleFPS = FALSE;
+    this->fps = 0;
+    iFrames = 0;
+    QueryPerformanceCounter(&this->FPSCount);
+    return TRUE;
+}
+
+float Screen::getFPS()
+{
+    if(this->onSampleFPS)
+    {
+        return this->fps;
+    }
+    else
+    {
+        return 0.0f;
+    }
 }
 
 // the function is only for test purpose

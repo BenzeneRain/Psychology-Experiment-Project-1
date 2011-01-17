@@ -53,7 +53,10 @@ BOOL Separate2D3DViewScene::startScene()
     // FIX: This is actually a run design if there are multiple screens
     // e.g. the program will be blocked for each run()
     this->initDisplay();
+    this->rScreen.startSampleFPS();
     this->rScreen.run();
+    this->fps = this->rScreen.getFPS();
+    this->rScreen.stopSampleFPS();
 
     return TRUE;
 }

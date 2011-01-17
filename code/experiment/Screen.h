@@ -33,6 +33,11 @@ class Screen
         BOOL run();
         void render();
 
+        // routines for caculating FPS
+        BOOL startSampleFPS();
+        float getFPS();
+        BOOL stopSampleFPS();
+
         static void nullTimerFunc(int timerID);
 
         BOOL stopped;
@@ -45,8 +50,12 @@ class Screen
         // the function is only for test purpose 
         static void testRenderScene();
     private:
-
+        BOOL onSampleFPS;
         UINT displayMode;
         
+        LARGE_INTEGER FPSCount;
+        LARGE_INTEGER CounterFrequency;
+        int iFrames;
+        float fps;
 };
 

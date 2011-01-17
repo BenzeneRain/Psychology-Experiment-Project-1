@@ -25,4 +25,6 @@ class Trial
         BOOL finished;
         cond_t& condition;
         UINT trialID;
+
+        float fps;
 };

@@ -23,6 +23,8 @@ class Scene
          
         Screen& rScreen;
 
+        float fps;
+
     protected:
         Scene();
         virtual BOOL renderScene() = 0;

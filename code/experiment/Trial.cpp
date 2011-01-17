@@ -20,6 +20,7 @@ Trial::Trial(int trialID, cond_t& cond):
     this->trialID = trialID;
     this->currState = IDLE;
     this->finished = FALSE;
+    this->fps = 0.0f;
 }
 
 Trial::~Trial(void)
@@ -64,7 +65,7 @@ BOOL Trial::proceedNextScene()
                 pScene = new Separate2D3DViewScene(this->condition);
                 this->currState = MAIN_SCENE;
                 ret = pScene->startScene();
-
+                this->fps = pScene->fps;
                 delete pScene;
 
                 break;
@@ -115,6 +116,7 @@ BOOL Trial::recordTrialInfo()
     ossTI << pExperi->currSecNo + 1 << " "; // Section Number
     ossTI << this->trialID + 1 << " "; // Trial ID
     ossTI << rObject.genObjPara();
+    ossTI << this->fps << " ";
     ossTI << endl;
 
     pExperi->writeOutputs(ossTI.str());
