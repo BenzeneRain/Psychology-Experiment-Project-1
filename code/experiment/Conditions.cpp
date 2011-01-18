@@ -27,6 +27,7 @@ Conditions::~Conditions(void)
 
         vector< vector<string> *>& textureGroups = pCondCons->textureGroups;
 
+        // delete texture lists for each constraint
         while(!textureGroups.empty())
         {
             vector<string> *textureList = textureGroups.back();
@@ -47,6 +48,7 @@ Conditions::~Conditions(void)
         vector<texture_t *>& rVecTexture = pCondition->textures;
         rConditions.pop_back();
 
+        // Delete texture information used in each condition
         while(!rVecTexture.empty())
         {
            texture_t *pTexture = rVecTexture.back();
@@ -54,11 +56,12 @@ Conditions::~Conditions(void)
            delete pTexture;
         }
 
+        // Delete object used in each condition
         delete pObject;
         delete pCondition;
     }
     
-    // Dispose textures
+    // Dispose raw texture information
     while(!this->textures.empty())
     {
         rTexture_t *pTexture = this->textures.back();
@@ -107,8 +110,6 @@ BOOL Conditions::initConditions()
 
 BOOL Conditions::readConstraints(ifstream& fin)
 {
-    // TODO: What about the objects without textures but pure color
-
     // First line has a number T, indicating the number of texutures used
     //
     // Following T lines, each line has three components:
@@ -176,7 +177,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
 
     try
     {
-        // Read Texture information (only support bmp file now)
+        // Read Texture information (only support bmp file and RGB color setting now)
         int numTextures;
         fin >> numTextures;
 
@@ -193,7 +194,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
 
             switch(textureType)
             {
-                case 'T':
+                case 'T': // routines for handling BMP file as texture
                     {
                         fin >> filename;
 
@@ -213,21 +214,29 @@ BOOL Conditions::readConstraints(ifstream& fin)
                         pTexture->hBitmap = hBitmap;
                         break;
                     }
-                case 'C':
+                case 'C': // routines for handling RGB color as texture
                     {
                         fin >> pTexture->color[0] >> pTexture->color[1] >> pTexture->color[2];
                         pTexture->type = 'C';
                         break;
                     }
-                default:
+                default: // routines for other types of textures
+                    // FIX: Maybe we should warn the wrong type of the textures here
                     break;
             }
 
+            // Store the texture information and build the mapping between their name to
+            // the information
             this->textures.push_back(pTexture);
             textureMap[textureName] = iTextures;
 
         }
 
+        // Initialize the textures
+        // Include build the texture list if it is bmp file
+        // build the color information if it is RGB color
+        // Since some of the codes are opengl dependent, I 
+        // put them in the screen class
         this->rScreen.initTextures(this->textures);
     
         // Read constraints
@@ -246,6 +255,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
                 string name;
 
                 fin >> name;
+                // Check if the object is supported or not
                 if(this->objectFactoryNameMap.find(name) != this->objectFactoryNameMap.end())
                 {
                     pNewConstraint->objectNames.push_back(name);
@@ -256,6 +266,9 @@ BOOL Conditions::readConstraints(ifstream& fin)
                     ossError << "There is no built in object named " << name <<
                         "in Constaint " << iConstraint + 1 << ". Continue or not?";
                     string message = ossError.str();
+                    // Let the user choose continue if the object is not found
+                    // FIX: maybe we should exit instead of allowing the user
+                    // ignore the error
                     int userChoice = 
                         MessageBox(NULL, (LPCSTR)(message.c_str()), NULL, MB_YESNO | MB_ICONWARNING);
                     if(userChoice == IDNO)
@@ -263,7 +276,9 @@ BOOL Conditions::readConstraints(ifstream& fin)
                 }
             }
 
-            // Read Textures for the constraint
+            // Read Textures groups (groups of texture list) for the constraint
+            // Each condition follow the constraint will randomly choose one
+            // texture list from the group as textures to be used
             int numTextureGroups;
             fin >> numTextureGroups;
             for(int i = 0; i < numTextureGroups; i ++)
@@ -271,13 +286,17 @@ BOOL Conditions::readConstraints(ifstream& fin)
                 int numTextureItems;
 
                 fin >> numTextureItems;
+
+                // Build the texture lists for each constraint
                 vector<string> *textureList = new vector<string>(numTextureItems);
 
+                // Read the texture list information
                 for(int j = 0; j < numTextureItems; j ++)
                 {
                     string textureName;
                     fin >> textureName;
 
+                    // Check if the selected texture is existed or not
                     if(this->textureMap.find(textureName) != this->textureMap.end())
                     {
                         (*textureList)[j] = textureName;
@@ -288,6 +307,9 @@ BOOL Conditions::readConstraints(ifstream& fin)
                         ossError << "There is no texture named " << textureName << 
                             " in Constraint " << iConstraint + 1 << ". Continue or not?";
                         string message = ossError.str();
+                        // Let the user choose continue if the texture is not found
+                        // FIX: maybe we should exit instead of allowing the user
+                        // ignore the error
                         int userChoice = 
                             MessageBox(NULL, (LPCSTR)(message.c_str()), NULL, MB_YESNO | MB_ICONWARNING);
                         if(userChoice == IDNO)
@@ -299,6 +321,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
             }
 
             // Read Constraint Weight
+            // FIX: Need a check if the input weight value is valid or not
             int weight;
             fin >> weight;
             BOOL ret;
@@ -376,7 +399,9 @@ BOOL Conditions::readConstraints(ifstream& fin)
             this->addConstraint(pNewConstraint);
         }
     }
-    catch(ifstream::failure e)
+    // anything wrong while reading from the configuration file
+    // will be directed to here
+    catch(ifstream::failure e) 
     {
         MessageBox(NULL, (LPCSTR)(e.what()), NULL, MB_OK|MB_ICONERROR);
         return FALSE;
@@ -385,6 +410,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
     return TRUE;
 }
 
+// Read information that is in range
 template<typename T>
 BOOL Conditions::readRange(ifstream& fin, vector<T>& vec, char& type)
 {
@@ -392,12 +418,17 @@ BOOL Conditions::readRange(ifstream& fin, vector<T>& vec, char& type)
 
     try
     {
+        // read the type of the range
         fin >> rangeType;
         switch(rangeType)
         {
             case 'R':
+                // TODO: if the range is defined by lower bound and upper bound,
+                // it will be directed here
                 break;
             case 'S':
+                // if the range is defined by a set of possible values,
+                // it will be directed here
                 {
                     int size;
                     fin >> size;
@@ -416,7 +447,7 @@ BOOL Conditions::readRange(ifstream& fin, vector<T>& vec, char& type)
 
         type = rangeType;
     }
-    catch(ifstream::failure e)
+    catch(ifstream::failure e) // FIX: just throw the error
     {
         MessageBox(NULL, (LPCSTR)(e.what()), NULL, MB_OK|MB_ICONERROR);
         return FALSE;
@@ -425,6 +456,8 @@ BOOL Conditions::readRange(ifstream& fin, vector<T>& vec, char& type)
     return TRUE;
 }
 
+// it will be called if the range reading function is successfully 
+// executed
 void Conditions::printReadRangeError(string name, int constraintID)
 {
     ostringstream ossError;
@@ -433,6 +466,7 @@ void Conditions::printReadRangeError(string name, int constraintID)
     MessageBox(NULL, (LPCSTR)(message.c_str()), NULL, MB_OK | MB_ICONERROR);
 }
 
+// Add a constraint to the constraint vector
 void Conditions::addConstraint(condCons_t* pConstraint)
 {
     this->constraints.push_back(pConstraint);
@@ -444,12 +478,15 @@ void Conditions::addCondition(int constraintIndex)
    int randIndex;
    cond_t *pNewCondition = new cond_t;
 
-   // Generate texture mappings
+   // Randomly select a texture list from the texture groups of the contraint
+   // as the textures for the new condition
    randIndex = rand() % this->constraints[constraintIndex]->textureGroups.size();
    vector<string> *textureList = this->constraints[constraintIndex]->textureGroups[randIndex];
 
    for(unsigned int i = 0; i < textureList->size(); i ++)
    { 
+        // firstly, get the name of the texture from the texture list
+        // secondly, get the index of the texture according to its name 
         int index = this->textureMap[(*textureList)[i]];
 
         texture_t *pTexture = new texture_t;
@@ -457,11 +494,13 @@ void Conditions::addCondition(int constraintIndex)
         switch(this->textures[index]->type)
         {
             case 'T':
+                // if the texture is bmp file, store the opengl texture id
                 pTexture->type = 'T';
                 pTexture->textureID = this->rScreen.texIDs[index];
                 pNewCondition->textures.push_back(pTexture);
                 break;
             case 'C':
+                // if the texture is RGB color, store the RGB value
                 pTexture->type = 'C';
                 pTexture->color[0] = this->rScreen.colorIDs[index][0];
                 pTexture->color[1] = this->rScreen.colorIDs[index][1];
@@ -469,6 +508,7 @@ void Conditions::addCondition(int constraintIndex)
                 pNewCondition->textures.push_back(pTexture);
                 break;
             default:
+                // do nothing for other cases
                 break;
         }
    }
@@ -477,9 +517,10 @@ void Conditions::addCondition(int constraintIndex)
    randIndex = rand() % this->constraints[constraintIndex]->objectNames.size();
    TestObjectFactory *pFactory = this->objectFactoryNameMap[
        this->constraints[constraintIndex]->objectNames[randIndex]];
-
    // FIX: Check if the pRealObject is NULL or not
    pNewCondition->pRealObject = pFactory->createObject(*this->constraints[constraintIndex], pNewCondition->textures);
+
+   // Set the random parameters
    pNewCondition->pRealObject->setRandPara();
 
 
@@ -492,11 +533,13 @@ void Conditions::addCondition(cond_t* pCondition)
     this->conditions.push_back(pCondition);
 }
 
+// shuffle all the conditions
 void Conditions::shuffleConditions()
 {
     random_shuffle(this->conditions.begin(), this->conditions.end());
 }
 
+// generate the conditions
 BOOL Conditions::generateConditions()
 {
     int totalWeights = 0;
@@ -504,6 +547,10 @@ BOOL Conditions::generateConditions()
     int prevAccWeight = 0;
     int currAccWeight = 0;
 
+    // use the weight information as the hint to randomly select
+    // the constraint. The method is mapping all possible weights
+    // into continues ranges; then generate a random number
+    // in the whole range and to check which range it falls in
     for(unsigned int i = 0; i < this->constraints.size(); i ++)
     {
         currAccWeight = prevAccWeight + this->constraints[i]->weight;

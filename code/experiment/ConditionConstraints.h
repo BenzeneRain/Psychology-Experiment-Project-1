@@ -31,6 +31,6 @@ struct conditionConstraints
 
     vector< vector<string> * > textureGroups;
 
-    int weight; // The weight of the number of this kind of conditions in all conditions
+    int weight; // The weight of the constraint
 };
 typedef struct conditionConstraints condCons_t;
