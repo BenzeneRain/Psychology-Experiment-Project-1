@@ -53,6 +53,9 @@ BOOL Screen::initGlut(UINT displayMode, string title)
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClearStencil(0x0);
 
+    // Hide the cursor
+    glutSetCursor(GLUT_CURSOR_NONE);
+
     glEnable(GL_DEPTH_TEST);
 
     // Setting up textures environment

@@ -46,12 +46,11 @@ BOOL Overlapped2DViewScene::renderScene()
 
     int scrWidth = this->rScreen.rDevMode.dmPelsWidth;
     int scrHeight = this->rScreen.rDevMode.dmPelsHeight;
-    int halfWidth = scrWidth >> 1;
-    GLfloat fAspect = (GLfloat)halfWidth / (GLfloat)scrHeight;
+    GLfloat fAspect = (GLfloat)scrWidth / (GLfloat)scrHeight;
 
+    glViewport(0, 0, scrWidth, scrHeight);
     //////////////////////////////////////////////////////
-    // Draw the left part
-    glViewport(0, 0, halfWidth, scrHeight);
+    // Draw the 3D Object
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -68,8 +67,7 @@ BOOL Overlapped2DViewScene::renderScene()
     rObject.draw(GLU_FILL, TRUE, TRUE, TRUE, rObject.initZAsptRatio, 0.0f);
 
     //////////////////////////////////////////////////////
-    // Draw the right part
-    glViewport(halfWidth + 1, 0, halfWidth, scrHeight);
+    // Draw the 2D Object
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -78,7 +76,7 @@ BOOL Overlapped2DViewScene::renderScene()
     float objHeight = 30.0f;
     float objDepth = 30.0f;
 
-    if(halfWidth <= scrHeight)
+    if(scrWidth <= scrHeight)
         glOrtho(-objWidth, objWidth, -objHeight/fAspect, objHeight/fAspect, -objDepth, objDepth);
     else
         glOrtho(-objWidth*fAspect, objWidth*fAspect, -objHeight, objHeight, -objDepth, objDepth);
@@ -91,6 +89,8 @@ BOOL Overlapped2DViewScene::renderScene()
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
+    glPushMatrix();
+    glTranslatef(25.0f, 0.0f, 0.0f);
     // Draw the cylinder after adjust in 2D
     glColor3ub(255, 255, 255);
     rObject.draw(GLU_FILL, FALSE, FALSE, FALSE, rObject.adjZAsptRatio, 0.0f);
@@ -107,10 +107,7 @@ BOOL Overlapped2DViewScene::renderScene()
     rObject.draw(GLU_SILHOUETTE, FALSE, FALSE, FALSE, rObject.initZAsptRatio, 1.0f);
     glLineWidth(normalLineSize[0]);
     glDisable(GL_LINE_STIPPLE);
-
-    //////////////////////////////////////////////////////
-    // Switch to the full screen and display
-    glViewport(0, 0, scrWidth, scrHeight);
+    glPopMatrix(); 
 
     this->rScreen.render();
 

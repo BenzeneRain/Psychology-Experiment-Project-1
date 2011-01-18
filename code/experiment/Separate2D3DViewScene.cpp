@@ -72,12 +72,11 @@ BOOL Separate2D3DViewScene::renderScene()
 
     int scrWidth = this->rScreen.rDevMode.dmPelsWidth;
     int scrHeight = this->rScreen.rDevMode.dmPelsHeight;
-    int halfWidth = scrWidth >> 1;
-    GLfloat fAspect = (GLfloat)halfWidth / (GLfloat)scrHeight;
+    GLfloat fAspect = (GLfloat)scrWidth / (GLfloat)scrHeight;
 
+    glViewport(0, 0, scrWidth, scrHeight);
     //////////////////////////////////////////////////////
-    // Draw the left part
-    glViewport(0, 0, halfWidth, scrHeight);
+    // Draw the 3D View
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -95,8 +94,7 @@ BOOL Separate2D3DViewScene::renderScene()
     rObject.draw(GLU_FILL, TRUE, TRUE, TRUE, rObject.initZAsptRatio, 0.0f);
 
     //////////////////////////////////////////////////////
-    // Draw the right part
-    glViewport(halfWidth + 1, 0, halfWidth, scrHeight);
+    // Draw 2D View
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -105,7 +103,7 @@ BOOL Separate2D3DViewScene::renderScene()
     float objHeight = 30.0f;
     float objDepth = 30.0f;
 
-    if(halfWidth <= scrHeight)
+    if(scrWidth <= scrHeight)
         glOrtho(-objWidth, objWidth, -objHeight/fAspect, objHeight/fAspect, -objDepth, objDepth);
     else
         glOrtho(-objWidth*fAspect, objWidth*fAspect, -objHeight, objHeight, -objDepth, objDepth);
@@ -120,11 +118,14 @@ BOOL Separate2D3DViewScene::renderScene()
     glColor3ub(255, 255, 255);
 
     //Draw the cylinder in 2D
+    glPushMatrix();
+    glTranslatef(25.0f, 0.0f, 0.0f);
     rObject.draw(GLU_FILL, FALSE, FALSE, FALSE, rObject.adjZAsptRatio, 0.0f);
+    glPopMatrix();
 
     //////////////////////////////////////////////////////
     // Switch to the full screen and display
-    glViewport(0, 0, scrWidth, scrHeight);
+   
 
     this->rScreen.render();
 
