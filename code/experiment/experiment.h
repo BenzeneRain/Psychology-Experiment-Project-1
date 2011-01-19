@@ -29,7 +29,8 @@ class Experiment
         unsigned int currSecNo;
         enumExperiMode experiMode; // 0 -- experiment mode; 1 -- practice mode;
         string outFilename;
-        unsigned int trialsInOneSec;
+        unsigned int trialsPerSec;
+        unsigned int conditionRepeatTimePerSec;
         DEVMODE devMode; // display settings
 
         unsigned int currTrialID;
@@ -57,6 +58,7 @@ class Experiment
         BOOL disposeSystem();
 
         BOOL recordConfigurations();
+        BOOL recordConditions();
 
         HINSTANCE hInst;
         fstream hFileOut;

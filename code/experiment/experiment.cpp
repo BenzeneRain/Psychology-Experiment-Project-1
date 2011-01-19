@@ -39,7 +39,8 @@ Experiment::Experiment(HINSTANCE hInstance)
 
 Experiment::~Experiment(void)
 {
-
+    // dispose
+    this->disposeSystem();
 }
 
 BOOL Experiment::startProgram()
@@ -81,9 +82,6 @@ BOOL Experiment::startProgram()
     // main body
     this->proceedExperiment();
 
-    // dispose
-    this->disposeSystem();
-    
     return TRUE;
 }
 
@@ -120,10 +118,10 @@ BOOL Experiment::initSystem()
     ConfWnd *pConfWnd = ConfWnd::getInstance();
 
     this->subjectID = pConfWnd->subjectID;
-    this->maxSecNo = pConfWnd->maxSecNo;
+    //this->maxSecNo = pConfWnd->maxSecNo;
     this->experiMode = pConfWnd->experiMode;
     this->outFilename = pConfWnd->outFilename;
-    this->trialsInOneSec = pConfWnd->trialsInOneSec;
+   // this->trialsPerSec = pConfWnd->trialsPerSec;
     this->devMode = pConfWnd->devMode;
     this->strDate = pConfWnd->strDate;
     this->strTime = pConfWnd->strTime;
@@ -151,10 +149,16 @@ BOOL Experiment::initSystem()
     }
 
     // Initialize the conditions
-    // FIX: the filename should not be here
-    this->experimentConditions = new Conditions(string("config.txt"), this->maxSecNo * this->trialsInOneSec,
+    // FIX: the filename should not be hard coded here
+    this->experimentConditions = new Conditions(string("config.txt"), 
             this->objectFactories, *this->pScreen);
     ret = this->experimentConditions->initConditions();
+
+    // Generate the final condition list for one section
+    const vector<cond_t *>& rConds = this->experimentConditions->getAllConditions(); 
+
+    this->trialsPerSec = rConds.size();
+    this->maxSecNo = this->experimentConditions->numSections; 
 
     return ret;
 }
@@ -162,30 +166,37 @@ BOOL Experiment::initSystem()
 BOOL Experiment::proceedExperiment()
 {
     Trial *pTrial;
+    BOOL ret;
 
     // TODO: We can add Pre-Experiment Scene here
     // if needed
 
     //proceed trials
-    while(this->currSecNo < this->maxSecNo)
+    do
     {
-        int conditionID = this->currSecNo * this->trialsInOneSec
-                + this->currTrialID;
-
         pTrial = new Trial(this->currTrialID,
-                (*this->experimentConditions)[conditionID]);
+                (*this->experimentConditions)[(int&)this->currTrialID]);
 
-        pTrial->startTrial();
+        ret = pTrial->startTrial();
+
         this->currTrialID ++;
-
-        if(this->currTrialID >= this->trialsInOneSec)
+        if(this->currTrialID >= this->trialsPerSec)
         {
             this->currTrialID = 0;
             this->currSecNo ++;
+
+            if(this->currSecNo < this->maxSecNo)
+            {
+                ostringstream ossSecInfo;
+                ossSecInfo << "Section " << this->currSecNo;
+                this->experimentConditions->shuffleConditions();
+                this->recordConditions();
+                this->writeOutputs(string("\n"));
+            }
         }
 
         delete pTrial;
-    }
+    }while((this->currSecNo < this->maxSecNo) && (ret == TRUE));
 
     //show post-experiment scene
     Scene *pScene = new PostExperimentScene();
@@ -216,7 +227,7 @@ BOOL Experiment::recordConfigurations()
 
     ossConf << "Subject ID: " << this->subjectID << endl;
     ossConf << "Max section number: " << this->maxSecNo << endl;
-    ossConf << "Number of trials in one section: " << this->trialsInOneSec << endl;
+    ossConf << "Number of trials in one section: " << this->trialsPerSec << endl;
 
     ossConf << "Screen resolution: " << this->devMode.dmPelsWidth
             << " X " << this->devMode.dmPelsHeight << endl;
@@ -230,12 +241,16 @@ BOOL Experiment::recordConfigurations()
     ossConf << "Test object information: " << endl;
 
     ret = this->writeOutputs(ossConf.str());
-    if(ret == FALSE)
-        return ret;
-    
+    return ret;
+}
+
+BOOL Experiment::recordConditions()
+{
+    BOOL ret = TRUE;
     ostringstream ossCond;
+
     // Output Condition list
-    const vector<cond_t *>& rConds = experimentConditions->getAllConditions(); 
+    const vector<cond_t *>& rConds = this->experimentConditions->getAllConditions(); 
     for(unsigned int i = 0; i < rConds.size(); i ++)
     {
         ossCond << i + 1 << " "; // Condition ID
@@ -246,7 +261,6 @@ BOOL Experiment::recordConfigurations()
 
     ossCond << endl;
     ret = this->writeOutputs(ossCond.str());
-
     return ret;
 }
 

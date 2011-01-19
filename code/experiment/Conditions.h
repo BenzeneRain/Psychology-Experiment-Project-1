@@ -14,6 +14,8 @@ struct conditionStruct
 {
     TestObject *pRealObject; // Store the real object's pointer here
     vector<texture_t *> textures; // Stores the textures for the object
+
+    int repeatTime; // the times that the condition need to be repeated in one section
 };
 typedef struct conditionStruct cond_t;
 
@@ -25,6 +27,8 @@ class Conditions
         // rObjectFactories: reference to the vector of supported object factories
         // rScr: reference to the Screen class
         explicit Conditions(string& rFilename, int numConditions,
+                vector<TestObjectFactory *>& rObjectFactories, Screen& rScr);
+        explicit Conditions(string& rFilename,
                 vector<TestObjectFactory *>& rObjectFactories, Screen& rScr);
         ~Conditions(void);
 
@@ -48,6 +52,8 @@ class Conditions
         // successfully
         BOOL generateConditions();
 
+        BOOL clearConditions();
+
         // shuffle the generated conditions
         void shuffleConditions();
         
@@ -60,6 +66,8 @@ class Conditions
         // get the specific condition using its index
         cond_t& operator[](int &rhs);
 
+        // number of sections
+        int numSections;
     private:
         vector<condCons_t *> constraints;
         vector<cond_t *> conditions;
@@ -81,6 +89,9 @@ class Conditions
         // number of conditions need to be generated
         int numConditions;
 
+        // number of times all the conditions need to be repeated
+        int conditionRepeatTimesPerSec;
+
         // Configuration file name
         string filename;
 
@@ -101,4 +112,3 @@ class Conditions
         // Forbid the operations below
         Conditions& operator=(Conditions& rhs); 
 };
-

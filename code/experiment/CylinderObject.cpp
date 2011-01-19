@@ -130,6 +130,7 @@ void CylinderObject::draw(int drawStyle,
 {
     GLUquadricObj *pCylinder;
     GLfloat halfHeight = this->height / 2.0f;
+    int slices = 256;
 
     if(enableTexture == FALSE)
         glDisable(GL_TEXTURE_2D);
@@ -189,7 +190,7 @@ void CylinderObject::draw(int drawStyle,
         gluQuadricTexture(pCylinder, GL_TRUE);
 
     // Draw the cylinder
-    gluCylinder(pCylinder, this->radius, this->radius, this->height, 32, 32);
+    gluCylinder(pCylinder, this->radius, this->radius, this->height, slices, 32);
 
     gluDeleteQuadric(pCylinder);
 
@@ -228,7 +229,7 @@ void CylinderObject::draw(int drawStyle,
     if(enableTexture && this->textures[this->bottomTextureID]->type == 'T')
         gluQuadricTexture(pCylinder, GL_TRUE);
 
-    gluDisk(pCylinder, 0.0f, this->radius, 32, 1);
+    gluDisk(pCylinder, 0.0f, this->radius, slices, 1);
     gluDeleteQuadric(pCylinder);
 
     if(enableTexture)
@@ -270,7 +271,7 @@ void CylinderObject::draw(int drawStyle,
         if(enableTexture && this->textures[this->topTextureID]->type == 'T')
             gluQuadricTexture(pCylinder, GL_TRUE);
 
-        gluDisk(pCylinder, 0.0f, this->radius, 32, 1);
+        gluDisk(pCylinder, 0.0f, this->radius, slices, 1);
         gluDeleteQuadric(pCylinder);
 
         if(enableTexture)

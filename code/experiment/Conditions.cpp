@@ -13,6 +13,15 @@ Conditions::Conditions(string& rFilename, int numConditions,
     objectFactories(rObjectFactories), rScreen(rScr), filename(rFilename)
 {
     this->numConditions = numConditions;
+    this->conditionRepeatTimesPerSec = 0;
+}
+
+Conditions::Conditions(string& rFilename, 
+        vector<TestObjectFactory *>& rObjectFactories, Screen& rScr):
+    objectFactories(rObjectFactories), rScreen(rScr), filename(rFilename)
+{
+    this->numConditions = 0;
+    this->conditionRepeatTimesPerSec = 0;
 }
 
 Conditions::~Conditions(void)
@@ -39,27 +48,7 @@ Conditions::~Conditions(void)
     }
 
     // Dispose conditions
-    vector<cond_t *>& rConditions = this->conditions;
-
-    while(!rConditions.empty())
-    {
-        cond_t *pCondition = rConditions.back();
-        TestObject *pObject = pCondition->pRealObject;
-        vector<texture_t *>& rVecTexture = pCondition->textures;
-        rConditions.pop_back();
-
-        // Delete texture information used in each condition
-        while(!rVecTexture.empty())
-        {
-           texture_t *pTexture = rVecTexture.back();
-           rVecTexture.pop_back();
-           delete pTexture;
-        }
-
-        // Delete object used in each condition
-        delete pObject;
-        delete pCondition;
-    }
+    this->clearConditions();
     
     // Dispose raw texture information
     while(!this->textures.empty())
@@ -87,8 +76,12 @@ BOOL Conditions::initConditions()
         this->objectFactoryNameMap[this->objectFactories[i]->getProductName()] 
             = this->objectFactories[i];
 
-    // Read constraints from file
     ifstream fin(this->filename.c_str());
+
+    // Read number of sections and condition repeat times in one section
+    fin >> this->numSections >> this->conditionRepeatTimesPerSec;
+
+    // Read constraints from file
     ret = readConstraints(fin);
     if(ret == FALSE)
     {
@@ -523,6 +516,7 @@ void Conditions::addCondition(int constraintIndex)
    // Set the random parameters
    pNewCondition->pRealObject->setRandPara();
 
+   pNewCondition->repeatTime = this->conditionRepeatTimesPerSec;
 
    this->conditions.push_back(pNewCondition);
 }
@@ -543,45 +537,87 @@ void Conditions::shuffleConditions()
 BOOL Conditions::generateConditions()
 {
     int totalWeights = 0;
-    vector<int> accumulateWeight;
-    int prevAccWeight = 0;
-    int currAccWeight = 0;
 
-    // use the weight information as the hint to randomly select
-    // the constraint. The method is mapping all possible weights
-    // into continues ranges; then generate a random number
-    // in the whole range and to check which range it falls in
+    this->clearConditions();
+
     for(unsigned int i = 0; i < this->constraints.size(); i ++)
     {
-        currAccWeight = prevAccWeight + this->constraints[i]->weight;
-        accumulateWeight.push_back(currAccWeight - 1);
-        prevAccWeight = currAccWeight;
+        int quantity = this->constraints[i]->weight * this->conditionRepeatTimesPerSec;
+
+        for(int j = 0; j < quantity; j ++)
+            this->addCondition(i);
+
+        totalWeights += this->constraints[i]->weight * this->conditionRepeatTimesPerSec;
     }
 
-    totalWeights = currAccWeight;
+    this->numConditions = totalWeights;
 
-    if(totalWeights == 0)
-    {
-        ostringstream ossError;
-        ossError << "Error found in the configuration file, please check it.";
-        string message = ossError.str();
-        MessageBox(NULL, (LPCSTR)(message.c_str()), NULL, MB_OK | MB_ICONERROR);
-        return FALSE;
-    }
-
-    for(int i = 0; i < this->numConditions; i ++)
-    {
-        int randomWeight = rand() % totalWeights; 
-
-        vector<int>::iterator it = 
-            lower_bound(accumulateWeight.begin(), accumulateWeight.end(), randomWeight);
-
-        int index = it - accumulateWeight.begin();
-             
-        this->addCondition(index);
-    }
-
+//    vector<int> accumulateWeight;
+//    int prevAccWeight = 0;
+//    int currAccWeight = 0;
+//
+//    // use the weight information as the hint to randomly select
+//    // the constraint. The method is mapping all possible weights
+//    // into continues ranges; then generate a random number
+//    // in the whole range and to check which range it falls in
+//    for(unsigned int i = 0; i < this->constraints.size(); i ++)
+//    {
+//        currAccWeight = prevAccWeight + this->constraints[i]->weight;
+//        accumulateWeight.push_back(currAccWeight - 1);
+//        prevAccWeight = currAccWeight;
+//    }
+//
+//    totalWeights = currAccWeight;
+//
+//    if(totalWeights == 0)
+//    {
+//        ostringstream ossError;
+//        ossError << "Error found in the configuration file, please check it.";
+//        string message = ossError.str();
+//        MessageBox(NULL, (LPCSTR)(message.c_str()), NULL, MB_OK | MB_ICONERROR);
+//        return FALSE;
+//    }
+//
+//    for(int i = 0; i < this->numConditions; i ++)
+//    {
+//        int randomWeight = rand() % totalWeights; 
+//
+//        vector<int>::iterator it = 
+//            lower_bound(accumulateWeight.begin(), accumulateWeight.end(), randomWeight);
+//
+//        int index = it - accumulateWeight.begin();
+//             
+//        this->addCondition(index);
+//    }
+//
     this->shuffleConditions();
+    return TRUE;
+}
+
+BOOL Conditions::clearConditions()
+{
+    vector<cond_t *>& rConditions = this->conditions;
+
+    while(!rConditions.empty())
+    {
+        cond_t *pCondition = rConditions.back();
+        TestObject *pObject = pCondition->pRealObject;
+        vector<texture_t *>& rVecTexture = pCondition->textures;
+        rConditions.pop_back();
+
+        // Delete texture information used in each condition
+        while(!rVecTexture.empty())
+        {
+           texture_t *pTexture = rVecTexture.back();
+           rVecTexture.pop_back();
+           delete pTexture;
+        }
+
+        // Delete object used in each condition
+        delete pObject;
+        delete pCondition;
+    }
+
     return TRUE;
 }
 

@@ -197,7 +197,8 @@ int ConfWnd::validateBlanks(HWND hDlg)
         //TODO: MARK corresponding items red 
     }
 
-    if(totalTrials <= 0 || (inExperimentMode &&uiOutputFilenameLen <= 0))
+    //if(totalTrials <= 0 || (inExperimentMode &&uiOutputFilenameLen <= 0))
+    if(inExperimentMode && uiOutputFilenameLen <= 0)
     {
         return -1;
     }
@@ -397,10 +398,12 @@ INT_PTR CALLBACK ConfWnd::confWndProc(HWND hDlg, UINT message, UINT wParam, LONG
                             // Validate the blanks
                             if(pConfWnd->validateBlanks(hDlg) != 0)
                             {
-                                MessageBox(NULL, (LPCSTR)"Some blanks are invalid, and please check.\n"
-                                        "Notice that the total number of trials cannot be zero, and "
-                                        "the output filename cannot be nothing.", (LPCSTR)"Configuration Warning!",
-                                        MB_OK | MB_ICONERROR);
+                                //MessageBox(NULL, (LPCSTR)"Some blanks are invalid, and please check.\n"
+                                //        "Notice that the total number of trials cannot be zero, and "
+                                //        "the output filename cannot be nothing.", (LPCSTR)"Configuration Warning!",
+                                //        MB_OK | MB_ICONERROR);
+                                MessageBox(NULL, (LPCSTR)"Some blanks are invalid (the output filename should not be )"
+                                    "empty", (LPCSTR)"Configuration Error", MB_OK | MB_ICONERROR);
                                 succeed = FALSE;
                             }
 
