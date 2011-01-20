@@ -33,7 +33,7 @@ BOOL Overlapped2DViewScene::startScene()
     this->initDisplay();
     this->rScreen.run();
 
-    return TRUE;
+    return this->status;
 }
 
 BOOL Overlapped2DViewScene::renderScene()

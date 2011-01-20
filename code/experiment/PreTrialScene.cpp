@@ -41,12 +41,12 @@ BOOL PreTrialScene::startScene()
     this->initDisplay();
     this->rScreen.run();
 
-    return TRUE;
+    return this->status;
 }
 
 string PreTrialScene::buildString()
 {
-    string message("Press spacebar for the next trial");
+    string message("Press spacebar for the next trial\n");
 
     Experiment *pExperi = Experiment::getInstance(NULL);
 
@@ -54,11 +54,10 @@ string PreTrialScene::buildString()
     {
         ostringstream ossMessage;
 
-        ossMessage << message << endl
-            << "Progress: Section " << pExperi->currSecNo + 1 << "/"
+        ossMessage << "Progress: Section " << pExperi->currSecNo + 1 << "/"
             << pExperi->maxSecNo << endl;
 
-        message = ossMessage.str();
+        message += ossMessage.str();
     }
 
     return message;
@@ -66,11 +65,11 @@ string PreTrialScene::buildString()
 
 BOOL PreTrialScene::renderScene()
 {
-    string message;
+    string message(this->buildString());
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glColor3f(1.0f, 1.0f, 1.0f);
-    message = this->buildString();
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
     this->rScreen.displayString(message, 0.0, 0.0);
 	
     this->rScreen.render();
@@ -113,6 +112,17 @@ BOOL PreTrialScene::handleKeyboardEvent(unsigned char key, int x, int y)
         case VK_SPACE:
             {
                 this->rScreen.stopped = TRUE;
+                break;
+            }
+        case VK_ESCAPE:
+            {
+                int ret = MessageBox(NULL, "Do you want to abort the experiment?", "Abort", MB_YESNO | MB_ICONWARNING);
+                if(ret == IDYES)
+                {
+                    this->rScreen.stopped = TRUE;
+                    this->status = FALSE;
+                }
+
                 break;
             }
         default:

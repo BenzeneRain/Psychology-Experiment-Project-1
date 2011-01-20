@@ -45,4 +45,6 @@ class Scene
 
         static Scene *currScene;
         static hash_map<int, BOOL> registeredTimerID;
+
+        BOOL status;
 };

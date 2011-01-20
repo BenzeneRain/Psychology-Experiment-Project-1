@@ -164,8 +164,8 @@ BOOL Screen::displayString(string str, float x, float y)
     glRasterPos2f(x, y);
     //glWindowPos2f(x, y);
 
-    for(unsigned int i = 0; i < str.size(); i ++)
-      glutBitmapCharacter(GLUT_BITMAP_9_BY_15, str[i]);
+    glutBitmapString(GLUT_BITMAP_9_BY_15,
+        reinterpret_cast<const unsigned char *>(str.c_str()));
 
     return TRUE;
 }

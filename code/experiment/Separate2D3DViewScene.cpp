@@ -88,7 +88,7 @@ BOOL Separate2D3DViewScene::startScene()
     this->fps = this->rScreen.getFPS();
     this->rScreen.stopSampleFPS();
 
-    return TRUE;
+    return this->status;
 }
 
 BOOL Separate2D3DViewScene::renderScene()

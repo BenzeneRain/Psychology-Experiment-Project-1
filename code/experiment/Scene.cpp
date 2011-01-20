@@ -11,6 +11,7 @@ Scene::Scene():
     rScreen(*Experiment::getInstance(NULL)->pScreen)
 {
     Scene::currScene = this;
+    this->status = TRUE;
 }
 
 Scene::~Scene()

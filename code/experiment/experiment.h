@@ -60,7 +60,7 @@ class Experiment
         BOOL recordConfigurations();
         BOOL recordConditions();
 
-        HINSTANCE hInst;
+        static HINSTANCE hInst;
         fstream hFileOut;
 
         vector<TestObjectFactory *> objectFactories;

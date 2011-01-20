@@ -32,7 +32,7 @@ int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 Experiment::Experiment(HINSTANCE hInstance)
 {
-    this->hInst = hInstance;
+    Experiment::hInst = hInstance;
     this->currSecNo = 0;
     this->currTrialID = 0;
     this->pScreen = NULL;
@@ -304,6 +304,7 @@ BOOL Experiment::disposeSystem()
     return TRUE;
 }
 
+HINSTANCE Experiment::hInst = NULL;
 // Below are singalton implementations
 auto_ptr<Experiment> Experiment::m_pInstance;
 

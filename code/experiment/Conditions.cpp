@@ -431,20 +431,31 @@ BOOL Conditions::readConstraints(ifstream& fin)
             }
 
             // Check the max rotation speed should be less than the smallest max rotation degree
-            //GLfloat maxRotSpeed = *max_element(pNewConstraint->rotSpeedRange.begin(),
-            //    pNewConstraint->rotSpeedRange.end());
-            //GLfloat minRotDegree = *min_element(pNewConstraint->maxRotDegRange.begin(),
-            //    pNewConstraint->maxRotDegRange.end());
+            // in no motion mode
+            GLfloat maxRotSpeed = *max_element(pNewConstraint->rotSpeedRange.begin(),
+                pNewConstraint->rotSpeedRange.end());
+            GLfloat minRotDegree = *min_element(pNewConstraint->maxRotDegRange.begin(),
+                pNewConstraint->maxRotDegRange.end());
 
-            //if(maxRotSpeed > minRotDegree)
-            //{
-            //    ostringstream ossError;
-            //    ossError << "The max possible speed is larger than the smallest possible max rotation degree in constraint " 
-            //        << iConstraint;
-            //    string errorMsg = ossError.str();
-            //    MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
-            //    return FALSE;
-            //}
+            if((maxRotSpeed > (minRotDegree * 2)) && pNewConstraint->dispMode == DISCRETE_DISPLAY)
+            {
+                ostringstream ossError;
+                ossError << "The max possible speed is larger than the smallest possible max rotation degree in constraint " 
+                    << iConstraint << "in no motion mode";
+                string errorMsg = ossError.str();
+                MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+                return FALSE;
+            }
+
+            if(minRotDegree < 0.5f)
+            {
+                ostringstream ossError;
+                ossError << "The smallest possible max rotation degree in constraint " 
+                    << iConstraint << "should not be smaller than 0.5";
+                string errorMsg = ossError.str();
+                MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+                return FALSE;
+            }
 
             // Read Object Specific Parameters
             for(unsigned int i = 0; i < pNewConstraint->objectNames.size(); i ++)

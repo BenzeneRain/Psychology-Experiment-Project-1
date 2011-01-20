@@ -36,7 +36,7 @@ BOOL PostExperimentScene::startScene()
     this->initDisplay();
     this->rScreen.run();
 
-    return TRUE;
+    return this->status;
 }
 
 string PostExperimentScene::buildString()

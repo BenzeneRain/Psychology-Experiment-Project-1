@@ -46,7 +46,7 @@ BOOL Trial::startTrial()
 BOOL Trial::proceedNextScene()
 {
     Scene *pScene;
-    BOOL ret;
+    BOOL ret = TRUE;
 
     switch(this->currState)
     {
@@ -103,7 +103,7 @@ BOOL Trial::proceedNextScene()
             return FALSE;
             break;
     }
-    return TRUE;
+    return ret;
 }
 
 BOOL Trial::recordTrialInfo()
