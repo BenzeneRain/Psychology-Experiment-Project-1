@@ -241,6 +241,59 @@ BOOL Conditions::readConstraints(ifstream& fin)
             int quantity;
             condCons_t *pNewConstraint = new condCons_t; 
 
+            char dispType;
+            fin >> dispType;
+
+            switch(dispType)
+            {
+                case 'C': // Continues display
+                    pNewConstraint->dispMode = CONTINUOUS_DISPLAY;
+                    break;
+                case 'D': // Discrete display
+                    pNewConstraint->dispMode = DISCRETE_DISPLAY;
+                    
+                    float secs;
+                    
+                    // read seconds for displaying object
+                    fin >> secs;
+                    if(secs <= 0)
+                    {
+                        ostringstream ossError;
+                        ossError << "The value for displaying object should not be less than or equal to zero in constraint "
+                            << iConstraint;
+                        string errorMsg = ossError.str();
+                        MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+                        return FALSE;
+                    }
+                    pNewConstraint->secDisplay = secs;
+
+                    // read seconds for displaying black screen;
+                    fin >> secs;
+                    if(secs < 0)
+                    {
+                        ostringstream ossError;
+                        ossError << "The value for displaying black screen should not be less than zero in constraint "
+                            << iConstraint;
+                        string errorMsg = ossError.str();
+                        MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+                        return FALSE;
+                    }
+                    pNewConstraint->secBlackScreen = secs;
+
+                    break;
+                default: // Unsupported display mode
+                    ostringstream ossError;
+                    ossError << "Unsupported display mode '" << dispType << "' in constraint "
+                        << iConstraint << endl;
+                    ossError << "Supported display mode:" << endl;
+                    ossError << "C  ---   Continues Display" << endl;
+                    ossError << "D  ---   Discrete Display" << endl;
+                    string errorMsg = ossError.str();
+                    MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+                    return FALSE;
+                    break;
+            }
+
             // Read Object Names
             fin >> quantity;
             for(int i = 0; i < quantity; i ++)
@@ -376,6 +429,22 @@ BOOL Conditions::readConstraints(ifstream& fin)
                 this->printReadRangeError("max rotation degree", iConstraint + 1);
                 return FALSE;
             }
+
+            // Check the max rotation speed should be less than the smallest max rotation degree
+            //GLfloat maxRotSpeed = *max_element(pNewConstraint->rotSpeedRange.begin(),
+            //    pNewConstraint->rotSpeedRange.end());
+            //GLfloat minRotDegree = *min_element(pNewConstraint->maxRotDegRange.begin(),
+            //    pNewConstraint->maxRotDegRange.end());
+
+            //if(maxRotSpeed > minRotDegree)
+            //{
+            //    ostringstream ossError;
+            //    ossError << "The max possible speed is larger than the smallest possible max rotation degree in constraint " 
+            //        << iConstraint;
+            //    string errorMsg = ossError.str();
+            //    MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+            //    return FALSE;
+            //}
 
             // Read Object Specific Parameters
             for(unsigned int i = 0; i < pNewConstraint->objectNames.size(); i ++)
@@ -517,6 +586,18 @@ void Conditions::addCondition(int constraintIndex)
    pNewCondition->pRealObject->setRandPara();
 
    pNewCondition->repeatTime = this->conditionRepeatTimesPerSec;
+   
+   pNewCondition->dispMode = this->constraints[constraintIndex]->dispMode;
+   if(pNewCondition->dispMode == DISCRETE_DISPLAY)
+   {
+       pNewCondition->secDisplay = this->constraints[constraintIndex]->secDisplay;
+       pNewCondition->secBlackScreen = this->constraints[constraintIndex]->secBlackScreen;
+   }
+   else
+   {
+       pNewCondition->secDisplay = 0.0f;
+       pNewCondition->secBlackScreen = 0.0f;
+   }
 
    this->conditions.push_back(pNewCondition);
 }

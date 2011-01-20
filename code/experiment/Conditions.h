@@ -16,6 +16,12 @@ struct conditionStruct
     vector<texture_t *> textures; // Stores the textures for the object
 
     int repeatTime; // the times that the condition need to be repeated in one section
+
+    displayMode_t dispMode;
+
+    // Used only when the display mode is DISCRETE_DISPLAY
+    float secDisplay; // seconds for displaying object
+    float secBlackScreen; // seconds for displaying black screen
 };
 typedef struct conditionStruct cond_t;
 

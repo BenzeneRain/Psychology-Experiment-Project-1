@@ -160,12 +160,12 @@ BOOL Screen::setMousePassiveMotionFunc(void (*func)(int x, int y))
 // Call this to display the string
 BOOL Screen::displayString(string str, float x, float y)
 {
-    glColor3f(1.0f, 1.0f, 1.0f);
+    //glColor3f(1.0f, 1.0f, 1.0f);
     glRasterPos2f(x, y);
+    //glWindowPos2f(x, y);
 
-    glutBitmapString(GLUT_BITMAP_9_BY_15, reinterpret_cast<const unsigned char *>(str.c_str()));
-
-    this->render();
+    for(unsigned int i = 0; i < str.size(); i ++)
+      glutBitmapCharacter(GLUT_BITMAP_9_BY_15, str[i]);
 
     return TRUE;
 }

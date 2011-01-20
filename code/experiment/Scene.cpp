@@ -3,8 +3,9 @@
 #include "Screen.h"
 #include "Experiment.h"
 #include <vector>
+#include <hash_map>
 
-using namespace std;
+using namespace stdext;
 
 Scene::Scene():
     rScreen(*Experiment::getInstance(NULL)->pScreen)
@@ -53,7 +54,34 @@ void Scene::dispatchReshape(int w, int h)
 
 void Scene::dispatchTimerEvent(int timerID)
 {
-    Scene::currScene->handleTimerEvent(timerID);
+    if(Scene::isRegisteredTimer(timerID))
+        Scene::currScene->handleTimerEvent(timerID);
+}
+
+void Scene::registerTimer(int timerID)
+{
+    Scene::registeredTimerID[timerID] = TRUE;
+}
+
+void Scene::unregisterTimer(int timerID)
+{
+    if(Scene::registeredTimerID.find(timerID) != Scene::registeredTimerID.end())
+        if(Scene::registeredTimerID[timerID] == TRUE)
+            Scene::registeredTimerID[timerID] = FALSE;
+}
+
+BOOL Scene::isRegisteredTimer(int timerID)
+{
+    if(Scene::registeredTimerID.find(timerID) != Scene::registeredTimerID.end())
+        return Scene::registeredTimerID[timerID];
+    else
+        return FALSE;
+}
+
+void Scene::reset()
+{
+    Scene::registeredTimerID.clear();
 }
 
 Scene *Scene::currScene;
+hash_map<int, BOOL> Scene::registeredTimerID;

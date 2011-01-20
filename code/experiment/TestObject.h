@@ -39,6 +39,7 @@ class TestObject
         virtual string genObjPara(); // get the object parameters (varied part)
 
         void reverseRotDirection();
+        void rotate(GLfloat degree);
 
         enum enumProj2DMode {ORTHOGONAL, PROJECTION};
         enum enumRotDirection {CLOCKWISE, COUNTERCLOCKWISE};

@@ -12,7 +12,8 @@ class Separate2D3DViewScene :
 
         virtual BOOL startScene();
 
-        static const int TIMERID;
+        const int ROTATION_TIMERID;
+        const int SWITCH_TIMERID;
     private:
         virtual BOOL renderScene(); 
         virtual BOOL reshape(int w, int h);
@@ -25,4 +26,8 @@ class Separate2D3DViewScene :
         virtual BOOL initDisplay();
 
         cond_t& condition;
+
+        enum sepSceneStatus {DISPLAY_OBJECT, DISPLAY_BLACKSCREEN};
+        typedef enum sepSceneStatus sepSceneStatus_t;
+        sepSceneStatus_t currStatus;
 };

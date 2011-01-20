@@ -1,6 +1,9 @@
 #pragma once
 #include "stdafx.h"
 
+enum DisplayMode {CONTINUOUS_DISPLAY, DISCRETE_DISPLAY};
+typedef enum DisplayMode displayMode_t;
+
 struct conditionConstraints
 {
     vector<string> objectNames;
@@ -32,5 +35,10 @@ struct conditionConstraints
     vector< vector<string> * > textureGroups;
 
     int weight; // The weight of the constraint
+
+    displayMode_t dispMode;
+    // Used only when the display mode is DISCRETE_DISPLAY
+    float secDisplay; // seconds for displaying object
+    float secBlackScreen; // seconds for displaying black screen
 };
 typedef struct conditionConstraints condCons_t;

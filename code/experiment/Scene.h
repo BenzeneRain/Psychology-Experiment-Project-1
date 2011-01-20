@@ -3,8 +3,9 @@
 #include "stdafx.h"
 #include "Screen.h"
 #include <vector>
+#include <hash_map>
 
-using namespace std;
+using namespace stdext;
 
 class Scene
 {
@@ -21,6 +22,7 @@ class Scene
         static void dispatchMousePassiveMotionEvent(int x, int y);
         static void dispatchTimerEvent(int timerID);
          
+        static void reset();
         Screen& rScreen;
 
         float fps;
@@ -37,5 +39,10 @@ class Scene
         virtual BOOL handleTimerEvent(int timerID) = 0;
         virtual BOOL initDisplay() = 0;
 
+        static void registerTimer(int timerID);
+        static void unregisterTimer(int timerID);
+        static BOOL isRegisteredTimer(int timerID);
+
         static Scene *currScene;
+        static hash_map<int, BOOL> registeredTimerID;
 };

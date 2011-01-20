@@ -179,3 +179,29 @@ void TestObject::reverseRotDirection()
     else
         this->rotDirection = CLOCKWISE;
 }
+
+void TestObject::rotate(GLfloat degree)
+{
+    if((this->rotDirection == TestObject::CLOCKWISE &&
+                this->currRotDeg - degree < -(this->maxRotDeg)))
+    {
+        GLfloat degDist = -this->maxRotDeg - (this->currRotDeg - degree);
+        this->currRotDeg = -this->maxRotDeg + degDist; 
+        this->reverseRotDirection(); 
+    }
+    else if(this->rotDirection == TestObject::CLOCKWISE)
+    {
+        this->currRotDeg -= degree;
+    }
+    else if((this->rotDirection == TestObject::COUNTERCLOCKWISE && 
+                this->currRotDeg + degree > this->maxRotDeg))
+    {
+        GLfloat degDist = this->currRotDeg + degree - this->maxRotDeg;
+        this->currRotDeg = this->maxRotDeg - degDist;
+        this->reverseRotDirection(); 
+    }
+    else
+    {
+        this->currRotDeg += degree;
+    }
+}

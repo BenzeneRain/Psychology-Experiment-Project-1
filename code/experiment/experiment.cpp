@@ -35,6 +35,8 @@ Experiment::Experiment(HINSTANCE hInstance)
     this->hInst = hInstance;
     this->currSecNo = 0;
     this->currTrialID = 0;
+    this->pScreen = NULL;
+    this->experimentConditions = NULL;
 };
 
 Experiment::~Experiment(void)
@@ -134,6 +136,9 @@ BOOL Experiment::initSystem()
 
     // Initialize screen class
     this->pScreen = new Screen(this->devMode);
+
+    // Initialize Scene class
+    Scene::reset();
 
     // Initialize the glut
     if(!Experiment::debug)
@@ -288,8 +293,13 @@ BOOL Experiment::disposeSystem()
         this->objectFactories.pop_back();
     }
 
+    // Delete Screen 
+    if(!this->pScreen)
+        delete this->pScreen;
+
     // Delete Conditions
-    delete this->experimentConditions;
+    if(!this->experimentConditions)
+        delete this->experimentConditions;
 
     return TRUE;
 }
