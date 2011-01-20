@@ -33,7 +33,7 @@ BOOL PreTrialScene::startScene()
     // Bind new keyboards and mouses events
     this->rScreen.setKeyboardFunc(Scene::dispatchKeyboardEvent);
     this->rScreen.setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
-
+    this->rScreen.setMouseFunc(Scene::dispatchMouseEvent);
 
     // Start running the scene
     // FIX: This is actually a run design if there are multiple screens
@@ -138,6 +138,8 @@ BOOL PreTrialScene::handleKeyboardSpecialEvent(int key, int x, int y)
 
 BOOL PreTrialScene::handleMouseEvent(int button, int state, int x, int y)
 {
+    if(button == GLUT_LEFT_BUTTON && state == GLUT_UP)
+        this->rScreen.stopped = TRUE;
     return TRUE;
 }
 

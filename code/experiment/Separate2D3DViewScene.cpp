@@ -40,7 +40,8 @@ BOOL Separate2D3DViewScene::startScene()
     // Bind new keyboards and mouses events
     this->rScreen.setKeyboardFunc(Scene::dispatchKeyboardEvent);
     this->rScreen.setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
-
+    this->rScreen.setMousePassiveMotionFunc(Scene::dispatchMousePassiveMotionEvent);
+    this->rScreen.setMouseFunc(Scene::dispatchMouseEvent);
     //bind timer event
     
     Scene::registerTimer(this->ROTATION_TIMERID);
@@ -48,25 +49,9 @@ BOOL Separate2D3DViewScene::startScene()
     GLfloat msecs;
     // Set the rotSpeed to 0 can make
     // the object stay still.
-    if(rObject.rotSpeed != 0)
+    if(rObject.rotSpeed != 0 && this->condition.dispMode == CONTINUOUS_DISPLAY)
     {
-        switch(this->condition.dispMode)
-        {
-            case CONTINUOUS_DISPLAY:
-                {
-                    msecs = 1000.0f / rObject.rotSpeed;
-                    break;
-                }
-//            case DISCRETE_DISPLAY:
-//                {
-//                    msecs = 1000.0f * (this->condition.secDisplay + this->condition.secBlackScreen);
-//                    break;
-//                }
-            default:
-                msecs = 0.0f;
-                break;
-        }
-
+        msecs = 1000.0f / rObject.rotSpeed;
         this->rScreen.setTimerFunc((unsigned int)msecs,
                 Scene::dispatchTimerEvent, this->ROTATION_TIMERID);
     }
@@ -74,7 +59,7 @@ BOOL Separate2D3DViewScene::startScene()
     if(this->condition.dispMode == DISCRETE_DISPLAY)
     {
         Scene::registerTimer(this->SWITCH_TIMERID);
-        this->rScreen.setTimerFunc((unsigned int)this->condition.secDisplay,
+        this->rScreen.setTimerFunc((unsigned int)(this->condition.secDisplay * 1000.0f),
                 Scene::dispatchTimerEvent, this->SWITCH_TIMERID);
     }
 
@@ -226,6 +211,9 @@ BOOL Separate2D3DViewScene::handleKeyboardSpecialEvent(int key, int x, int y)
 
 BOOL Separate2D3DViewScene::handleMouseEvent(int button, int state, int x, int y)
 {
+    if(button == GLUT_LEFT_BUTTON && state == GLUT_UP)
+        this->rScreen.stopped = TRUE;
+
     return TRUE;
 }
 
@@ -236,6 +224,16 @@ BOOL Separate2D3DViewScene::handleMouseMotionEvent(int x, int y)
 
 BOOL Separate2D3DViewScene::handleMousePassiveMotionEvent(int x, int y)
 {
+    static int lastY = 0;
+    TestObject& rObject = *this->condition.pRealObject;
+
+    if(y > lastY)
+        rObject.adjustAsptRatio(0.01f);
+    else if(y < lastY)
+        rObject.adjustAsptRatio(-0.01f);
+
+    lastY = y;
+
     return TRUE;
 }
 
@@ -247,7 +245,6 @@ BOOL Separate2D3DViewScene::handleTimerEvent(int timerID)
     if(timerID == this->ROTATION_TIMERID && 
             this->condition.dispMode == CONTINUOUS_DISPLAY)
     {
-        //bind timer event
         GLfloat msecs;
         step = 1.0f;
         if(rObject.rotSpeed != 0.0f)
@@ -257,11 +254,9 @@ BOOL Separate2D3DViewScene::handleTimerEvent(int timerID)
 
         rObject.rotate(step);
 
-        if(rObject.rotSpeed != 0)
-        {
-            this->rScreen.setTimerFunc((unsigned int)msecs,
-                    Scene::dispatchTimerEvent, this->ROTATION_TIMERID);
-        }
+        this->rScreen.setTimerFunc((unsigned int)msecs,
+                Scene::dispatchTimerEvent, this->ROTATION_TIMERID);
+
     }
     else if(this->condition.dispMode == DISCRETE_DISPLAY &&
             timerID == this->SWITCH_TIMERID)
