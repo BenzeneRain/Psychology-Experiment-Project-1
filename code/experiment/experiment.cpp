@@ -177,6 +177,10 @@ BOOL Experiment::proceedExperiment()
     // if needed
 
     //proceed trials
+    ostringstream ossSecInfo;
+    ossSecInfo << "Section " << this->currSecNo + 1 << endl;
+    this->writeOutputs(ossSecInfo.str());
+    ossSecInfo.clear();
     do
     {
         pTrial = new Trial(this->currTrialID,
@@ -192,8 +196,9 @@ BOOL Experiment::proceedExperiment()
 
             if(this->currSecNo < this->maxSecNo)
             {
-                ostringstream ossSecInfo;
-                ossSecInfo << "Section " << this->currSecNo;
+                ossSecInfo << "Section " << this->currSecNo + 1 << endl;
+                this->writeOutputs(ossSecInfo.str());
+                ossSecInfo.clear();
                 this->experimentConditions->shuffleConditions();
                 this->recordConditions();
                 this->writeOutputs(string("\n"));
@@ -243,7 +248,7 @@ BOOL Experiment::recordConfigurations()
 
     ossConf << "Experiment start time: " << this->strDate << " " << this->strTime << endl;
 
-    ossConf << "Test object information: " << endl;
+    ossConf << endl;
 
     ret = this->writeOutputs(ossConf.str());
     return ret;

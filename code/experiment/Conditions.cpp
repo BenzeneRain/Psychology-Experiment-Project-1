@@ -130,6 +130,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
     // 3 t1 t1 t1
     // )
     //
+    // Display Mode
     // Constraint Weight 
     // Pitch Range (Slant)
     // Yaw Range
@@ -140,7 +141,21 @@ BOOL Conditions::readConstraints(ifstream& fin)
     // Max Rotation Degree Range 
     // Object Specific Parameters     
     //
-    // P.S: Object Names format: "# of Object Names" "Name1" "Name2" ...  e.g.:
+    // Display Mode has two possible values, one is C, meaning CONTINUOUS DISPLAY
+    // , which corresponds to motion situation; the other one is D, meaning 
+    // DISCRETE DISPLAY, which corresponds to no motion situation;
+    //
+    // if DISCRETE DISPLAY mode is chose, we need to provide another two values,
+    // one is the seconds lasts for displaying the object; and the second one
+    // is the seconds lasts while the object disappears
+    // e.g. 1:
+    // C
+    //
+    // e.g. 2:
+    // D 2 2
+    //
+    //
+    // Object Names format: "# of Object Names" "Name1" "Name2" ...  e.g.:
     // 2 Cylinder Cube
     // 
     // When generating a condition using specified constraint, it will randomly
@@ -375,7 +390,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
             pNewConstraint->weight = weight;
 
             // Read Pitch Range
-            ret = this->readRange<GLfloat>(fin, pNewConstraint->pitchRange, pNewConstraint->pitchRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->pitchRange);
             if(ret == FALSE)
             {
                 this->printReadRangeError("pitch", iConstraint + 1);
@@ -383,7 +398,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
             }
 
             // Read Yaw Range
-            ret = this->readRange<GLfloat>(fin, pNewConstraint->yawRange, pNewConstraint->yawRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->yawRange);
             if(ret == FALSE)
             {
                 this->printReadRangeError("yaw", iConstraint + 1);
@@ -391,7 +406,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
             }
 
             // Read Roll Range
-            ret = this->readRange<GLfloat>(fin, pNewConstraint->rollRange, pNewConstraint->rollRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->rollRange);
             if(ret == FALSE)
             {
                 this->printReadRangeError("roll", iConstraint + 1);
@@ -399,7 +414,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
             }
 
             // Read Height Range
-            ret = this->readRange<GLfloat>(fin, pNewConstraint->heightRange, pNewConstraint->heightRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->heightRange);
             if(ret == FALSE)
             {
                 this->printReadRangeError("height", iConstraint + 1);
@@ -407,7 +422,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
             }
 
             // Read Initial Z Aspect Ratio Range
-            ret = this->readRange<GLfloat>(fin, pNewConstraint->initZAsptRatioRange, pNewConstraint->initZAsptRatioRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->initZAsptRatioRange);
             if(ret == FALSE)
             {
                 this->printReadRangeError("initial aspect ratio on z axis", iConstraint + 1);
@@ -415,7 +430,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
             }
 
             // Read Rotation Speed Range
-            ret = this->readRange<GLfloat>(fin, pNewConstraint->rotSpeedRange, pNewConstraint->rotSpeedRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->rotSpeedRange);
             if(ret == FALSE)
             {
                 this->printReadRangeError("rotation speed", iConstraint + 1);
@@ -423,7 +438,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
             }
 
             // Max Rotation Degree Range
-            ret = this->readRange<GLfloat>(fin, pNewConstraint->maxRotDegRange, pNewConstraint->maxRotDegRangeType);
+            ret = this->readRange<GLfloat>(fin, pNewConstraint->maxRotDegRange);
             if(ret == FALSE)
             {
                 this->printReadRangeError("max rotation degree", iConstraint + 1);
@@ -432,10 +447,10 @@ BOOL Conditions::readConstraints(ifstream& fin)
 
             // Check the max rotation speed should be less than the smallest max rotation degree
             // in no motion mode
-            GLfloat maxRotSpeed = *max_element(pNewConstraint->rotSpeedRange.begin(),
-                pNewConstraint->rotSpeedRange.end());
-            GLfloat minRotDegree = *min_element(pNewConstraint->maxRotDegRange.begin(),
-                pNewConstraint->maxRotDegRange.end());
+            GLfloat maxRotSpeed = *max_element(pNewConstraint->rotSpeedRange.range.begin(),
+                pNewConstraint->rotSpeedRange.range.end());
+            GLfloat minRotDegree = *min_element(pNewConstraint->maxRotDegRange.range.begin(),
+                pNewConstraint->maxRotDegRange.range.end());
 
             if((maxRotSpeed > (minRotDegree * 2)) && pNewConstraint->dispMode == DISCRETE_DISPLAY)
             {
@@ -485,7 +500,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
 
 // Read information that is in range
 template<typename T>
-BOOL Conditions::readRange(ifstream& fin, vector<T>& vec, char& type)
+BOOL Conditions::readRange(ifstream& fin, rangeType<T>& vec)
 {
     char rangeType;
 
@@ -496,8 +511,15 @@ BOOL Conditions::readRange(ifstream& fin, vector<T>& vec, char& type)
         switch(rangeType)
         {
             case 'R':
-                // TODO: if the range is defined by lower bound and upper bound,
-                // it will be directed here
+                T lowerBound, upperBound;
+
+                fin >> lowerBound >> upperBound;
+                if(lowerBound > upperBound)
+                    return FALSE;
+
+                vec.range.push_back(lowerBound);
+                vec.range.push_back(upperBound);
+                vec.type = 'R';
                 break;
             case 'S':
                 // if the range is defined by a set of possible values,
@@ -510,15 +532,16 @@ BOOL Conditions::readRange(ifstream& fin, vector<T>& vec, char& type)
                     {
                         T value;
                         fin >> value;
-                        vec.push_back(value);
+                        vec.range.push_back(value);
                     }
+
+                    vec.type = 'S';
                     break;
                 }
             default:
                 return FALSE;
         }
 
-        type = rangeType;
     }
     catch(ifstream::failure e) // FIX: just throw the error
     {
@@ -609,6 +632,9 @@ void Conditions::addCondition(int constraintIndex)
        pNewCondition->secDisplay = 0.0f;
        pNewCondition->secBlackScreen = 0.0f;
    }
+
+   pNewCondition->constraintID = constraintIndex + 1;
+   pNewCondition->constraintGroupID = constraintIndex + 1;
 
    this->conditions.push_back(pNewCondition);
 }
@@ -728,7 +754,7 @@ BOOL Conditions::cylinderParameterReadingFunction(ifstream& fin, condCons_t& con
     BOOL ret;
     
     // Read Radius Range
-    ret = this->readRange<GLfloat>(fin, constraint.radiusRange, constraint.radiusRangeType);
+    ret = this->readRange<GLfloat>(fin, constraint.radiusRange);
     if(ret == FALSE)
     {
         this->printReadRangeError("radius(Cylinder)", constraintID);

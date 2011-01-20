@@ -7,13 +7,13 @@ using namespace std;
 
 const UINT TestObject::objectID = 0;
 
-TestObject::TestObject(vector<GLfloat>& pitchRange,
-                    vector<GLfloat>& yawRange,
-                    vector<GLfloat>& rollRange,
-                    vector<GLfloat>& heightRange,
-                    vector<GLfloat>& initZAsptRatioRange,
-                    vector<GLfloat>& rotSpeedRange,
-                    vector<GLfloat>& maxRotDegRange,
+TestObject::TestObject(rangeType<GLfloat>& pitchRange,
+                    rangeType<GLfloat>& yawRange,
+                    rangeType<GLfloat>& rollRange,
+                    rangeType<GLfloat>& heightRange,
+                    rangeType<GLfloat>& initZAsptRatioRange,
+                    rangeType<GLfloat>& rotSpeedRange,
+                    rangeType<GLfloat>& maxRotDegRange,
                     vector<texture_t *>& texs)
 {
     this->textures = texs;
@@ -59,33 +59,18 @@ TestObject::~TestObject(void)
 
 void TestObject::setRandPara()
 {
-    int randIndex;
+    this->pitch = this->pitchRange.getRandomValue();
 
-    // FIX: rand() maybe not good enough
+    this->yaw = this->yawRange.getRandomValue();
+    this->roll = this->rollRange.getRandomValue();
+    this->height = this->heightRange.getRandomValue();
 
-    randIndex = rand() % this->pitchRange.size();
-    this->pitch = this->pitchRange[randIndex];
+    this->initZAsptRatio = this->initZAsptRatioRange.getRandomValue();
 
-    randIndex = rand() % this->yawRange.size();
-    this->yaw = this->yawRange[randIndex];
+    this->rotSpeed = this->rotSpeedRange.getRandomValue();
+    this->maxRotDeg = this->maxRotDegRange.getRandomValue();
 
-    randIndex = rand() % this->rollRange.size();
-    this->roll = this->rollRange[randIndex];
-
-    randIndex = rand() % this->heightRange.size();
-    this->height = this->heightRange[randIndex];
-
-    randIndex = rand() % this->initZAsptRatioRange.size();
-    this->initZAsptRatio = this->initZAsptRatioRange[randIndex];
-
-    randIndex = rand() % this->rotSpeedRange.size();
-    this->rotSpeed = this->rotSpeedRange[randIndex];
-
-    randIndex = rand() % this->maxRotDegRange.size();
-    this->maxRotDeg = this->maxRotDegRange[randIndex];
-
-    //randIndex = rand() % this->initZAsptRatioRange.size();
-    //this->adjZAsptRatio = this->initZAsptRatioRange[randIndex];
+    //this->adjZAsptRatio = this->initZAsptRatioRange.getRandomValue();
 }
 
 string TestObject::genObjDesc()
@@ -96,60 +81,25 @@ string TestObject::genObjDesc()
     ossObj << this->getObjName() << " "; // Object type
 
     // Pitch range
-    ossObj << this->pitchRange.size();
-    for(unsigned int i = 0; i < this->pitchRange.size(); i ++)
-    {
-        ossObj << " " << this->pitchRange[i];
-    }
-    ossObj << " ";
+    ossObj << this->pitchRange;
 
     // Yaw Range
-    ossObj << this->yawRange.size();
-    for(unsigned int i = 0; i < this->yawRange.size(); i ++)
-    {
-        ossObj << " " << this->yawRange[i];
-    }
-    ossObj << " ";
+    ossObj << this->yawRange;
 
     // Roll Range
-    ossObj << this->rollRange.size();
-    for(unsigned int i = 0; i < this->rollRange.size(); i ++)
-    {
-        ossObj << " " << this->rollRange[i];
-    }
-    ossObj << " ";
-    
+    ossObj << this->rollRange;
+
     // Height Range
-    ossObj << this->heightRange.size();
-    for(unsigned int i = 0; i < this->heightRange.size(); i ++)
-    {
-        ossObj << " " << this->heightRange[i];
-    }
-    ossObj << " ";
+    ossObj << this->heightRange;
 
     // Initial Aspect Ratio on Z-axis range
-    ossObj << this->initZAsptRatioRange.size();
-    for(unsigned int i = 0; i < this->initZAsptRatioRange.size(); i ++) 
-    {
-        ossObj << " " << this->initZAsptRatioRange[i];
-    }
-    ossObj << " ";
+    ossObj << this->initZAsptRatioRange;
 
     // Object Rotation Speed Range
-    ossObj << this->rotSpeedRange.size();
-    for(unsigned int i = 0; i < this->rotSpeedRange.size(); i ++) 
-    {
-        ossObj << " " << this->rotSpeedRange[i];
-    }
-    ossObj << " ";
+    ossObj << this->rotSpeedRange;
 
     // Object maximum rotation degree Range
-    ossObj << this->maxRotDegRange.size();
-    for(unsigned int i = 0; i < this->maxRotDegRange.size(); i ++)
-    {
-        ossObj << " " << this->maxRotDegRange[i];
-    }
-    ossObj << " ";
+    ossObj << this->maxRotDegRange;
 
     return ossObj.str();
 }

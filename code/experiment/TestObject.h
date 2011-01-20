@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "texture.h"
+#include "rangeType.h"
 #include <string>
 #include <vector>
 
@@ -10,13 +11,13 @@ using namespace std;
 class TestObject
 {
     public:
-        TestObject(vector<GLfloat>& pitchRange,
-                   vector<GLfloat>& yawRange,
-                   vector<GLfloat>& rollRange,
-                   vector<GLfloat>& heightRange,           
-                   vector<GLfloat>& initZAsptRatioRange,
-                   vector<GLfloat>& rotSpeedRange,
-                   vector<GLfloat>& maxRotDegRange,
+        TestObject(rangeType<GLfloat>& pitchRange,
+                   rangeType<GLfloat>& yawRange,
+                   rangeType<GLfloat>& rollRange,
+                   rangeType<GLfloat>& heightRange,           
+                   rangeType<GLfloat>& initZAsptRatioRange,
+                   rangeType<GLfloat>& rotSpeedRange,
+                   rangeType<GLfloat>& maxRotDegRange,
                    vector<texture_t *>& texs);
 
         TestObject(TestObject& rObj);
@@ -63,13 +64,13 @@ class TestObject
         enumRotDirection rotDirection;
       
         // Value range of the parameters
-        vector<GLfloat> pitchRange;
-        vector<GLfloat> yawRange;
-        vector<GLfloat> rollRange;
-        vector<GLfloat> heightRange;
-        vector<GLfloat> initZAsptRatioRange;
-        vector<GLfloat> rotSpeedRange;
-        vector<GLfloat> maxRotDegRange;
+        rangeType<GLfloat> pitchRange;
+        rangeType<GLfloat> yawRange;
+        rangeType<GLfloat> rollRange;
+        rangeType<GLfloat> heightRange;
+        rangeType<GLfloat> initZAsptRatioRange;
+        rangeType<GLfloat> rotSpeedRange;
+        rangeType<GLfloat> maxRotDegRange;
 
         vector<texture_t *> textures;
     protected:

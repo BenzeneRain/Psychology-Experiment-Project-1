@@ -1,5 +1,6 @@
 #pragma once
 #include "stdafx.h"
+#include "rangeType.h"
 
 enum DisplayMode {CONTINUOUS_DISPLAY, DISCRETE_DISPLAY};
 typedef enum DisplayMode displayMode_t;
@@ -8,29 +9,15 @@ struct conditionConstraints
 {
     vector<string> objectNames;
 
-    vector<GLfloat> radiusRange;
-    char radiusRangeType;
+    rangeType<GLfloat> radiusRange;
+    rangeType<GLfloat> pitchRange;
+    rangeType<GLfloat> yawRange;
+    rangeType<GLfloat> rollRange;
 
-    vector<GLfloat> pitchRange;
-    char pitchRangeType;
-
-    vector<GLfloat> yawRange;
-    char yawRangeType;
-
-    vector<GLfloat> rollRange;
-    char rollRangeType;
-
-    vector<GLfloat> heightRange;
-    char heightRangeType;
-
-    vector<GLfloat> initZAsptRatioRange;
-    char initZAsptRatioRangeType;
-
-    vector<GLfloat> rotSpeedRange;
-    char rotSpeedRangeType;
-
-    vector<GLfloat> maxRotDegRange;
-    char maxRotDegRangeType;
+    rangeType<GLfloat> heightRange;
+    rangeType<GLfloat> initZAsptRatioRange;
+    rangeType<GLfloat> rotSpeedRange;
+    rangeType<GLfloat> maxRotDegRange;
 
     vector< vector<string> * > textureGroups;
 

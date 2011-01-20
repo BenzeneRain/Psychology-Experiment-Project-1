@@ -6,6 +6,7 @@
 #include "TestObject.h"
 #include "Screen.h"
 #include "texture.h"
+#include "rangeType.h"
 #include <hash_map>
 
 using namespace stdext;
@@ -22,6 +23,8 @@ struct conditionStruct
     // Used only when the display mode is DISCRETE_DISPLAY
     float secDisplay; // seconds for displaying object
     float secBlackScreen; // seconds for displaying black screen
+    int constraintID;
+    int constraintGroupID;
 };
 typedef struct conditionStruct cond_t;
 
@@ -106,7 +109,7 @@ class Conditions
         
         // Reading various things from the configuration file
         template<typename T>
-        BOOL readRange(ifstream& fin, vector<T>& vec, char& type);
+        BOOL readRange(ifstream& fin, rangeType<T>& vec);
         BOOL readConstraints(ifstream& fin);
         BOOL readTextures(ifstream& fin);
 

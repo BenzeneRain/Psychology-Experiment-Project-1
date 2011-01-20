@@ -9,15 +9,15 @@ using namespace std;
 
 const UINT CylinderObject::objectID = 1;
 
-CylinderObject::CylinderObject(vector<GLfloat>& pitchRange,
-                            vector<GLfloat>& yawRange,
-                            vector<GLfloat>& rollRange,
-                            vector<GLfloat>& heightRange,
-                            vector<GLfloat>& initZAsptRatioRange,
-                            vector<GLfloat>& rotSpeedRange,
-                            vector<GLfloat>& maxRotDegRange,
+CylinderObject::CylinderObject(rangeType<GLfloat>& pitchRange,
+                            rangeType<GLfloat>& yawRange,
+                            rangeType<GLfloat>& rollRange,
+                            rangeType<GLfloat>& heightRange,
+                            rangeType<GLfloat>& initZAsptRatioRange,
+                            rangeType<GLfloat>& rotSpeedRange,
+                            rangeType<GLfloat>& maxRotDegRange,
                             vector<texture_t *>& texs,
-                            vector<GLfloat>& radiusRange):
+                            rangeType<GLfloat>& radiusRange):
     TestObject(pitchRange, yawRange, rollRange, heightRange,
         initZAsptRatioRange, rotSpeedRange, maxRotDegRange, texs) 
 {
@@ -57,13 +57,9 @@ UINT CylinderObject::getObjID()
 void CylinderObject::setRandPara()
 {
     TestObject::setRandPara();
-
-    int randIndex;
-
     // FIX: rand() maybe is not good enough
 
-    randIndex = rand() % this->radiusRange.size();
-    this->radius = this->radiusRange[randIndex];
+    this->radius = this->radiusRange.getRandomValue();
 }
 
 BOOL CylinderObject::adjustAsptRatio(GLfloat delta)
@@ -86,12 +82,7 @@ string CylinderObject::genObjDesc()
     ossObj << TestObject::genObjDesc();
 
     // Radius Range
-    ossObj << this->radiusRange.size();
-    for(unsigned int i = 0; i < this->radiusRange.size(); i ++)
-    {
-        ossObj << " " << this->radiusRange[i];
-    }
-    ossObj << " ";
+    ossObj << this->radiusRange;
 
     ossObj << 3 << " "; // number of textures used
     ossObj << this->textures[topTextureID]->name << " " // texture for top face

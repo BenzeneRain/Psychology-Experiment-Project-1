@@ -10,15 +10,15 @@ class CylinderObject :
     public TestObject
 {
     public:
-        CylinderObject(vector<GLfloat>& pitchRange,
-                vector<GLfloat>& yawRange,
-                vector<GLfloat>& rollRange,
-                vector<GLfloat>& heightRange,
-                vector<GLfloat>& initZAsptRatioRange,
-                vector<GLfloat>& rotSpeedRange,
-                vector<GLfloat>& maxRotDegRange,
+        CylinderObject(rangeType<GLfloat>& pitchRange,
+                rangeType<GLfloat>& yawRange,
+                rangeType<GLfloat>& rollRange,
+                rangeType<GLfloat>& heightRange,
+                rangeType<GLfloat>& initZAsptRatioRange,
+                rangeType<GLfloat>& rotSpeedRange,
+                rangeType<GLfloat>& maxRotDegRange,
                 vector<texture_t *>& texs,
-                vector<GLfloat>& radiusRange);
+                rangeType<GLfloat>& radiusRange);
         CylinderObject(CylinderObject &rObj);
         virtual ~CylinderObject(void);
 
@@ -46,7 +46,7 @@ class CylinderObject :
         GLuint sideTextureID;
 
         // value range of the parameters
-        vector<GLfloat> radiusRange;
+        rangeType<GLfloat> radiusRange;
     private:
         string objName;
 };

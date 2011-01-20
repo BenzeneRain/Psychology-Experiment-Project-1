@@ -211,6 +211,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\rangeType.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\Scene.cpp"
 				>
 			</File>
@@ -310,6 +314,10 @@
 			</File>
 			<File
 				RelativePath=".\PureWordScene.h"
+				>
+			</File>
+			<File
+				RelativePath=".\rangeType.h"
 				>
 			</File>
 			<File
