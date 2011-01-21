@@ -182,7 +182,9 @@ BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)
     {
         case VK_SPACE:
             {
-                this->rScreen.stopped = TRUE;
+                if((this->condition.dispMode == CONTINUOUS_DISPLAY && this->rScreen.getFPS() != 0)
+                        || this->condition.dispMode == DISCRETE_DISPLAY)
+                    this->rScreen.stopped = TRUE;
                 break;
             }
         default:
@@ -212,7 +214,11 @@ BOOL Separate2D3DViewScene::handleKeyboardSpecialEvent(int key, int x, int y)
 BOOL Separate2D3DViewScene::handleMouseEvent(int button, int state, int x, int y)
 {
     if(button == GLUT_LEFT_BUTTON && state == GLUT_UP)
-        this->rScreen.stopped = TRUE;
+    {
+        if((this->condition.dispMode == CONTINUOUS_DISPLAY && this->rScreen.getFPS() != 0)
+                || this->condition.dispMode == DISCRETE_DISPLAY)
+            this->rScreen.stopped = TRUE;
+    }
 
     return TRUE;
 }
@@ -224,16 +230,22 @@ BOOL Separate2D3DViewScene::handleMouseMotionEvent(int x, int y)
 
 BOOL Separate2D3DViewScene::handleMousePassiveMotionEvent(int x, int y)
 {
-    static int lastY = 0;
+    int lastY = this->rScreen.rDevMode.dmPelsHeight >> 1;
     TestObject& rObject = *this->condition.pRealObject;
 
     if(y > lastY)
+    {
         rObject.adjustAsptRatio(0.01f);
+        glutWarpPointer(0, lastY);
+    }
     else if(y < lastY)
+    {
         rObject.adjustAsptRatio(-0.01f);
-
-    lastY = y;
-
+        glutWarpPointer(0, lastY);
+    }
+    else
+    {
+    }
     return TRUE;
 }
 

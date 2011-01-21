@@ -191,6 +191,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\groupBasedConditions.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\MixedObjectViewScene.cpp"
 				>
 			</File>
@@ -294,6 +298,10 @@
 			</File>
 			<File
 				RelativePath=".\experiment.h"
+				>
+			</File>
+			<File
+				RelativePath=".\groupBasedConditions.h"
 				>
 			</File>
 			<File

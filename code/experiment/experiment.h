@@ -4,6 +4,7 @@
 #include "Screen.h"
 #include "TestObjectFactory.h"
 #include "Conditions.h"
+#include "groupBasedConditions.h"
 #include <string>
 #include <fstream>
 #include <memory>
@@ -58,7 +59,7 @@ class Experiment
         BOOL disposeSystem();
 
         BOOL recordConfigurations();
-        BOOL recordConditions();
+        BOOL recordConstraints();
 
         static HINSTANCE hInst;
         fstream hFileOut;

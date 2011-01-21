@@ -25,6 +25,8 @@ struct conditionStruct
     float secBlackScreen; // seconds for displaying black screen
     int constraintID;
     int constraintGroupID;
+
+    void reset();
 };
 typedef struct conditionStruct cond_t;
 
@@ -35,49 +37,52 @@ class Conditions
         // numConditins: number of conditions to be generated
         // rObjectFactories: reference to the vector of supported object factories
         // rScr: reference to the Screen class
-        explicit Conditions(string& rFilename, int numConditions,
+        explicit Conditions(ifstream& rFin, int numConditions,
                 vector<TestObjectFactory *>& rObjectFactories, Screen& rScr);
-        explicit Conditions(string& rFilename,
+        explicit Conditions(ifstream& rFin,
                 vector<TestObjectFactory *>& rObjectFactories, Screen& rScr);
         ~Conditions(void);
 
         // This must be called before using the conditions
         // return true if the configuration is read without 
         // problem
-        BOOL initConditions();
+        virtual BOOL initConditions();
 
         // Add the constraint
         // Conditions need to be regenerated after adding 
         // the new constraint
-        void addConstraint(condCons_t* pConstraint);
+        // return the index of the constraint being added
+        int addConstraint(condCons_t* pConstraint);
         
         // Manually add constraints
-        void addCondition(int constraintIndex);
-        void addCondition(cond_t* pCondition);
+        // return the index of the condition being added
+        int addCondition(int constraintIndex);
+        int addCondition(cond_t* pCondition);
 
         // generate conditions according to the constraints
         // the old ones will be cleared
         // return true if all the conditions are generated 
         // successfully
-        BOOL generateConditions();
+        virtual BOOL generateConditions();
 
-        BOOL clearConditions();
+        virtual BOOL clearConditions();
 
         // shuffle the generated conditions
-        void shuffleConditions();
+        virtual void shuffleConditions(int times);
         
         // get all constraints
         const vector<condCons_t *>& getAllConstraints();
 
         // get all conditions
-        const vector<cond_t *>& getAllConditions();
+        virtual const vector<cond_t *>& getAllConditions();
 
         // get the specific condition using its index
-        cond_t& operator[](int &rhs);
+        virtual cond_t& operator[](int &rhs);
+
 
         // number of sections
         int numSections;
-    private:
+    protected:
         vector<condCons_t *> constraints;
         vector<cond_t *> conditions;
 
@@ -101,8 +106,8 @@ class Conditions
         // number of times all the conditions need to be repeated
         int conditionRepeatTimesPerSec;
 
-        // Configuration file name
-        string filename;
+        // Configuration file
+        ifstream& overallFin;
 
         // Print reading error
         void printReadRangeError(string name, int constraintID);
@@ -110,7 +115,7 @@ class Conditions
         // Reading various things from the configuration file
         template<typename T>
         BOOL readRange(ifstream& fin, rangeType<T>& vec);
-        BOOL readConstraints(ifstream& fin);
+        BOOL readConstraints(ifstream& fin, vector<condCons_t *>& rConstraints);
         BOOL readTextures(ifstream& fin);
 
         // Cylinder's own parameter reading function

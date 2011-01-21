@@ -17,7 +17,9 @@ class rangeType
 
         friend ostream& operator<<(ostream& os, rangeType<T>& rt)
         {
-            os << rt.type << " " << rt.range.size();
+            os << rt.type;
+            if(rt.type == 'S')
+                os<< " " << rt.range.size();
             for(unsigned int i = 0; i < rt.range.size(); i ++)
             {
                 os << " " << rt.range[i];

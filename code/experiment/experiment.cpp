@@ -155,15 +155,41 @@ BOOL Experiment::initSystem()
 
     // Initialize the conditions
     // FIX: the filename should not be hard coded here
-    this->experimentConditions = new Conditions(string("config.txt"), 
-            this->objectFactories, *this->pScreen);
-    ret = this->experimentConditions->initConditions();
+    try
+    {
+        ifstream fin("config.txt");
+
+        if(!fin.good())
+        {
+            ostringstream ossError;
+            ossError << "Error happens when reading constraint file config.txt." << endl;
+            MessageBox(NULL, (LPCSTR)(ossError.str().c_str()), NULL, MB_OK|MB_ICONERROR);
+            return FALSE;
+        }
+
+        // Read number of sections
+        fin >> this->maxSecNo; 
+
+        this->experimentConditions =
+            new groupBasedConditions(fin, this->objectFactories, *this->pScreen);
+
+        ret = this->experimentConditions->initConditions();
+        fin.close();
+        if(ret == FALSE)
+        {
+            return FALSE;
+        }
+    }
+    catch(ifstream::failure e)
+    {
+        MessageBox(NULL, (LPCSTR)(e.what()), NULL, MB_OK|MB_ICONERROR);
+        return FALSE;
+    }
 
     // Generate the final condition list for one section
     const vector<cond_t *>& rConds = this->experimentConditions->getAllConditions(); 
-
     this->trialsPerSec = rConds.size();
-    this->maxSecNo = this->experimentConditions->numSections; 
+    
 
     return ret;
 }
@@ -181,10 +207,15 @@ BOOL Experiment::proceedExperiment()
     ossSecInfo << "Section " << this->currSecNo + 1 << endl;
     this->writeOutputs(ossSecInfo.str());
     ossSecInfo.clear();
+    ossSecInfo.str("");
+    this->writeOutputs(string("\n"));
+
     do
     {
-        pTrial = new Trial(this->currTrialID,
-                (*this->experimentConditions)[(int&)this->currTrialID]);
+        cond_t &rCond = (*this->experimentConditions)[(int&)this->currTrialID];
+        rCond.reset();
+
+        pTrial = new Trial(this->currTrialID, rCond);
 
         ret = pTrial->startTrial();
 
@@ -196,12 +227,12 @@ BOOL Experiment::proceedExperiment()
 
             if(this->currSecNo < this->maxSecNo)
             {
-                ossSecInfo << "Section " << this->currSecNo + 1 << endl;
+                ossSecInfo << endl << "Section " << this->currSecNo + 1 << endl;
                 this->writeOutputs(ossSecInfo.str());
                 ossSecInfo.clear();
-                this->experimentConditions->shuffleConditions();
-                this->recordConditions();
+                ossSecInfo.str("");
                 this->writeOutputs(string("\n"));
+                this->experimentConditions->shuffleConditions(7);
             }
         }
 
@@ -251,33 +282,44 @@ BOOL Experiment::recordConfigurations()
     ossConf << endl;
 
     ret = this->writeOutputs(ossConf.str());
+    if(ret == FALSE)
+        return FALSE;
+    
+    ret = this->recordConstraints();
+
     return ret;
 }
 
-BOOL Experiment::recordConditions()
+BOOL Experiment::recordConstraints()
 {
     BOOL ret = TRUE;
     ostringstream ossCond;
 
-    // Output Condition list
-    const vector<cond_t *>& rConds = this->experimentConditions->getAllConditions(); 
-    for(unsigned int i = 0; i < rConds.size(); i ++)
-    {
-        ossCond << i + 1 << " "; // Condition ID
+    ossCond << "Constraint list" << endl;
 
-        ossCond << rConds[i]->pRealObject->genObjDesc(); // Get object descriptions of the condition 
+    // Output Condition list
+    const vector<condCons_t *>& rConstraints = this->experimentConditions->getAllConstraints(); 
+    
+    //FIX: Object maybe different, so they may have different description title
+    if(rConstraints.size() != 0)
+        ossCond << rConstraints[0]->genDescTitle();
+
+    for(unsigned int i = 0; i < rConstraints.size(); i ++)
+    {
+        ossCond << rConstraints[i]->genDesc(); // Get object descriptions of the condition 
         ossCond << endl;
     }
 
     ossCond << endl;
-    ret = this->writeOutputs(ossCond.str());
+    string constraintString = ossCond.str();
+    ret = this->writeOutputs(constraintString);
     return ret;
 }
 
 BOOL Experiment::writeOutputs(string& strOutputs)
 {
     this->hFileOut << strOutputs;
-
+    this->hFileOut.flush();
     return TRUE;
 }
 

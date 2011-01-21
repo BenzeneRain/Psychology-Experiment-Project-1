@@ -8,20 +8,32 @@
 
 using namespace stdext;
 
-Conditions::Conditions(string& rFilename, int numConditions,
+Conditions::Conditions(ifstream& rFin, int numConditions,
         vector<TestObjectFactory *>& rObjectFactories, Screen& rScr):
-    objectFactories(rObjectFactories), rScreen(rScr), filename(rFilename)
+    objectFactories(rObjectFactories), rScreen(rScr), overallFin(rFin)
 {
     this->numConditions = numConditions;
     this->conditionRepeatTimesPerSec = 0;
+
+    // Build the mapping between the object Factories and their product names
+    this->objectFactoryNameMap.clear();
+    for(unsigned int i = 0; i < this->objectFactories.size(); i ++)
+        this->objectFactoryNameMap[this->objectFactories[i]->getProductName()] 
+            = this->objectFactories[i];
 }
 
-Conditions::Conditions(string& rFilename, 
+Conditions::Conditions(ifstream& rFin, 
         vector<TestObjectFactory *>& rObjectFactories, Screen& rScr):
-    objectFactories(rObjectFactories), rScreen(rScr), filename(rFilename)
+    objectFactories(rObjectFactories), rScreen(rScr), overallFin(rFin)
 {
     this->numConditions = 0;
     this->conditionRepeatTimesPerSec = 0;
+    
+    // Build the mapping between the object Factories and their product names
+    this->objectFactoryNameMap.clear();
+    for(unsigned int i = 0; i < this->objectFactories.size(); i ++)
+        this->objectFactoryNameMap[this->objectFactories[i]->getProductName()] 
+            = this->objectFactories[i];
 }
 
 Conditions::~Conditions(void)
@@ -70,39 +82,6 @@ BOOL Conditions::initConditions()
 {
     BOOL ret;
 
-    // Build the mapping between the object Factories and their product names
-    this->objectFactoryNameMap.clear();
-    for(unsigned int i = 0; i < this->objectFactories.size(); i ++)
-        this->objectFactoryNameMap[this->objectFactories[i]->getProductName()] 
-            = this->objectFactories[i];
-
-    ifstream fin(this->filename.c_str());
-
-    // Read number of sections and condition repeat times in one section
-    fin >> this->numSections >> this->conditionRepeatTimesPerSec;
-
-    // Read constraints from file
-    ret = readConstraints(fin);
-    if(ret == FALSE)
-    {
-        fin.close();
-        return FALSE;
-    }
-
-    // Generate conditions according to constraints
-    ret = this->generateConditions();
-    if(ret == FALSE)
-    {
-        fin.close();
-        return FALSE;
-    }
-
-    fin.close();
-    return TRUE;
-}
-
-BOOL Conditions::readConstraints(ifstream& fin)
-{
     // First line has a number T, indicating the number of texutures used
     //
     // Following T lines, each line has three components:
@@ -182,7 +161,36 @@ BOOL Conditions::readConstraints(ifstream& fin)
     // range
 
     // Assume the Configuration file is complete and valid
+    
+    ifstream& fin = this->overallFin;
+    
+    // Read condition repeat times per section
+    fin >> this->conditionRepeatTimesPerSec;
 
+    // Read textures
+    ret = readTextures(fin);
+    if(ret == FALSE)
+        return FALSE;
+
+    // Read constraints from file
+    vector<condCons_t *> tempConstraints;
+    ret = readConstraints(fin, tempConstraints);
+    if(ret == FALSE)
+        return FALSE;
+
+    for(unsigned int i = 0; i < tempConstraints.size(); i ++)
+        this->addConstraint(tempConstraints[i]);
+
+    // Generate conditions according to constraints
+    ret = this->generateConditions();
+    if(ret == FALSE)
+        return FALSE;
+
+    return TRUE;
+}
+
+BOOL Conditions::readTextures(ifstream& fin)
+{
     try
     {
         // Read Texture information (only support bmp file and RGB color setting now)
@@ -195,7 +203,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
             string textureName;
             string filename;
             char textureType;
-            
+
             fin >> textureName >> textureType;
             rTexture_t *pTexture = new rTexture_t;  
             pTexture->name = textureName;
@@ -214,7 +222,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
                             string errorMsg = "Fail to load the texture ";
                             errorMsg += filename;
                             MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
-                            
+
                             return FALSE;
                         }
 
@@ -246,7 +254,21 @@ BOOL Conditions::readConstraints(ifstream& fin)
         // Since some of the codes are opengl dependent, I 
         // put them in the screen class
         this->rScreen.initTextures(this->textures);
-    
+    }
+    // anything wrong while reading from the configuration file
+    // will be directed to here
+    catch(ifstream::failure e) 
+    {
+        MessageBox(NULL, (LPCSTR)(e.what()), NULL, MB_OK|MB_ICONERROR);
+        return FALSE;
+    }
+    return TRUE;
+}
+
+BOOL Conditions::readConstraints(ifstream& fin, vector<condCons_t *>& rConstraints)
+{
+    try
+    {
         // Read constraints
         int numConstraints;
         fin >> numConstraints;
@@ -255,6 +277,9 @@ BOOL Conditions::readConstraints(ifstream& fin)
         {
             int quantity;
             condCons_t *pNewConstraint = new condCons_t; 
+
+            pNewConstraint->id = iConstraint + 1;
+            pNewConstraint->groupID = 0;
 
             char dispType;
             fin >> dispType;
@@ -484,7 +509,7 @@ BOOL Conditions::readConstraints(ifstream& fin)
             }
 
             // Add the constaint
-            this->addConstraint(pNewConstraint);
+            rConstraints.push_back(pNewConstraint);
         }
     }
     // anything wrong while reading from the configuration file
@@ -563,13 +588,14 @@ void Conditions::printReadRangeError(string name, int constraintID)
 }
 
 // Add a constraint to the constraint vector
-void Conditions::addConstraint(condCons_t* pConstraint)
+int Conditions::addConstraint(condCons_t* pConstraint)
 {
     this->constraints.push_back(pConstraint);
+    return this->constraints.size() - 1;
 }
 
 // Generate a condition according to the specified constraint
-void Conditions::addCondition(int constraintIndex)
+int Conditions::addCondition(int constraintIndex)
 {
    int randIndex;
    cond_t *pNewCondition = new cond_t;
@@ -633,22 +659,26 @@ void Conditions::addCondition(int constraintIndex)
        pNewCondition->secBlackScreen = 0.0f;
    }
 
-   pNewCondition->constraintID = constraintIndex + 1;
-   pNewCondition->constraintGroupID = constraintIndex + 1;
+   pNewCondition->constraintID = this->constraints[constraintIndex]->id;
+   pNewCondition->constraintGroupID = this->constraints[constraintIndex]->groupID;
 
    this->conditions.push_back(pNewCondition);
+
+   return this->conditions.size() - 1;
 }
 
 // Add the existing condition to the condition list
-void Conditions::addCondition(cond_t* pCondition)
+int Conditions::addCondition(cond_t* pCondition)
 {
-    this->conditions.push_back(pCondition);
+   this->conditions.push_back(pCondition);
+   return this->conditions.size() - 1;
 }
 
 // shuffle all the conditions
-void Conditions::shuffleConditions()
+void Conditions::shuffleConditions(int times)
 {
-    random_shuffle(this->conditions.begin(), this->conditions.end());
+    for(int i = 0; i < times; i ++)
+        random_shuffle(this->conditions.begin(), this->conditions.end());
 }
 
 // generate the conditions
@@ -670,45 +700,7 @@ BOOL Conditions::generateConditions()
 
     this->numConditions = totalWeights;
 
-//    vector<int> accumulateWeight;
-//    int prevAccWeight = 0;
-//    int currAccWeight = 0;
-//
-//    // use the weight information as the hint to randomly select
-//    // the constraint. The method is mapping all possible weights
-//    // into continues ranges; then generate a random number
-//    // in the whole range and to check which range it falls in
-//    for(unsigned int i = 0; i < this->constraints.size(); i ++)
-//    {
-//        currAccWeight = prevAccWeight + this->constraints[i]->weight;
-//        accumulateWeight.push_back(currAccWeight - 1);
-//        prevAccWeight = currAccWeight;
-//    }
-//
-//    totalWeights = currAccWeight;
-//
-//    if(totalWeights == 0)
-//    {
-//        ostringstream ossError;
-//        ossError << "Error found in the configuration file, please check it.";
-//        string message = ossError.str();
-//        MessageBox(NULL, (LPCSTR)(message.c_str()), NULL, MB_OK | MB_ICONERROR);
-//        return FALSE;
-//    }
-//
-//    for(int i = 0; i < this->numConditions; i ++)
-//    {
-//        int randomWeight = rand() % totalWeights; 
-//
-//        vector<int>::iterator it = 
-//            lower_bound(accumulateWeight.begin(), accumulateWeight.end(), randomWeight);
-//
-//        int index = it - accumulateWeight.begin();
-//             
-//        this->addCondition(index);
-//    }
-//
-    this->shuffleConditions();
+    this->shuffleConditions(7);
     return TRUE;
 }
 
@@ -767,4 +759,9 @@ BOOL Conditions::cylinderParameterReadingFunction(ifstream& fin, condCons_t& con
 cond_t& Conditions::operator[](int &rhs)
 {
     return *this->conditions[rhs];
+}
+
+void cond_t::reset()
+{
+    this->pRealObject->reset();
 }

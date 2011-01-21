@@ -113,10 +113,18 @@ BOOL Trial::recordTrialInfo()
     TestObject& rObject = *this->condition.pRealObject;
     ostringstream ossTI; // TI = Trial Information  
 
-    ossTI << pExperi->currSecNo + 1 << " "; // Section Number
-    ossTI << this->trialID + 1 << " "; // Trial ID
+    if(this->trialID == 0)
+    {
+        ossTI << "Section No | Trial ID | Constraint Group ID | Constraint ID | " << 
+            rObject.genObjParaTitle() << " FPS |" << endl;
+    }
+
+    ossTI << pExperi->currSecNo + 1 << "\t"; // Section Number
+    ossTI << this->trialID + 1 << "\t"; // Trial ID
+    ossTI << this->condition.constraintGroupID << "\t";
+    ossTI << this->condition.constraintID << "\t";
     ossTI << rObject.genObjPara();
-    ossTI << this->fps << " ";
+    ossTI << this->fps << "\t";
     ossTI << endl;
 
     pExperi->writeOutputs(ossTI.str());

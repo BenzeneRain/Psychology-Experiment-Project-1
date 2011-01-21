@@ -38,6 +38,9 @@ class CylinderObject :
         virtual string genObjDesc(void); // get the object descriptions (fixed part)
         virtual string genObjPara(void); // get the object parameters (varied part)
 
+        virtual string genObjDescTitle(void); // get the object descriptions (fixed part)
+        virtual string genObjParaTitle(void); // get the object parameters (varied part)
+
         GLfloat radius;
         static const UINT objectID;
 

@@ -95,7 +95,7 @@ BOOL Screen::initTextures(vector<rTexture_t *>& textures)
 
                     gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, bm.bmWidth, bm.bmHeight,
                             GL_RGBA, GL_UNSIGNED_BYTE, imageBuffer);
-                    delete imageBuffer;
+                    delete [] imageBuffer;
                     break;
                 }
             case 'C':

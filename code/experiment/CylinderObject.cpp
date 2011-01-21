@@ -75,6 +75,19 @@ BOOL CylinderObject::adjustAsptRatio(GLfloat delta)
     }
 }
 
+string CylinderObject::genObjDescTitle()
+{
+    ostringstream ossObj;
+    ossObj << TestObject::genObjDescTitle();
+
+    // Radius Range
+    ossObj << "Radius Range" << " | ";
+
+    ossObj << "Textures(Top Bottom Side)" << " | ";
+
+    return ossObj.str();
+}
+
 string CylinderObject::genObjDesc()
 {
 
@@ -82,12 +95,24 @@ string CylinderObject::genObjDesc()
     ossObj << TestObject::genObjDesc();
 
     // Radius Range
-    ossObj << this->radiusRange;
+    ossObj << this->radiusRange << "\b\t";
 
     ossObj << 3 << " "; // number of textures used
     ossObj << this->textures[topTextureID]->name << " " // texture for top face
         << this->textures[bottomTextureID]->name << " " // texture for bottom face
-        << this->textures[sideTextureID]->name << " "; // texture for side
+        << this->textures[sideTextureID]->name << "\t"; // texture for side
+
+    return ossObj.str();
+}
+
+string CylinderObject::genObjParaTitle()
+{
+    ostringstream ossObj;
+
+    ossObj << TestObject::genObjParaTitle();
+    ossObj << "Radius" << " | "; // Radius of the Cylinder
+
+    ossObj << "Textures(Top Bottom Side)" << " | ";
 
     return ossObj.str();
 }
@@ -100,12 +125,12 @@ string CylinderObject::genObjPara()
 
     ostringstream ossObj;
 
-    ossObj << this->radius << " "; // Radius of the Cylinder
+    ossObj << this->radius << "\t"; // Radius of the Cylinder
 
     ossObj << 3 << " "; // number of textures used
     ossObj << this->textures[topTextureID]->name << " " // texture for top face
         << this->textures[bottomTextureID]->name << " " // texture for bottom face
-        << this->textures[sideTextureID]->name << " "; // texture for side
+        << this->textures[sideTextureID]->name << "\t"; // texture for side
 
     strPara += ossObj.str();
 

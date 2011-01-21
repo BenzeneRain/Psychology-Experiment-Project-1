@@ -73,33 +73,82 @@ void TestObject::setRandPara()
     //this->adjZAsptRatio = this->initZAsptRatioRange.getRandomValue();
 }
 
+string TestObject::genObjDescTitle()
+{
+    ostringstream ossObj;
+
+    ossObj << "ObjectID" << " | "; // Object ID
+    ossObj << "ObjectName" << " | "; // Object type
+
+    // Pitch range
+    ossObj << "Pitch Range" << " | ";
+
+    // Yaw Range
+    ossObj << "Yaw Range" << " | ";
+
+    // Roll Range
+    ossObj << "Roll Range" << " | ";
+
+    // Height Range
+    ossObj << "Height Range" << " | ";
+
+    // Initial Aspect Ratio on Z-axis range
+    ossObj << "Initial Aspect Ratio on Z-axis range" << " | ";
+
+    // Object Rotation Speed Range
+    ossObj << "Rotation Speed Range" << " | ";
+
+    // Object maximum rotation degree Range
+    ossObj << "Max Rotation Degree Range" << " | ";
+
+    return ossObj.str();
+}
+
 string TestObject::genObjDesc()
 {
     ostringstream ossObj;
 
-    ossObj << this->getObjID() << " "; // Object ID
-    ossObj << this->getObjName() << " "; // Object type
+    ossObj << this->getObjID() << "\t"; // Object ID
+    ossObj << this->getObjName() << "\t"; // Object type
 
     // Pitch range
-    ossObj << this->pitchRange;
+    ossObj << this->pitchRange << "\b\t";
 
     // Yaw Range
-    ossObj << this->yawRange;
+    ossObj << this->yawRange << "\b\t";
 
     // Roll Range
-    ossObj << this->rollRange;
+    ossObj << this->rollRange << "\b\t";
 
     // Height Range
-    ossObj << this->heightRange;
+    ossObj << this->heightRange << "\b\t";
 
     // Initial Aspect Ratio on Z-axis range
-    ossObj << this->initZAsptRatioRange;
+    ossObj << this->initZAsptRatioRange << "\b\t";
 
     // Object Rotation Speed Range
-    ossObj << this->rotSpeedRange;
+    ossObj << this->rotSpeedRange << "\b\t";
 
     // Object maximum rotation degree Range
-    ossObj << this->maxRotDegRange;
+    ossObj << this->maxRotDegRange << "\b\t";
+
+    return ossObj.str();
+}
+
+string TestObject::genObjParaTitle()
+{
+    ostringstream ossObj;
+
+    ossObj << "Object ID" << " | "; // Object ID
+    ossObj << "Object name" << " | "; // Object type
+    ossObj << "Pitch" << " | "; // pitch
+    ossObj << "Yaw"<< " | "; // yaw
+    ossObj << "Roll" << " | "; // roll
+    ossObj << "Height"<< " | "; // height
+    ossObj << "Initial aspect ratio on Z" << " | "; // Object initial Aspect Ratio on Z axis
+    ossObj << "Adjusted aspect ratio on Z"<< " | "; // Object aspect ratio on Z-axis after subject adjusted
+    ossObj << "Rotation speed" << " | "; // Object Rotation Speed
+    ossObj << "Max Rotation Degree" << " | "; // Object Maximum Rotation Degree
 
     return ossObj.str();
 }
@@ -108,16 +157,16 @@ string TestObject::genObjPara()
 {
     ostringstream ossObj;
 
-    ossObj << this->getObjID() << " "; // Object ID
-    ossObj << this->getObjName() << " "; // Object type
-    ossObj << this->pitch << " "; // pitch
-    ossObj << this->yaw << " "; // yaw
-    ossObj << this->roll << " "; // roll
-    ossObj << this->height << " "; // height
-    ossObj << this->initZAsptRatio << " "; // Object initial Aspect Ratio on Z axis
-    ossObj << this->adjZAsptRatio << " "; // Object aspect ratio on Z-axis after subject adjusted
-    ossObj << this->rotSpeed << " "; // Object Rotation Speed
-    ossObj << this->maxRotDeg << " "; // Object Maximum Rotation Degree
+    ossObj << this->getObjID() << "\t"; // Object ID
+    ossObj << this->getObjName() << "\t"; // Object type
+    ossObj << this->pitch << "\t"; // pitch
+    ossObj << this->yaw << "\t"; // yaw
+    ossObj << this->roll << "\t"; // roll
+    ossObj << this->height << "\t"; // height
+    ossObj << this->initZAsptRatio << "\t"; // Object initial Aspect Ratio on Z axis
+    ossObj << this->adjZAsptRatio << "\t"; // Object aspect ratio on Z-axis after subject adjusted
+    ossObj << this->rotSpeed << "\t"; // Object Rotation Speed
+    ossObj << this->maxRotDeg << "\t"; // Object Maximum Rotation Degree
 
     return ossObj.str();
 }
@@ -154,4 +203,11 @@ void TestObject::rotate(GLfloat degree)
     {
         this->currRotDeg += degree;
     }
+}
+
+void TestObject::reset()
+{
+    this->currRotDeg = 0;
+    this->adjZAsptRatio = 1.0f;
+    this->rotDirection = CLOCKWISE;
 }
