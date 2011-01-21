@@ -203,13 +203,6 @@ BOOL Experiment::proceedExperiment()
     // if needed
 
     //proceed trials
-    ostringstream ossSecInfo;
-    ossSecInfo << "Section " << this->currSecNo + 1 << endl;
-    this->writeOutputs(ossSecInfo.str());
-    ossSecInfo.clear();
-    ossSecInfo.str("");
-    this->writeOutputs(string("\n"));
-
     do
     {
         cond_t &rCond = (*this->experimentConditions)[(int&)this->currTrialID];
@@ -227,11 +220,6 @@ BOOL Experiment::proceedExperiment()
 
             if(this->currSecNo < this->maxSecNo)
             {
-                ossSecInfo << endl << "Section " << this->currSecNo + 1 << endl;
-                this->writeOutputs(ossSecInfo.str());
-                ossSecInfo.clear();
-                ossSecInfo.str("");
-                this->writeOutputs(string("\n"));
                 this->experimentConditions->shuffleConditions(7);
             }
         }

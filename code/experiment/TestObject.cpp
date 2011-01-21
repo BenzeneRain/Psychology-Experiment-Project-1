@@ -78,7 +78,7 @@ string TestObject::genObjDescTitle()
     ostringstream ossObj;
 
     ossObj << "ObjectID" << " | "; // Object ID
-    ossObj << "ObjectName" << " | "; // Object type
+    //ossObj << "ObjectName" << " | "; // Object type
 
     // Pitch range
     ossObj << "Pitch Range" << " | ";
@@ -109,7 +109,7 @@ string TestObject::genObjDesc()
     ostringstream ossObj;
 
     ossObj << this->getObjID() << "\t"; // Object ID
-    ossObj << this->getObjName() << "\t"; // Object type
+    //ossObj << this->getObjName() << "\t"; // Object type
 
     // Pitch range
     ossObj << this->pitchRange << "\b\t";
@@ -140,7 +140,7 @@ string TestObject::genObjParaTitle()
     ostringstream ossObj;
 
     ossObj << "Object ID" << " | "; // Object ID
-    ossObj << "Object name" << " | "; // Object type
+    //ossObj << "Object name" << " | "; // Object type
     ossObj << "Pitch" << " | "; // pitch
     ossObj << "Yaw"<< " | "; // yaw
     ossObj << "Roll" << " | "; // roll
@@ -158,7 +158,7 @@ string TestObject::genObjPara()
     ostringstream ossObj;
 
     ossObj << this->getObjID() << "\t"; // Object ID
-    ossObj << this->getObjName() << "\t"; // Object type
+    //ossObj << this->getObjName() << "\t"; // Object type
     ossObj << this->pitch << "\t"; // pitch
     ossObj << this->yaw << "\t"; // yaw
     ossObj << this->roll << "\t"; // roll
