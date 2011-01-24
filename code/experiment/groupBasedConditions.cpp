@@ -122,18 +122,19 @@ BOOL groupBasedConditions::generateConditions()
     {
         for(unsigned int j = 0; j < this->constraintGroups[i]->size(); j ++)
         {
-            condCons_t& rConstraint = *this->constraints[(*this->constraintGroups[i])[j]];
+            int constraintIndex = (*this->constraintGroups[i])[j];
+            condCons_t& rConstraint = *this->constraints[constraintIndex];
 
             int quantity = rConstraint.weight * this->conditionRepeatTimesPerSec;
 
-            for(int j = 0; j < quantity; j ++)
+            for(int k = 0; k < quantity; k ++)
             {
                 int index;
-                index = this->addCondition(i);
+                index = this->addCondition(constraintIndex);
                 this->conditionGroups[i]->push_back(index);
             }
 
-            totalWeights += rConstraint.weight * this->conditionRepeatTimesPerSec;
+            totalWeights += quantity;
         }
     }
 

@@ -288,6 +288,8 @@ BOOL Conditions::readConstraints(ifstream& fin, vector<condCons_t *>& rConstrain
             {
                 case 'C': // Continues display
                     pNewConstraint->dispMode = CONTINUOUS_DISPLAY;
+                    pNewConstraint->secDisplay = 0;
+                    pNewConstraint->secBlackScreen = 0;
                     break;
                 case 'D': // Discrete display
                     pNewConstraint->dispMode = DISCRETE_DISPLAY;

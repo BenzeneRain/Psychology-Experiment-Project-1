@@ -35,9 +35,10 @@ struct conditionConstraints
     {
         ostringstream ossTitle;
 
-        ossTitle << "Group ID | Constraint ID | Object Names | Pitch Range | Yaw Range | "
-            << "Roll Range | Height Range | Initial Aspect Ration Range on Z | Rotation Speed Range |"
-            << "Max Rotation Degree Range | Texture Groups |" << endl;
+        ossTitle << "Condition Group ID\t| Condition ID\t| Motion\t| "
+            << "Object Display Duration\t| Object Disappear Duration\t| Object Names\t| Pitch Range\t| Yaw Range\t| "
+            << "Roll Range\t| Height Range\t| Initial Aspect Ration Range on Z\t| Rotation Speed Range\t| "
+            << "Max Rotation Degree Range\t| Texture Groups\t|" << endl;
 
         return ossTitle.str();
     }
@@ -46,19 +47,31 @@ struct conditionConstraints
     {
         ostringstream ossDesc;
         
-        ossDesc << this->groupID << "\t" << this->id << "\t";
+        ossDesc << this->groupID << "\t\t\t  " << this->id << "\t\t  ";
+
+        if(this->dispMode == CONTINUOUS_DISPLAY)
+            ossDesc << "1";
+        else
+            ossDesc << "0";
+        ossDesc << "\t\t  ";
+
+        ossDesc.precision(2);
+        ossDesc << secDisplay << "\t\t\t\t  ";
+        ossDesc << secBlackScreen << "\t\t\t\t  ";
+
         ossDesc << this->objectNames.size();
         for(unsigned int i = 0; i < this->objectNames.size(); i ++)
             ossDesc << " " << this->objectNames[i];
-        ossDesc << "\t";
+        ossDesc << "\t  ";
+        
 
-        ossDesc << this->pitchRange << "\t";
-        ossDesc << this->yawRange << "\t";
-        ossDesc << this->rollRange << "\t";
-        ossDesc << this->heightRange << "\t";
-        ossDesc << this->initZAsptRatioRange << "\t";
-        ossDesc << this->rotSpeedRange << "\t";
-        ossDesc << this->maxRotDegRange << "\t";
+        ossDesc << this->pitchRange << "\t  ";
+        ossDesc << this->yawRange << "\t  ";
+        ossDesc << this->rollRange << "\t  ";
+        ossDesc << this->heightRange << "\t  ";
+        ossDesc << this->initZAsptRatioRange << "\t\t\t\t  ";
+        ossDesc << this->rotSpeedRange << "\t\t  ";
+        ossDesc << this->maxRotDegRange << "\t\t\t  ";
 
         ossDesc << this->textureGroups.size() << " ";
         for(unsigned int i = 0; i < this->textureGroups.size(); i ++)
@@ -68,7 +81,7 @@ struct conditionConstraints
             {
                 ossDesc << " " << (*this->textureGroups[i])[j];
             }
-            ossDesc << "\t";
+            ossDesc << "\t\t";
         }
 
         return ossDesc.str();

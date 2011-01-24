@@ -206,6 +206,7 @@ BOOL Experiment::proceedExperiment()
     // if needed
 
     //proceed trials
+    this->experimentConditions->shuffleConditions(97);
     do
     {
         cond_t &rCond = (*this->experimentConditions)[(int&)this->currTrialID];
@@ -225,7 +226,7 @@ BOOL Experiment::proceedExperiment()
 
             if(this->currSecNo < this->maxSecNo)
             {
-                this->experimentConditions->shuffleConditions(7);
+                this->experimentConditions->shuffleConditions(97);
             }
         }
 
@@ -287,8 +288,6 @@ BOOL Experiment::recordConstraints()
 {
     BOOL ret = TRUE;
     ostringstream ossCond;
-
-    ossCond << "Constraint list" << endl;
 
     // Output Condition list
     const vector<condCons_t *>& rConstraints = this->experimentConditions->getAllConstraints(); 

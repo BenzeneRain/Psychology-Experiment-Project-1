@@ -139,16 +139,16 @@ string TestObject::genObjParaTitle()
 {
     ostringstream ossObj;
 
-    ossObj << "Object ID" << " | "; // Object ID
+    ossObj << "Object ID" << "\t| "; // Object ID
     //ossObj << "Object name" << " | "; // Object type
-    ossObj << "Pitch" << " | "; // pitch
-    ossObj << "Yaw"<< " | "; // yaw
-    ossObj << "Roll" << " | "; // roll
-    ossObj << "Height"<< " | "; // height
-    ossObj << "Initial aspect ratio on Z" << " | "; // Object initial Aspect Ratio on Z axis
-    ossObj << "Adjusted aspect ratio on Z"<< " | "; // Object aspect ratio on Z-axis after subject adjusted
-    ossObj << "Rotation speed" << " | "; // Object Rotation Speed
-    ossObj << "Max Rotation Degree" << " | "; // Object Maximum Rotation Degree
+    ossObj << "Pitch" << "\t| "; // pitch
+    ossObj << "Yaw"<< "\t| "; // yaw
+    ossObj << "Roll" << "\t| "; // roll
+    ossObj << "Height"<< "\t| "; // height
+    ossObj << "Initial aspect ratio on Z" << "\t| "; // Object initial Aspect Ratio on Z axis
+    ossObj << "Adjusted aspect ratio on Z"<< "\t| "; // Object aspect ratio on Z-axis after subject adjusted
+    ossObj << "Rotation speed" << "\t| "; // Object Rotation Speed
+    ossObj << "Max Rotation Degree" << "\t| "; // Object Maximum Rotation Degree
 
     return ossObj.str();
 }
@@ -156,17 +156,17 @@ string TestObject::genObjParaTitle()
 string TestObject::genObjPara()
 {
     ostringstream ossObj;
-
-    ossObj << this->getObjID() << "\t"; // Object ID
+    ossObj.precision(3);
+    ossObj << this->getObjID() << "\t\t  "; // Object ID
     //ossObj << this->getObjName() << "\t"; // Object type
-    ossObj << this->pitch << "\t"; // pitch
-    ossObj << this->yaw << "\t"; // yaw
-    ossObj << this->roll << "\t"; // roll
-    ossObj << this->height << "\t"; // height
-    ossObj << this->initZAsptRatio << "\t"; // Object initial Aspect Ratio on Z axis
-    ossObj << this->adjZAsptRatio << "\t"; // Object aspect ratio on Z-axis after subject adjusted
-    ossObj << this->rotSpeed << "\t"; // Object Rotation Speed
-    ossObj << this->maxRotDeg << "\t"; // Object Maximum Rotation Degree
+    ossObj << this->pitch << "\t  "; // pitch
+    ossObj << this->yaw << "\t  "; // yaw
+    ossObj << this->roll << "\t  "; // roll
+    ossObj << this->height << "\t\t  "; // height
+    ossObj << this->initZAsptRatio << "\t\t\t\t  "; // Object initial Aspect Ratio on Z axis
+    ossObj << this->adjZAsptRatio << "\t\t\t\t  "; // Object aspect ratio on Z-axis after subject adjusted
+    ossObj << this->rotSpeed << "\t\t\t  "; // Object Rotation Speed
+    ossObj << this->maxRotDeg << "\t\t\t  "; // Object Maximum Rotation Degree
 
     return ossObj.str();
 }

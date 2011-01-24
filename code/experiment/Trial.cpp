@@ -115,16 +115,29 @@ BOOL Trial::recordTrialInfo()
 
     if(pExperi->currSecNo == 0 && this->trialID == 0)
     {
-        ossTI << "Section No | Trial ID | Constraint Group ID | Constraint ID | " << 
-            rObject.genObjParaTitle() << " FPS |" << endl;
+        ossTI << "Section No\t| Trial ID\t| Condition Group ID\t| Condition ID\t| "
+            << "Motion\t| Object Display Duration\t| Object Disappear Duration\t| "
+            << rObject.genObjParaTitle() << " FPS\t|" << endl;
     }
 
-    ossTI << pExperi->currSecNo + 1 << "\t"; // Section Number
-    ossTI << this->trialID + 1 << "\t"; // Trial ID
-    ossTI << this->condition.constraintGroupID << "\t";
-    ossTI << this->condition.constraintID << "\t";
+    ossTI << pExperi->currSecNo + 1 << "\t\t  "; // Section Number
+    ossTI << this->trialID + 1 << "\t\t  "; // Trial ID
+    ossTI << this->condition.constraintGroupID << "\t\t\t  ";
+    ossTI << this->condition.constraintID << "\t\t  ";
+
+    if(this->condition.dispMode == CONTINUOUS_DISPLAY)
+        ossTI << "1";
+    else
+        ossTI << "0";
+    ossTI << "\t\t  ";
+
+    streamsize oldPrec = ossTI.precision(2);
+    ossTI << this->condition.secDisplay << "\t\t\t\t  ";
+    ossTI << this->condition.secBlackScreen << "\t\t\t\t  ";
+
+    ossTI.precision(oldPrec);
     ossTI << rObject.genObjPara();
-    ossTI << this->fps << "\t";
+    ossTI << this->fps << "\t\t\t  ";
     ossTI << endl;
 
     pExperi->writeOutputs(ossTI.str());
