@@ -27,6 +27,9 @@ struct conditionStruct
     int constraintGroupID;
 
     void reset();
+
+    vector<GLfloat> xyz3D;
+    vector<GLfloat> xyz2D;
 };
 typedef struct conditionStruct cond_t;
 
@@ -78,7 +81,6 @@ class Conditions
 
         // get the specific condition using its index
         virtual cond_t& operator[](int &rhs);
-
 
         // number of sections
         int numSections;

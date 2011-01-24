@@ -68,5 +68,7 @@ class Experiment
 
         static auto_ptr<Experiment> m_pInstance;
 
+        vector<GLfloat> xyz3D;
+        vector<GLfloat> xyz2D;
 
 };

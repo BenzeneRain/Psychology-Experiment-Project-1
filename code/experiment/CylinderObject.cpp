@@ -141,7 +141,11 @@ void CylinderObject::draw(int drawStyle,
                 BOOL enableTexture,
                 BOOL enablePYRRotation,
                 BOOL enableMotion,
+                GLfloat xStretch,
+                GLfloat yStretch,
                 GLfloat zStretch,
+                GLfloat xOffset,
+                GLfloat yOffset,
                 GLfloat zOffset)
 {
     GLUquadricObj *pCylinder;
@@ -153,6 +157,7 @@ void CylinderObject::draw(int drawStyle,
 
     glPushMatrix();
 
+    glTranslatef(-xOffset, yOffset, -zOffset);
     // Apply the pitch, yaw and roll (suppose the coordination for us doesn't change
     // by rotation that x is from left to right, y is from down to up, 
     // and z is from far to near)
@@ -167,7 +172,7 @@ void CylinderObject::draw(int drawStyle,
 
     // Make the cylinder stand on the x-z plane
     glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
-    glTranslatef(0.0f, 0.0f, -halfHeight + zOffset);
+    glTranslatef(0.0f, 0.0f, -halfHeight);
 
     if(enableMotion)
     {
@@ -197,7 +202,7 @@ void CylinderObject::draw(int drawStyle,
 
     //glScalef(1.0f, 1.0f, zStretch);
     // The Z-axis for us is actually Y-axis for the object after translation
-    glScalef(1.0f, zStretch, 1.0f);
+    glScalef(xStretch, zStretch, yStretch);
 
     pCylinder = gluNewQuadric();
     gluQuadricDrawStyle(pCylinder, drawStyle);
@@ -304,4 +309,32 @@ void CylinderObject::draw(int drawStyle,
     glPopMatrix();
 
     glDisable(GL_TEXTURE_2D);
+}
+
+void CylinderObject::draw2D(int drawStyle,
+        GLfloat xStretch,
+        GLfloat yStretch,
+        GLfloat zStretch,
+        GLfloat xOffset,
+        GLfloat yOffset,
+        GLfloat zOffset)
+{
+    GLUquadricObj *pCylinder;
+    int slices = 256;
+
+    glPushMatrix();
+
+    glTranslatef(-xOffset, yOffset, -zOffset);
+
+    // The Z-axis for us is actually Y-axis for the screen
+    glScalef(xStretch, zStretch, yStretch);
+
+    pCylinder = gluNewQuadric();
+    gluQuadricDrawStyle(pCylinder, drawStyle);
+    gluQuadricNormals(pCylinder, GLU_SMOOTH);
+
+    gluDisk(pCylinder, 0.0f, this->radius, slices, 1);
+    gluDeleteQuadric(pCylinder);
+
+    glPopMatrix();
 }

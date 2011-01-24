@@ -32,8 +32,19 @@ class CylinderObject :
                 BOOL enableTexture,
                 BOOL enablePYRRotation,
                 BOOL enableMotion,
+                GLfloat xStretch,
+                GLfloat yStretch,
                 GLfloat zStretch,
-                GLfloat zOffSet);
+                GLfloat xOffset,
+                GLfloat yOffset,
+                GLfloat zOffset);
+        virtual void draw2D(int drawStyle,
+                GLfloat xStretch,
+                GLfloat yStretch,
+                GLfloat zStretch,
+                GLfloat xOffset,
+                GLfloat yOffset,
+                GLfloat zOffset);
 
         virtual string genObjDesc(void); // get the object descriptions (fixed part)
         virtual string genObjPara(void); // get the object parameters (varied part)

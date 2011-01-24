@@ -33,7 +33,18 @@ class TestObject
                 BOOL enableTexture,
                 BOOL enablePYRRotation,
                 BOOL enableMotion,
+                GLfloat xStretch,
+                GLfloat yStretch,
                 GLfloat zStretch,
+                GLfloat xOffset,
+                GLfloat yOffset,
+                GLfloat zOffset) = 0;
+        virtual void draw2D(int drawStyle,
+                GLfloat xStretch,
+                GLfloat yStretch,
+                GLfloat zStretch,
+                GLfloat xOffset,
+                GLfloat yOffset,
                 GLfloat zOffset) = 0;
 
         virtual string genObjDesc(); // get the object descriptions (fixed part)

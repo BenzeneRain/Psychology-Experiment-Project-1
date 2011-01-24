@@ -30,7 +30,8 @@ int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
     return 0;
 }
 
-Experiment::Experiment(HINSTANCE hInstance)
+Experiment::Experiment(HINSTANCE hInstance):
+    xyz3D(3), xyz2D(3)
 {
     Experiment::hInst = hInstance;
     this->currSecNo = 0;
@@ -120,10 +121,8 @@ BOOL Experiment::initSystem()
     ConfWnd *pConfWnd = ConfWnd::getInstance();
 
     this->subjectID = pConfWnd->subjectID;
-    //this->maxSecNo = pConfWnd->maxSecNo;
     this->experiMode = pConfWnd->experiMode;
     this->outFilename = pConfWnd->outFilename;
-   // this->trialsPerSec = pConfWnd->trialsPerSec;
     this->devMode = pConfWnd->devMode;
     this->strDate = pConfWnd->strDate;
     this->strTime = pConfWnd->strTime;
@@ -167,6 +166,10 @@ BOOL Experiment::initSystem()
             return FALSE;
         }
 
+        // Read 3D and 2D object coordinates referring to the screen
+        fin >> this->xyz3D[0] >> this->xyz3D[1] >> this->xyz3D[2];
+        fin >> this->xyz2D[0] >> this->xyz2D[1] >> this->xyz2D[2];
+
         // Read number of sections
         fin >> this->maxSecNo; 
 
@@ -207,6 +210,8 @@ BOOL Experiment::proceedExperiment()
     {
         cond_t &rCond = (*this->experimentConditions)[(int&)this->currTrialID];
         rCond.reset();
+        rCond.xyz3D = this->xyz3D;
+        rCond.xyz2D = this->xyz2D;
 
         pTrial = new Trial(this->currTrialID, rCond);
 
