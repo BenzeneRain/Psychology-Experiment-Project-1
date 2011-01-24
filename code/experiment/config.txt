@@ -4,8 +4,10 @@
 2
 1
 
-3
+5
 t1 T ./textures/voron_higher_resrgb.bmp
+t2 T ./textures/stripe.bmp
+t3 T ./textures/stripe-1.bmp
 c1 C 192 192 192 
 c2 C 255 255 255
 
