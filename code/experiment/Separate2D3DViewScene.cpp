@@ -2,6 +2,7 @@
 #include "Separate2D3DViewScene.h"
 #include "Trial.h"
 #include "Experiment.h"
+#include "CylinderObject.h"
 
 
 Separate2D3DViewScene::Separate2D3DViewScene(cond_t& cond):
@@ -132,9 +133,29 @@ BOOL Separate2D3DViewScene::renderScene()
             this->condition.xyz2D[2]);
 
 #ifdef _DEBUG
-    ostringstream ossCurrRot;
-    ossCurrRot << rObject.currRotDeg;
-    this->rScreen.displayString(ossCurrRot.str(), 0.5, 0.5);
+    ostringstream ossDebug;
+    ossDebug.precision(2);
+    ossDebug << "Debug Mode:" << endl;
+    
+    ossDebug << "VSync: ";
+    if(this->rScreen.wglGetSwapIntervalEXT != NULL &&
+            this->rScreen.wglGetSwapIntervalEXT() > 0)
+        ossDebug << "On";
+    else
+        ossDebug << "Off";
+    ossDebug << endl;
+
+    ossDebug << fixed << "Current Rotation Degree: " << rObject.currRotDeg << endl;
+    ossDebug << fixed << "FPS: " << this->rScreen.getFPS() << endl;
+    ossDebug << "Pitch, Yaw, Roll: " << rObject.pitch << ", " << rObject.yaw 
+        << ", " << rObject.roll << endl;
+    ossDebug << "Height: " << rObject.height << endl;
+    ossDebug << "Radius: " << (dynamic_cast<CylinderObject&>(rObject)).radius << endl;
+    ossDebug << "Initial Aspect Ratio: " << rObject.initZAsptRatio << endl;
+    ossDebug << fixed << "Adjusted Aspect Ratio: " << rObject.adjZAsptRatio << endl;
+    ossDebug << "Rotation Speed: " << rObject.rotSpeed << endl;
+    ossDebug << "Max Rotation Degree: " << rObject.maxRotDeg << endl;
+    this->rScreen.displayString(ossDebug.str(), 23, -8);
 #endif
 
     this->rScreen.render();

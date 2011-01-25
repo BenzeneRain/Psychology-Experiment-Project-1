@@ -13,9 +13,8 @@ Screen::Screen(DEVMODE& devMode):
 {
     this->stopped = TRUE;
     this->onSampleFPS = FALSE;
-
     QueryPerformanceFrequency(&this->CounterFrequency);
-
+    
 }
 
 Screen::~Screen(void)
@@ -59,6 +58,22 @@ BOOL Screen::initGlut(UINT displayMode, string title)
     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
     this->stereoFrame.LoadFrame(string("calib.txt"));
+
+    // Enable VSync
+    if(this->WGLExtensionSupported("WGL_EXT_swap_control"))
+    {
+        this->wglSwapIntervalEXT = (PFNWGLSWAPINTERVALEXTPROC)wglGetProcAddress("wglSwapIntervalEXT");
+        this->wglGetSwapIntervalEXT = (PFNWGLGETSWAPINTERVALEXTPROC)wglGetProcAddress("wglGetSwapIntervalEXT");
+    }
+    else
+    {
+        this->wglSwapIntervalEXT = NULL;
+        this->wglGetSwapIntervalEXT = NULL;
+    }
+
+    
+    if(this->wglSwapIntervalEXT != NULL)
+        this->wglSwapIntervalEXT(1);
 
     return TRUE;
 }
@@ -291,6 +306,22 @@ BOOL Screen::stopSampleFPS()
 float Screen::getFPS()
 {
     return this->fps;
+}
+
+BOOL Screen::WGLExtensionSupported(const char *extension_name)
+{
+    char* _wglGetExternsionsStringEXT = NULL;
+
+    _wglGetExternsionsStringEXT = (char*)glGetString(GL_EXTENSIONS);
+
+    if(_wglGetExternsionsStringEXT != NULL &&
+        strstr(_wglGetExternsionsStringEXT, extension_name) == NULL)
+        return FALSE;
+
+    else
+
+        return TRUE;
+
 }
 
 // the function is only for test purpose

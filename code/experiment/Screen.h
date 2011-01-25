@@ -54,7 +54,15 @@ class Screen
         static void testRenderScene();
 
         inline const LARGE_INTEGER& getCounterFrequency() {return this->CounterFrequency;}
+
+        PFNWGLSWAPINTERVALEXTPROC wglSwapIntervalEXT;
+        PFNWGLGETSWAPINTERVALEXTPROC wglGetSwapIntervalEXT;
+
     private:
+        BOOL WGLExtensionSupported(const char *extension_name);
+    
+
+
         BOOL onSampleFPS;
         UINT displayMode;
         

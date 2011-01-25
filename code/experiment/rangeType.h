@@ -54,8 +54,8 @@ T rangeType<T>::getRandomValue()
         case 'R':
             {
                 T interval = this->range[1] - this->range[0];
-                // FIX: if T is integer, than we need to use %
-                T randNum = this->range[0] + fmod((T)rand(), interval);
+                
+                T randNum = this->range[0] + (T)(((float)(rand() % 101) / (float)100.0) * interval);
                 return randNum;
             }
         default:

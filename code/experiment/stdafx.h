@@ -23,6 +23,9 @@
 #include <gl/glu.h>
 #include <gl/freeglut.h>
 #include <gl/freeglut_ext.h>
+#include <gl/wglext.h>
+#include <gl/glext.h>
+//#include <gl/glxext.h>
 
 #pragma comment(lib, "glew32.lib")
 
