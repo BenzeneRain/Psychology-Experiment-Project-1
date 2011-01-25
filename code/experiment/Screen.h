@@ -52,6 +52,8 @@ class Screen
 
         // the function is only for test purpose 
         static void testRenderScene();
+
+        inline const LARGE_INTEGER& getCounterFrequency() {return this->CounterFrequency;}
     private:
         BOOL onSampleFPS;
         UINT displayMode;

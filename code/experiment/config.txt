@@ -1,19 +1,20 @@
-0.0 0.0 0.0
-15.0 0.0 0.0
+coordinatesOf3DObject 0.0 0.0 0.0
+coordinatesOf2DObject 15.0 0.0 0.0
 
-2
-1
+numberOfSections 2
+numberOfEachConditionAppearingInEachSection 1
 
-5
+numberOfTextures 5
+textureName textureType(T for texture file, and C for pure color) textureFilename/ColorInRGB
 t1 T ./textures/voron_higher_resrgb.bmp
 t2 T ./textures/stripe.bmp
 t3 T ./textures/stripe-1.bmp
 c1 C 192 192 192 
 c2 C 255 255 255
 
-4
+numberOfConditionGroups 4
 
-./Constraint1.txt
-./Constraint2.txt
-./Constraint3.txt
-./Constraint4.txt
+conditionGroupDescriptionFile1 ./conditionGroup1.txt
+conditionGroupDescriptionFile2 ./conditionGroup2.txt
+conditionGroupDescriptionFile3 ./conditionGroup3.txt
+conditionGroupDescriptionFile4 ./conditionGroup4.txt

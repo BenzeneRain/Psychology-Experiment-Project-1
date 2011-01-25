@@ -25,7 +25,10 @@ class Scene
         static void reset();
         Screen& rScreen;
 
-        float fps;
+        inline const float getDuration() const {return this->_duration;}
+        inline void setMinDuration(float minDuration) {this->_minDuration = minDuration;}
+
+        inline const float getFps() const {return this->_fps; }
 
     protected:
         Scene();
@@ -47,4 +50,10 @@ class Scene
         static hash_map<int, BOOL> registeredTimerID;
 
         BOOL status;
+        float _duration;
+        float _minDuration;
+        float _fps;
+
+        LARGE_INTEGER _startTime;
+        LARGE_INTEGER _endTime;
 };

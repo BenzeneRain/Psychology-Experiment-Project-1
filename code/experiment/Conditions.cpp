@@ -163,9 +163,10 @@ BOOL Conditions::initConditions()
     // Assume the Configuration file is complete and valid
     
     ifstream& fin = this->overallFin;
+    string junk;
     
     // Read condition repeat times per section
-    fin >> this->conditionRepeatTimesPerSec;
+    fin >> junk >> this->conditionRepeatTimesPerSec;
 
     // Read textures
     ret = readTextures(fin);
@@ -195,16 +196,27 @@ BOOL Conditions::readTextures(ifstream& fin)
     {
         // Read Texture information (only support bmp file and RGB color setting now)
         int numTextures;
-        fin >> numTextures;
+        string junk;
+
+        fin >> junk >> numTextures;
+        
+        do
+        {
+            getline(fin, junk);
+        }
+        while(!junk.compare(""));
 
         this->textureMap.clear();
         for(int iTextures = 0; iTextures < numTextures; iTextures ++)
         {
             string textureName;
             string filename;
-            char textureType;
+            char textureType = ' ';
 
-            fin >> textureName >> textureType;
+            fin >> textureName;
+            
+            while(textureType == ' ')
+                fin >> textureType;
             rTexture_t *pTexture = new rTexture_t;  
             pTexture->name = textureName;
 
@@ -271,7 +283,8 @@ BOOL Conditions::readConstraints(ifstream& fin, vector<condCons_t *>& rConstrain
     {
         // Read constraints
         int numConstraints;
-        fin >> numConstraints;
+        string junk;
+        fin >> junk >> numConstraints;
 
         for(int iConstraint = 0; iConstraint < numConstraints; iConstraint ++)
         {
@@ -281,8 +294,11 @@ BOOL Conditions::readConstraints(ifstream& fin, vector<condCons_t *>& rConstrain
             pNewConstraint->id = iConstraint + 1;
             pNewConstraint->groupID = 0;
 
-            char dispType;
-            fin >> dispType;
+            char dispType = ' ';
+            fin >> junk;
+            
+            while(dispType == ' ')
+                fin >> dispType;
 
             switch(dispType)
             {
@@ -295,6 +311,7 @@ BOOL Conditions::readConstraints(ifstream& fin, vector<condCons_t *>& rConstrain
                     pNewConstraint->dispMode = DISCRETE_DISPLAY;
                     
                     float secs;
+                    fin >> junk;
                     
                     // read seconds for displaying object
                     fin >> secs;
@@ -337,6 +354,7 @@ BOOL Conditions::readConstraints(ifstream& fin, vector<condCons_t *>& rConstrain
             }
 
             // Read Object Names
+            fin >> junk;
             fin >> quantity;
             for(int i = 0; i < quantity; i ++)
             {
@@ -368,6 +386,7 @@ BOOL Conditions::readConstraints(ifstream& fin, vector<condCons_t *>& rConstrain
             // Each condition follow the constraint will randomly choose one
             // texture list from the group as textures to be used
             int numTextureGroups;
+            fin >> junk;
             fin >> numTextureGroups;
             for(int i = 0; i < numTextureGroups; i ++)
             {
@@ -411,6 +430,7 @@ BOOL Conditions::readConstraints(ifstream& fin, vector<condCons_t *>& rConstrain
             // Read Constraint Weight
             // FIX: Need a check if the input weight value is valid or not
             int weight;
+            fin >> junk;
             fin >> weight;
             BOOL ret;
             
@@ -529,12 +549,17 @@ BOOL Conditions::readConstraints(ifstream& fin, vector<condCons_t *>& rConstrain
 template<typename T>
 BOOL Conditions::readRange(ifstream& fin, rangeType<T>& vec)
 {
-    char rangeType;
+    char rangeType = ' ';
+    string junk;
 
     try
     {
         // read the type of the range
-        fin >> rangeType;
+        fin >> junk;
+
+        while(rangeType == ' ')
+            fin >> rangeType;
+
         switch(rangeType)
         {
             case 'R':
@@ -746,7 +771,7 @@ const vector<cond_t *>& Conditions::getAllConditions()
 BOOL Conditions::cylinderParameterReadingFunction(ifstream& fin, condCons_t& constraint, int constraintID)
 {
     BOOL ret;
-    
+
     // Read Radius Range
     ret = this->readRange<GLfloat>(fin, constraint.radiusRange);
     if(ret == FALSE)

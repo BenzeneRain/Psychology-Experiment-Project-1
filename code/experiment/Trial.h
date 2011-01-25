@@ -7,13 +7,23 @@
 #include <memory>
 using namespace std;
 
+struct trialResult_struct
+{
+    trialResult_struct::trialResult_struct(float rFps, float rDuration, string& rTrialName):
+        fps(rFps), duration(rDuration), trialName(rTrialName) {}
+    const float fps;
+    const float duration;
+    const string trialName;
+};
+typedef struct trialResult_struct trialResult_t;
+
 class Trial
 {
     public:
         Trial(int trialID, cond_t& cond);
         ~Trial();
 
-        enum state {IDLE, PRE_TRIAL_SCENE, MAIN_SCENE, POST_TRIAL_SCENE};
+        enum state {IDLE, PRE_TRIAL_SCENE, MAIN_SCENE, POST_TRIAL_SCENE, FINISHED};
 
         BOOL startTrial();
         BOOL stepTrial(); 
@@ -25,6 +35,6 @@ class Trial
         BOOL finished;
         cond_t& condition;
         UINT trialID;
-
-        float fps;
+        
+        vector<trialResult_t *> _results;
 };

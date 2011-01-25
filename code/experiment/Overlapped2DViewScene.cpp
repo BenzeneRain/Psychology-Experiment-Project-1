@@ -178,6 +178,17 @@ BOOL Overlapped2DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)
                 this->rScreen.stopped = TRUE;
                 break;
             }
+        case VK_ESCAPE:
+            {
+                int ret = MessageBox(NULL, "Do you want to abort the experiment?", "Abort", MB_YESNO | MB_ICONWARNING);
+                if(ret == IDYES)
+                {
+                    this->rScreen.stopped = TRUE;
+                    this->status = FALSE;
+                }
+
+                break;
+            }
         default:
             break;
     }

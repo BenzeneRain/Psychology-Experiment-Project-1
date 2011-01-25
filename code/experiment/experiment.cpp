@@ -123,7 +123,7 @@ BOOL Experiment::initSystem()
     this->subjectID = pConfWnd->subjectID;
     this->experiMode = pConfWnd->experiMode;
     this->outFilename = pConfWnd->outFilename;
-    this->devMode = pConfWnd->devMode;
+    memcpy(&this->devMode, &pConfWnd->devMode, sizeof(DEVMODE));
     this->strDate = pConfWnd->strDate;
     this->strTime = pConfWnd->strTime;
 
@@ -140,23 +140,17 @@ BOOL Experiment::initSystem()
     Scene::reset();
 
     // Initialize the glut
-    if(!Experiment::debug)
-    {
-        this->pScreen->initGlut(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH |
-                GLUT_MULTISAMPLE | GLUT_STENCIL,
-                "Experiment");
-    }
-    else
-    {
-        this->pScreen->initGlut(GLUT_RGB | GLUT_SINGLE,
-                "Experiment");
-    }
+    this->pScreen->initGlut(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH |
+            GLUT_MULTISAMPLE | GLUT_STENCIL,
+           "Experiment");
 
     // Initialize the conditions
     // FIX: the filename should not be hard coded here
     try
     {
         ifstream fin("config.txt");
+        string junk;
+        junk.resize(256);
 
         if(!fin.good())
         {
@@ -167,11 +161,13 @@ BOOL Experiment::initSystem()
         }
 
         // Read 3D and 2D object coordinates referring to the screen
+        fin >> junk;
         fin >> this->xyz3D[0] >> this->xyz3D[1] >> this->xyz3D[2];
+        fin >> junk;
         fin >> this->xyz2D[0] >> this->xyz2D[1] >> this->xyz2D[2];
 
         // Read number of sections
-        fin >> this->maxSecNo; 
+        fin >> junk >> this->maxSecNo; 
 
         this->experimentConditions =
             new groupBasedConditions(fin, this->objectFactories, *this->pScreen);

@@ -32,16 +32,17 @@ BOOL groupBasedConditions::initConditions()
 {
     BOOL ret;
     ifstream& fin = this->overallFin;
+    string junk;
     
     // Read condition repeat times per section
-    fin >> this->conditionRepeatTimesPerSec;
+    fin >> junk >> this->conditionRepeatTimesPerSec;
 
     // Read textures
     ret = readTextures(fin);
     if(ret == FALSE)
         return FALSE;
 
-    fin >> this->numGroups;
+    fin >> junk >> this->numGroups;
 
     for(int i = 0; i < this->numGroups; i ++)
     {
@@ -62,7 +63,7 @@ BOOL groupBasedConditions::initConditions()
     for(int i = 0; i < this->numGroups; i ++)
     {
         string constraintFilename;
-        fin >> constraintFilename;
+        fin >> junk >> constraintFilename;
 
         try
         {

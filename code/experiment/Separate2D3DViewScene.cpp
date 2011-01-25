@@ -68,10 +68,19 @@ BOOL Separate2D3DViewScene::startScene()
     // FIX: This is actually a run design if there are multiple screens
     // e.g. the program will be blocked for each run()
     this->initDisplay();
+
     this->rScreen.startSampleFPS();
+
+    QueryPerformanceCounter(&this->_startTime);
     this->rScreen.run();
-    this->fps = this->rScreen.getFPS();
+    QueryPerformanceCounter(&this->_endTime);
+
+    this->_duration = (float)(this->_endTime.QuadPart - this->_startTime.QuadPart) /
+        (float)(this->rScreen.getCounterFrequency().QuadPart);
+
     this->rScreen.stopSampleFPS();
+
+    this->_fps = this->rScreen.getFPS();
 
     return this->status;
 }
@@ -90,6 +99,14 @@ BOOL Separate2D3DViewScene::renderScene()
     GLfloat fAspect = (GLfloat)scrWidth / (GLfloat)scrHeight;
 
     glViewport(0, 0, scrWidth, scrHeight);
+        
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glLoadMatrixd(this->rScreen.stereoFrame.centerprojmatrix.data());
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
     if(this->condition.dispMode == CONTINUOUS_DISPLAY ||
             (this->condition.dispMode == DISCRETE_DISPLAY &&
              this->currStatus == DISPLAY_OBJECT))
@@ -97,16 +114,6 @@ BOOL Separate2D3DViewScene::renderScene()
         //////////////////////////////////////////////////////
         // Draw the 3D View
 
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
-
-        //gluPerspective(60.0f, fAspect, 0.01f, 300.0f);
-        //gluLookAt(0.0f, 0.0f, 200.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-        //gluLookAt(0.0f, 50.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f);
-        glLoadMatrixd(this->rScreen.stereoFrame.centerprojmatrix.data());
-
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
         glColor3ub(255, 255, 255);
 
         // Draw the cylinder in 3D view
@@ -119,37 +126,17 @@ BOOL Separate2D3DViewScene::renderScene()
     //////////////////////////////////////////////////////
     // Draw 2D View
 
-//    glMatrixMode(GL_PROJECTION);
-//    glLoadIdentity();
-//
-//    float objWidth = 30.0f;
-//    float objHeight = 30.0f;
-//    float objDepth = 30.0f;
-//
-//    if(scrWidth <= scrHeight)
-//        glOrtho(-objWidth, objWidth, -objHeight/fAspect, objHeight/fAspect, -objDepth, objDepth);
-//    else
-//        glOrtho(-objWidth*fAspect, objWidth*fAspect, -objHeight, objHeight, -objDepth, objDepth);
-//
-//    gluLookAt(this->rScreen.stereoFrame.topCenterEye[0],
-//            this->rScreen.stereoFrame.topCenterEye[1],
-//            this->rScreen.stereoFrame.topCenterEye[2],
-//            0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f);
-//
-//    glMatrixMode(GL_MODELVIEW);
-//    glLoadIdentity();
-//    glColor3ub(255, 255, 255);
-//
-//    //Draw the cylinder in 2D
-//    glPushMatrix();
-//    glTranslatef(25.0f, 0.0f, 0.0f);
-//    rObject.draw(GLU_FILL, FALSE, FALSE, FALSE, rObject.adjZAsptRatio, 0.0f);
-//    glPopMatrix();
-
     rObject.draw2D(GLU_FILL, 1.0f, 1.0f, rObject.adjZAsptRatio,
             this->condition.xyz2D[0],
             this->condition.xyz2D[1],
             this->condition.xyz2D[2]);
+
+#ifdef _DEBUG
+    ostringstream ossCurrRot;
+    ossCurrRot << rObject.currRotDeg;
+    this->rScreen.displayString(ossCurrRot.str(), 0.5, 0.5);
+#endif
+
     this->rScreen.render();
 
     return TRUE;
@@ -183,15 +170,26 @@ BOOL Separate2D3DViewScene::initDisplay()
     return TRUE;
 }
 
+
 BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)
 {
     switch(key)
     {
         case VK_SPACE:
             {
-                if((this->condition.dispMode == CONTINUOUS_DISPLAY && this->rScreen.getFPS() != 0)
-                        || this->condition.dispMode == DISCRETE_DISPLAY)
+                if(this->_isStopConditionSatisfied())
                     this->rScreen.stopped = TRUE;
+                break;
+            }
+        case VK_ESCAPE:
+            {
+                int ret = MessageBox(NULL, "Do you want to abort the experiment?", "Abort", MB_YESNO | MB_ICONWARNING);
+                if(ret == IDYES)
+                {
+                    this->rScreen.stopped = TRUE;
+                    this->status = FALSE;
+                }
+
                 break;
             }
         default:
@@ -222,8 +220,7 @@ BOOL Separate2D3DViewScene::handleMouseEvent(int button, int state, int x, int y
 {
     if(button == GLUT_LEFT_BUTTON && state == GLUT_UP)
     {
-        if((this->condition.dispMode == CONTINUOUS_DISPLAY && this->rScreen.getFPS() != 0)
-                || this->condition.dispMode == DISCRETE_DISPLAY)
+        if(this->_isStopConditionSatisfied())
             this->rScreen.stopped = TRUE;
     }
 

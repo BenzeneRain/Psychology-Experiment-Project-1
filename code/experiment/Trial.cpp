@@ -19,12 +19,18 @@ Trial::Trial(int trialID, cond_t& cond):
 {
     this->trialID = trialID;
     this->currState = IDLE;
-    this->finished = FALSE;
-    this->fps = 0.0f;
+
+    this->_results.clear();
 }
 
 Trial::~Trial(void)
 {
+    for(unsigned int i = 0; i < this->_results.size(); i ++)
+    {
+        trialResult_t *pResult = this->_results.back();
+        this->_results.pop_back();
+        delete pResult;
+    }
 }
 
 BOOL Trial::startTrial()
@@ -34,7 +40,7 @@ BOOL Trial::startTrial()
     //Proceed to the next scene if
     //the trial is not finished and 
     //each scene is executed correctly
-    while(this->finished == FALSE &&
+    while(this->currState != FINISHED &&
             ret == TRUE)
     {
         ret = this->proceedNextScene();
@@ -47,56 +53,56 @@ BOOL Trial::proceedNextScene()
 {
     Scene *pScene;
     BOOL ret = TRUE;
+    Experiment *pExperi = Experiment::getInstance(NULL);
 
     switch(this->currState)
     {
         case IDLE:
             {
-                pScene = new PreTrialScene();
                 this->currState = PRE_TRIAL_SCENE;
-                ret = pScene->startScene();
-
-                delete pScene;
 
                 break;
             }
         case PRE_TRIAL_SCENE:
             {
-                pScene = new Separate2D3DViewScene(this->condition);
-                this->currState = MAIN_SCENE;
-                ret = pScene->startScene();
-                this->fps = pScene->fps;
-                delete pScene;
+                //pScene = new PreTrialScene();
+                //ret = pScene->startScene();
+                //delete pScene;
 
+                this->currState = MAIN_SCENE;
                 break;
             }
         case MAIN_SCENE:
             {
-                Experiment *pExperi = Experiment::getInstance(NULL);
-                if(pExperi->experiMode == EXPERIMENT)
-                {
-                    // Write the trial result to the output file
-                    this->recordTrialInfo();
+                pScene = new Separate2D3DViewScene(this->condition);
+                ret = pScene->startScene();
+                
+                trialResult_t *pResult = new trialResult_t(
+                        pScene->getFps(), pScene->getDuration(), string("Separate 2D 3D View Scene"));
+                this->_results.push_back(pResult);
+                delete pScene;
 
-                    this->currState = IDLE;
-                    this->finished = TRUE;
-                }
-                else
-                {
-                    // In practice mode, so show the result comparison
-                    pScene = new Overlapped2DViewScene(this->condition);
-                    this->currState = POST_TRIAL_SCENE;
-                    ret = pScene->startScene();
-
-                    delete pScene;
-                }
-
+                this->currState = POST_TRIAL_SCENE;
                 break;
             }
         case POST_TRIAL_SCENE:
             {
-                this->currState = IDLE;
-                this->finished = TRUE;
+                // Write the trial result to the output file
+                // if it is experiment mode
+                if(pExperi->experiMode == EXPERIMENT)
+                    this->recordTrialInfo();
+                else
+                {
+                    pScene = new Overlapped2DViewScene(this->condition);
+                    ret = pScene->startScene();
+                    delete pScene;
+                }
+
+                this->currState = FINISHED;
+                break;
+            }
+        case FINISHED:
+            {
                 break;
             }
         default:
@@ -117,7 +123,7 @@ BOOL Trial::recordTrialInfo()
     {
         ossTI << "Section No\t| Trial ID\t| Condition Group ID\t| Condition ID\t| "
             << "Motion\t| Object Display Duration\t| Object Disappear Duration\t| "
-            << rObject.genObjParaTitle() << " FPS\t|" << endl;
+            << rObject.genObjParaTitle() << " FPS & Reaction Time\t|" << endl;
     }
 
     ossTI << pExperi->currSecNo + 1 << "\t\t  "; // Section Number
@@ -135,11 +141,20 @@ BOOL Trial::recordTrialInfo()
     ossTI << this->condition.secDisplay << "\t\t\t\t  ";
     ossTI << this->condition.secBlackScreen << "\t\t\t\t  ";
 
-    ossTI.precision(oldPrec);
     ossTI << rObject.genObjPara();
-    ossTI << this->fps << "\t\t\t  ";
-    ossTI << endl;
+    for(unsigned int i = 0; i < this->_results.size(); i ++)
+    {
+        trialResult_t *pResult = this->_results[i];
 
+        ossTI.precision(2);
+        ossTI << fixed << " " << pResult->fps;
+
+        ossTI.precision(6);
+        ossTI << fixed << "   " << pResult->duration << "   ";
+    }
+    ossTI << "\t  " << endl;
+
+    ossTI.precision(oldPrec);
     pExperi->writeOutputs(ossTI.str());
 
     return TRUE;

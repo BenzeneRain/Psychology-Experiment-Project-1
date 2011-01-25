@@ -12,6 +12,9 @@ Scene::Scene():
 {
     Scene::currScene = this;
     this->status = TRUE;
+
+    this->_duration = 0;
+    this->_minDuration = 0;
 }
 
 Scene::~Scene()

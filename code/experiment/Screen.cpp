@@ -16,9 +16,6 @@ Screen::Screen(DEVMODE& devMode):
 
     QueryPerformanceFrequency(&this->CounterFrequency);
 
-    this->fps = 0;
-    iFrames = 0;
-    QueryPerformanceCounter(&this->FPSCount);
 }
 
 Screen::~Screen(void)
@@ -288,22 +285,12 @@ BOOL Screen::startSampleFPS()
 BOOL Screen::stopSampleFPS()
 {
     this->onSampleFPS = FALSE;
-    this->fps = 0;
-    iFrames = 0;
-    QueryPerformanceCounter(&this->FPSCount);
     return TRUE;
 }
 
 float Screen::getFPS()
 {
-    if(this->onSampleFPS)
-    {
-        return this->fps;
-    }
-    else
-    {
-        return 0.0f;
-    }
+    return this->fps;
 }
 
 // the function is only for test purpose

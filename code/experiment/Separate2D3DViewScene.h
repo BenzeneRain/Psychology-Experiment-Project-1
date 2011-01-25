@@ -25,6 +25,19 @@ class Separate2D3DViewScene :
         virtual BOOL handleTimerEvent(int timerID);
         virtual BOOL initDisplay();
 
+        inline BOOL _isStopConditionSatisfied() const 
+        {
+            LARGE_INTEGER lCurrent;
+            QueryPerformanceCounter(&lCurrent);
+            float fTime = (float)(lCurrent.QuadPart - this->_startTime.QuadPart) /
+                (float)(this->rScreen.getCounterFrequency().QuadPart);
+
+            if((this->rScreen.getFPS() != 0) && (fTime >= this->_minDuration))
+                return TRUE;
+            else
+                return FALSE;
+        }
+
         cond_t& condition;
 
         enum sepSceneStatus {DISPLAY_OBJECT, DISPLAY_BLACKSCREEN};
