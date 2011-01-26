@@ -116,7 +116,8 @@ BOOL PreTrialScene::handleKeyboardEvent(unsigned char key, int x, int y)
             }
         case VK_ESCAPE:
             {
-                int ret = MessageBox(NULL, "Do you want to abort the experiment?", "Abort", MB_YESNO | MB_ICONWARNING);
+               int ret = MessageBox(this->rScreen.hWnd(), "Do you want to abort the experiment?",\
+                   "Abort", MB_YESNO | MB_ICONWARNING);
                 if(ret == IDYES)
                 {
                     this->rScreen.stopped = TRUE;

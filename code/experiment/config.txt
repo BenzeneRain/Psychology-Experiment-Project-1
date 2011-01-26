@@ -1,14 +1,17 @@
 coordinatesOf3DObject 0.0 0.0 0.0
 coordinatesOf2DObject 15.0 0.0 0.0
 
+minDurationForEachTrial 1.0
 numberOfSections 2
 numberOfEachConditionAppearingInEachSection 1
 
-numberOfTextures 5
+numberOfTextures 7
 textureName textureType(T for texture file, and C for pure color) textureFilename/ColorInRGB
 t1 T ./textures/voron_higher_resrgb.bmp
 t2 T ./textures/stripe.bmp
 t3 T ./textures/stripe-1.bmp
+t4 T ./textures/toptexsparse.bmp
+t5 T ./textures/sidetexsparse.bmp
 c1 C 192 192 192 
 c2 C 255 255 255
 

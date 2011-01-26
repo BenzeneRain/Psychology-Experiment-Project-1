@@ -35,6 +35,7 @@ class Experiment
         DEVMODE devMode; // display settings
 
         unsigned int currTrialID;
+        float minDurationForEachTrial;
 
         // Time when starting the experiment.
         // This time is actually not the time exactly starting the 

@@ -166,6 +166,10 @@ BOOL Experiment::initSystem()
         fin >> junk;
         fin >> this->xyz2D[0] >> this->xyz2D[1] >> this->xyz2D[2];
 
+        // Read minimal duration for each trial
+        fin >> junk;
+        fin >> this->minDurationForEachTrial;
+
         // Read number of sections
         fin >> junk >> this->maxSecNo; 
 
@@ -210,7 +214,7 @@ BOOL Experiment::proceedExperiment()
         rCond.xyz3D = this->xyz3D;
         rCond.xyz2D = this->xyz2D;
 
-        pTrial = new Trial(this->currTrialID, rCond);
+        pTrial = new Trial(this->currTrialID, rCond, this->minDurationForEachTrial);
 
         ret = pTrial->startTrial();
 

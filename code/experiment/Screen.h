@@ -55,14 +55,15 @@ class Screen
 
         inline const LARGE_INTEGER& getCounterFrequency() {return this->CounterFrequency;}
 
+        inline const HWND hWnd() {return this->_hWnd;}
+        inline const GLfloat textureFilterAnisotropicLargest() {return this->_textureFilterAnisotropicLargest;}
+
         PFNWGLSWAPINTERVALEXTPROC wglSwapIntervalEXT;
         PFNWGLGETSWAPINTERVALEXTPROC wglGetSwapIntervalEXT;
 
     private:
         BOOL WGLExtensionSupported(const char *extension_name);
     
-
-
         BOOL onSampleFPS;
         UINT displayMode;
         
@@ -70,5 +71,8 @@ class Screen
         LARGE_INTEGER CounterFrequency;
         int iFrames;
         float fps;
+
+        HWND _hWnd;
+        GLfloat _textureFilterAnisotropicLargest;
 };
 

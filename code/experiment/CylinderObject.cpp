@@ -10,16 +10,16 @@ using namespace std;
 const UINT CylinderObject::objectID = 1;
 
 CylinderObject::CylinderObject(rangeType<GLfloat>& pitchRange,
-                            rangeType<GLfloat>& yawRange,
-                            rangeType<GLfloat>& rollRange,
-                            rangeType<GLfloat>& heightRange,
-                            rangeType<GLfloat>& initZAsptRatioRange,
-                            rangeType<GLfloat>& rotSpeedRange,
-                            rangeType<GLfloat>& maxRotDegRange,
-                            vector<texture_t *>& texs,
-                            rangeType<GLfloat>& radiusRange):
+        rangeType<GLfloat>& yawRange,
+        rangeType<GLfloat>& rollRange,
+        rangeType<GLfloat>& heightRange,
+        rangeType<GLfloat>& initZAsptRatioRange,
+        rangeType<GLfloat>& rotSpeedRange,
+        rangeType<GLfloat>& maxRotDegRange,
+        vector<texture_t *>& texs,
+        rangeType<GLfloat>& radiusRange):
     TestObject(pitchRange, yawRange, rollRange, heightRange,
-        initZAsptRatioRange, rotSpeedRange, maxRotDegRange, texs) 
+            initZAsptRatioRange, rotSpeedRange, maxRotDegRange, texs) 
 {
     this->radiusRange = radiusRange;    
     this->topTextureID = 0;
@@ -38,10 +38,10 @@ CylinderObject::CylinderObject(CylinderObject &rObj) : TestObject(rObj)
 CylinderObject::~CylinderObject(void)
 {
 }
-        
+
 TestObject *CylinderObject::newObj(TestObject &rObject)
 {
-   return (new CylinderObject(static_cast< CylinderObject& >(rObject))); 
+    return (new CylinderObject(static_cast< CylinderObject& >(rObject))); 
 }
 
 string CylinderObject::getObjName(void)
@@ -138,15 +138,15 @@ string CylinderObject::genObjPara()
 }
 
 void CylinderObject::draw(int drawStyle,
-                BOOL enableTexture,
-                BOOL enablePYRRotation,
-                BOOL enableMotion,
-                GLfloat xStretch,
-                GLfloat yStretch,
-                GLfloat zStretch,
-                GLfloat xOffset,
-                GLfloat yOffset,
-                GLfloat zOffset)
+        BOOL enableTexture,
+        BOOL enablePYRRotation,
+        BOOL enableMotion,
+        GLfloat xStretch,
+        GLfloat yStretch,
+        GLfloat zStretch,
+        GLfloat xOffset,
+        GLfloat yOffset,
+        GLfloat zOffset)
 {
     GLUquadricObj *pCylinder;
     GLfloat halfHeight = this->height / 2.0f;
@@ -166,8 +166,8 @@ void CylinderObject::draw(int drawStyle,
         glRotatef(this->pitch, 1.0f, 0.0f, 0.0f); // pitch, rotate refer to x-axis
         glRotatef(this->yaw, 0.0f, cos(this->pitch), sin(this->pitch)); // yaw, rotate refer to y-axis
         glRotatef(this->roll, sin(this->yaw), 
-            sin(this->pitch) * cos(this->yaw), 
-            cos(this->pitch) * cos(this->yaw)); // roll, rotate refer to z-axis
+                sin(this->pitch) * cos(this->yaw), 
+                cos(this->pitch) * cos(this->yaw)); // roll, rotate refer to z-axis
     }
 
     // Make the cylinder stand on the x-z plane
@@ -187,7 +187,7 @@ void CylinderObject::draw(int drawStyle,
             case 'T':
                 glEnable(GL_TEXTURE_2D);    
                 glBindTexture(GL_TEXTURE_2D,
-                    this->textures[this->sideTextureID]->textureID);
+                        this->textures[this->sideTextureID]->textureID);
                 break;
             case 'C':
                 glDisable(GL_TEXTURE_2D);
@@ -200,7 +200,6 @@ void CylinderObject::draw(int drawStyle,
         }
     }
 
-    //glScalef(1.0f, 1.0f, zStretch);
     // The Z-axis for us is actually Y-axis for the object after translation
     glScalef(xStretch, zStretch, yStretch);
 
@@ -208,17 +207,34 @@ void CylinderObject::draw(int drawStyle,
     gluQuadricDrawStyle(pCylinder, drawStyle);
     gluQuadricNormals(pCylinder, GLU_SMOOTH);
     if(enableTexture && this->textures[this->sideTextureID]->type == 'T')
+    {
         gluQuadricTexture(pCylinder, GL_TRUE);
+        glMatrixMode(GL_TEXTURE);
+        glLoadIdentity();
+        glPushMatrix();
+
+        float a = this->radius * zStretch;
+        float b = this->radius * xStretch;
+        
+       // glScalef((GLfloat)ceil(b + (a - b) / (4.0 * atan(1.0))),
+       //     1.0f,1.0f);
+        glScalef((GLfloat)(b + (a - b) / (4.0 * atan(1.0))),
+            1.0f,1.0f);
+     }
 
     // Draw the cylinder
     gluCylinder(pCylinder, this->radius, this->radius, this->height, slices, 32);
-
     gluDeleteQuadric(pCylinder);
 
     if(enableTexture)
     {
         if(this->textures[this->sideTextureID]->type == 'T')
-            glDisable(GL_TEXTURE_2D);    
+        {
+            glMatrixMode(GL_TEXTURE);
+            glPopMatrix();
+            glMatrixMode(GL_MODELVIEW);
+            glDisable(GL_TEXTURE_2D);      
+        }
         else
             glColor3ub(255, 255, 255);
     }
@@ -231,7 +247,10 @@ void CylinderObject::draw(int drawStyle,
             case 'T':
                 glEnable(GL_TEXTURE_2D);    
                 glBindTexture(GL_TEXTURE_2D,
-                    this->textures[this->bottomTextureID]->textureID);
+                        this->textures[this->bottomTextureID]->textureID);
+                glMatrixMode(GL_TEXTURE);
+                glLoadIdentity();
+                glScalef(xStretch, zStretch, yStretch);
                 break;
             case 'C':
                 glDisable(GL_TEXTURE_2D);
@@ -256,7 +275,12 @@ void CylinderObject::draw(int drawStyle,
     if(enableTexture)
     {
         if(this->textures[this->bottomTextureID]->type == 'T')
+        {
+            glMatrixMode(GL_TEXTURE);
+            glPopMatrix();
+            glMatrixMode(GL_MODELVIEW);
             glDisable(GL_TEXTURE_2D);    
+        }
         else
             glColor3ub(255, 255, 255);
     }
@@ -273,7 +297,10 @@ void CylinderObject::draw(int drawStyle,
                 case 'T':
                     glEnable(GL_TEXTURE_2D);    
                     glBindTexture(GL_TEXTURE_2D,
-                        this->textures[this->topTextureID]->textureID);
+                            this->textures[this->topTextureID]->textureID);
+                    glMatrixMode(GL_TEXTURE);
+                    glLoadIdentity();
+                    glScalef(xStretch, zStretch, yStretch);
                     break;
                 case 'C':
                     glDisable(GL_TEXTURE_2D);
@@ -298,7 +325,13 @@ void CylinderObject::draw(int drawStyle,
         if(enableTexture)
         {
             if(this->textures[this->topTextureID]->type == 'T')
+            {
+                glMatrixMode(GL_TEXTURE);
+                glPopMatrix();
+                glMatrixMode(GL_MODELVIEW);
                 glDisable(GL_TEXTURE_2D);    
+
+            }
             else
                 glColor3ub(255, 255, 255);
         }

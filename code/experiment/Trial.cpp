@@ -14,8 +14,8 @@
 
 using namespace std;
 
-Trial::Trial(int trialID, cond_t& cond):
-    condition(cond)
+Trial::Trial(int trialID, cond_t& cond, float minDuration):
+    condition(cond), _minDuration(minDuration)
 {
     this->trialID = trialID;
     this->currState = IDLE;
@@ -75,6 +75,7 @@ BOOL Trial::proceedNextScene()
         case MAIN_SCENE:
             {
                 pScene = new Separate2D3DViewScene(this->condition);
+                pScene->setMinDuration(this->_minDuration);
                 ret = pScene->startScene();
                 
                 trialResult_t *pResult = new trialResult_t(

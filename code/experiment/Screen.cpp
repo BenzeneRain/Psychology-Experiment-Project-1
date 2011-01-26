@@ -43,6 +43,9 @@ BOOL Screen::initGlut(UINT displayMode, string title)
     glutInitDisplayMode(displayMode);
     glutInitWindowSize(rDevMode.dmPelsWidth, rDevMode.dmPelsHeight);
     glutCreateWindow(title.c_str());
+
+    this->_hWnd = FindWindow(NULL, title.c_str());
+
     glutFullScreen();
 
     // Set the background color
@@ -70,10 +73,17 @@ BOOL Screen::initGlut(UINT displayMode, string title)
         this->wglSwapIntervalEXT = NULL;
         this->wglGetSwapIntervalEXT = NULL;
     }
-
     
     if(this->wglSwapIntervalEXT != NULL)
         this->wglSwapIntervalEXT(1);
+
+    // Enable Anisotropic sampling
+    if(this->WGLExtensionSupported("GL_EXT_texture_filter_anisotropic"))
+        {
+            glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &this->_textureFilterAnisotropicLargest);
+        }
+    else
+        this->_textureFilterAnisotropicLargest = -1.0f;
 
     return TRUE;
 }
@@ -94,7 +104,14 @@ BOOL Screen::initTextures(vector<rTexture_t *>& textures)
                 {
                     glBindTexture(GL_TEXTURE_2D, this->texIDs[i]);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);  
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); 
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
+                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+                    
+                    if(this->_textureFilterAnisotropicLargest > 0)
+                        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT,
+                        this->_textureFilterAnisotropicLargest);
 
                     BITMAP bm;
                     HBITMAP hBitmap;
@@ -198,7 +215,7 @@ void Screen::render()
             QueryPerformanceCounter(&lCurrent);
 
             fTime = (float)(lCurrent.QuadPart - this->FPSCount.QuadPart) /
-                (float)this->CounterFrequency.QuadPart;
+                (float)(this->CounterFrequency.QuadPart);
 
             this->fps = (float)iFrames / fTime;
 

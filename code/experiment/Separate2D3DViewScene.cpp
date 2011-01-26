@@ -26,10 +26,6 @@ BOOL Separate2D3DViewScene::startScene()
 
     // Get the random object
     TestObject& rObject = *this->condition.pRealObject;
-    if(Experiment::debug)
-    {
-        MessageBox(NULL, (LPCSTR)((rObject.getObjName()).c_str()), NULL, NULL);
-    }
 
     // Clear the screen
     this->rScreen.clear();
@@ -122,6 +118,10 @@ BOOL Separate2D3DViewScene::renderScene()
                 this->condition.xyz3D[0],
                 this->condition.xyz3D[1],
                 this->condition.xyz3D[2]);
+        //rObject.draw(GLU_FILL, TRUE, TRUE, TRUE, 1.0f, 1.0f, rObject.adjZAsptRatio,
+        //        this->condition.xyz3D[0],
+        //        this->condition.xyz3D[1],
+        //        this->condition.xyz3D[2]);
 
     }
     //////////////////////////////////////////////////////
@@ -145,6 +145,19 @@ BOOL Separate2D3DViewScene::renderScene()
         ossDebug << "Off";
     ossDebug << endl;
 
+    ossDebug << "Anisotropic Sampling: ";
+    if(this->rScreen.textureFilterAnisotropicLargest() > 0)
+        ossDebug << this->rScreen.textureFilterAnisotropicLargest();
+    else
+        ossDebug << "Off";
+    ossDebug << endl;
+ 
+    LARGE_INTEGER lCurrent;
+    QueryPerformanceCounter(&lCurrent);
+    float fTime = (float)(lCurrent.QuadPart - this->_startTime.QuadPart) /
+        (float)(this->rScreen.getCounterFrequency().QuadPart);
+    ossDebug << fixed << "Elapsed time: " << fTime << endl;
+   
     ossDebug << fixed << "Current Rotation Degree: " << rObject.currRotDeg << endl;
     ossDebug << fixed << "FPS: " << this->rScreen.getFPS() << endl;
     ossDebug << "Pitch, Yaw, Roll: " << rObject.pitch << ", " << rObject.yaw 
@@ -204,7 +217,8 @@ BOOL Separate2D3DViewScene::handleKeyboardEvent(unsigned char key, int x, int y)
             }
         case VK_ESCAPE:
             {
-                int ret = MessageBox(NULL, "Do you want to abort the experiment?", "Abort", MB_YESNO | MB_ICONWARNING);
+                int ret = MessageBox(this->rScreen.hWnd(), "Do you want to abort the experiment?",
+                    "Abort", MB_YESNO | MB_ICONWARNING);
                 if(ret == IDYES)
                 {
                     this->rScreen.stopped = TRUE;

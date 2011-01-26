@@ -20,7 +20,7 @@ typedef struct trialResult_struct trialResult_t;
 class Trial
 {
     public:
-        Trial(int trialID, cond_t& cond);
+        Trial(int trialID, cond_t& cond, float minDuration);
         ~Trial();
 
         enum state {IDLE, PRE_TRIAL_SCENE, MAIN_SCENE, POST_TRIAL_SCENE, FINISHED};
@@ -36,5 +36,7 @@ class Trial
         cond_t& condition;
         UINT trialID;
         
+        float _minDuration;
+
         vector<trialResult_t *> _results;
 };
