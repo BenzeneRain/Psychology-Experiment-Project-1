@@ -62,16 +62,23 @@ void Scene::dispatchTimerEvent(int timerID)
         Scene::currScene->handleTimerEvent(timerID);
 }
 
-void Scene::registerTimer(int timerID)
+int Scene::registerTimer()
 {
+    // FIX: NOT Thread safe
+    int timerID = Scene::getFreeTimerID();
+
     Scene::registeredTimerID[timerID] = TRUE;
+    return timerID;
 }
 
 void Scene::unregisterTimer(int timerID)
 {
     if(Scene::registeredTimerID.find(timerID) != Scene::registeredTimerID.end())
         if(Scene::registeredTimerID[timerID] == TRUE)
-            Scene::registeredTimerID[timerID] = FALSE;
+            {
+                Scene::registeredTimerID[timerID] = FALSE;
+                //KillTimer(Scene::currScene->rScreen.hWnd(), timerID);
+            }
 }
 
 BOOL Scene::isRegisteredTimer(int timerID)
@@ -80,6 +87,18 @@ BOOL Scene::isRegisteredTimer(int timerID)
         return Scene::registeredTimerID[timerID];
     else
         return FALSE;
+}
+
+int Scene::getFreeTimerID()
+{
+    int timerID;
+
+    do
+    {
+        timerID = (rand() % 97) + 1;
+    }while(Scene::isRegisteredTimer(timerID) != FALSE);
+
+    return timerID;
 }
 
 void Scene::reset()

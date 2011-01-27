@@ -100,7 +100,7 @@ BOOL PreTrialScene::initDisplay()
     glDisable(GL_TEXTURE_2D);
 
     // Disable multisample
-    glDisable(GL_MULTISAMPLE);
+    glDisable(GL_MULTISAMPLE_ARB);
 
     return TRUE;
 }

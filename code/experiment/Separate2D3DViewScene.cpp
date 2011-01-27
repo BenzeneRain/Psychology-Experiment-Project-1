@@ -6,15 +6,16 @@
 
 
 Separate2D3DViewScene::Separate2D3DViewScene(cond_t& cond):
-    condition(cond), ROTATION_TIMERID(1), SWITCH_TIMERID(2),
-    currStatus(DISPLAY_OBJECT) 
+condition(cond), currStatus(DISPLAY_OBJECT), SWITCH_TIMERID(-1),
+ROTATION_TIMERID(-1)
 {
+    this->_lLastRenderTime.QuadPart = 0;
 }
 
 Separate2D3DViewScene::~Separate2D3DViewScene(void)
 {
     // FIX: need to be uninterruptable
-    Scene::unregisterTimer(this->ROTATION_TIMERID);
+    //Scene::unregisterTimer(this->ROTATION_TIMERID);
     Scene::unregisterTimer(this->SWITCH_TIMERID);
 }
 
@@ -40,22 +41,21 @@ BOOL Separate2D3DViewScene::startScene()
     this->rScreen.setMousePassiveMotionFunc(Scene::dispatchMousePassiveMotionEvent);
     this->rScreen.setMouseFunc(Scene::dispatchMouseEvent);
     //bind timer event
-    
-    Scene::registerTimer(this->ROTATION_TIMERID);
 
-    GLfloat msecs;
     // Set the rotSpeed to 0 can make
     // the object stay still.
     if(rObject.rotSpeed != 0 && this->condition.dispMode == CONTINUOUS_DISPLAY)
     {
-        msecs = 1000.0f / rObject.rotSpeed;
-        this->rScreen.setTimerFunc((unsigned int)msecs,
-                Scene::dispatchTimerEvent, this->ROTATION_TIMERID);
+       // this->ROTATION_TIMERID = Scene::registerTimer();
+       // GLfloat msecs;
+       // msecs = 1000.0f / rObject.rotSpeed;
+       // this->rScreen.setTimerFunc((unsigned int)msecs,
+       //        Scene::dispatchTimerEvent, this->ROTATION_TIMERID);
     }
 
     if(this->condition.dispMode == DISCRETE_DISPLAY)
     {
-        Scene::registerTimer(this->SWITCH_TIMERID);
+        this->SWITCH_TIMERID = Scene::registerTimer();
         this->rScreen.setTimerFunc((unsigned int)(this->condition.secDisplay * 1000.0f),
                 Scene::dispatchTimerEvent, this->SWITCH_TIMERID);
     }
@@ -86,10 +86,24 @@ BOOL Separate2D3DViewScene::renderScene()
 {
     TestObject& rObject = *this->condition.pRealObject;
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    // Rotate the Object
+    if(this->condition.dispMode == CONTINUOUS_DISPLAY)
+    {
+        LARGE_INTEGER lCurrent;
+        if(this->_lLastRenderTime.QuadPart == 0)
+            QueryPerformanceCounter(&this->_lLastRenderTime);
 
-    // FIX: should not hard code texID[0]
-    // and any other codes
+        QueryPerformanceCounter(&lCurrent);
+        float fTime = (float)(lCurrent.QuadPart - this->_lLastRenderTime.QuadPart) /
+            (float)(this->rScreen.getCounterFrequency().QuadPart);
+
+        GLfloat step = fTime * rObject.rotSpeed;
+
+        rObject.rotate(step);
+        this->_lLastRenderTime.QuadPart = lCurrent.QuadPart;
+    }
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     int scrWidth = this->rScreen.rDevMode.dmPelsWidth;
     int scrHeight = this->rScreen.rDevMode.dmPelsHeight;
@@ -152,6 +166,11 @@ BOOL Separate2D3DViewScene::renderScene()
         ossDebug << "Off";
     ossDebug << endl;
  
+    int samples;
+    ossDebug << "Samples per buffer: ";
+    glGetIntegerv(GL_SAMPLES_ARB, &samples);
+    ossDebug << samples << endl;
+
     LARGE_INTEGER lCurrent;
     QueryPerformanceCounter(&lCurrent);
     float fTime = (float)(lCurrent.QuadPart - this->_startTime.QuadPart) /
@@ -199,7 +218,7 @@ BOOL Separate2D3DViewScene::initDisplay()
     this->reshape(this->rScreen.rDevMode.dmPelsWidth,
             this->rScreen.rDevMode.dmPelsHeight); 
 
-    glEnable(GL_MULTISAMPLE);
+    glEnable(GL_MULTISAMPLE_ARB);
 
     return TRUE;
 }
@@ -312,8 +331,6 @@ BOOL Separate2D3DViewScene::handleTimerEvent(int timerID)
     else if(this->condition.dispMode == DISCRETE_DISPLAY &&
             timerID == this->SWITCH_TIMERID)
     {
-        
-        step = (this->condition.secDisplay + this->condition.secBlackScreen) * rObject.rotSpeed;
 
         if(this->currStatus == DISPLAY_OBJECT)
         {
@@ -325,6 +342,7 @@ BOOL Separate2D3DViewScene::handleTimerEvent(int timerID)
             }
             else
             {
+                step = (this->condition.secDisplay + this->condition.secBlackScreen) * rObject.rotSpeed;
                 rObject.rotate(step);
                 this->rScreen.setTimerFunc((unsigned int)(this->condition.secDisplay * 1000.0f),
                         Scene::dispatchTimerEvent, this->SWITCH_TIMERID);
@@ -333,6 +351,7 @@ BOOL Separate2D3DViewScene::handleTimerEvent(int timerID)
         else
         {
             this->currStatus = DISPLAY_OBJECT;
+            step = (this->condition.secDisplay + this->condition.secBlackScreen) * rObject.rotSpeed;
             rObject.rotate(step);
             this->rScreen.setTimerFunc((unsigned int)(this->condition.secDisplay * 1000.0f),
                     Scene::dispatchTimerEvent, this->SWITCH_TIMERID);

@@ -42,9 +42,10 @@ class Scene
         virtual BOOL handleTimerEvent(int timerID) = 0;
         virtual BOOL initDisplay() = 0;
 
-        static void registerTimer(int timerID);
+        static int registerTimer();
         static void unregisterTimer(int timerID);
         static BOOL isRegisteredTimer(int timerID);
+        static int getFreeTimerID();
 
         static Scene *currScene;
         static hash_map<int, BOOL> registeredTimerID;

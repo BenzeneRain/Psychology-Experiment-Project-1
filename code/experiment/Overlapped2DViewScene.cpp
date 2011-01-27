@@ -164,7 +164,7 @@ BOOL Overlapped2DViewScene::initDisplay()
             this->rScreen.rDevMode.dmPelsHeight); 
 
     // Enable multisample
-    glEnable(GL_MULTISAMPLE);
+    glEnable(GL_MULTISAMPLE_ARB);
 
     return TRUE;
 }

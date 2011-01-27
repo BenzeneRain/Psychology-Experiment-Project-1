@@ -36,17 +36,23 @@ BOOL Screen::initGlut(UINT displayMode, string title)
     // __argc and __argv are global variables
     // storing the arguments for the program
     glutInit(&__argc, __argv);
-    glewInit();
+	glewInit();
     this->displayMode = displayMode;
 
     // Init the glut 
     glutInitDisplayMode(displayMode);
+    //glutInitDisplayString("samples=4");
+    
+    // Multisample Setting
+    glutSetOption(GLUT_MULTISAMPLE, 8);
+
     glutInitWindowSize(rDevMode.dmPelsWidth, rDevMode.dmPelsHeight);
     glutCreateWindow(title.c_str());
 
     this->_hWnd = FindWindow(NULL, title.c_str());
 
     glutFullScreen();
+
 
     // Set the background color
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -85,6 +91,7 @@ BOOL Screen::initGlut(UINT displayMode, string title)
     else
         this->_textureFilterAnisotropicLargest = -1.0f;
 
+  
     return TRUE;
 }
 
@@ -111,7 +118,7 @@ BOOL Screen::initTextures(vector<rTexture_t *>& textures)
                     
                     if(this->_textureFilterAnisotropicLargest > 0)
                         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT,
-                        this->_textureFilterAnisotropicLargest);
+                            this->_textureFilterAnisotropicLargest);
 
                     BITMAP bm;
                     HBITMAP hBitmap;
@@ -124,7 +131,9 @@ BOOL Screen::initTextures(vector<rTexture_t *>& textures)
 
                     gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, bm.bmWidth, bm.bmHeight,
                             GL_RGBA, GL_UNSIGNED_BYTE, imageBuffer);
-                    delete [] imageBuffer;
+                    //gluBuild2DMipmaps(GL_TEXTURE_2D, GL_LUMINANCE_ALPHA, bm.bmWidth, bm.bmHeight,
+                    //        GL_RGBA, GL_UNSIGNED_BYTE, imageBuffer);
+                    delete [] imageBuffer;                    
                     break;
                 }
             case 'C':
