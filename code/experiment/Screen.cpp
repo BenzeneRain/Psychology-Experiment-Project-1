@@ -44,7 +44,7 @@ BOOL Screen::initGlut(UINT displayMode, string title)
     //glutInitDisplayString("samples=4");
     
     // Multisample Setting
-    glutSetOption(GLUT_MULTISAMPLE, 8);
+    //glutSetOption(GLUT_MULTISAMPLE, 1);
 
     glutInitWindowSize(rDevMode.dmPelsWidth, rDevMode.dmPelsHeight);
     glutCreateWindow(title.c_str());
