@@ -148,7 +148,12 @@ BOOL Experiment::initSystem()
     // FIX: the filename should not be hard coded here
     try
     {
-        ifstream fin("config.txt");
+        ifstream fin;
+        if(this->experiMode == EXPERIMENT)
+            fin.open("config-experiment.txt");
+        else
+            fin.open("config-practice.txt");
+
         string junk;
         junk.resize(256);
 

@@ -95,7 +95,7 @@ int Scene::getFreeTimerID()
 
     do
     {
-        timerID = (rand() % 97) + 1;
+        timerID = (rand() % 997) + 1;
     }while(Scene::isRegisteredTimer(timerID) != FALSE);
 
     return timerID;

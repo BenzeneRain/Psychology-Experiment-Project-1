@@ -14,7 +14,7 @@ Screen::Screen(DEVMODE& devMode):
     this->stopped = TRUE;
     this->onSampleFPS = FALSE;
     QueryPerformanceFrequency(&this->CounterFrequency);
-    
+
 }
 
 Screen::~Screen(void)
@@ -33,25 +33,41 @@ BOOL Screen::initGlut(UINT displayMode, string title)
         return FALSE;
     }
 
+    //ostringstream ossGameModeString;
+    //ossGameModeString << rDevMode.dmPelsWidth << "x" << rDevMode.dmPelsHeight
+    //    << ":" << rDevMode.dmBitsPerPel << "@" << rDevMode.dmDisplayFrequency;
+    //string gameModeString(ossGameModeString.str());
+
     // __argc and __argv are global variables
     // storing the arguments for the program
     glutInit(&__argc, __argv);
-	glewInit();
+    glewInit();
     this->displayMode = displayMode;
 
     // Init the glut 
     glutInitDisplayMode(displayMode);
-    //glutInitDisplayString("samples=4");
-    
+
     // Multisample Setting
-    //glutSetOption(GLUT_MULTISAMPLE, 1);
+    glutSetOption(GLUT_MULTISAMPLE, 16);
 
     glutInitWindowSize(rDevMode.dmPelsWidth, rDevMode.dmPelsHeight);
     glutCreateWindow(title.c_str());
 
-    this->_hWnd = FindWindow(NULL, title.c_str());
+    // FIX: Message Box will cannot be seen in game mode
+    //glutGameModeString(gameModeString.c_str());
+    //if(glutGameModeGet(GLUT_GAME_MODE_POSSIBLE))
+    //{
+    //    glutGameModeString(gameModeString.c_str());
+    //    glutEnterGameMode();
+    //}
+    //else
+    //    glutFullScreen();
 
     glutFullScreen();
+
+    this->_hWnd = FindWindow(NULL, title.c_str());
+
+
 
 
     // Set the background color
@@ -79,19 +95,19 @@ BOOL Screen::initGlut(UINT displayMode, string title)
         this->wglSwapIntervalEXT = NULL;
         this->wglGetSwapIntervalEXT = NULL;
     }
-    
+
     if(this->wglSwapIntervalEXT != NULL)
         this->wglSwapIntervalEXT(1);
 
     // Enable Anisotropic sampling
     if(this->WGLExtensionSupported("GL_EXT_texture_filter_anisotropic"))
-        {
-            glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &this->_textureFilterAnisotropicLargest);
-        }
+    {
+        glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &this->_textureFilterAnisotropicLargest);
+    }
     else
         this->_textureFilterAnisotropicLargest = -1.0f;
 
-  
+
     return TRUE;
 }
 
@@ -115,10 +131,10 @@ BOOL Screen::initTextures(vector<rTexture_t *>& textures)
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
                     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-                    
+
                     if(this->_textureFilterAnisotropicLargest > 0)
                         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT,
-                            this->_textureFilterAnisotropicLargest);
+                                this->_textureFilterAnisotropicLargest);
 
                     BITMAP bm;
                     HBITMAP hBitmap;
@@ -203,7 +219,7 @@ BOOL Screen::displayString(string str, float x, float y)
     //glWindowPos2f(x, y);
 
     glutBitmapString(GLUT_BITMAP_9_BY_15,
-        reinterpret_cast<const unsigned char *>(str.c_str()));
+            reinterpret_cast<const unsigned char *>(str.c_str()));
 
     return TRUE;
 }
@@ -212,7 +228,7 @@ BOOL Screen::displayString(string str, float x, float y)
 void Screen::render()
 {
     // calculate the FPS
-      
+
     if(this->onSampleFPS)
     {
         this->iFrames ++;
@@ -296,7 +312,7 @@ BOOL Screen::resetAllFunc()
     //this->setReshapeFunc(NULL);
     this->setTimerFunc(0, Screen::nullTimerFunc, 0); 
     //this->setIdleFunc(NULL);
-    
+
     return TRUE;
 }
 
@@ -341,7 +357,7 @@ BOOL Screen::WGLExtensionSupported(const char *extension_name)
     _wglGetExternsionsStringEXT = (char*)glGetString(GL_EXTENSIONS);
 
     if(_wglGetExternsionsStringEXT != NULL &&
-        strstr(_wglGetExternsionsStringEXT, extension_name) == NULL)
+            strstr(_wglGetExternsionsStringEXT, extension_name) == NULL)
         return FALSE;
 
     else

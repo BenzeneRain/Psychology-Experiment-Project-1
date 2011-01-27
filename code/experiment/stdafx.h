@@ -28,6 +28,7 @@
 //#include <gl/glxext.h>
 
 #pragma comment(lib, "glew32.lib")
+#pragma comment(lib, "freeglut.lib")
 
 // reference additional headers your program requires here
 #include <string>

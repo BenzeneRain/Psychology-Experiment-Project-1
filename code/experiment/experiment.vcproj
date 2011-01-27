@@ -391,6 +391,18 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="libraries"
+			>
+			<File
+				RelativePath=".\freeglut.dll"
+				>
+			</File>
+			<File
+				RelativePath=".\freeglut.lib"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"
 			>
