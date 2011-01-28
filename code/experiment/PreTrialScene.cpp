@@ -11,6 +11,7 @@ using namespace std;
 
 PreTrialScene::PreTrialScene()
 {
+    this->status = TRUE;
 }
 
 PreTrialScene::~PreTrialScene(void)
@@ -26,27 +27,34 @@ BOOL PreTrialScene::startScene()
     // Clear the screen
     this->rScreen.clear();
 
-    // set display function and reshape function
-    this->rScreen.setDisplayFunc(Scene::dispatchSceneRender);
-    this->rScreen.setReshapeFunc(Scene::dispatchReshape);
-     
-    // Bind new keyboards and mouses events
-    this->rScreen.setKeyboardFunc(Scene::dispatchKeyboardEvent);
-    this->rScreen.setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
-    this->rScreen.setMouseFunc(Scene::dispatchMouseEvent);
+    Experiment *pExperi = Experiment::getInstance(NULL);
 
-    // Start running the scene
-    // FIX: This is actually a run design if there are multiple screens
-    // e.g. the program will be blocked for each run()
-    this->initDisplay();
-    this->rScreen.run();
+    if(pExperi->isNewSection())
+    {
+        // set display function and reshape function
+        this->rScreen.setDisplayFunc(Scene::dispatchSceneRender);
+        this->rScreen.setReshapeFunc(Scene::dispatchReshape);
+     
+        // Bind new keyboards and mouses events
+        this->rScreen.setKeyboardFunc(Scene::dispatchKeyboardEvent);
+        this->rScreen.setKeyboardSpecialFunc(Scene::dispatchKeyboardSpecialEvent);
+        this->rScreen.setMouseFunc(Scene::dispatchMouseEvent);
+
+        // Start running the scene
+        // FIX: This is actually a run design if there are multiple screens
+        // e.g. the program will be blocked for each run()
+        this->initDisplay();
+        this->rScreen.run();
+    }
 
     return this->status;
 }
 
 string PreTrialScene::buildString()
 {
-    string message("Press spacebar for the next trial\n");
+    //string message("Press spacebar for the next trial\n");
+    string message;
+    message.clear();
 
     Experiment *pExperi = Experiment::getInstance(NULL);
 

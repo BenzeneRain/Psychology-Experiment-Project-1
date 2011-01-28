@@ -95,7 +95,7 @@ BOOL Screen::initGlut(UINT displayMode, string title)
     // Setting up textures environment
     glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
-    this->stereoFrame.LoadFrame(string("calib.txt"));
+    this->stereoFrame.LoadFrame(string("./config/calib.txt"));
 
     // Enable VSync
     if(this->WGLExtensionSupported("WGL_EXT_swap_control"))

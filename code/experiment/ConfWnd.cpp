@@ -240,8 +240,12 @@ int ConfWnd::validateFileExistance(HWND hDlg)
     char *lpstrOutputFilename = new char[uiOutputFilenameLen + 10];
     GetDlgItemText(hDlg, IDC_EDIT6, (LPSTR)lpstrOutputFilename, uiOutputFilenameLen + 1);
 
+    string strFilename(lpstrOutputFilename);
+    string strPath("./results/");
+    string strCompleteFilename = strPath + strFilename;
+
     // try open the file
-    ifstream fin(lpstrOutputFilename);
+    ifstream fin(strCompleteFilename.c_str());
     delete [] lpstrOutputFilename;
 
     if(fin.good())
@@ -309,7 +313,11 @@ void ConfWnd::confirmConfiguration(HWND hDlg)
         char *lpstrOutputFilename = new char[uiOutputFilenameLen + 10];
         GetDlgItemText(hDlg, IDC_EDIT6, (LPSTR)lpstrOutputFilename, uiOutputFilenameLen + 1);
         
-        pConfWnd->outFilename = string(lpstrOutputFilename);
+        string strFilename(lpstrOutputFilename);
+        string strPath("./results/");
+        string strCompleteFilename = strPath + strFilename;
+
+        pConfWnd->outFilename = strCompleteFilename;
 
         delete [] lpstrOutputFilename;
     }

@@ -14,7 +14,8 @@
 #include <time.h>
 #include <sstream>
 #include <fstream>
-
+#include <io.h>
+#include <direct.h>
 using namespace std;
 
 // This option is for debugging. Set it to 1 in order to enter debug mode
@@ -92,6 +93,15 @@ BOOL Experiment::initOutputFile()
 {
     try
     {
+        // Create the output directory if it is not existed
+        int ret;
+        ret = _access_s("./results", 0);
+        if(ret != 0)
+        {
+            _mkdir("./results");
+        }
+
+        // open output file
         this->hFileOut.open(this->outFilename.c_str(), fstream::out);
         return TRUE;
     }
@@ -150,9 +160,9 @@ BOOL Experiment::initSystem()
     {
         ifstream fin;
         if(this->experiMode == EXPERIMENT)
-            fin.open("config-experiment.txt");
+            fin.open("./config/config-experiment.txt");
         else
-            fin.open("config-practice.txt");
+            fin.open("./config/config-practice.txt");
 
         string junk;
         junk.resize(256);

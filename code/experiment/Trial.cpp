@@ -65,9 +65,9 @@ BOOL Trial::proceedNextScene()
             }
         case PRE_TRIAL_SCENE:
             {
-                //pScene = new PreTrialScene();
-                //ret = pScene->startScene();
-                //delete pScene;
+                pScene = new PreTrialScene();
+                ret = pScene->startScene();
+                delete pScene;
 
                 this->currState = MAIN_SCENE;
                 break;

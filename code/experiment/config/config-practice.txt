@@ -19,7 +19,7 @@ c2 C 192 192 192
 
 numberOfConditionGroups 4
 
-conditionGroupDescriptionFile1 ./conditionGroup1-experiment.txt
-conditionGroupDescriptionFile2 ./conditionGroup2-experiment.txt
-conditionGroupDescriptionFile3 ./conditionGroup3-experiment.txt
-conditionGroupDescriptionFile4 ./conditionGroup4-experiment.txt
+conditionGroupDescriptionFile1 ./config/conditionGroup1-practice.txt
+conditionGroupDescriptionFile2 ./config/conditionGroup2-practice.txt
+conditionGroupDescriptionFile3 ./config/conditionGroup3-practice.txt
+conditionGroupDescriptionFile4 ./config/conditionGroup4-practice.txt
