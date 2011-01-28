@@ -48,10 +48,23 @@ BOOL Screen::initGlut(UINT displayMode, string title)
     glutInitDisplayMode(displayMode);
 
     // Multisample Setting
-    glutSetOption(GLUT_MULTISAMPLE, 16);
-
-    glutInitWindowSize(rDevMode.dmPelsWidth, rDevMode.dmPelsHeight);
-    glutCreateWindow(title.c_str());
+    // Try using the max possible multisample level
+    // starting from 16
+    int samples = 0;
+    int level = 16;
+    int windowID;
+    while(level > 1 && samples == 0)
+    {
+        glutSetOption(GLUT_MULTISAMPLE, level);
+        glutInitWindowSize(rDevMode.dmPelsWidth, rDevMode.dmPelsHeight);
+        windowID = glutCreateWindow(title.c_str());
+        glGetIntegerv(GL_SAMPLES_ARB, &samples);
+        if(samples == 0)
+        {
+            level >>= 1;
+            glutDestroyWindow(windowID);
+        }
+    }
 
     // FIX: Message Box will cannot be seen in game mode
     //glutGameModeString(gameModeString.c_str());
