@@ -172,7 +172,8 @@ void CylinderObject::draw(int drawStyle,
 
     // Make the cylinder stand on the x-z plane
     glRotatef(90.0f, -1.0f, 0.0f, 0.0f);
-    glTranslatef(0.0f, 0.0f, -halfHeight);
+    //glTranslatef(0.0f, 0.0f, -halfHeight);
+    glTranslatef(0.0f, 0.0f, -this->height);
 
     if(enableMotion)
     {

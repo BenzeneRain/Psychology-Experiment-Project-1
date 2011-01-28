@@ -402,6 +402,14 @@
 				RelativePath=".\freeglut.lib"
 				>
 			</File>
+			<File
+				RelativePath=".\glew32.dll"
+				>
+			</File>
+			<File
+				RelativePath=".\glew32.lib"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"
