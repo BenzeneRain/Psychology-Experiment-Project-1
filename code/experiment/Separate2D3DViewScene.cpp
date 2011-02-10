@@ -342,8 +342,11 @@ BOOL Separate2D3DViewScene::handleTimerEvent(int timerID)
             }
             else
             {
-                step = (this->condition.secDisplay + this->condition.secBlackScreen) * rObject.rotSpeed;
-                rObject.rotate(step);
+                // According to the new requirement, the rotation degree is either 0, or maxRotDeg, or
+                // -maxRotDeg
+                //step = (this->condition.secDisplay + this->condition.secBlackScreen) * rObject.rotSpeed;
+                //rObject.rotate(step);
+                rObject.rotate();
                 this->rScreen.setTimerFunc((unsigned int)(this->condition.secDisplay * 1000.0f),
                         Scene::dispatchTimerEvent, this->SWITCH_TIMERID);
             }
@@ -351,8 +354,11 @@ BOOL Separate2D3DViewScene::handleTimerEvent(int timerID)
         else
         {
             this->currStatus = DISPLAY_OBJECT;
-            step = (this->condition.secDisplay + this->condition.secBlackScreen) * rObject.rotSpeed;
-            rObject.rotate(step);
+            // According to the new requirement, the rotation degree is either 0, or maxRotDeg, or
+            // -maxRotDeg
+            //step = (this->condition.secDisplay + this->condition.secBlackScreen) * rObject.rotSpeed;
+            //rObject.rotate(step);
+            rObject.rotate();
             this->rScreen.setTimerFunc((unsigned int)(this->condition.secDisplay * 1000.0f),
                     Scene::dispatchTimerEvent, this->SWITCH_TIMERID);
         }

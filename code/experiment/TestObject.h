@@ -54,7 +54,8 @@ class TestObject
         virtual string genObjParaTitle(); // get the object parameters (varied part)
 
         void reverseRotDirection();
-        void rotate(GLfloat degree);
+        void rotate(GLfloat degree); // rotate the given degree
+        void rotate(); // rotate to between the max possible degree and 0
 
         void reset();
 

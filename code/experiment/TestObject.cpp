@@ -27,7 +27,13 @@ TestObject::TestObject(rangeType<GLfloat>& pitchRange,
 
     this->currRotDeg = 0;
     this->adjZAsptRatio = 1.0f;
-    this->rotDirection = CLOCKWISE;
+
+    int randNum = rand() % 2;
+
+    if(randNum == 0)
+        this->rotDirection = TestObject::CLOCKWISE;
+    else
+        this->rotDirection = TestObject::COUNTERCLOCKWISE;
 }
 
 TestObject::TestObject(TestObject& rObj)
@@ -51,6 +57,8 @@ TestObject::TestObject(TestObject& rObj)
     this->initZAsptRatioRange = rObj.initZAsptRatioRange;
     this->rotSpeedRange = rObj.rotSpeedRange;
     this->maxRotDegRange = rObj.maxRotDegRange;
+
+    this->rotDirection = rObj.rotDirection;
 }
 
 TestObject::~TestObject(void)
@@ -205,9 +213,28 @@ void TestObject::rotate(GLfloat degree)
     }
 }
 
+void TestObject::rotate()
+{
+    if(this->currRotDeg == 0)
+    {
+        if(this->rotDirection == TestObject::CLOCKWISE)
+            this->currRotDeg = -this->maxRotDeg;
+        else
+            this->currRotDeg = this->maxRotDeg;
+    }
+    else
+    {
+        this->currRotDeg = 0;
+    }
+}
+
 void TestObject::reset()
 {
     this->currRotDeg = 0;
     this->adjZAsptRatio = 1.0f;
-    this->rotDirection = CLOCKWISE;
+    int randNum = rand() % 2;
+    if(randNum == 0)
+        this->rotDirection = TestObject::CLOCKWISE;
+    else
+        this->rotDirection = TestObject::COUNTERCLOCKWISE;
 }

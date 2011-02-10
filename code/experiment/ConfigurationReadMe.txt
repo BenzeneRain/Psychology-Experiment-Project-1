@@ -95,7 +95,8 @@ Line 6:  Yaw Range
 Line 7:  Roll Range (tilt)
 Line 8:  Height Range 
 Line 9:  Initial Z Aspect Ratio Range 
-Line 10: Rotation Speed Range 
+Line 10: Rotation Speed Range (It will not take effect if the display mode is D, but we 
+still need this line to maintain the format)
 Line 11: Max Rotation Degree Range 
 Line 12 ~ END: Object Specific Parameters     
 
