@@ -412,6 +412,10 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath=".\ConfigurationReadMe.txt"
+			>
+		</File>
+		<File
 			RelativePath=".\ReadMe.txt"
 			>
 		</File>

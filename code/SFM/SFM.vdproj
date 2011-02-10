@@ -177,6 +177,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_FBFC4EE056FE4F3F8CC77DB944968A2A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_FF5361699BA54CE498BDDFC74001B333"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -784,6 +790,26 @@
             "TargetName" = "8:sidetexsparse-1.bmp"
             "Tag" = "8:"
             "Folder" = "8:_2F6D7CCDE1644B3BA296F1869182AFB8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FBFC4EE056FE4F3F8CC77DB944968A2A"
+            {
+            "SourcePath" = "8:..\\experiment\\ConfigurationReadMe.txt"
+            "TargetName" = "8:ConfigurationReadMe.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_6C5C23F6DEC34350B4A563D8A07D6725"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
