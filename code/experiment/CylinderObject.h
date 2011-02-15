@@ -64,4 +64,10 @@ class CylinderObject :
         rangeType<GLfloat> radiusRange;
     private:
         string objName;
+
+        vector<GLfloat> cylinderBodyCoords;
+        vector<UINT> cylinderBodyCoordIndices;
+
+        void _drawCylinderBody();
+        void _modelCylinderBody(int slices);
 };

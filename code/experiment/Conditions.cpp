@@ -669,8 +669,7 @@ int Conditions::addCondition(int constraintIndex)
    // FIX: Check if the pRealObject is NULL or not
    pNewCondition->pRealObject = pFactory->createObject(*this->constraints[constraintIndex], pNewCondition->textures);
 
-   // Set the random parameters
-   pNewCondition->pRealObject->setRandPara();
+
 
    pNewCondition->repeatTime = this->conditionRepeatTimesPerSec;
    
