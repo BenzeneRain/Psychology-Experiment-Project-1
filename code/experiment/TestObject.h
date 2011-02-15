@@ -8,6 +8,8 @@
 
 using namespace std;
 
+enum enumRotDirection {CLOCKWISE, COUNTERCLOCKWISE};
+
 class TestObject
 {
     public:
@@ -18,6 +20,7 @@ class TestObject
                    rangeType<GLfloat>& initZAsptRatioRange,
                    rangeType<GLfloat>& rotSpeedRange,
                    rangeType<GLfloat>& maxRotDegRange,
+                   enumRotDirection defaultRotDirection,
                    vector<texture_t *>& texs);
 
         TestObject(TestObject& rObj);
@@ -60,7 +63,7 @@ class TestObject
         void reset();
 
         enum enumProj2DMode {ORTHOGONAL, PROJECTION};
-        enum enumRotDirection {CLOCKWISE, COUNTERCLOCKWISE};
+
 
         static const UINT objectID;
 
@@ -79,6 +82,7 @@ class TestObject
 
         GLfloat currRotDeg;
         enumRotDirection rotDirection;
+        enumRotDirection defaultRotDirection;
       
         // Value range of the parameters
         rangeType<GLfloat> pitchRange;

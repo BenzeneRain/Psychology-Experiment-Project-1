@@ -24,6 +24,14 @@ TestObject* CylinderFactory::createObject(condCons_t& constraint, vector<texture
         return NULL;
     }
 
+    enumRotDirection defaultRotDirection;
+    int randInt = rand() % 2;
+
+    if(randInt == 0)
+        defaultRotDirection = CLOCKWISE;
+    else
+        defaultRotDirection = COUNTERCLOCKWISE;
+
     TestObject *pObj = new CylinderObject(constraint.pitchRange, 
             constraint.yawRange,
             constraint.rollRange,
@@ -31,6 +39,7 @@ TestObject* CylinderFactory::createObject(condCons_t& constraint, vector<texture
             constraint.initZAsptRatioRange,
             constraint.rotSpeedRange,
             constraint.maxRotDegRange,
+            defaultRotDirection,
             textures,
             constraint.radiusRange);
 

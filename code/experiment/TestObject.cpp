@@ -14,6 +14,7 @@ TestObject::TestObject(rangeType<GLfloat>& pitchRange,
                     rangeType<GLfloat>& initZAsptRatioRange,
                     rangeType<GLfloat>& rotSpeedRange,
                     rangeType<GLfloat>& maxRotDegRange,
+                    enumRotDirection defaultRotDirection,
                     vector<texture_t *>& texs)
 {
     this->textures = texs;
@@ -28,12 +29,8 @@ TestObject::TestObject(rangeType<GLfloat>& pitchRange,
     this->currRotDeg = 0;
     this->adjZAsptRatio = 1.0f;
 
-    int randNum = rand() % 2;
-
-    if(randNum == 0)
-        this->rotDirection = TestObject::CLOCKWISE;
-    else
-        this->rotDirection = TestObject::COUNTERCLOCKWISE;
+    this->defaultRotDirection = defaultRotDirection;
+    this->rotDirection = this->defaultRotDirection;
 }
 
 TestObject::TestObject(TestObject& rObj)
@@ -58,7 +55,8 @@ TestObject::TestObject(TestObject& rObj)
     this->rotSpeedRange = rObj.rotSpeedRange;
     this->maxRotDegRange = rObj.maxRotDegRange;
 
-    this->rotDirection = rObj.rotDirection;
+    this->defaultRotDirection = rObj.defaultRotDirection;
+    this->rotDirection = this->defaultRotDirection;
 }
 
 TestObject::~TestObject(void)
@@ -189,18 +187,18 @@ void TestObject::reverseRotDirection()
 
 void TestObject::rotate(GLfloat degree)
 {
-    if((this->rotDirection == TestObject::CLOCKWISE &&
+    if((this->rotDirection == CLOCKWISE &&
                 this->currRotDeg - degree < -(this->maxRotDeg)))
     {
         GLfloat degDist = -this->maxRotDeg - (this->currRotDeg - degree);
         this->currRotDeg = -this->maxRotDeg + degDist; 
         this->reverseRotDirection(); 
     }
-    else if(this->rotDirection == TestObject::CLOCKWISE)
+    else if(this->rotDirection == CLOCKWISE)
     {
         this->currRotDeg -= degree;
     }
-    else if((this->rotDirection == TestObject::COUNTERCLOCKWISE && 
+    else if((this->rotDirection == COUNTERCLOCKWISE && 
                 this->currRotDeg + degree > this->maxRotDeg))
     {
         GLfloat degDist = this->currRotDeg + degree - this->maxRotDeg;
@@ -217,7 +215,7 @@ void TestObject::rotate()
 {
     if(this->currRotDeg == 0)
     {
-        if(this->rotDirection == TestObject::CLOCKWISE)
+        if(this->rotDirection == CLOCKWISE)
             this->currRotDeg = -this->maxRotDeg;
         else
             this->currRotDeg = this->maxRotDeg;
@@ -232,9 +230,5 @@ void TestObject::reset()
 {
     this->currRotDeg = 0;
     this->adjZAsptRatio = 1.0f;
-    int randNum = rand() % 2;
-    if(randNum == 0)
-        this->rotDirection = TestObject::CLOCKWISE;
-    else
-        this->rotDirection = TestObject::COUNTERCLOCKWISE;
+    this->rotDirection = this->defaultRotDirection;
 }

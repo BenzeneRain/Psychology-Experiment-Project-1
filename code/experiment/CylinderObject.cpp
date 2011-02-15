@@ -16,10 +16,12 @@ CylinderObject::CylinderObject(rangeType<GLfloat>& pitchRange,
         rangeType<GLfloat>& initZAsptRatioRange,
         rangeType<GLfloat>& rotSpeedRange,
         rangeType<GLfloat>& maxRotDegRange,
+        enumRotDirection defaultRotDirection,
         vector<texture_t *>& texs,
         rangeType<GLfloat>& radiusRange):
     TestObject(pitchRange, yawRange, rollRange, heightRange,
-            initZAsptRatioRange, rotSpeedRange, maxRotDegRange, texs) 
+            initZAsptRatioRange, rotSpeedRange, maxRotDegRange, 
+            defaultRotDirection, texs) 
 {
     this->radiusRange = radiusRange;    
     this->topTextureID = 0;

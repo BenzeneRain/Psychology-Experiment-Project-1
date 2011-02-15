@@ -17,6 +17,7 @@ class CylinderObject :
                 rangeType<GLfloat>& initZAsptRatioRange,
                 rangeType<GLfloat>& rotSpeedRange,
                 rangeType<GLfloat>& maxRotDegRange,
+                enumRotDirection defaultRotDirection,
                 vector<texture_t *>& texs,
                 rangeType<GLfloat>& radiusRange);
         CylinderObject(CylinderObject &rObj);
