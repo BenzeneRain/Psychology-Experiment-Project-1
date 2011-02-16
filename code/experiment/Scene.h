@@ -57,4 +57,6 @@ class Scene
 
         LARGE_INTEGER _startTime;
         LARGE_INTEGER _endTime;
+    private:
+        static int lastFreeTimerID;
 };

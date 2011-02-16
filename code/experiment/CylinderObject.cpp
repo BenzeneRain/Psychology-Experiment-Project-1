@@ -159,6 +159,12 @@ void CylinderObject::_modelCylinderBody(int slices)
     this->cylinderBodyCoordIndices.clear();
     this->cylinderBodyCoords.clear();
 
+    GLfloat texRandomShift = (float)((float)(rand() % 100) / 100.0);
+    GLfloat texXCurrCoord = texRandomShift;
+    GLfloat deltaTexCoord = (this->radius * 0.2f * pi / (GLfloat)slices);
+
+    this->cylinderBodyTexCoords.clear();
+
     for(int i = 0; i < slices; i ++)
     {
 
@@ -171,9 +177,17 @@ void CylinderObject::_modelCylinderBody(int slices)
         this->cylinderBodyCoords.push_back(yCurrCoord);
         this->cylinderBodyCoords.push_back(height);
 
+        this->cylinderBodyTexCoords.push_back(texXCurrCoord);
+        this->cylinderBodyTexCoords.push_back(1.0f);
+
         this->cylinderBodyCoords.push_back(xCurrCoord);
         this->cylinderBodyCoords.push_back(yCurrCoord);
-        this->cylinderBodyCoords.push_back(0);
+        this->cylinderBodyCoords.push_back(0.0f);
+
+        this->cylinderBodyTexCoords.push_back(texXCurrCoord);
+        this->cylinderBodyTexCoords.push_back(0.0f);
+
+        texXCurrCoord += deltaTexCoord;
     }
 
     for(int i = 0; i < slices - 1; i ++)
@@ -189,7 +203,6 @@ void CylinderObject::_modelCylinderBody(int slices)
         this->cylinderBodyCoordIndices.push_back(j);
         this->cylinderBodyCoordIndices.push_back(j + 1);
         this->cylinderBodyCoordIndices.push_back(j + 3);
-
         // The two triangles form a strip of the side
     }
 
@@ -201,22 +214,33 @@ void CylinderObject::_modelCylinderBody(int slices)
     this->cylinderBodyCoordIndices.push_back(0);
     this->cylinderBodyCoordIndices.push_back(1);
 
+
     // Second set of the triangle
     this->cylinderBodyCoordIndices.push_back(j);
     this->cylinderBodyCoordIndices.push_back(j + 1);
     this->cylinderBodyCoordIndices.push_back(1);
 }
 
-void CylinderObject::_drawCylinderBody()
+void CylinderObject::_drawCylinderBody(bool enableTexture)
 {
     const GLvoid *data = &this->cylinderBodyCoords[0];
     const GLvoid *indices = &this->cylinderBodyCoordIndices[0];
     glEnableClientState(GL_VERTEX_ARRAY);
+    if(enableTexture)
+    {
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+        const GLvoid *texture = &this->cylinderBodyTexCoords[0];
+        glTexCoordPointer(2, GL_FLOAT, 0, texture);
+    }
     glVertexPointer(3, GL_FLOAT, 0, data);
 	glPushMatrix();
     glDrawElements(GL_TRIANGLES, this->cylinderBodyCoordIndices.size(),
         GL_UNSIGNED_INT, indices);
 	glPopMatrix();
+    if(enableTexture)
+    {
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    }
 	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
@@ -263,67 +287,81 @@ void CylinderObject::draw(int drawStyle,
         glRotatef(this->currRotDeg, 0.0f, 0.0f, 1.0f);
     }
 
+    
     //The Z-axis for us is actually Y-axis for the object after translation
     glScalef(xStretch, zStretch, yStretch);
 
-    // FIX: Draw the body of the cylinder manually here
-    //if(enableTexture)
-    //{
-    //    switch(this->textures[this->sideTextureID]->type)
-    //    {
-    //        case 'T':
-    //            glEnable(GL_TEXTURE_2D);    
-    //            glBindTexture(GL_TEXTURE_2D,
-    //                    this->textures[this->sideTextureID]->textureID);
-    //            break;
-    //        case 'C':
-    //            glDisable(GL_TEXTURE_2D);
-    //            glColor3ub(this->textures[this->sideTextureID]->color[0],
-    //                    this->textures[this->sideTextureID]->color[1],
-    //                    this->textures[this->sideTextureID]->color[2]);
-    //            break;
-    //        default:
-    //            break;
-    //    }
-    //}
+    if(enableTexture)
+    {
+        switch(this->textures[this->sideTextureID]->type)
+        {
+            case 'T':
+                {
+                glEnable(GL_TEXTURE_2D);    
+                glBindTexture(GL_TEXTURE_2D,
+                        this->textures[this->sideTextureID]->textureID);
+                glMatrixMode(GL_TEXTURE);
+                glLoadIdentity();
+                glPushMatrix();
 
-    //pCylinder = gluNewQuadric();
-    //gluQuadricDrawStyle(pCylinder, drawStyle);
-    //gluQuadricNormals(pCylinder, GLU_SMOOTH);
-    //if(enableTexture && this->textures[this->sideTextureID]->type == 'T')
-    //{
-    //    gluQuadricTexture(pCylinder, GL_TRUE);
-    //    glMatrixMode(GL_TEXTURE);
-    //    glLoadIdentity();
-    //    glPushMatrix();
+                float a = this->radius * zStretch;
+                float b = this->radius * xStretch;
 
-    //    float a = this->radius * zStretch;
-    //    float b = this->radius * xStretch;
-    //    
-    //    glScalef((GLfloat)ceil(b + (a - b) / (4.0 * atan(1.0))),
-    //        1.0f,1.0f);
-    //    glScalef((GLfloat)(b + (a - b) / (4.0 * atan(1.0))),
-    //        1.0f,1.0f);
-    // }
+                if(a < b)
+                {
+                    float c = a;
+                    a = b;
+                    b = c;
+                }
 
-    // Draw the cylinder
-    //gluCylinder(pCylinder, this->radius, this->radius, this->height, slices, 32);
-    //gluDeleteQuadric(pCylinder);
+                GLfloat pi = acos(-1.0f);
+                GLfloat double_pi = 2.0f * pi;
+                GLfloat factor = (GLfloat)(double_pi * b + 4.0 * (a - b)) / (double_pi * this->radius);
+                glScalef(factor, 1.0f, 1.0f);
+                
+                glMatrixMode(GL_MODELVIEW);
+                
+                this->_drawCylinderBody(true);
 
-    //if(enableTexture)
-    //{
-    //    if(this->textures[this->sideTextureID]->type == 'T')
-    //    {
-    //        glMatrixMode(GL_TEXTURE);
-    //        glPopMatrix();
-    //        glMatrixMode(GL_MODELVIEW);
-    //        glDisable(GL_TEXTURE_2D);      
-    //    }
-    //    else
-    //        glColor3ub(255, 255, 255);
-    //}
+                // Ugly solution to draw the brighter strip on the side of the cylinder
+                glMatrixMode(GL_TEXTURE);
+                glPopMatrix();
+                glMatrixMode(GL_MODELVIEW);
+                glDisable(GL_TEXTURE_2D);
+                
+                GLfloat deltaDegree = 2.0f * pi / (GLfloat)256.0f;
+                GLfloat currDegree = 1.5f * pi;
 
-    this->_drawCylinderBody();
+                GLfloat xCurrCoord = cos(currDegree) * (this->radius + 0.01f);
+                GLfloat yCurrCoord = sin(currDegree) * (this->radius + 0.01f);
+
+                GLfloat xNextCoord = cos(currDegree + deltaDegree) * (this->radius + 0.01f);
+                GLfloat yNextCoord = sin(currDegree + deltaDegree) * (this->radius + 0.01f);
+                
+                glColor3ub(255, 255, 255);
+                glBegin(GL_QUADS);
+                    glVertex3f(xCurrCoord, yCurrCoord, this->height);
+                    glVertex3f(xNextCoord, yNextCoord, this->height);
+                    glVertex3f(xNextCoord, yNextCoord, 0);
+                    glVertex3f(xCurrCoord, yCurrCoord, 0);
+                glEnd();
+              
+                break;
+                }
+            case 'C':
+                glDisable(GL_TEXTURE_2D);
+                glColor3ub(this->textures[this->sideTextureID]->color[0],
+                        this->textures[this->sideTextureID]->color[1],
+                        this->textures[this->sideTextureID]->color[2]);
+
+                this->_drawCylinderBody(false);
+                glColor3ub(255, 255, 255);
+                break;
+            default:
+                break;
+        }
+    }
+    
     
 
     // Draw the bottom face

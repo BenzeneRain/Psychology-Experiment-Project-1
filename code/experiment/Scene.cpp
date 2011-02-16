@@ -89,14 +89,17 @@ BOOL Scene::isRegisteredTimer(int timerID)
         return FALSE;
 }
 
+int Scene::lastFreeTimerID = 0;
 int Scene::getFreeTimerID()
 {
-    int timerID;
+    int timerID = Scene::lastFreeTimerID % 997;
 
-    do
+    while(Scene::isRegisteredTimer(timerID) != FALSE)
     {
-        timerID = (rand() % 997) + 1;
-    }while(Scene::isRegisteredTimer(timerID) != FALSE);
+        timerID ++;
+    };
+
+    Scene::lastFreeTimerID = timerID + 1;
 
     return timerID;
 }

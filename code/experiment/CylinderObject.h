@@ -67,7 +67,8 @@ class CylinderObject :
 
         vector<GLfloat> cylinderBodyCoords;
         vector<UINT> cylinderBodyCoordIndices;
+        vector<GLfloat> cylinderBodyTexCoords;
 
-        void _drawCylinderBody();
+        void _drawCylinderBody(bool enableTexture);
         void _modelCylinderBody(int slices);
 };
