@@ -96,10 +96,10 @@ int Scene::getFreeTimerID()
 
     while(Scene::isRegisteredTimer(timerID) != FALSE)
     {
-        timerID ++;
+        timerID = (timerID + 1) % 997;
     };
 
-    Scene::lastFreeTimerID = timerID + 1;
+    Scene::lastFreeTimerID = (timerID + 1) % 997;
 
     return timerID;
 }
