@@ -5,6 +5,23 @@
 enum DisplayMode {CONTINUOUS_DISPLAY, DISCRETE_DISPLAY};
 typedef enum DisplayMode displayMode_t;
 
+class timeStructForDiscreteCase
+{
+public:
+    timeStructForDiscreteCase(float display, float disappear):
+      secDisplay(display), secBlackScreen(disappear){}
+    // Used only when the display mode is DISCRETE_DISPLAY
+    float secDisplay; // seconds for displaying object
+    float secBlackScreen; // seconds for displaying black screen
+
+    friend ostream& operator<<(ostream& os, timeStructForDiscreteCase& rtime)
+    {
+        os << rtime.secDisplay << " " << rtime.secBlackScreen;
+        return os;
+    }
+};
+typedef class timeStructForDiscreteCase timeStruct_t;
+
 struct conditionConstraints
 {
     vector<string> objectNames;
@@ -19,14 +36,14 @@ struct conditionConstraints
     rangeType<GLfloat> rotSpeedRange;
     rangeType<GLfloat> maxRotDegRange;
 
+    // Used only when the display mode is DISCRETE_DISPLAY
+    rangeType<timeStruct_t> time;
+
     vector< vector<string> * > textureGroups;
 
     int weight; // The weight of the constraint
 
     displayMode_t dispMode;
-    // Used only when the display mode is DISCRETE_DISPLAY
-    float secDisplay; // seconds for displaying object
-    float secBlackScreen; // seconds for displaying black screen
 
     int groupID;
     int id;
@@ -56,8 +73,7 @@ struct conditionConstraints
         ossDesc << "\t\t  ";
 
         ossDesc.precision(2);
-        ossDesc << secDisplay << "\t\t\t\t  ";
-        ossDesc << secBlackScreen << "\t\t\t\t  ";
+        ossDesc << this->time << "\t\t ";
 
         ossDesc << this->objectNames.size();
         for(unsigned int i = 0; i < this->objectNames.size(); i ++)

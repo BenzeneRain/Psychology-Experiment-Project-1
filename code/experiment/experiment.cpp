@@ -188,8 +188,10 @@ BOOL Experiment::initSystem()
         // Read number of sections
         fin >> junk >> this->maxSecNo; 
 
+        //this->experimentConditions =
+        //    new groupBasedConditions(fin, this->objectFactories, *this->pScreen);
         this->experimentConditions =
-            new groupBasedConditions(fin, this->objectFactories, *this->pScreen);
+            new Conditions(fin, this->objectFactories, *this->pScreen);
 
         ret = this->experimentConditions->initConditions();
         fin.close();

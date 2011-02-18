@@ -94,9 +94,9 @@ BOOL Trial::proceedNextScene()
                     this->recordTrialInfo();
                 else
                 {
-                    pScene = new Overlapped2DViewScene(this->condition);
-                    ret = pScene->startScene();
-                    delete pScene;
+                    //pScene = new Overlapped2DViewScene(this->condition);
+                    //ret = pScene->startScene();
+                    //delete pScene;
                 }
 
                 this->currState = FINISHED;

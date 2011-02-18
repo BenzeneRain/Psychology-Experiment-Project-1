@@ -22,7 +22,7 @@ class rangeType
                 os<< " " << rt.range.size();
             for(unsigned int i = 0; i < rt.range.size(); i ++)
             {
-                os << " " << rt.range[i];
+                os << "," << rt.range[i];
             }
             os << " ";
 
@@ -41,7 +41,7 @@ rangeType<T>::~rangeType(void)
 {
 }
 
-    template<typename T>
+template<typename T>
 T rangeType<T>::getRandomValue()
 {
     switch(this->type)

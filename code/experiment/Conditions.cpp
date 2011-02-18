@@ -183,7 +183,7 @@ BOOL Conditions::initConditions()
         this->addConstraint(tempConstraints[i]);
 
     // Generate conditions according to constraints
-    ret = this->generateConditions();
+    ret = this->generateAllConditions();
     if(ret == FALSE)
         return FALSE;
 
@@ -303,43 +303,57 @@ BOOL Conditions::readConstraints(ifstream& fin, vector<condCons_t *>& rConstrain
             switch(dispType)
             {
                 case 'C': // Continues display
-                    pNewConstraint->dispMode = CONTINUOUS_DISPLAY;
-                    pNewConstraint->secDisplay = 0;
-                    pNewConstraint->secBlackScreen = 0;
-                    break;
+                    {
+                        pNewConstraint->dispMode = CONTINUOUS_DISPLAY;
+                        timeStruct_t timeControl(0, 0);
+                        pNewConstraint->time.type='S';
+                        pNewConstraint->time.range.push_back(timeControl);                        
+                        break;
+                    }
                 case 'D': // Discrete display
-                    pNewConstraint->dispMode = DISCRETE_DISPLAY;
-                    
-                    float secs;
-                    fin >> junk;
-                    
-                    // read seconds for displaying object
-                    fin >> secs;
-                    if(secs <= 0)
                     {
-                        ostringstream ossError;
-                        ossError << "The value for displaying object should not be less than or equal to zero in constraint "
-                            << iConstraint;
-                        string errorMsg = ossError.str();
-                        MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
-                        return FALSE;
-                    }
-                    pNewConstraint->secDisplay = secs;
+                        pNewConstraint->dispMode = DISCRETE_DISPLAY;
 
-                    // read seconds for displaying black screen;
-                    fin >> secs;
-                    if(secs < 0)
-                    {
-                        ostringstream ossError;
-                        ossError << "The value for displaying black screen should not be less than zero in constraint "
-                            << iConstraint;
-                        string errorMsg = ossError.str();
-                        MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
-                        return FALSE;
-                    }
-                    pNewConstraint->secBlackScreen = secs;
+                        int itemNumber;
+                        float secDisplay, secDisappear;
+                        fin >> junk;
+                        fin >> itemNumber;
 
-                    break;
+                        for(int itemNo = 0; itemNo < itemNumber; itemNo ++)
+                        {
+                            // read seconds for displaying object
+                            fin >> secDisplay;
+                            if(secDisplay <= 0)
+                            {
+                                ostringstream ossError;
+                                ossError << "The value for displaying object should not be less than or equal to zero in constraint "
+                                    << iConstraint;
+                                string errorMsg = ossError.str();
+                                MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+                                return FALSE;
+                            }
+                            //pNewConstraint->secDisplay = secs;
+
+                            // read seconds for displaying black screen;
+                            fin >> secDisappear;
+                            if(secDisappear < 0)
+                            {
+                                ostringstream ossError;
+                                ossError << "The value for displaying black screen should not be less than zero in constraint "
+                                    << iConstraint;
+                                string errorMsg = ossError.str();
+                                MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+                                return FALSE;
+                            }
+                            //pNewConstraint->secBlackScreen = secs;
+
+                            timeStruct_t timeControl(secDisplay, secDisappear);
+                            pNewConstraint->time.type='S';
+                            pNewConstraint->time.range.push_back(timeControl);
+   
+                        }
+                        break;
+                    }
                 default: // Unsupported display mode
                     ostringstream ossError;
                     ossError << "Unsupported display mode '" << dispType << "' in constraint "
@@ -494,30 +508,30 @@ BOOL Conditions::readConstraints(ifstream& fin, vector<condCons_t *>& rConstrain
 
             // Check the max rotation speed should be less than the smallest max rotation degree
             // in no motion mode
-            GLfloat maxRotSpeed = *max_element(pNewConstraint->rotSpeedRange.range.begin(),
-                pNewConstraint->rotSpeedRange.range.end());
-            GLfloat minRotDegree = *min_element(pNewConstraint->maxRotDegRange.range.begin(),
-                pNewConstraint->maxRotDegRange.range.end());
-
-            if((maxRotSpeed > (minRotDegree * 2)) && pNewConstraint->dispMode == DISCRETE_DISPLAY)
-            {
-                ostringstream ossError;
-                ossError << "The max possible speed is larger than the smallest possible max rotation degree in constraint " 
-                    << iConstraint << "in no motion mode";
-                string errorMsg = ossError.str();
-                MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
-                return FALSE;
-            }
-
-            if(minRotDegree < 0.5f)
-            {
-                ostringstream ossError;
-                ossError << "The smallest possible max rotation degree in constraint " 
-                    << iConstraint << "should not be smaller than 0.5";
-                string errorMsg = ossError.str();
-                MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
-                return FALSE;
-            }
+//            GLfloat maxRotSpeed = *max_element(pNewConstraint->rotSpeedRange.range.begin(),
+//                pNewConstraint->rotSpeedRange.range.end());
+//            GLfloat minRotDegree = *min_element(pNewConstraint->maxRotDegRange.range.begin(),
+//                pNewConstraint->maxRotDegRange.range.end());
+//
+//            if((maxRotSpeed > (minRotDegree * 2)) && pNewConstraint->dispMode == DISCRETE_DISPLAY)
+//            {
+//                ostringstream ossError;
+//                ossError << "The max possible speed is larger than the smallest possible max rotation degree in constraint " 
+//                    << iConstraint << "in no motion mode";
+//                string errorMsg = ossError.str();
+//                MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+//                return FALSE;
+//            }
+//
+//            if(minRotDegree < 0.5f)
+//            {
+//                ostringstream ossError;
+//                ossError << "The smallest possible max rotation degree in constraint " 
+//                    << iConstraint << "should not be smaller than 0.5";
+//                string errorMsg = ossError.str();
+//                MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+//                return FALSE;
+//            }
 
             // Read Object Specific Parameters
             for(unsigned int i = 0; i < pNewConstraint->objectNames.size(); i ++)
@@ -621,6 +635,99 @@ int Conditions::addConstraint(condCons_t* pConstraint)
     return this->constraints.size() - 1;
 }
 
+int Conditions::addAllConditionsFromConstraint(int constraintIndex)
+{
+
+    for(int iTextureGroupIndex = 0;
+            iTextureGroupIndex < (int)this->constraints[constraintIndex]->textureGroups.size();
+            iTextureGroupIndex ++)
+    {
+        vector<string> *textureList = this->constraints[constraintIndex]->textureGroups[iTextureGroupIndex];
+
+        vector<texture_t *> pTextures;
+
+        for(unsigned int i = 0; i < textureList->size(); i ++)
+        { 
+            // firstly, get the name of the texture from the texture list
+            // secondly, get the index of the texture according to its name 
+            int index = this->textureMap[(*textureList)[i]];
+
+            texture_t *pTexture = new texture_t;
+            pTexture->name = this->textures[index]->name;
+            switch(this->textures[index]->type)
+            {
+                case 'T':
+                    // if the texture is bmp file, store the opengl texture id
+                    pTexture->type = 'T';
+                    pTexture->textureID = this->rScreen.texIDs[index];
+                    pTextures.push_back(pTexture);
+                    break;
+                case 'C':
+                    // if the texture is RGB color, store the RGB value
+                    pTexture->type = 'C';
+                    pTexture->color[0] = this->rScreen.colorIDs[index][0];
+                    pTexture->color[1] = this->rScreen.colorIDs[index][1];
+                    pTexture->color[2] = this->rScreen.colorIDs[index][2];
+                    pTextures.push_back(pTexture);
+                    break;
+                default:
+                    // do nothing for other cases
+                    break;
+            }
+        }
+
+        for(int iTimeGroupIndex = 0;
+                iTimeGroupIndex < (int)this->constraints[constraintIndex]->time.range.size();
+                iTimeGroupIndex ++)
+        {
+            for(int iObjectFactoryIndex = 0;
+                    iObjectFactoryIndex < (int)this->constraints[constraintIndex]->objectNames.size();
+                    iObjectFactoryIndex ++)
+            {
+                TestObjectFactory *pFactory = this->objectFactoryNameMap[
+                    this->constraints[constraintIndex]->objectNames[iObjectFactoryIndex]];
+
+                vector<TestObject *> objects;
+                objects = pFactory->createAllObjects(*this->constraints[constraintIndex], pTextures);
+
+
+                for(int iObjectIndex = 0; iObjectIndex < (int)objects.size(); iObjectIndex ++)
+
+                {
+                    cond_t *pNewCondition = new cond_t;
+
+                    pNewCondition->textures = pTextures;
+
+                    pNewCondition->pRealObject = objects[iObjectIndex];
+
+                    pNewCondition->repeatTime = this->conditionRepeatTimesPerSec;
+                    pNewCondition->dispMode = this->constraints[constraintIndex]->dispMode;
+
+                    if(pNewCondition->dispMode == DISCRETE_DISPLAY)
+                    {
+                        pNewCondition->secDisplay = this->constraints[constraintIndex]->time.range[iTimeGroupIndex].secDisplay;
+                        pNewCondition->secBlackScreen = this->constraints[constraintIndex]->time.range[iTimeGroupIndex].secBlackScreen;
+                    }
+                    else
+                    {
+                        pNewCondition->secDisplay = 0.0f;
+                        pNewCondition->secBlackScreen = 0.0f;
+                    }
+
+                    pNewCondition->constraintID = this->constraints[constraintIndex]->id;
+                    pNewCondition->constraintGroupID = this->constraints[constraintIndex]->groupID;
+
+                    this->conditions.push_back(pNewCondition);
+
+                }
+            }
+        }
+
+    }
+
+    return this->conditions.size() - 1;
+}
+
 // Generate a condition according to the specified constraint
 int Conditions::addCondition(int constraintIndex)
 {
@@ -669,15 +776,15 @@ int Conditions::addCondition(int constraintIndex)
    // FIX: Check if the pRealObject is NULL or not
    pNewCondition->pRealObject = pFactory->createObject(*this->constraints[constraintIndex], pNewCondition->textures);
 
-
-
    pNewCondition->repeatTime = this->conditionRepeatTimesPerSec;
    
    pNewCondition->dispMode = this->constraints[constraintIndex]->dispMode;
+
+   randIndex = rand() % this->constraints[constraintIndex]->time.range.size();
    if(pNewCondition->dispMode == DISCRETE_DISPLAY)
    {
-       pNewCondition->secDisplay = this->constraints[constraintIndex]->secDisplay;
-       pNewCondition->secBlackScreen = this->constraints[constraintIndex]->secBlackScreen;
+       pNewCondition->secDisplay = this->constraints[constraintIndex]->time.range[randIndex].secDisplay;
+       pNewCondition->secBlackScreen = this->constraints[constraintIndex]->time.range[randIndex].secBlackScreen;
    }
    else
    {
@@ -727,6 +834,26 @@ BOOL Conditions::generateConditions()
     this->numConditions = totalWeights;
 
     this->shuffleConditions(7);
+    return TRUE;
+}
+
+BOOL Conditions::generateAllConditions()
+{
+    this->clearConditions();
+
+    for(unsigned int i = 0; i < this->constraints.size(); i ++)
+    {
+        int quantity = this->constraints[i]->weight * this->conditionRepeatTimesPerSec;
+
+        for(int j = 0; j < quantity; j ++)
+        {
+            this->addAllConditionsFromConstraint(i);
+        }
+    }
+
+    this->numConditions = this->conditions.size();
+
+    this->shuffleConditions(1023);
     return TRUE;
 }
 

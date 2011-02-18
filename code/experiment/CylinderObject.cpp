@@ -29,10 +29,7 @@ CylinderObject::CylinderObject(rangeType<GLfloat>& pitchRange,
     this->sideTextureID = 2;
 
     this->objName = string("Cylinder");
-    // Set the random parameters
-    this->setRandPara();
 
-    this->_modelCylinderBody(256);
 }
 
 CylinderObject::CylinderObject(CylinderObject &rObj) : TestObject(rObj)
@@ -142,6 +139,11 @@ string CylinderObject::genObjPara()
     strPara += ossObj.str();
 
     return strPara;
+}
+
+void CylinderObject::buildModel(void)
+{
+    this->_modelCylinderBody(256);
 }
 
 void CylinderObject::_modelCylinderBody(int slices)

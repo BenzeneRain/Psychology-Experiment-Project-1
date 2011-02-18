@@ -64,6 +64,7 @@ class TestObject
 
         enum enumProj2DMode {ORTHOGONAL, PROJECTION};
 
+        virtual void buildModel(void) = 0;
 
         static const UINT objectID;
 

@@ -2,7 +2,7 @@ coordinatesOf3DObject 0.0 0.0 0.0
 coordinatesOf2DObject 15.0 0.0 0.0
 
 minDurationForEachTrial 1.0
-numberOfSections 2
+numberOfSections 1
 numberOfEachConditionAppearingInEachSection 1
 
 numberOfTextures 9
@@ -17,9 +17,31 @@ t7 T ./textures/sidetexsparse-3.bmp
 c1 C 64  64  64 
 c2 C 192 192 192
 
-numberOfConditionGroups 4
+numberOfConditions 2
 
-conditionGroupDescriptionFile1 ./config/conditionGroup1-practice.txt
-conditionGroupDescriptionFile2 ./config/conditionGroup2-practice.txt
-conditionGroupDescriptionFile3 ./config/conditionGroup3-practice.txt
-conditionGroupDescriptionFile4 ./config/conditionGroup4-practice.txt
+displayMode                C
+ObjectUsed                 1 Cylinder
+Textures                   1 3 t6 t6 t7
+quantityOfTheCondition     1
+Pitch                      S 1 10.0
+Yaw                        S 1 0.0
+Roll                       S 1 0.0
+Height                     S 3 3 4 5
+InitialAspectRatioOnZ      S 6 0.5 0.6 0.7 1.3 1.4 1.5
+RotationSpeed              S 3 15.0 20.0 25.0
+MaxRotationDegree          S 2 45.0 10.0
+RadiusOfCylinder           S 1 4.5
+
+displayMode                D
+DurationOfDisplayOrNot     3 1.6 0.5 2 0.5 2.4 0.5
+ObjectUsed                 1 Cylinder
+Textures                   1 3 t6 t6 t7
+quantityOfTheCondition     1
+Pitch                      S 1 10.0
+Yaw                        S 1 0.0
+Roll                       S 1 0.0
+Height                     S 3 3 4 5
+InitialAspectRatioOnZ      S 6 0.5 0.6 0.7 1.3 1.4 1.5
+RotationSpeed              S 1 0.0
+MaxRotationDegree          S 2 45.0 10.0
+RadiusOfCylinder           S 1 4.5

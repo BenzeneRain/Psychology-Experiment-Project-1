@@ -61,12 +61,14 @@ class Conditions
         // return the index of the condition being added
         int addCondition(int constraintIndex);
         int addCondition(cond_t* pCondition);
+        int addAllConditionsFromConstraint(int constraintIndex);
 
         // generate conditions according to the constraints
         // the old ones will be cleared
         // return true if all the conditions are generated 
         // successfully
         virtual BOOL generateConditions();
+        virtual BOOL generateAllConditions();
 
         virtual BOOL clearConditions();
 
