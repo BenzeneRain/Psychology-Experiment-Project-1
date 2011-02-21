@@ -186,7 +186,10 @@ BOOL Experiment::initSystem()
         fin >> this->minDurationForEachTrial;
 
         // Read number of sections
-        fin >> junk >> this->maxSecNo; 
+        //fin >> junk >> this->maxSecNo; 
+
+        // Read number of trials in each section
+        fin >> junk >> this->trialsPerSec;
 
         //this->experimentConditions =
         //    new groupBasedConditions(fin, this->objectFactories, *this->pScreen);
@@ -208,8 +211,8 @@ BOOL Experiment::initSystem()
 
     // Generate the final condition list for one section
     const vector<cond_t *>& rConds = this->experimentConditions->getAllConditions(); 
-    this->trialsPerSec = rConds.size();
-    
+    //this->trialsPerSec = rConds.size();
+    this->maxSecNo = (UINT)ceil((double)rConds.size() / (double)this->trialsPerSec);
 
     return ret;
 }
@@ -223,7 +226,7 @@ BOOL Experiment::proceedExperiment()
     // if needed
 
     //proceed trials
-    this->experimentConditions->shuffleConditions(97);
+    this->experimentConditions->shuffleConditions(997);
     do
     {
         cond_t &rCond = (*this->experimentConditions)[(int&)this->currTrialID];
@@ -243,7 +246,7 @@ BOOL Experiment::proceedExperiment()
 
             if(this->currSecNo < this->maxSecNo)
             {
-                this->experimentConditions->shuffleConditions(97);
+                this->experimentConditions->shuffleConditions(997);
             }
         }
 
