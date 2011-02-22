@@ -106,7 +106,7 @@ BOOL groupBasedConditions::initConditions()
     }
 
     // Generate conditions according to constraints
-    ret = this->generateConditions();
+    ret = this->generateAllConditions();
     if(ret == FALSE)
         return FALSE;
 
@@ -146,15 +146,50 @@ BOOL groupBasedConditions::generateConditions()
     return TRUE;
 }
 
+BOOL groupBasedConditions::generateAllConditions()
+{
+    int prevIndex=-1;
+    this->clearConditions();
+
+    for(unsigned int i = 0; i < this->constraintGroups.size(); i ++)
+    {
+        for(unsigned int j = 0; j < this->constraintGroups[i]->size(); j ++)
+        {
+            int constraintIndex = (*this->constraintGroups[i])[j];
+            condCons_t& rConstraint = *this->constraints[constraintIndex];
+
+            int quantity = rConstraint.weight * this->conditionRepeatTimesPerSec;
+
+            for(int k = 0; k < quantity; k ++)
+            {
+                int index;
+                index = this->addAllConditionsFromConstraint(constraintIndex);
+
+                for(int p = prevIndex + 1; p <= index; p ++)
+                    this->conditionGroups[i]->push_back(p);
+
+                prevIndex = index;
+            }
+        }
+    }
+
+    this->numConditions = this->conditions.size();
+
+    this->shuffleConditions(1023);
+
+    return TRUE;
+}
+
 BOOL groupBasedConditions::clearConditions()
 {
     BOOL ret;
     ret = Conditions::clearConditions();
 
-    this->shuffledConditions.clear();
-
     for(int i = 0; i < this->numGroups; i ++)
+    {
         this->conditionGroups[i]->clear();
+        vector<int>(*this->conditionGroups[i]).swap(*this->conditionGroups[i]);
+    }
 
     return ret;
 }
@@ -169,26 +204,4 @@ void groupBasedConditions::shuffleConditions(int times)
         for(unsigned int i = 0; i < this->conditionGroups.size(); i ++)
             random_shuffle(this->conditionGroups[i]->begin(), this->conditionGroups[i]->end());
     }
-    this->updateShuffledConditions();
-}
-
-void groupBasedConditions::updateShuffledConditions()
-{
-    this->shuffledConditions.clear();
-
-    for(unsigned int i = 0; i < this->conditionGroups.size(); i ++)
-        for(unsigned int j = 0; j < this->conditionGroups[i]->size(); j ++)
-        {
-            shuffledConditions.push_back(this->conditions[(*this->conditionGroups[i])[j]]);        
-        }
-}
-
-cond_t& groupBasedConditions::operator[](int &rhs)
-{
-    return *this->shuffledConditions[rhs];
-}
-
-const vector<cond_t *>& groupBasedConditions::getAllConditions()
-{
-    return this->shuffledConditions;
 }

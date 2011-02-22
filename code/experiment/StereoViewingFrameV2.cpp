@@ -49,10 +49,7 @@ bool StereoViewingFrame::LoadFrame(string filename)
 	frame_set = false;
 	infile >> junk >> lefteye[0] >> lefteye[1] >> lefteye[2];
 	infile >> junk >> righteye[0] >> righteye[1] >> righteye[2];
-    infile >> junk >> topLeftEye[0] >> topLeftEye[1] >> topLeftEye[2];
-    infile >> junk >> topRightEye[0] >> topRightEye[1] >> topRightEye[2];
 	centereye = 0.5*(lefteye + righteye);
-    topCenterEye = 0.5 * (topLeftEye + topRightEye);
 	//infile >> junk 
 	//	>> screenleft >> screenright 
 	//	>> screenbottom >> screentop 

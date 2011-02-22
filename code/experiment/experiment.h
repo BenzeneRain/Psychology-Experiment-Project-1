@@ -50,6 +50,12 @@ class Experiment
 
         //This option is for debugging
         static const int debug;
+        
+        // Use this to specify which kind of conditions to use
+        // 1: none-group conditions
+        // 2: group based conditions, and all groups will appear in each section
+        // 3: group based conditions, and only one group will appear in each section
+        int conditionMode;
 
     private:
         Experiment(HINSTANCE hInstance);

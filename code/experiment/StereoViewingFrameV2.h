@@ -21,7 +21,6 @@ class StereoViewingFrame
 public:
 	StereoViewingFrame() : 
 		lefteye(-6,0,50), righteye(6,0,50), centereye(0,0,50), 
-        topLeftEye(-6, 50, 0), topRightEye(6, 50, 0), topCenterEye(0, 50, 0),
 		//screencoords(-20,20,-15,15,-100,20),
 		//screenleft(-20), screenright(20),
 		//screenbottom(-15), screentop(15), 
@@ -45,10 +44,6 @@ public:
 	vector_3d righteye;
 	vector_3d centereye;
     
-    vector_3d topLeftEye;
-    vector_3d topRightEye;
-    vector_3d topCenterEye;
-
 	matrix_4x4 leftprojmatrix;
 	matrix_4x4 centerprojmatrix;
 	matrix_4x4 rightprojmatrix;

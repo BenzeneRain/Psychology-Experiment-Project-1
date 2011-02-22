@@ -1,3 +1,5 @@
+0   ; 0: none group based conditions; 1: group based conditions, and all groups will appear in each section; 2: group based conditions, and only one group will appear in each section.
+
 coordinatesOf3DObject 0.0 0.0 0.0
 coordinatesOf2DObject 15.0 0.0 0.0
 

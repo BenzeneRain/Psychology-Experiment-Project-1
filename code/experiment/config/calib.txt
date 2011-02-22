@@ -1,7 +1,5 @@
 lefteye  -3.0 10 100
 righteye 3.0 10 100
-toplefteye -3.0 20.0 0.0
-toprighteye 3.0 20.0 0.0
 screencoord  23.75 -23.75 -14.75 14.75 -200 40
 leftscreenshift 0 0 0
 rightscreenshift 0 0 0

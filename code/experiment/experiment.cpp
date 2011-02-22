@@ -9,6 +9,7 @@
 #include "TestObjectFactory.h"
 #include "CylinderFactory.h"
 #include "PostExperimentScene.h"
+#include "gBConditionsOneSecAllGroups.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -175,6 +176,20 @@ BOOL Experiment::initSystem()
             return FALSE;
         }
 
+        // Read the conditionMode
+        fin >> this->conditionMode;
+        if(this->conditionMode > 2 || this->conditionMode < 0)
+        {
+            ostringstream ossError;
+            ossError << "Wrong condition mode." << endl;
+            ossError << "1: none group based conditions" << endl;
+            ossError << "2: group based conditions, and all groups will appear in each section" << endl;
+            ossError << "3: group based conditions, and only one group will appear in each section" << endl;
+            MessageBox(NULL, (LPCSTR)(ossError.str().c_str()), NULL, MB_OK|MB_ICONERROR);
+            return FALSE;
+        }
+        getline(fin, junk);
+
         // Read 3D and 2D object coordinates referring to the screen
         fin >> junk;
         fin >> this->xyz3D[0] >> this->xyz3D[1] >> this->xyz3D[2];
@@ -185,16 +200,27 @@ BOOL Experiment::initSystem()
         fin >> junk;
         fin >> this->minDurationForEachTrial;
 
-        // Read number of sections
-        //fin >> junk >> this->maxSecNo; 
+        switch(this->conditionMode)
+        {
+            case 0:
+                // Read number of trials in each section
+                fin >> junk >> this->trialsPerSec;
 
-        // Read number of trials in each section
-        fin >> junk >> this->trialsPerSec;
+                this->experimentConditions =
+                    new Conditions(fin, this->objectFactories, *this->pScreen);
+                break;
+            case 1:
+                // Read number of sections
+                fin >> junk >> this->maxSecNo; 
 
-        //this->experimentConditions =
-        //    new groupBasedConditions(fin, this->objectFactories, *this->pScreen);
-        this->experimentConditions =
-            new Conditions(fin, this->objectFactories, *this->pScreen);
+                this->experimentConditions =
+                    new gBConditionsOneSecAllGroups(fin, this->objectFactories, *this->pScreen);
+                break;
+            case 2:
+                break;
+            default:
+                return FALSE;
+        }
 
         ret = this->experimentConditions->initConditions();
         fin.close();
@@ -209,11 +235,22 @@ BOOL Experiment::initSystem()
         return FALSE;
     }
 
-    // Generate the final condition list for one section
+    // Get the final condition list for one section
     const vector<cond_t *>& rConds = this->experimentConditions->getAllConditions(); 
-    //this->trialsPerSec = rConds.size();
-    this->maxSecNo = (UINT)ceil((double)rConds.size() / (double)this->trialsPerSec);
 
+    switch(this->conditionMode)
+    {
+        case 0:
+            this->maxSecNo = (UINT)ceil((double)rConds.size() / (double)this->trialsPerSec);
+            break;
+        case 1:
+            this->trialsPerSec = rConds.size();
+            break;
+        case 2:
+            break;
+        default:
+            return FALSE;
+    }
     return ret;
 }
 
@@ -246,7 +283,10 @@ BOOL Experiment::proceedExperiment()
 
             if(this->currSecNo < this->maxSecNo)
             {
-                this->experimentConditions->shuffleConditions(997);
+                if(this->conditionMode == 1)
+                    {
+                        this->experimentConditions->shuffleConditions(997);
+                    }
             }
         }
 

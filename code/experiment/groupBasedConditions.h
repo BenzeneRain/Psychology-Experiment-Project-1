@@ -14,24 +14,22 @@ class groupBasedConditions :
         virtual BOOL initConditions();
 
         virtual BOOL generateConditions();
+        virtual BOOL generateAllConditions();
 
         virtual BOOL clearConditions();
 
         virtual void shuffleConditions(int times);
         
         // get all conditions
-        virtual const vector<cond_t *>& getAllConditions();
+        virtual const vector<cond_t *>& getAllConditions() = 0;
 
         // get the specific condition using its index
-        virtual cond_t& operator[](int &rhs);
+        virtual cond_t& operator[](int &rhs) = 0;
 
-    private:
+    protected:
         int numGroups;
 
         vector< vector<int> * > constraintGroups;
         vector< vector<int> * > conditionGroups;
 
-        vector<cond_t *> shuffledConditions;
-
-        void updateShuffledConditions();
 };
