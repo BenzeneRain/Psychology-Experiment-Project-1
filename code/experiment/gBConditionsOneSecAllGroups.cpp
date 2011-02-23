@@ -19,10 +19,29 @@ gBConditionsOneSecAllGroups::~gBConditionsOneSecAllGroups(void)
 
 }
 
+BOOL gBConditionsOneSecAllGroups::initConditions()
+{
+   BOOL ret = groupBasedConditions::initConditions();
+
+   if(ret != FALSE)
+   {
+       // Generate conditions according to constraints
+       ret = this->generateAllConditions();
+   }
+
+   return ret;
+}
+
 void gBConditionsOneSecAllGroups::shuffleConditions(int times)
 {
+    for(int j = 0; j < times; j ++)
+    {
+        random_shuffle(this->conditionGroups.begin(), this->conditionGroups.end());
 
-    groupBasedConditions::shuffleConditions(times);
+        for(unsigned int i = 0; i < this->conditionGroups.size(); i ++)
+            random_shuffle(this->conditionGroups[i]->begin(), this->conditionGroups[i]->end());
+    }
+    //groupBasedConditions::shuffleConditions(times);
     this->updateShuffledConditions();
 }
 

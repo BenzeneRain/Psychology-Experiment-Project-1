@@ -12,6 +12,8 @@ class gBConditionsOneSecAllGroups :
 
         virtual ~gBConditionsOneSecAllGroups(void);
 
+        virtual BOOL initConditions();
+
         virtual void shuffleConditions(int times);
         
         // get all conditions

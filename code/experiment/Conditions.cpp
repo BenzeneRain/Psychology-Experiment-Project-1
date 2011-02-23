@@ -286,6 +286,16 @@ BOOL Conditions::readConstraints(ifstream& fin, vector<condCons_t *>& rConstrain
         string junk;
         fin >> junk >> numConstraints;
 
+        if(numConstraints <= 0)
+        {
+            ostringstream ossError;
+            ossError << "Wrong number of conditions: "
+                << numConstraints;
+            string errorMsg = ossError.str();
+            MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+            return FALSE;
+        }
+
         for(int iConstraint = 0; iConstraint < numConstraints; iConstraint ++)
         {
             int quantity;
@@ -833,7 +843,7 @@ BOOL Conditions::generateConditions()
 
     this->numConditions = totalWeights;
 
-    this->shuffleConditions(7);
+    //this->shuffleConditions(7);
     return TRUE;
 }
 
@@ -853,7 +863,7 @@ BOOL Conditions::generateAllConditions()
 
     this->numConditions = this->conditions.size();
 
-    this->shuffleConditions(1023);
+    //this->shuffleConditions(1023);
     return TRUE;
 }
 

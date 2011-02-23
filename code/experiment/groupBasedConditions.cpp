@@ -105,12 +105,7 @@ BOOL groupBasedConditions::initConditions()
         }
     }
 
-    // Generate conditions according to constraints
-    ret = this->generateAllConditions();
-    if(ret == FALSE)
-        return FALSE;
-
-    return TRUE;
+    return ret;
 }
  
 BOOL groupBasedConditions::generateConditions()
@@ -141,7 +136,7 @@ BOOL groupBasedConditions::generateConditions()
 
     this->numConditions = totalWeights;
 
-    this->shuffleConditions(7);
+    //this->shuffleConditions(7);
 
     return TRUE;
 }
@@ -175,7 +170,7 @@ BOOL groupBasedConditions::generateAllConditions()
 
     this->numConditions = this->conditions.size();
 
-    this->shuffleConditions(1023);
+    //this->shuffleConditions(1023);
 
     return TRUE;
 }
@@ -192,16 +187,4 @@ BOOL groupBasedConditions::clearConditions()
     }
 
     return ret;
-}
-
-void groupBasedConditions::shuffleConditions(int times)
-{
-
-    for(int j = 0; j < times; j ++)
-    {
-        random_shuffle(this->conditionGroups.begin(), this->conditionGroups.end());
-
-        for(unsigned int i = 0; i < this->conditionGroups.size(); i ++)
-            random_shuffle(this->conditionGroups[i]->begin(), this->conditionGroups[i]->end());
-    }
 }

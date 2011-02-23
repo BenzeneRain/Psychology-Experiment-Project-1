@@ -184,6 +184,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\gBConditionsOneSecOneGroup.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\groupBasedConditions.cpp"
 					>
 				</File>
@@ -307,6 +311,10 @@
 				</File>
 				<File
 					RelativePath=".\gBConditionsOneSecAllGroups.h"
+					>
+				</File>
+				<File
+					RelativePath=".\gBConditionsOneSecOneGroup.h"
 					>
 				</File>
 				<File

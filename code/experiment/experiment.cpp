@@ -10,6 +10,7 @@
 #include "CylinderFactory.h"
 #include "PostExperimentScene.h"
 #include "gBConditionsOneSecAllGroups.h"
+#include "gBConditionsOneSecOneGroup.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -217,12 +218,15 @@ BOOL Experiment::initSystem()
                     new gBConditionsOneSecAllGroups(fin, this->objectFactories, *this->pScreen);
                 break;
             case 2:
+                this->experimentConditions =
+                    new gBConditionsOneSecOneGroup(fin, this->objectFactories, *this->pScreen);
                 break;
             default:
                 return FALSE;
         }
 
         ret = this->experimentConditions->initConditions();
+        this->experimentConditions->shuffleConditions(1023);
         fin.close();
         if(ret == FALSE)
         {
@@ -247,6 +251,7 @@ BOOL Experiment::initSystem()
             this->trialsPerSec = rConds.size();
             break;
         case 2:
+            this->maxSecNo = (dynamic_cast<gBConditionsOneSecOneGroup *>(this->experimentConditions))->getTotalSectionNo();
             break;
         default:
             return FALSE;
@@ -264,6 +269,12 @@ BOOL Experiment::proceedExperiment()
 
     //proceed trials
     this->experimentConditions->shuffleConditions(997);
+    if(this->conditionMode == 2)
+    {
+        const vector<cond_t *>& rConds = this->experimentConditions->getAllConditions(); 
+        this->trialsPerSec = rConds.size();
+    }
+
     do
     {
         cond_t &rCond = (*this->experimentConditions)[(int&)this->currTrialID];
@@ -283,10 +294,23 @@ BOOL Experiment::proceedExperiment()
 
             if(this->currSecNo < this->maxSecNo)
             {
-                if(this->conditionMode == 1)
-                    {
+                switch(this->conditionMode)
+                {
+                    case 1:
                         this->experimentConditions->shuffleConditions(997);
-                    }
+                        break;
+                    case 2:
+                        {
+                            (dynamic_cast<gBConditionsOneSecOneGroup *>(this->experimentConditions))->stepSection();
+                            this->experimentConditions->shuffleConditions(997);
+
+                            const vector<cond_t *>& rConds = this->experimentConditions->getAllConditions(); 
+                            this->trialsPerSec = rConds.size();
+                            break;
+                        }
+                    default:
+                        break;
+                }
             }
         }
 

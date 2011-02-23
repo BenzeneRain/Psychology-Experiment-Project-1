@@ -18,7 +18,7 @@ class groupBasedConditions :
 
         virtual BOOL clearConditions();
 
-        virtual void shuffleConditions(int times);
+        virtual void shuffleConditions(int times) = 0;
         
         // get all conditions
         virtual const vector<cond_t *>& getAllConditions() = 0;
