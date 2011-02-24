@@ -64,14 +64,6 @@ vector<TestObject *> CylinderFactory::createAllObjects(condCons_t& constraint, v
         return pObjs;
     }
 
-    enumRotDirection defaultRotDirection;
-    int randInt = rand() % 2;
-
-    if(randInt == 0)
-        defaultRotDirection = CLOCKWISE;
-    else
-        defaultRotDirection = COUNTERCLOCKWISE;
-
     vector<int> indexBound;
     rangeType<GLfloat>*  ranges[] = {&constraint.pitchRange, &constraint.yawRange, &constraint.rollRange,
         &constraint.heightRange, &constraint.initZAsptRatioRange, &constraint.rotSpeedRange,
@@ -92,6 +84,15 @@ vector<TestObject *> CylinderFactory::createAllObjects(condCons_t& constraint, v
 
     for(int i = 0; i < (int)parameterIndices.size(); i ++)
     {
+
+        enumRotDirection defaultRotDirection;
+        int randInt = rand() % 2;
+
+        if(randInt == 0)
+            defaultRotDirection = CLOCKWISE;
+        else
+          defaultRotDirection = COUNTERCLOCKWISE;
+
         CylinderObject *pObj = new CylinderObject(constraint.pitchRange, 
                 constraint.yawRange,
                 constraint.rollRange,

@@ -15,13 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_00A07CC2752A4334B2B7175E56A1FAC5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_02583B71777049D99364BF49194C3D15"
+        "MsmKey" = "8:_0293D8CF7BEC400C8F24F078DE2B67B5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -45,7 +39,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_04BDC22C77004DB7A9F0C69001FB9AAD"
+        "MsmKey" = "8:_05AF6F94559E4B5F918F8947BD46C3D6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0BC2C226E55C41ECA24F5757BEF150F3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0CB48632131542B28DBB27FEDA60E6D7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -57,7 +63,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_12B563C63E004C29921E280B65485D4C"
+        "MsmKey" = "8:_110A94BC19A1410183DA9DED8DFDB44F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -69,43 +75,31 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_12CD3EBE26B34C58BB51821895790715"
+        "MsmKey" = "8:_16AD2A8E35DE4C4C90C85A0CE96896DE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_138C21F90BC24C5AB4412526D769BCEF"
+        "MsmKey" = "8:_178FB5A1845649D3BD2B9A0622E54D2A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_16E7A4171FFF429ABC1E561141696E37"
+        "MsmKey" = "8:_19EDC06B63A94B6A82F92F3A5A3C8CD2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_16FEB98D6BE64E368DCB0622BFA2E46D"
+        "MsmKey" = "8:_1A6F11CE62B04BD788B14CEA4333F700"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_17054100A00847318DF94A9FE51AA2E8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1C7D8E4420244F9396EBA12D3E126F15"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1DC2A81A94E74FE291CB268F4881C1CC"
+        "MsmKey" = "8:_1DB48CC6F3B84E24B2ED5357B87CDDE5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -117,37 +111,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2093C91F18624F2B8A76E2DD625FDD6A"
+        "MsmKey" = "8:_2665083992784DFDB7EC518CF69BB728"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_25C5DC1B965941DDA31A806453074151"
+        "MsmKey" = "8:_2D135214C1A54CA4A6B67B21C92A29AA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_2B61F608D6D34EFFAE480786839B597C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2C2CB4FE8418415EBFF0C5E4D972364E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2EEAD99AF9F14128959250FCDA315AEC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2F0DF960B346447D93F43AA0D902C781"
+        "MsmKey" = "8:_33CE85D44DCC45F48D6FE048D4516237"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -159,7 +135,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_340330B2F5934E93BA73EB1662E7E0AB"
+        "MsmKey" = "8:_35D696933BAD4953A3997A2092D0C0A0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -171,25 +147,37 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_384960925F8E447CA8B0693330086BA7"
+        "MsmKey" = "8:_3933B15D92E84693B3CBD21019910241"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_38C1FDE1262346088054C3F6F77AD226"
+        "MsmKey" = "8:_3AA6F5937E6A44F39616F668514B64D2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3C588634644E47A18282C9214F7CB579"
+        "MsmKey" = "8:_3AF66A769609418F8A241516CE3D2D20"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_457A00A3C7F94BBA8D3813BA24AD52D9"
+        "MsmKey" = "8:_4043AF7F099D48EFBA6F24CF7038A3B1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_410E84BA6DB1422982424CFFCBBF6EBD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_414C3719F35A4038A755F3B8354D3F58"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -207,31 +195,37 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4FE022E3B77E4C3483E169062EB35D70"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_50EF0AC1E2534AFAAC7B93EC68521987"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_57C21AD35E634C4B86EC39FFAA6F6C0A"
+        "MsmKey" = "8:_54F064B31F4A4EA292672A002C3D91AA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_58E3F7C90FD74056807CA0CD177AF215"
+        "MsmKey" = "8:_58F2961C89EE45FBB82CF539F1F3C7A5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_59E1830096F54833B843EB04C93CF3BD"
+        "MsmKey" = "8:_5BB9B3D26D374029848A01A7FD55DB0B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_5C3BD125F13F4293B2C20A1D0E9B8C32"
+        "MsmKey" = "8:_5C5BC82925904B5684BF0F5285DCFB48"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -255,31 +249,49 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6099C84912A44BB2BCE031407CD8210F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_610CB07EC469400982153D7C08523FA6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_627987086EC9454DA7311AE8BAC846F2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6436CF8BB5FC44A0B5311E55045FE44D"
+        "MsmKey" = "8:_63A800ADB4B04BEB84A74EBE5E00FE99"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_64BF9100D6454876B2B96D29DD1A0D76"
+        "MsmKey" = "8:_65020A5B2B6D49A398E5E13EE7F54188"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_67C6542F06A54FEFB94DFCF5DA008571"
+        "MsmKey" = "8:_652A7F8E99864E519EE9659B3FA51DAF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_6B520C02697849488DC649B23EC90FE6"
+        "MsmKey" = "8:_683531BBD1A14AA8AD6ECE8B95C3ACF6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_699E8DBC8B3948389ED1B63D7C7FDA70"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -291,7 +303,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6F668A3D536340B59DCBA09B33A7A0A2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6FE28D8FB91841E6A73735344C353617"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_70B8CF6062D449F7805CFC188C1C2518"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -303,19 +327,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_756F262E3D084CFD93A05DDC7655404E"
+        "MsmKey" = "8:_75470C0F41C8451EB58F9DDE6749A39E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7619C6DE6B3445568AA969CFFFB4D065"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_7659DC42433A480B81A827B78AA9CF5F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_76E85BC555A746E39B6B02A0DC526C56"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -333,7 +357,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8159D14778D148BC85EA4BE93D4BA0E8"
+        "MsmKey" = "8:_7F6462DE1E3C44F6BEA0884B7D9A223F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -345,43 +369,67 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8219612DB0024872B0C5243B0896A38B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_83884BCBF62D43E4A46FA0EAE01531F1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_84711D69D7C0417B8270907E64A443B5"
+        "MsmKey" = "8:_83AF7852B2274CA58E943B29F609DE09"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_879D6A59C3CC496BA38202D9043C05C9"
+        "MsmKey" = "8:_83C4B01379AE4E8F9CEEE7591B61029B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_880B75CC6341402DAEC1A4E1CAD94706"
+        "MsmKey" = "8:_86495C6EE4FF48A3883506ECE3BBF029"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_8F11BC78536F425E9F211EDFC5EA15A8"
+        "MsmKey" = "8:_889CCF0EE64C49D290B07F507FB0A629"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_901627C77E244CC2990C679676E50A68"
+        "MsmKey" = "8:_8C71D3428FA14D35B8109E8724893CCF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8EFA798C06804BB383652EFAFD42696C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_919D714248FC40A3BCFD0D5D865C15AC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_91ECA456095B457388D45F092245E14E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9224BCBEA47D492AB0CD2E64B0BFD8BA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9333B482FE6442109AE1CCE946CA3EE5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -399,31 +447,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_96065E7BA7E640E2A759D5EC4BF7236E"
+        "MsmKey" = "8:_98718D1D426D4B8D861F954B4948DABF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_989AFC883B0D4988A2B97AE8F40D1EBB"
+        "MsmKey" = "8:_9B507C18CDCB404D862EE30895B1CFD5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_99571BA2B4BD4769B8EE9164F5FB2C6B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9A6FC12D5257498E811134F6C5A80E48"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9BF198A65F1A4263B7473FED61E9A7A9"
+        "MsmKey" = "8:_9BA3C254E6CC4171847356AD640511B4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -435,13 +471,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9DBDD5CC64DE45D5813BEDB22FC88721"
+        "MsmKey" = "8:_9DCA3391BAE445918EFA713BCC49C525"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A15021E26D824E71BC99EBA19645B751"
+        "MsmKey" = "8:_A0BD7FD5005A4123BA81146F4A05E49E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A354020E229B411B83F1AD9720BF068D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -453,13 +495,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A54A9E0C47314E7F9671CD991804CD82"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A6BFB757875C4045B88D1DAAFD8277DB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A7250A015CBC16BCB05A77305CE1A04C"
         "OwnerKey" = "8:_5FA825059CCA44EC9ECAD2A86F64CC42"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A923F3393FC54A538B625D6455CD16DA"
+        "MsmKey" = "8:_A96086B27CBC4E56B0D62E5686B5115D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -477,13 +531,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_AD910D58669143BAB3FE784B7B794C43"
+        "MsmKey" = "8:_AA902732B76E4C668363E9B421CFEB7D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_ADC849C176B94461A14D4131EB115B6D"
+        "MsmKey" = "8:_ACEB2D9518944AC189F0C16DB1F66648"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_AD910D58669143BAB3FE784B7B794C43"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -495,13 +555,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_AF8CEEEEE6FC4EC2AA713E5DC8D4D333"
+        "MsmKey" = "8:_AF747A0D7FB945CEA569E242D20BFE15"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B14A14CD8D4546BF82B0948F2FB615AB"
+        "MsmKey" = "8:_B2284BCC2D18401CA7C01C584E4D080F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B25255C9B85A4C4FBA8B1DE7D3FC8A2B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -513,13 +579,31 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B80380F967A04257A61C66E8E4CC449F"
+        "MsmKey" = "8:_B3A838B4A45B42DF9B6C26D47143D7D5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BA27E3CFBB4D4CAA994447EF5742AB81"
+        "MsmKey" = "8:_B4DBF17725144A2EADD83D6D3E368F38"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B502B5D0E7134FA298119A3DF67B4652"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B72E4D46E1A54FF786CBB8B10E502F0C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B80380F967A04257A61C66E8E4CC449F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -531,7 +615,25 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BD1C3C612B5C48F7A6CF3ED3C316822C"
+        "MsmKey" = "8:_BC9009C982FE436699540F7BE1DFCAB2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BD7C7405BC5342F4A26CF1FB7EF89380"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BE4DE798D34B44FABEB25789BAA33A85"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BEE3261D73D44475AFDCE9715E92BCDD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -549,7 +651,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BF9FC363F57D43B2BFA392FC50FE43D1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C059D1D920F14E40A1193CC516E71C04"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C09A7165FD4B47609E7013388CD7449F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C0E57D01BA4F42008736802491B5A3F9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -561,13 +681,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C2D412E7785F42E9A3AD8C8DAB2CF859"
+        "MsmKey" = "8:_C4C2E7688D4545E1A8477F39BEEDB672"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_C328708E33D34AE1984F94793363970B"
+        "MsmKey" = "8:_C5BE923D3FF8492EA2D2C057E4DC2D0C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -579,19 +699,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C6AC49BF9A2A445BAC128DAD4E0F4ACD"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_C7764421284D49C0B0E46AA0EBD7F41C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_C8CFA16136CD415A9D0AD8A5AFBE1097"
+        "MsmKey" = "8:_C8AB7C8B31764496AACBE53017A59A24"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -603,7 +717,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CBAEA49D692F4B06B1BF9B788950476C"
+        "MsmKey" = "8:_CB81C80697604B69B0444042EF7B9DF2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -615,7 +729,37 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_CD9C89698D354FF9BE3BAA1C4AD1FFDA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_CE23C8FB42D949FEA278F1A6A9E2D363"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D036530205084EC9968B2C4056FEDAD2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D4B92A67E8324E2DA61EDFA238E928EA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D78F43C6754544EEB1E169ADE94C61F7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D7DD5A8A439241EF907153A1CD12CDCF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -627,37 +771,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_DC0A7D0957394CAD951EA59E7A6F593A"
+        "MsmKey" = "8:_DD2BF172052845389194FBCE8B6FFD58"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_E09FAAB8C06248AFA32CBED84D2F31B4"
+        "MsmKey" = "8:_E0489365EEA148E7A311523EBE2FDFA7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_E388DF709599449D88C9B9EF936EAADB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E5CE3E7DCF8F4BDDB4DE76F19E5A9674"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E672A90504624E50B9E300EEE68CD0BF"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E6850D189FEE48309062C111077E1E2D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -699,13 +825,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_EEEE9D08004B46EFA94AB5E01CB861E0"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F1EB9AE23C364D069930B8803F638B65"
+        "MsmKey" = "8:_EED3C35FC4F145B5AFF1ACCA0E8AA49C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -717,25 +837,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F41B9F32A7CF49079161D5FC0CD010D3"
+        "MsmKey" = "8:_F531302A0AE5433C83048538876A202F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F6F7C55B0CFC4AEE9EC0FFD0B25F688A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F84FC44CD1B747378B6320C877A6CAC1"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F9BBFA61E66842A3AD7A53DAA9F645CE"
+        "MsmKey" = "8:_F5B5195AC83B425D9740A0607873BB9A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -747,7 +855,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_FCF1461AAD22405FAF439075DC1CDD68"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_FF5361699BA54CE498BDDFC74001B333"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FF62B4700B7D46C098E6AE346E905142"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FF869E8ED5384CDC8C88C94AD12805E0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -848,30 +974,10 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_00A07CC2752A4334B2B7175E56A1FAC5"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0293D8CF7BEC400C8F24F078DE2B67B5"
             {
-            "SourcePath" = "8:..\\experiment\\TestObject.h"
-            "TargetName" = "8:TestObject.h"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_02583B71777049D99364BF49194C3D15"
-            {
-            "SourcePath" = "8:..\\experiment\\gBConditionsOneSecAllGroups.cpp"
-            "TargetName" = "8:gBConditionsOneSecAllGroups.cpp"
+            "SourcePath" = "8:..\\experiment\\Trial.h"
+            "TargetName" = "8:Trial.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -948,10 +1054,50 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_04BDC22C77004DB7A9F0C69001FB9AAD"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_05AF6F94559E4B5F918F8947BD46C3D6"
             {
-            "SourcePath" = "8:..\\experiment\\experiment.vcproj.HKUPSY-JEFF.Wayne.user"
-            "TargetName" = "8:experiment.vcproj.HKUPSY-JEFF.Wayne.user"
+            "SourcePath" = "8:..\\experiment\\Trial.cpp"
+            "TargetName" = "8:Trial.cpp"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0BC2C226E55C41ECA24F5757BEF150F3"
+            {
+            "SourcePath" = "8:..\\experiment\\PreTrialScene.cpp"
+            "TargetName" = "8:PreTrialScene.cpp"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0CB48632131542B28DBB27FEDA60E6D7"
+            {
+            "SourcePath" = "8:..\\experiment\\PostExperimentScene.cpp"
+            "TargetName" = "8:PostExperimentScene.cpp"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -988,10 +1134,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_12B563C63E004C29921E280B65485D4C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_110A94BC19A1410183DA9DED8DFDB44F"
             {
-            "SourcePath" = "8:..\\experiment\\Screen.h"
-            "TargetName" = "8:Screen.h"
+            "SourcePath" = "8:..\\experiment\\gBConditionsOneSecAllGroups.cpp"
+            "TargetName" = "8:gBConditionsOneSecAllGroups.cpp"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1028,130 +1174,90 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_12CD3EBE26B34C58BB51821895790715"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_16AD2A8E35DE4C4C90C85A0CE96896DE"
+            {
+            "SourcePath" = "8:..\\experiment\\ConfigurationReadMe(NonGroupBased).txt"
+            "TargetName" = "8:ConfigurationReadMe(NonGroupBased).txt"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_178FB5A1845649D3BD2B9A0622E54D2A"
+            {
+            "SourcePath" = "8:..\\experiment\\CylinderObject.cpp"
+            "TargetName" = "8:CylinderObject.cpp"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_19EDC06B63A94B6A82F92F3A5A3C8CD2"
+            {
+            "SourcePath" = "8:..\\experiment\\Separate2D3DViewScene.h"
+            "TargetName" = "8:Separate2D3DViewScene.h"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1A6F11CE62B04BD788B14CEA4333F700"
+            {
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\conditionGroup1-practice.txt"
+            "TargetName" = "8:conditionGroup1-practice.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_6C5C23F6DEC34350B4A563D8A07D6725"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1DB48CC6F3B84E24B2ED5357B87CDDE5"
             {
             "SourcePath" = "8:..\\experiment\\ConfWnd.h"
             "TargetName" = "8:ConfWnd.h"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_138C21F90BC24C5AB4412526D769BCEF"
-            {
-            "SourcePath" = "8:..\\experiment\\experiment.sln"
-            "TargetName" = "8:experiment.sln"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_16E7A4171FFF429ABC1E561141696E37"
-            {
-            "SourcePath" = "8:..\\experiment\\experiment.cpp"
-            "TargetName" = "8:experiment.cpp"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_16FEB98D6BE64E368DCB0622BFA2E46D"
-            {
-            "SourcePath" = "8:..\\experiment\\StereoViewingFrameV2.h"
-            "TargetName" = "8:StereoViewingFrameV2.h"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_17054100A00847318DF94A9FE51AA2E8"
-            {
-            "SourcePath" = "8:..\\experiment\\resource.h"
-            "TargetName" = "8:resource.h"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1C7D8E4420244F9396EBA12D3E126F15"
-            {
-            "SourcePath" = "8:..\\experiment\\tags"
-            "TargetName" = "8:tags"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1DC2A81A94E74FE291CB268F4881C1CC"
-            {
-            "SourcePath" = "8:..\\experiment\\Separate2D3DViewScene.cpp"
-            "TargetName" = "8:Separate2D3DViewScene.cpp"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1188,7 +1294,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2093C91F18624F2B8A76E2DD625FDD6A"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2665083992784DFDB7EC518CF69BB728"
             {
             "SourcePath" = "8:..\\experiment\\TestObjectFactory.cpp"
             "TargetName" = "8:TestObjectFactory.cpp"
@@ -1208,10 +1314,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_25C5DC1B965941DDA31A806453074151"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2D135214C1A54CA4A6B67B21C92A29AA"
             {
-            "SourcePath" = "8:..\\experiment\\texture.h"
-            "TargetName" = "8:texture.h"
+            "SourcePath" = "8:..\\experiment\\MixedObjectViewScene.cpp"
+            "TargetName" = "8:MixedObjectViewScene.cpp"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1228,70 +1334,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2B61F608D6D34EFFAE480786839B597C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_33CE85D44DCC45F48D6FE048D4516237"
             {
-            "SourcePath" = "8:..\\experiment\\freeglut.dll"
-            "TargetName" = "8:freeglut.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2C2CB4FE8418415EBFF0C5E4D972364E"
-            {
-            "SourcePath" = "8:..\\experiment\\CylinderObject.h"
-            "TargetName" = "8:CylinderObject.h"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2EEAD99AF9F14128959250FCDA315AEC"
-            {
-            "SourcePath" = "8:..\\experiment\\PreTrialScene.cpp"
-            "TargetName" = "8:PreTrialScene.cpp"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2F0DF960B346447D93F43AA0D902C781"
-            {
-            "SourcePath" = "8:..\\experiment\\PostExperimentScene.cpp"
-            "TargetName" = "8:PostExperimentScene.cpp"
+            "SourcePath" = "8:..\\experiment\\Separate2D3DViewScene.cpp"
+            "TargetName" = "8:Separate2D3DViewScene.cpp"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1328,10 +1374,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_340330B2F5934E93BA73EB1662E7E0AB"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_35D696933BAD4953A3997A2092D0C0A0"
             {
-            "SourcePath" = "8:..\\experiment\\groupBasedConditions.cpp"
-            "TargetName" = "8:groupBasedConditions.cpp"
+            "SourcePath" = "8:..\\experiment\\ConfigurationReadMe(GroupBased).txt"
+            "TargetName" = "8:ConfigurationReadMe(GroupBased).txt"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1368,10 +1414,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_384960925F8E447CA8B0693330086BA7"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3933B15D92E84693B3CBD21019910241"
             {
-            "SourcePath" = "8:..\\experiment\\Conditions.cpp"
-            "TargetName" = "8:Conditions.cpp"
+            "SourcePath" = "8:..\\experiment\\targetver.h"
+            "TargetName" = "8:targetver.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1388,10 +1434,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_38C1FDE1262346088054C3F6F77AD226"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3AA6F5937E6A44F39616F668514B64D2"
             {
-            "SourcePath" = "8:..\\experiment\\stdafx.h"
-            "TargetName" = "8:stdafx.h"
+            "SourcePath" = "8:..\\experiment\\Overlapped2DViewScene.h"
+            "TargetName" = "8:Overlapped2DViewScene.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1408,10 +1454,50 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3C588634644E47A18282C9214F7CB579"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3AF66A769609418F8A241516CE3D2D20"
             {
-            "SourcePath" = "8:..\\experiment\\Trial.h"
-            "TargetName" = "8:Trial.h"
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\conditionGroup2-experiment.txt"
+            "TargetName" = "8:conditionGroup2-experiment.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_6C5C23F6DEC34350B4A563D8A07D6725"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4043AF7F099D48EFBA6F24CF7038A3B1"
+            {
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\conditionGroup1-practice.txt"
+            "TargetName" = "8:conditionGroup1-practice.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_195148BB79394C2DB954A69C2A0393BD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_410E84BA6DB1422982424CFFCBBF6EBD"
+            {
+            "SourcePath" = "8:..\\experiment\\gBConditionsOneSecOneGroup.h"
+            "TargetName" = "8:gBConditionsOneSecOneGroup.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1428,10 +1514,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_457A00A3C7F94BBA8D3813BA24AD52D9"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_414C3719F35A4038A755F3B8354D3F58"
             {
-            "SourcePath" = "8:..\\experiment\\glew32.dll"
-            "TargetName" = "8:glew32.dll"
+            "SourcePath" = "8:..\\experiment\\freeglut.lib"
+            "TargetName" = "8:freeglut.lib"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1488,6 +1574,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4FE022E3B77E4C3483E169062EB35D70"
+            {
+            "SourcePath" = "8:..\\experiment\\config\\config-practice.txt"
+            "TargetName" = "8:config-practice.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_4CD9195E57A640DDA81B6C6DCCDCD9C0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_50EF0AC1E2534AFAAC7B93EC68521987"
             {
             "SourcePath" = "8:SFM.vdproj"
@@ -1508,10 +1614,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_57C21AD35E634C4B86EC39FFAA6F6C0A"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_54F064B31F4A4EA292672A002C3D91AA"
             {
-            "SourcePath" = "8:..\\experiment\\experiment.suo"
-            "TargetName" = "8:experiment.suo"
+            "SourcePath" = "8:..\\experiment\\TestObject.h"
+            "TargetName" = "8:TestObject.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1528,10 +1634,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_58E3F7C90FD74056807CA0CD177AF215"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_58F2961C89EE45FBB82CF539F1F3C7A5"
             {
-            "SourcePath" = "8:..\\experiment\\glew32.lib"
-            "TargetName" = "8:glew32.lib"
+            "SourcePath" = "8:..\\experiment\\glew32.dll"
+            "TargetName" = "8:glew32.dll"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1548,10 +1654,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_59E1830096F54833B843EB04C93CF3BD"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5BB9B3D26D374029848A01A7FD55DB0B"
             {
-            "SourcePath" = "8:..\\experiment\\rangeType.cpp"
-            "TargetName" = "8:rangeType.cpp"
+            "SourcePath" = "8:..\\experiment\\Conditions.h"
+            "TargetName" = "8:Conditions.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1568,10 +1674,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5C3BD125F13F4293B2C20A1D0E9B8C32"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5C5BC82925904B5684BF0F5285DCFB48"
             {
-            "SourcePath" = "8:..\\experiment\\Separate2D3DViewScene.h"
-            "TargetName" = "8:Separate2D3DViewScene.h"
+            "SourcePath" = "8:..\\experiment\\PureWordScene.cpp"
+            "TargetName" = "8:PureWordScene.cpp"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1628,6 +1734,46 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6099C84912A44BB2BCE031407CD8210F"
+            {
+            "SourcePath" = "8:..\\experiment\\cml_config.h"
+            "TargetName" = "8:cml_config.h"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_610CB07EC469400982153D7C08523FA6"
+            {
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\conditionGroup1-practice.txt"
+            "TargetName" = "8:conditionGroup1-practice.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_7AFDCB4BB4AB40AD8CD2CFC184133A6B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_627987086EC9454DA7311AE8BAC846F2"
             {
             "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionAllGroups\\conditionGroup3-practice.txt"
@@ -1648,10 +1794,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6436CF8BB5FC44A0B5311E55045FE44D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_63A800ADB4B04BEB84A74EBE5E00FE99"
             {
-            "SourcePath" = "8:..\\experiment\\ConditionConstraints.h"
-            "TargetName" = "8:ConditionConstraints.h"
+            "SourcePath" = "8:..\\experiment\\stdafx.cpp"
+            "TargetName" = "8:stdafx.cpp"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1668,30 +1814,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_64BF9100D6454876B2B96D29DD1A0D76"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_65020A5B2B6D49A398E5E13EE7F54188"
             {
-            "SourcePath" = "8:..\\experiment\\config\\config-experiment.txt"
-            "TargetName" = "8:config-experiment.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_4CD9195E57A640DDA81B6C6DCCDCD9C0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_67C6542F06A54FEFB94DFCF5DA008571"
-            {
-            "SourcePath" = "8:..\\experiment\\PureWordScene.h"
-            "TargetName" = "8:PureWordScene.h"
+            "SourcePath" = "8:..\\experiment\\CylinderFactory.h"
+            "TargetName" = "8:CylinderFactory.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1708,10 +1834,50 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6B520C02697849488DC649B23EC90FE6"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_652A7F8E99864E519EE9659B3FA51DAF"
             {
-            "SourcePath" = "8:..\\experiment\\Conditions.h"
-            "TargetName" = "8:Conditions.h"
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\config-practice.txt"
+            "TargetName" = "8:config-practice.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_195148BB79394C2DB954A69C2A0393BD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_683531BBD1A14AA8AD6ECE8B95C3ACF6"
+            {
+            "SourcePath" = "8:..\\experiment\\Screen.h"
+            "TargetName" = "8:Screen.h"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_699E8DBC8B3948389ED1B63D7C7FDA70"
+            {
+            "SourcePath" = "8:..\\experiment\\experiment.rc"
+            "TargetName" = "8:experiment.rc"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1748,12 +1914,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F668A3D536340B59DCBA09B33A7A0A2"
+            {
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\conditionGroup1-experiment.txt"
+            "TargetName" = "8:conditionGroup1-experiment.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_7AFDCB4BB4AB40AD8CD2CFC184133A6B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6FE28D8FB91841E6A73735344C353617"
             {
             "SourcePath" = "8:..\\experiment\\textures\\sidetexsparse-1.bmp"
             "TargetName" = "8:sidetexsparse-1.bmp"
             "Tag" = "8:"
             "Folder" = "8:_BB29303E83D74229BA73B17D24626BFE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_70B8CF6062D449F7805CFC188C1C2518"
+            {
+            "SourcePath" = "8:..\\experiment\\groupBasedConditions.cpp"
+            "TargetName" = "8:groupBasedConditions.cpp"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1788,12 +1994,32 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_756F262E3D084CFD93A05DDC7655404E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_75470C0F41C8451EB58F9DDE6749A39E"
             {
-            "SourcePath" = "8:..\\experiment\\PureWordScene.cpp"
-            "TargetName" = "8:PureWordScene.cpp"
+            "SourcePath" = "8:..\\experiment\\TestObjectFactory.h"
+            "TargetName" = "8:TestObjectFactory.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7619C6DE6B3445568AA969CFFFB4D065"
+            {
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\config-practice.txt"
+            "TargetName" = "8:config-practice.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_6C5C23F6DEC34350B4A563D8A07D6725"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1814,26 +2040,6 @@
             "TargetName" = "8:conditionGroup4-experiment.txt"
             "Tag" = "8:"
             "Folder" = "8:_914B8ABFB9194387B1631BCC1E43E5BC"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_76E85BC555A746E39B6B02A0DC526C56"
-            {
-            "SourcePath" = "8:..\\experiment\\CylinderObject.cpp"
-            "TargetName" = "8:CylinderObject.cpp"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1888,10 +2094,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8159D14778D148BC85EA4BE93D4BA0E8"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7F6462DE1E3C44F6BEA0884B7D9A223F"
             {
-            "SourcePath" = "8:..\\experiment\\groupBasedConditions.h"
-            "TargetName" = "8:groupBasedConditions.h"
+            "SourcePath" = "8:..\\experiment\\PostExperimentScene.h"
+            "TargetName" = "8:PostExperimentScene.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -1928,26 +2134,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8219612DB0024872B0C5243B0896A38B"
-            {
-            "SourcePath" = "8:..\\experiment\\experiment.rc"
-            "TargetName" = "8:experiment.rc"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_83884BCBF62D43E4A46FA0EAE01531F1"
             {
             "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionAllGroups\\config-experiment.txt"
@@ -1968,12 +2154,152 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_84711D69D7C0417B8270907E64A443B5"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_83AF7852B2274CA58E943B29F609DE09"
+            {
+            "SourcePath" = "8:..\\experiment\\resource.h"
+            "TargetName" = "8:resource.h"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_83C4B01379AE4E8F9CEEE7591B61029B"
+            {
+            "SourcePath" = "8:..\\experiment\\StereoViewingFrameV2.cpp"
+            "TargetName" = "8:StereoViewingFrameV2.cpp"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_86495C6EE4FF48A3883506ECE3BBF029"
+            {
+            "SourcePath" = "8:..\\experiment\\groupBasedConditions.h"
+            "TargetName" = "8:groupBasedConditions.h"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_889CCF0EE64C49D290B07F507FB0A629"
+            {
+            "SourcePath" = "8:..\\experiment\\ReadMe.txt"
+            "TargetName" = "8:ReadMe.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8C71D3428FA14D35B8109E8724893CCF"
+            {
+            "SourcePath" = "8:..\\experiment\\CylinderFactory.cpp"
+            "TargetName" = "8:CylinderFactory.cpp"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8EFA798C06804BB383652EFAFD42696C"
+            {
+            "SourcePath" = "8:..\\experiment\\config\\conditionGroup2-experiment.txt"
+            "TargetName" = "8:conditionGroup2-experiment.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_4CD9195E57A640DDA81B6C6DCCDCD9C0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_919D714248FC40A3BCFD0D5D865C15AC"
+            {
+            "SourcePath" = "8:..\\experiment\\ConfWnd.cpp"
+            "TargetName" = "8:ConfWnd.cpp"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_91ECA456095B457388D45F092245E14E"
             {
             "SourcePath" = "8:..\\experiment\\config\\config-experiment.txt"
             "TargetName" = "8:config-experiment.txt"
             "Tag" = "8:"
-            "Folder" = "8:_6C5C23F6DEC34350B4A563D8A07D6725"
+            "Folder" = "8:_4CD9195E57A640DDA81B6C6DCCDCD9C0"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1988,10 +2314,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_879D6A59C3CC496BA38202D9043C05C9"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9224BCBEA47D492AB0CD2E64B0BFD8BA"
             {
-            "SourcePath" = "8:..\\experiment\\rangeType.h"
-            "TargetName" = "8:rangeType.h"
+            "SourcePath" = "8:..\\experiment\\small.ico"
+            "TargetName" = "8:small.ico"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -2008,50 +2334,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_880B75CC6341402DAEC1A4E1CAD94706"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9333B482FE6442109AE1CCE946CA3EE5"
             {
-            "SourcePath" = "8:..\\experiment\\MixedObjectViewScene.cpp"
-            "TargetName" = "8:MixedObjectViewScene.cpp"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8F11BC78536F425E9F211EDFC5EA15A8"
-            {
-            "SourcePath" = "8:..\\experiment\\experiment.h"
-            "TargetName" = "8:experiment.h"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_901627C77E244CC2990C679676E50A68"
-            {
-            "SourcePath" = "8:..\\experiment\\stdafx.cpp"
-            "TargetName" = "8:stdafx.cpp"
+            "SourcePath" = "8:..\\experiment\\freeglut.dll"
+            "TargetName" = "8:freeglut.dll"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -2108,10 +2394,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_96065E7BA7E640E2A759D5EC4BF7236E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_98718D1D426D4B8D861F954B4948DABF"
             {
-            "SourcePath" = "8:..\\experiment\\TestObjectFactory.h"
-            "TargetName" = "8:TestObjectFactory.h"
+            "SourcePath" = "8:..\\experiment\\experiment.h"
+            "TargetName" = "8:experiment.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -2128,10 +2414,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_989AFC883B0D4988A2B97AE8F40D1EBB"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9B507C18CDCB404D862EE30895B1CFD5"
             {
-            "SourcePath" = "8:..\\experiment\\experiment.ico"
-            "TargetName" = "8:experiment.ico"
+            "SourcePath" = "8:..\\experiment\\CylinderObject.h"
+            "TargetName" = "8:CylinderObject.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -2148,50 +2434,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_99571BA2B4BD4769B8EE9164F5FB2C6B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9BA3C254E6CC4171847356AD640511B4"
             {
-            "SourcePath" = "8:..\\experiment\\Scene.h"
-            "TargetName" = "8:Scene.h"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9A6FC12D5257498E811134F6C5A80E48"
-            {
-            "SourcePath" = "8:..\\experiment\\dualscreencalib.txt"
-            "TargetName" = "8:dualscreencalib.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9BF198A65F1A4263B7473FED61E9A7A9"
-            {
-            "SourcePath" = "8:..\\experiment\\MixedObjectViewScene.h"
-            "TargetName" = "8:MixedObjectViewScene.h"
+            "SourcePath" = "8:..\\experiment\\texture.h"
+            "TargetName" = "8:texture.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -2228,10 +2474,30 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9DBDD5CC64DE45D5813BEDB22FC88721"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9DCA3391BAE445918EFA713BCC49C525"
             {
-            "SourcePath" = "8:..\\experiment\\PreTrialScene.h"
-            "TargetName" = "8:PreTrialScene.h"
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\conditionGroup2-experiment.txt"
+            "TargetName" = "8:conditionGroup2-experiment.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_7AFDCB4BB4AB40AD8CD2CFC184133A6B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A0BD7FD5005A4123BA81146F4A05E49E"
+            {
+            "SourcePath" = "8:..\\experiment\\experiment.vcproj.HKUPSY-JEFF.Wayne.user"
+            "TargetName" = "8:experiment.vcproj.HKUPSY-JEFF.Wayne.user"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -2248,10 +2514,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A15021E26D824E71BC99EBA19645B751"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A354020E229B411B83F1AD9720BF068D"
             {
-            "SourcePath" = "8:..\\experiment\\Scene.cpp"
-            "TargetName" = "8:Scene.cpp"
+            "SourcePath" = "8:..\\experiment\\stdafx.h"
+            "TargetName" = "8:stdafx.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -2288,6 +2554,46 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A54A9E0C47314E7F9671CD991804CD82"
+            {
+            "SourcePath" = "8:..\\experiment\\dualscreencalib.txt"
+            "TargetName" = "8:dualscreencalib.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A6BFB757875C4045B88D1DAAFD8277DB"
+            {
+            "SourcePath" = "8:..\\experiment\\Scene.h"
+            "TargetName" = "8:Scene.h"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A7250A015CBC16BCB05A77305CE1A04C"
             {
             "SourcePath" = "8:glew32.dll"
@@ -2308,10 +2614,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A923F3393FC54A538B625D6455CD16DA"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A96086B27CBC4E56B0D62E5686B5115D"
             {
-            "SourcePath" = "8:..\\experiment\\gBConditionsOneSecAllGroups.h"
-            "TargetName" = "8:gBConditionsOneSecAllGroups.h"
+            "SourcePath" = "8:..\\experiment\\PreTrialScene.h"
+            "TargetName" = "8:PreTrialScene.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -2368,12 +2674,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AD910D58669143BAB3FE784B7B794C43"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AA902732B76E4C668363E9B421CFEB7D"
             {
-            "SourcePath" = "8:..\\experiment\\textures\\toptexsparse-1.bmp"
-            "TargetName" = "8:toptexsparse-1.bmp"
+            "SourcePath" = "8:..\\experiment\\StereoViewingFrameV2.h"
+            "TargetName" = "8:StereoViewingFrameV2.h"
             "Tag" = "8:"
-            "Folder" = "8:_2F6D7CCDE1644B3BA296F1869182AFB8"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2388,12 +2694,32 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ADC849C176B94461A14D4131EB115B6D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ACEB2D9518944AC189F0C16DB1F66648"
             {
-            "SourcePath" = "8:..\\experiment\\experiment.vcproj"
-            "TargetName" = "8:experiment.vcproj"
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\conditionGroup2-practice.txt"
+            "TargetName" = "8:conditionGroup2-practice.txt"
             "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Folder" = "8:_7AFDCB4BB4AB40AD8CD2CFC184133A6B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AD910D58669143BAB3FE784B7B794C43"
+            {
+            "SourcePath" = "8:..\\experiment\\textures\\toptexsparse-1.bmp"
+            "TargetName" = "8:toptexsparse-1.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_2F6D7CCDE1644B3BA296F1869182AFB8"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2428,12 +2754,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AF8CEEEEE6FC4EC2AA713E5DC8D4D333"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AF747A0D7FB945CEA569E242D20BFE15"
             {
-            "SourcePath" = "8:..\\experiment\\ReadMe.txt"
-            "TargetName" = "8:ReadMe.txt"
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\config-experiment.txt"
+            "TargetName" = "8:config-experiment.txt"
             "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Folder" = "8:_195148BB79394C2DB954A69C2A0393BD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2448,10 +2774,30 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B14A14CD8D4546BF82B0948F2FB615AB"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B2284BCC2D18401CA7C01C584E4D080F"
             {
-            "SourcePath" = "8:..\\experiment\\experiment.aps"
-            "TargetName" = "8:experiment.aps"
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\conditionGroup2-practice.txt"
+            "TargetName" = "8:conditionGroup2-practice.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_6C5C23F6DEC34350B4A563D8A07D6725"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B25255C9B85A4C4FBA8B1DE7D3FC8A2B"
+            {
+            "SourcePath" = "8:..\\experiment\\experiment.ico"
+            "TargetName" = "8:experiment.ico"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -2488,12 +2834,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B80380F967A04257A61C66E8E4CC449F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B3A838B4A45B42DF9B6C26D47143D7D5"
             {
-            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionAllGroups\\config-experiment.txt"
-            "TargetName" = "8:config-experiment.txt"
+            "SourcePath" = "8:..\\experiment\\experiment.cpp"
+            "TargetName" = "8:experiment.cpp"
             "Tag" = "8:"
-            "Folder" = "8:_914B8ABFB9194387B1631BCC1E43E5BC"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2508,12 +2854,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BA27E3CFBB4D4CAA994447EF5742AB81"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B4DBF17725144A2EADD83D6D3E368F38"
             {
-            "SourcePath" = "8:..\\experiment\\PostExperimentScene.h"
-            "TargetName" = "8:PostExperimentScene.h"
+            "SourcePath" = "8:..\\experiment\\config\\conditionGroup2-practice.txt"
+            "TargetName" = "8:conditionGroup2-practice.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_4CD9195E57A640DDA81B6C6DCCDCD9C0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B502B5D0E7134FA298119A3DF67B4652"
+            {
+            "SourcePath" = "8:..\\experiment\\Overlapped2DViewScene.cpp"
+            "TargetName" = "8:Overlapped2DViewScene.cpp"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B72E4D46E1A54FF786CBB8B10E502F0C"
+            {
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\config-experiment.txt"
+            "TargetName" = "8:config-experiment.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_6C5C23F6DEC34350B4A563D8A07D6725"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B80380F967A04257A61C66E8E4CC449F"
+            {
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionAllGroups\\config-experiment.txt"
+            "TargetName" = "8:config-experiment.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_914B8ABFB9194387B1631BCC1E43E5BC"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2548,12 +2954,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BD1C3C612B5C48F7A6CF3ED3C316822C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BC9009C982FE436699540F7BE1DFCAB2"
             {
-            "SourcePath" = "8:..\\experiment\\config\\config-practice.txt"
-            "TargetName" = "8:config-practice.txt"
+            "SourcePath" = "8:..\\experiment\\rangeType.cpp"
+            "TargetName" = "8:rangeType.cpp"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BD7C7405BC5342F4A26CF1FB7EF89380"
+            {
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\conditionGroup1-experiment.txt"
+            "TargetName" = "8:conditionGroup1-experiment.txt"
             "Tag" = "8:"
             "Folder" = "8:_6C5C23F6DEC34350B4A563D8A07D6725"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BE4DE798D34B44FABEB25789BAA33A85"
+            {
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\config-practice.txt"
+            "TargetName" = "8:config-practice.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_7AFDCB4BB4AB40AD8CD2CFC184133A6B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BEE3261D73D44475AFDCE9715E92BCDD"
+            {
+            "SourcePath" = "8:..\\experiment\\gBConditionsOneSecAllGroups.h"
+            "TargetName" = "8:gBConditionsOneSecAllGroups.h"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2608,12 +3074,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BF9FC363F57D43B2BFA392FC50FE43D1"
+            {
+            "SourcePath" = "8:..\\experiment\\TestObject.cpp"
+            "TargetName" = "8:TestObject.cpp"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C059D1D920F14E40A1193CC516E71C04"
+            {
+            "SourcePath" = "8:..\\experiment\\gBConditionsOneSecOneGroup.cpp"
+            "TargetName" = "8:gBConditionsOneSecOneGroup.cpp"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C09A7165FD4B47609E7013388CD7449F"
             {
             "SourcePath" = "8:..\\experiment\\textures\\toptexsparse.bmp"
             "TargetName" = "8:toptexsparse.bmp"
             "Tag" = "8:"
             "Folder" = "8:_BB29303E83D74229BA73B17D24626BFE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C0E57D01BA4F42008736802491B5A3F9"
+            {
+            "SourcePath" = "8:..\\experiment\\experiment.aps"
+            "TargetName" = "8:experiment.aps"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2648,12 +3174,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C2D412E7785F42E9A3AD8C8DAB2CF859"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C4C2E7688D4545E1A8477F39BEEDB672"
             {
-            "SourcePath" = "8:..\\experiment\\ConfigurationReadMe(GroupBased).txt"
-            "TargetName" = "8:ConfigurationReadMe(GroupBased).txt"
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\conditionGroup2-practice.txt"
+            "TargetName" = "8:conditionGroup2-practice.txt"
             "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Folder" = "8:_195148BB79394C2DB954A69C2A0393BD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2668,12 +3194,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C328708E33D34AE1984F94793363970B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C5BE923D3FF8492EA2D2C057E4DC2D0C"
             {
-            "SourcePath" = "8:..\\experiment\\Overlapped2DViewScene.h"
-            "TargetName" = "8:Overlapped2DViewScene.h"
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\conditionGroup2-experiment.txt"
+            "TargetName" = "8:conditionGroup2-experiment.txt"
             "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Folder" = "8:_195148BB79394C2DB954A69C2A0393BD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2708,26 +3234,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C6AC49BF9A2A445BAC128DAD4E0F4ACD"
-            {
-            "SourcePath" = "8:..\\experiment\\small.ico"
-            "TargetName" = "8:small.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C7764421284D49C0B0E46AA0EBD7F41C"
             {
             "SourcePath" = "8:..\\experiment\\config\\calib.txt"
@@ -2748,10 +3254,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C8CFA16136CD415A9D0AD8A5AFBE1097"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C8AB7C8B31764496AACBE53017A59A24"
             {
-            "SourcePath" = "8:..\\experiment\\ConfWnd.cpp"
-            "TargetName" = "8:ConfWnd.cpp"
+            "SourcePath" = "8:..\\experiment\\Screen.cpp"
+            "TargetName" = "8:Screen.cpp"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -2788,10 +3294,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CBAEA49D692F4B06B1BF9B788950476C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CB81C80697604B69B0444042EF7B9DF2"
             {
-            "SourcePath" = "8:..\\experiment\\Trial.cpp"
-            "TargetName" = "8:Trial.cpp"
+            "SourcePath" = "8:..\\experiment\\experiment.suo"
+            "TargetName" = "8:experiment.suo"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -2828,12 +3334,112 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CD9C89698D354FF9BE3BAA1C4AD1FFDA"
+            {
+            "SourcePath" = "8:..\\experiment\\config\\conditionGroup1-experiment.txt"
+            "TargetName" = "8:conditionGroup1-experiment.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_4CD9195E57A640DDA81B6C6DCCDCD9C0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CE23C8FB42D949FEA278F1A6A9E2D363"
             {
             "SourcePath" = "8:..\\experiment\\config\\samples\\None-Group\\config-experiment.txt"
             "TargetName" = "8:config-experiment.txt"
             "Tag" = "8:"
             "Folder" = "8:_3A24BB7048CB4855BA81259C4D7EF246"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D036530205084EC9968B2C4056FEDAD2"
+            {
+            "SourcePath" = "8:..\\experiment\\rangeType.h"
+            "TargetName" = "8:rangeType.h"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D4B92A67E8324E2DA61EDFA238E928EA"
+            {
+            "SourcePath" = "8:..\\experiment\\config\\conditionGroup1-practice.txt"
+            "TargetName" = "8:conditionGroup1-practice.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_4CD9195E57A640DDA81B6C6DCCDCD9C0"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D78F43C6754544EEB1E169ADE94C61F7"
+            {
+            "SourcePath" = "8:..\\experiment\\Conditions.cpp"
+            "TargetName" = "8:Conditions.cpp"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D7DD5A8A439241EF907153A1CD12CDCF"
+            {
+            "SourcePath" = "8:..\\experiment\\ConditionConstraints.h"
+            "TargetName" = "8:ConditionConstraints.h"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2868,12 +3474,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DC0A7D0957394CAD951EA59E7A6F593A"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DD2BF172052845389194FBCE8B6FFD58"
             {
-            "SourcePath" = "8:..\\experiment\\config\\config-practice.txt"
-            "TargetName" = "8:config-practice.txt"
+            "SourcePath" = "8:..\\experiment\\PureWordScene.h"
+            "TargetName" = "8:PureWordScene.h"
             "Tag" = "8:"
-            "Folder" = "8:_4CD9195E57A640DDA81B6C6DCCDCD9C0"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2888,12 +3494,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E09FAAB8C06248AFA32CBED84D2F31B4"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E0489365EEA148E7A311523EBE2FDFA7"
             {
-            "SourcePath" = "8:..\\experiment\\Overlapped2DViewScene.cpp"
-            "TargetName" = "8:Overlapped2DViewScene.cpp"
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\config-experiment.txt"
+            "TargetName" = "8:config-experiment.txt"
             "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Folder" = "8:_7AFDCB4BB4AB40AD8CD2CFC184133A6B"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2914,66 +3520,6 @@
             "TargetName" = "8:conditionGroup2-practice.txt"
             "Tag" = "8:"
             "Folder" = "8:_106C2232203B4B079F376314A03EEE3C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E5CE3E7DCF8F4BDDB4DE76F19E5A9674"
-            {
-            "SourcePath" = "8:..\\experiment\\StereoViewingFrameV2.cpp"
-            "TargetName" = "8:StereoViewingFrameV2.cpp"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E672A90504624E50B9E300EEE68CD0BF"
-            {
-            "SourcePath" = "8:..\\experiment\\CylinderFactory.h"
-            "TargetName" = "8:CylinderFactory.h"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E6850D189FEE48309062C111077E1E2D"
-            {
-            "SourcePath" = "8:..\\experiment\\freeglut.lib"
-            "TargetName" = "8:freeglut.lib"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3108,32 +3654,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EEEE9D08004B46EFA94AB5E01CB861E0"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EED3C35FC4F145B5AFF1ACCA0E8AA49C"
             {
-            "SourcePath" = "8:..\\experiment\\ConfigurationReadMe(NonGroupBased).txt"
-            "TargetName" = "8:ConfigurationReadMe(NonGroupBased).txt"
+            "SourcePath" = "8:..\\experiment\\config\\samples\\groupBasedConditions\\OneSectionOneGroup\\conditionGroup1-experiment.txt"
+            "TargetName" = "8:conditionGroup1-experiment.txt"
             "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F1EB9AE23C364D069930B8803F638B65"
-            {
-            "SourcePath" = "8:..\\experiment\\Screen.cpp"
-            "TargetName" = "8:Screen.cpp"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Folder" = "8:_195148BB79394C2DB954A69C2A0393BD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3168,10 +3694,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F41B9F32A7CF49079161D5FC0CD010D3"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F531302A0AE5433C83048538876A202F"
             {
-            "SourcePath" = "8:..\\experiment\\cml_config.h"
-            "TargetName" = "8:cml_config.h"
+            "SourcePath" = "8:..\\experiment\\MixedObjectViewScene.h"
+            "TargetName" = "8:MixedObjectViewScene.h"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -3188,50 +3714,10 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F6F7C55B0CFC4AEE9EC0FFD0B25F688A"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F5B5195AC83B425D9740A0607873BB9A"
             {
-            "SourcePath" = "8:..\\experiment\\CylinderFactory.cpp"
-            "TargetName" = "8:CylinderFactory.cpp"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F84FC44CD1B747378B6320C877A6CAC1"
-            {
-            "SourcePath" = "8:..\\experiment\\TestObject.cpp"
-            "TargetName" = "8:TestObject.cpp"
-            "Tag" = "8:"
-            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F9BBFA61E66842A3AD7A53DAA9F645CE"
-            {
-            "SourcePath" = "8:..\\experiment\\targetver.h"
-            "TargetName" = "8:targetver.h"
+            "SourcePath" = "8:..\\experiment\\Scene.cpp"
+            "TargetName" = "8:Scene.cpp"
             "Tag" = "8:"
             "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
@@ -3268,12 +3754,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FCF1461AAD22405FAF439075DC1CDD68"
+            {
+            "SourcePath" = "8:..\\experiment\\experiment.vcproj"
+            "TargetName" = "8:experiment.vcproj"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FF5361699BA54CE498BDDFC74001B333"
             {
             "SourcePath" = "8:..\\experiment\\textures\\sidetexsparse-3.bmp"
             "TargetName" = "8:sidetexsparse-3.bmp"
             "Tag" = "8:"
             "Folder" = "8:_2F6D7CCDE1644B3BA296F1869182AFB8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FF62B4700B7D46C098E6AE346E905142"
+            {
+            "SourcePath" = "8:..\\experiment\\experiment.sln"
+            "TargetName" = "8:experiment.sln"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FF869E8ED5384CDC8C88C94AD12805E0"
+            {
+            "SourcePath" = "8:..\\experiment\\glew32.lib"
+            "TargetName" = "8:glew32.lib"
+            "Tag" = "8:"
+            "Folder" = "8:_8BC547B3FBA342DA8D71891B856C6BAE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3554,7 +4100,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SFM"
         "ProductCode" = "8:{1D3C7814-6142-4849-AD51-7251AEB635BA}"
-        "PackageCode" = "8:{03EDCAD0-AEFD-449B-AEEB-79209B143CA9}"
+        "PackageCode" = "8:{D519C9FC-8FF5-4078-8499-E0255E747762}"
         "UpgradeCode" = "8:{83380EBE-048B-4281-8FB9-ED76C59076FE}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"

@@ -6,7 +6,7 @@ gBConditionsOneSecOneGroup::gBConditionsOneSecOneGroup(ifstream& rFin, int numCo
     groupBasedConditions(rFin, numConditions, rObjectFactories, rScr)
 {
     this->currSection = 0;
-    this->currGroupID = 0;
+    this->currGroupID = -1;
 }
 
 gBConditionsOneSecOneGroup::gBConditionsOneSecOneGroup(ifstream& rFin,
@@ -14,7 +14,7 @@ gBConditionsOneSecOneGroup::gBConditionsOneSecOneGroup(ifstream& rFin,
     groupBasedConditions(rFin, rObjectFactories, rScr)
 {
     this->currSection = 0;
-    this->currGroupID = 0;
+    this->currGroupID = -1;
 }
 
 gBConditionsOneSecOneGroup::~gBConditionsOneSecOneGroup()
@@ -90,7 +90,7 @@ BOOL gBConditionsOneSecOneGroup::clearConditions()
     vector<cond_t *>().swap(this->_currConditions);
 
     this->currSection = 0;
-    this->currGroupID = 0;
+    this->currGroupID = -1;
 
     return ret;
 }
@@ -139,12 +139,12 @@ BOOL gBConditionsOneSecOneGroup::generateAllConditions()
 void gBConditionsOneSecOneGroup::_updateSectionBounds()
 {
     vector<int>().swap(this->_sectionBounds);
-    int weight = 0;
+    int weight = -1;
 
     for(int i = 0; i < (int) this->conditionGroups.size(); i ++)
     {
         int conditionIndex = (*this->conditionGroups[i])[0];
-        int groupID = this->conditions[conditionIndex]->constraintGroupID;
+        int groupID = this->conditions[conditionIndex]->constraintGroupID - 1;
         weight += this->_groupRepeatTimes[groupID];
 
         this->_sectionBounds.push_back(weight); 
