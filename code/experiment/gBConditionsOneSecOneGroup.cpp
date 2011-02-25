@@ -55,7 +55,8 @@ BOOL gBConditionsOneSecOneGroup::initConditions()
         ret = this->generateAllConditions();
         if(ret != FALSE)
         {
-            this->_shuffleGroups(1023);   
+            //this->_shuffleGroups(1023);   
+            this->_updateSectionBounds();
         }
     }
 

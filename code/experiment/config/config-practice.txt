@@ -2,7 +2,7 @@
 coordinatesOf3DObject 0.0 0.0 0.0
 coordinatesOf2DObject 15.0 0.0 0.0
 
-minDurationForEachTrial 3
+minDurationForEachTrial 3.0
 numberofBlocksPerSection 4
 
 numberOfEachConditionAppearingInEachSection 1
