@@ -24,6 +24,7 @@ class Experiment
         BOOL startProgram();
         BOOL writeOutputs(string& strOutputs);
         BOOL isNewSection(); 
+        BOOL isNewBlock();
 
         string subjectID;
         unsigned int maxSecNo;
@@ -31,10 +32,13 @@ class Experiment
         enumExperiMode experiMode; // 0 -- experiment mode; 1 -- practice mode;
         string outFilename;
         unsigned int trialsPerSec;
+        int blocksPerSec;
+        unsigned int trialsPerBlock;
         unsigned int conditionRepeatTimePerSec;
         DEVMODE devMode; // display settings
 
         unsigned int currTrialID;
+        unsigned int currBlockID;
         float minDurationForEachTrial;
 
         // Time when starting the experiment.

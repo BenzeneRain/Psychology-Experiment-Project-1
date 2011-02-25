@@ -2,7 +2,9 @@
 coordinatesOf3DObject 0.0 0.0 0.0
 coordinatesOf2DObject 15.0 0.0 0.0
 
-minDurationForEachTrial 3.0
+minDurationForEachTrial 3
+numberofBlocksPerSection 4
+
 numberOfEachConditionAppearingInEachSection 1
 
 numberOfTextures 9

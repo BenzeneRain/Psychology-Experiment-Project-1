@@ -29,7 +29,7 @@ BOOL PreTrialScene::startScene()
 
     Experiment *pExperi = Experiment::getInstance(NULL);
 
-    if(pExperi->isNewSection())
+    if(pExperi->isNewSection() || pExperi->isNewBlock())
     {
         // set display function and reshape function
         this->rScreen.setDisplayFunc(Scene::dispatchSceneRender);
@@ -52,23 +52,27 @@ BOOL PreTrialScene::startScene()
 
 string PreTrialScene::buildString()
 {
+    ostringstream ossMessage;
+
     //string message("Press spacebar for the next trial\n");
-    string message;
-    message.clear();
+    //string message;
+    //message.clear();
 
     Experiment *pExperi = Experiment::getInstance(NULL);
 
-    if(pExperi->isNewSection())
-    {
-        ostringstream ossMessage;
-
+    //if(pExperi->isNewSection())
+    //{
         ossMessage << "Progress: Section " << pExperi->currSecNo + 1 << "/"
-            << pExperi->maxSecNo << endl;
+            << pExperi->maxSecNo << ", ";
+    //}
 
-        message += ossMessage.str();
+    if(pExperi->isNewBlock())
+    {
+        ossMessage << "Block " << pExperi->currBlockID + 1 << "/"
+            << pExperi->blocksPerSec << endl;
     }
 
-    return message;
+    return ossMessage.str();
 }
 
 BOOL PreTrialScene::renderScene()

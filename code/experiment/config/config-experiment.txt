@@ -2,7 +2,9 @@
 coordinatesOf3DObject 0.0 0.0 0.0
 coordinatesOf2DObject 15.0 0.0 0.0
 
-minDurationForEachTrial 3.0
+minDurationForEachTrial 3
+numberofBlocksPerSection 4
+
 numberOfEachConditionAppearingInEachSection 1
 
 numberOfTextures 9
@@ -22,4 +24,4 @@ numberOfConditionGroups 2
 conditionGroupDescriptionFile1 ./config/conditionGroup1-experiment.txt
 conditionGroupDescriptionFile2 ./config/conditionGroup2-experiment.txt
 
-2 2 ; each group appeared times
+1 1 ; each group appeared times

@@ -39,6 +39,7 @@ Experiment::Experiment(HINSTANCE hInstance):
     Experiment::hInst = hInstance;
     this->currSecNo = 0;
     this->currTrialID = 0;
+    this->currBlockID = 0;
     this->pScreen = NULL;
     this->experimentConditions = NULL;
 };
@@ -200,7 +201,8 @@ BOOL Experiment::initSystem()
         // Read minimal duration for each trial
         fin >> junk;
         fin >> this->minDurationForEachTrial;
-
+        
+        this->blocksPerSec = -1;
         switch(this->conditionMode)
         {
             case 0:
@@ -218,6 +220,9 @@ BOOL Experiment::initSystem()
                     new gBConditionsOneSecAllGroups(fin, this->objectFactories, *this->pScreen);
                 break;
             case 2:
+                // Read number of blocks for one section
+                fin >> junk >> this->blocksPerSec;
+
                 this->experimentConditions =
                     new gBConditionsOneSecOneGroup(fin, this->objectFactories, *this->pScreen);
                 break;
@@ -273,6 +278,9 @@ BOOL Experiment::proceedExperiment()
     {
         const vector<cond_t *>& rConds = this->experimentConditions->getAllConditions(); 
         this->trialsPerSec = rConds.size();
+
+        if(this->blocksPerSec > 0)
+            this->trialsPerBlock = (unsigned int)ceil((double)this->trialsPerSec / (double)this->blocksPerSec);
     }
 
     do
@@ -287,9 +295,18 @@ BOOL Experiment::proceedExperiment()
         ret = pTrial->startTrial();
 
         this->currTrialID ++;
+
+        if(this->conditionMode == 2 && (this->blocksPerSec > 0) &&
+            (this->currTrialID != 0 && (this->currTrialID % this->trialsPerBlock) == 0))
+        {
+            this->currBlockID ++;
+        }
+
         if(this->currTrialID >= this->trialsPerSec)
         {
             this->currTrialID = 0;
+            if(this->conditionMode == 2)
+                this->currBlockID = 0;
             this->currSecNo ++;
 
             if(this->currSecNo < this->maxSecNo)
@@ -306,6 +323,9 @@ BOOL Experiment::proceedExperiment()
 
                             const vector<cond_t *>& rConds = this->experimentConditions->getAllConditions(); 
                             this->trialsPerSec = rConds.size();
+
+                            if(this->blocksPerSec > 0)
+                                this->trialsPerBlock = (unsigned int)ceil((double)this->trialsPerSec / (double)this->blocksPerSec);
                             break;
                         }
                     default:
@@ -337,6 +357,26 @@ BOOL Experiment::isNewSection()
    }
 
 }
+
+BOOL Experiment::isNewBlock()
+{
+    if(this->conditionMode != 2)
+        return FALSE;
+
+    if(this->blocksPerSec <= 0)
+        return FALSE;
+
+    if((this->currTrialID  % this->trialsPerBlock) == 0)
+    {
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+
+}
+
 
 BOOL Experiment::recordConfigurations()
 {
