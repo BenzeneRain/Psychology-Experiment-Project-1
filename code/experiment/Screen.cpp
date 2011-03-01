@@ -20,7 +20,10 @@ Screen::Screen(DEVMODE& devMode):
 Screen::~Screen(void)
 {
     glDeleteTextures(this->texNo, this->texIDs);
-    delete this->texIDs;
+    delete [] this->texIDs;
+    
+    glDeleteTextures(1, this->noiseTex);
+    delete this->noiseTex;
 }
 
 // This part can be seen as SetupRC with other initializations
@@ -78,9 +81,6 @@ BOOL Screen::initGlut(UINT displayMode, string title)
 
     this->_hWnd = FindWindow(NULL, title.c_str());
 
-
-
-
     // Set the background color
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClearStencil(0x0);
@@ -118,6 +118,10 @@ BOOL Screen::initGlut(UINT displayMode, string title)
     else
         this->_textureFilterAnisotropicLargest = -1.0f;
 
+    if(this->initNoise(string("textures/noise.bmp")) == FALSE)
+    {
+        return FALSE;
+    }
 
     return TRUE;
 }
@@ -172,6 +176,46 @@ BOOL Screen::initTextures(vector<rTexture_t *>& textures)
                 break;
         }
     }
+
+    return TRUE;
+}
+
+BOOL Screen::initNoise(string& noiseFilename)
+{
+    HBITMAP hBitmap = NULL;
+    hBitmap = (HBITMAP)::LoadImage(NULL, (LPCSTR)(noiseFilename.c_str()), 
+                               IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
+    if(hBitmap == NULL)
+    {
+        string errorMsg = "Fail to load the noise texture ";
+        errorMsg += noiseFilename;
+        MessageBox(NULL, (LPSTR)(errorMsg.c_str()), NULL, MB_OK | MB_ICONERROR);
+        return FALSE;
+    }
+
+    this->noiseTex = new GLuint;
+    glGenTextures(1, this->noiseTex);
+
+    glBindTexture(GL_TEXTURE_2D, *this->noiseTex);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); 
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+    if(this->_textureFilterAnisotropicLargest > 0)
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT,
+            this->_textureFilterAnisotropicLargest);
+
+    BITMAP bm;
+    GetObject(hBitmap, sizeof(bm), &bm);
+    BYTE *imageBuffer = new BYTE[bm.bmWidthBytes * bm.bmHeight];
+    GetBitmapBits(hBitmap, bm.bmWidthBytes * bm.bmHeight, imageBuffer);
+
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, bm.bmWidth, bm.bmHeight,
+        GL_RGBA, GL_UNSIGNED_BYTE, imageBuffer);
+
+    delete [] imageBuffer; 
 
     return TRUE;
 }

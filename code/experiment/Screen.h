@@ -30,6 +30,7 @@ class Screen
         BOOL setIdleFunc(void (*func)(void));
 
         BOOL initTextures(vector<rTexture_t *>& textures);
+        BOOL initNoise(string& noiseFilename);
 
         BOOL run();
         void render();
@@ -48,10 +49,10 @@ class Screen
         GLuint *texIDs;
         vector< vector<GLuint> > colorIDs;
 
+        GLuint *noiseTex;
+
         StereoViewingFrame stereoFrame;
 
-        // the function is only for test purpose 
-        static void testRenderScene();
 
         inline const LARGE_INTEGER& getCounterFrequency() {return this->CounterFrequency;}
 
@@ -60,6 +61,10 @@ class Screen
 
         PFNWGLSWAPINTERVALEXTPROC wglSwapIntervalEXT;
         PFNWGLGETSWAPINTERVALEXTPROC wglGetSwapIntervalEXT;
+
+        // the function is only for test purpose 
+        static void testRenderScene();
+
 
     private:
         BOOL WGLExtensionSupported(const char *extension_name);

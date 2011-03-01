@@ -201,6 +201,10 @@ BOOL Experiment::initSystem()
         // Read minimal duration for each trial
         fin >> junk;
         fin >> this->minDurationForEachTrial;
+
+        // Read duration for display noise
+        fin >> junk >> this->durationNoise;
+
         
         this->blocksPerSec = -1;
         switch(this->conditionMode)

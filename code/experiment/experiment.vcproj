@@ -224,6 +224,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\noiseScene.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Overlapped2DViewScene.cpp"
 					>
 				</File>
@@ -355,6 +359,10 @@
 				>
 				<File
 					RelativePath=".\MixedObjectViewScene.h"
+					>
+				</File>
+				<File
+					RelativePath=".\noiseScene.h"
 					>
 				</File>
 				<File

@@ -3,6 +3,7 @@ coordinatesOf3DObject 0.0 0.0 0.0
 coordinatesOf2DObject 15.0 0.0 0.0
 
 minDurationForEachTrial 3.0
+durationForDisplayingNoise 0.5
 numberOfSections 2
 numberOfEachConditionAppearingInEachSection 1
 

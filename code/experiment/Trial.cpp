@@ -4,6 +4,7 @@
 #include "PreTrialScene.h"
 #include "Separate2D3DViewScene.h"
 #include "Overlapped2DViewScene.h"
+#include "noiseScene.h"
 #include "TestObject.h"
 #include "Conditions.h"
 #include "experiment.h"
@@ -88,6 +89,11 @@ BOOL Trial::proceedNextScene()
             }
         case POST_TRIAL_SCENE:
             {
+                // Show Noise Here
+                pScene = new noiseScene(pExperi->durationNoise);
+                ret = pScene->startScene();
+                delete pScene;
+
                 // Write the trial result to the output file
                 // if it is experiment mode
                 if(pExperi->experiMode == EXPERIMENT)

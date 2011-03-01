@@ -63,13 +63,17 @@ string PreTrialScene::buildString()
     //if(pExperi->isNewSection())
     //{
         ossMessage << "Progress: Section " << pExperi->currSecNo + 1 << "/"
-            << pExperi->maxSecNo << ", ";
+            << pExperi->maxSecNo;
     //}
 
     if(pExperi->isNewBlock())
     {
-        ossMessage << "Block " << pExperi->currBlockID + 1 << "/"
+        ossMessage << ", Block " << pExperi->currBlockID + 1 << "/"
             << pExperi->blocksPerSec << endl;
+    }
+    else
+    {
+        ossMessage << endl;
     }
 
     return ossMessage.str();

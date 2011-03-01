@@ -40,6 +40,7 @@ class Experiment
         unsigned int currTrialID;
         unsigned int currBlockID;
         float minDurationForEachTrial;
+        float durationNoise;
 
         // Time when starting the experiment.
         // This time is actually not the time exactly starting the 
